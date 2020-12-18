@@ -1,0 +1,68 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.equinox.preferences,3.4.2.v20120111-2020,"org.eclipse.equinox.preferences",1364019162099
+started,bundle,org.eclipse.equinox.registry,3.5.101.R37x_v20110810-1611,"org.eclipse.equinox.registry",1364019162099
+started,bundle,org.eclipse.equinox.security,1.1.1.R37x_v20110822-1018,"org.eclipse.equinox.security",1364019162099
+started,bundle,org.eclipse.jdt.core,3.7.3.v20120119-1537,"org.eclipse.jdt.core",1364019162099
+started,bundle,org.eclipse.jdt.core.manipulation,1.4.0.v20110928-1453,"org.eclipse.jdt.core.manipulation",1364019162099
+started,bundle,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui",1364019162099
+started,bundle,org.eclipse.jface,3.7.0.v20110928-1505,"org.eclipse.jface",1364019162099
+started,bundle,org.eclipse.jst.ws.jaxws.utils,1.0.100.v201201031437,"org.eclipse.jst.ws.jaxws.utils",1364019162099
+started,bundle,org.eclipse.mylyn.bugzilla.core,3.8.2.v20120916-1200,"org.eclipse.mylyn.bugzilla.core",1364019162099
+started,bundle,org.eclipse.mylyn.bugzilla.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.bugzilla.ui",1364019162115
+started,bundle,org.eclipse.mylyn.commons.core,3.8.2.v20120916-1200,"org.eclipse.mylyn.commons.core",1364019162115
+started,bundle,org.eclipse.mylyn.commons.net,3.8.2.v20120916-1200,"org.eclipse.mylyn.commons.net",1364019162115
+started,bundle,org.eclipse.mylyn.commons.notifications.core,1.0.2.v20120916-1200,"org.eclipse.mylyn.commons.notifications.core",1364019162115
+started,bundle,org.eclipse.mylyn.commons.notifications.feed,1.0.2.v20120916-1200,"org.eclipse.mylyn.commons.notifications.feed",1364019162115
+started,bundle,org.eclipse.mylyn.commons.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.commons.ui",1364019162115
+started,bundle,org.eclipse.mylyn.commons.workbench,3.8.2.v20120916-1200,"org.eclipse.mylyn.commons.workbench",1364019162115
+started,bundle,org.eclipse.mylyn.context.core,3.8.2.v20120916-1200,"org.eclipse.mylyn.context.core",1364019162115
+started,bundle,org.eclipse.mylyn.context.tasks.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.context.tasks.ui",1364019162115
+started,bundle,org.eclipse.mylyn.monitor.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.monitor.ui",1364019162115
+started,bundle,org.eclipse.mylyn.tasks.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.tasks.ui",1364019162115
+started,bundle,org.eclipse.mylyn.team.ui,3.8.2.v20120916-1200,"org.eclipse.mylyn.team.ui",1364019162115
+started,bundle,org.eclipse.team.cvs.ui,3.3.401.v20120126-1227,"org.eclipse.team.cvs.ui",1364019162115
+started,bundle,org.eclipse.team.ui,3.6.101.R37x_v20111109-0800,"org.eclipse.team.ui",1364019162115
+started,bundle,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui",1364019162115
+started,bundle,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console",1364019162115
+started,bundle,org.eclipse.ui.editors,3.7.0.v20110928-1504,"org.eclipse.ui.editors",1364019162115
+started,bundle,org.eclipse.ui.forms,3.5.101.v20111011-1919,"org.eclipse.ui.forms",1364019162115
+started,bundle,org.eclipse.ui.ide,3.7.0.v20110928-1505,"org.eclipse.ui.ide",1364019162115
+started,bundle,org.eclipse.ui.navigator,3.5.101.v20120106-1355,"org.eclipse.ui.navigator",1364019162115
+started,bundle,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.resources",1364019162115
+started,bundle,org.eclipse.ui.net,1.2.100.v20111208-1155,"org.eclipse.ui.net",1364019162115
+started,bundle,org.eclipse.ui.views,3.6.0.v20110928-1505,"org.eclipse.ui.views",1364019162115
+started,bundle,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"org.eclipse.ui.workbench",1364019162115
+started,bundle,org.eclipse.ui.workbench.texteditor,3.7.0.v20110928-1504,"org.eclipse.ui.workbench.texteditor",1364019162131
+started,bundle,org.eclipse.wst.common.emfworkbench.integration,1.2.101.v201107140600,"org.eclipse.wst.common.emfworkbench.integration",1364019162131
+started,bundle,org.eclipse.wst.common.frameworks,1.2.102.v201201190400,"org.eclipse.wst.common.frameworks",1364019162131
+started,bundle,org.eclipse.wst.common.project.facet.core,1.4.201.v201201101553,"org.eclipse.wst.common.project.facet.core",1364019162131
+started,bundle,org.eclipse.wst.web,1.1.501.v201201190400,"org.eclipse.wst.web",1364019162131
+os,sysinfo,,,"win32",1364019162131
+arch,sysinfo,,,"x86",1364019162131
+ws,sysinfo,,,"win32",1364019162131
+locale,sysinfo,,,"en_US",1364019162131
+processors,sysinfo,,,"4",1364019162131
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1364019162131
+java.runtime.version,sysinfo,,,"1.7.0_15-b03",1364019162131
+java.specification.name,sysinfo,,,"Java Platform API Specification",1364019162131
+java.specification.vendor,sysinfo,,,"Oracle Corporation",1364019162131
+java.specification.version,sysinfo,,,"1.7",1364019162131
+java.vendor,sysinfo,,,"Oracle Corporation",1364019162131
+java.version,sysinfo,,,"1.7.0_15",1364019162131
+java.vm.info,sysinfo,,,"mixed mode, sharing",1364019162131
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1364019162131
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1364019162131
+java.vm.specification.vendor,sysinfo,,,"Oracle Corporation",1364019162131
+java.vm.specification.version,sysinfo,,,"1.7",1364019162131
+java.vm.vendor,sysinfo,,,"Oracle Corporation",1364019162131
+java.vm.version,sysinfo,,,"23.7-b01",1364019162131
+closed,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1364019166811
+started,bundle,org.eclipse.compare.core,3.5.200.I20110208-0800,"org.eclipse.compare.core",1364019166998
+started,bundle,org.eclipse.compare,3.5.202.R37x_v20111109-0800,"org.eclipse.compare",1364019167013
+stopped,bundle,org.eclipse.jst.ws.axis.creation.ui,1.0.700.v201104070312,"org.eclipse.jst.ws.axis.creation.ui",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis.consumption.ui,1.0.505.v201004211805,"org.eclipse.jst.ws.axis.consumption.ui",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis.consumption.core,1.0.407.v201104071820,"org.eclipse.jst.ws.axis.consumption.core",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis2.creation.ui,1.0.104.v201004211805,"org.eclipse.jst.ws.axis2.creation.ui",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis2.consumption.ui,1.0.103.v201004211805,"org.eclipse.jst.ws.axis2.consumption.ui",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis2.creation.core,1.0.106.v201004211805,"org.eclipse.jst.ws.axis2.creation.core",1364019167107
+stopped,bundle,org.eclipse.jst.ws.axis2.consumption.core,1.0.105.v201004211805,"org.eclipse.jst.ws.axis2.consumption.core",1364019167107
