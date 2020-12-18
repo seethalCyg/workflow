@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+<h:head>
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+
+ <script type="text/javascript">
+	
+	function segDeleteconfirm(selectedDataSize){
+	if(selectedDataSize != '0'){
+	if (!confirm('Are you sure you want to Delete the selected record(s)?'))
+	return false;
+	}else{
+	return true;
+	}
+	}
+	</script>
+
+</h:head>
+<h:body>
+
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<o:popupLayer id="addSegmentPopup" 
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 0px; top: 0px; border: 3px solid orange;width:600px">
+		<table align="center"><tr><td align="justify">
+
+		<fieldset style="width:580px">
+		<legend class="label2">Add Segment</legend>
+		<table>
+		<tr><td colspan="3"><h:outputText style="color: red" value="#{hierarchyDBBean.statusMsg}" rendered="true"></h:outputText></td></tr>
+		<tr>
+		<td><h:outputText value="Choose Segment" rendered="true"></h:outputText> </td>
+		
+		<td>
+				<h:selectOneMenu id="segdata2" value="#{hierarchyDBBean.segSelectedsegment}">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --" />
+        		<f:selectItems value="#{hierarchyDBBean.numberOfSegmentAL}" />
+        		<f:ajax event="change" render="segcondition" listener="#{hierarchyDBBean.defaultselectContd}"></f:ajax>
+    			</h:selectOneMenu> &nbsp;<h:selectOneMenu id="segcondition" value="#{hierarchyDBBean.segselectedcondition}">
+       	
+        		<f:selectItems value="#{hierarchyDBBean.conditionAL}" />
+        		<f:ajax event="change" render="btweenvals btweenvals2 btween between between1 between2 segbtn segdata1 btnimag btnimag1 btnimag2 segbtn2" execute="btweenvals btweenvals2 btween between between1 between2 segbtn segdata1 btnimag btnimag1 btnimag2 segbtn2"></f:ajax>
+    			</h:selectOneMenu></td>
+    			
+    			<td><h:panelGroup id="btnimag"> <h:inputText id="segdata1" size="14"  value="#{hierarchyDBBean.segsearchValue}" rendered="#{hierarchyDBBean.segselectedcondition != 'Between' and hierarchyDBBean.segselectedcondition != 'Not Between'}"/></h:panelGroup></td><td><h:selectBooleanCheckbox id="AddSegDatamatchCase" value="#{hierarchyDBBean.matchCase4AddSeg}"></h:selectBooleanCheckbox><h:outputText style="font-size:13px" value="Match Case"></h:outputText></td><td><h:panelGroup id="btnimag1"><h:commandButton id="segbtn" style="width:25px" title="Search" alt="Search" value="Search" image="/resources/images/DatabaseSearch.jpg" action="#{hierarchyDBBean.getSegmentValuesFromDB('FromSegpopup')}" rendered="#{hierarchyDBBean.segselectedcondition != 'Between' and hierarchyDBBean.segselectedcondition != 'Not Between'}"><a4j:ajax render="segdata2 segcondition segvalues segmsg" execute="segdata2 AddSegDatamatchCase segcondition segdata1 btnimag"></a4j:ajax> </h:commandButton></h:panelGroup></td> 
+    			
+    			
+    			
+		
+		</tr>
+		<tr>
+		<td><h:panelGroup id="btween"> <h:outputText id="between" value="Enter Between Values" rendered="#{hierarchyDBBean.segselectedcondition == 'Between' or hierarchyDBBean.segselectedcondition == 'Not Between'}"></h:outputText> </h:panelGroup></td><td>
+		<table><tr><td><h:panelGroup id="btweenvals">
+		<h:inputText id="between1" size="18" value="#{hierarchyDBBean.segSearchbetween1}" rendered="#{hierarchyDBBean.segselectedcondition == 'Between' or hierarchyDBBean.segselectedcondition == 'Not Between'}"/></h:panelGroup></td> <td><h:panelGroup id="btweenvals2"> <h:inputText id="between2" size="18" value="#{hierarchyDBBean.segSearchbetween2}" rendered="#{hierarchyDBBean.segselectedcondition == 'Between' or hierarchyDBBean.segselectedcondition == 'Not Between'}"/></h:panelGroup></td><td><h:panelGroup id="btnimag2"><h:commandButton id="segbtn2" style="width:25px" title="Search" alt="Search" value="Search" image="/resources/images/DatabaseSearch.jpg" action="#{hierarchyDBBean.getSegmentValuesFromDB('FromSegpopup')}" rendered="#{hierarchyDBBean.segselectedcondition == 'Between' or hierarchyDBBean.segselectedcondition == 'Not Between'}"><a4j:ajax render="segdata2 segmsg between1 segcondition between2 segvalues" execute="segdata2 between1 segcondition between2"></a4j:ajax></h:commandButton></h:panelGroup></td> </tr></table></td>
+		
+		</tr>
+		<tr>
+		<td><h:outputText value="Choose Values" rendered="true"></h:outputText> </td>
+		
+		<td><table align="left"><tr><td><h:selectOneMenu id="tablefilterS" value="#{hierarchyDBBean.selectedPeriodvalueOperator}" style="width:100px">
+       		
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>&nbsp; <h:inputText id="filtervalS" value="#{hierarchyDBBean.filterSelectedPeriodValues}" size="7"></h:inputText></td></tr><tr><td><h:selectBooleanCheckbox id="AddSegFilterDatamatchCase" value="#{hierarchyDBBean.matchCase4FilterSeg}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('filter4Segment')}" style="width:15px"><f:ajax render="tablefilterS filtervalS segvalues segmsg" execute="tablefilterS AddSegFilterDatamatchCase filtervalS segvalues segmsg"></f:ajax> </h:commandButton></td></tr>
+		<tr><td><h:selectManyListbox id="segvalues" value="#{hierarchyDBBean.segSelectedsegmentvalue}" size="5" style="width:185px">
+		
+		<f:selectItems value="#{hierarchyDBBean.segmentValues4SegPopupAL}"/></h:selectManyListbox></td></tr>
+		</table>
+		
+		
+		</td><td><h:commandButton title="Add List Item" value="Add" image="/resources/images/addb.png" action="#{hierarchyDBBean.addTosegmenttable}">
+		<a4j:ajax execute="segvalues" render="segmentsList segmsg"></a4j:ajax>
+		</h:commandButton></td>
+			
+		
+		</tr>
+		
+		</table>
+		<table><tr><td style="color: blue;">
+	<!-- 	<h:outputText id="segmsg" value="#{hierarchyDBBean.segInfoMsg}"></h:outputText> -->
+		</td></tr></table>
+		
+		
+    <h:panelGroup id="segmentGroup">
+    
+			</h:panelGroup>
+			 <table>
+<tr>
+
+
+</tr>
+
+</table>
+
+<table>
+
+<tr><td colspan="1" >
+<fieldset>
+<legend class="label2">Segment List</legend>
+
+<table align="right"><tr><td><h:commandButton id="segdelete" title="Delete" value="Delete" onclick="return segDeleteconfirm('#{hierarchyDBBean.segmentValueList.size()}');" action="#{hierarchyDBBean.deleteSelectedSegments}" image="/resources/images/delete.png"><a4j:ajax render="segmentsList segmsg" execute="segmentsList segmsg"></a4j:ajax></h:commandButton></td></tr></table>
+		<o:dataTable id="segmentsList" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo"
+						value="#{hierarchyDBBean.segmentListAL}" var="segmentobject"
+						 pageSize="10" noDataMessageAllowed="false"
+						 commonHeaderRowClass="table-header" 
+						headerRowClass="table-header" bodyRowClass="table-even-row"
+						bodyOddRowClass="table-odd-row" style="margin-top: 22px; width:510px"
+						bodyRowStyle="background-color:#FFFFF;"
+						bodyOddRowStyle="background-color:#ADDDFF;" 
+						headerVertSeparator="1px solid #a0a0a0"
+						preloadedNodes="all" expansionState="levelsExpanded:2">
+						<o:multipleRowSelection
+							rowDatas="#{hierarchyDBBean.segmentValueList}"
+							style="background: #a4aec5; color: #7E0000;" >
+							<o:ajax render="@this segdelete" execute="@this segdelete"></o:ajax>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+						</o:selectionColumn>
+						
+						
+						<o:column id="segmentNo" style="width:50px;" sortingExpression="#{segmentobject.numberOfSegment}" rendered="false">
+							<f:facet name="header">No
+							</f:facet>
+							
+							<o:hintLabel value="#{segmentobject.numberOfSegment}"></o:hintLabel>
+						</o:column>
+						<o:column id="segment" style="width:100px;">
+							<f:facet name="header">Segment(s) <br />
+							</f:facet>
+							
+							<o:hintLabel value="#{segmentobject.dispalyName4SegPopup}"></o:hintLabel>
+						</o:column>
+						<o:column id="segmentvalue" style="width:300px;">
+							<f:facet name="header">Segment Values(s) <br />
+							</f:facet>
+							<h:outputText value="#{segmentobject.segmentValue}" size="60"/>
+							
+						</o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup">
+								<o:dataTablePaginator id="paginator"></o:dataTablePaginator>
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></fieldset></td></tr></table>
+						
+						<table><tr><td>
+
+<h:commandButton title="Close" value="close" image="/resources/images/close.png" onclick="O$('#{hierarchyBean.formName4OpenAddSegPopup}:addSegmentPopup').hide();">
+
+<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+</h:commandButton>
+
+</td><td></td><td style="color:blue"><h:outputText id="segmsg" value="#{hierarchyDBBean.message}"> </h:outputText></td></tr></table>
+		
+		
+		</fieldset>
+		</td></tr></table>
+		</o:popupLayer>
+	
+</h:body>
+</html>

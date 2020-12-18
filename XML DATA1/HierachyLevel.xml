@@ -1,0 +1,1580 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Hierarchy_Levels>
+
+
+
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/05/11 20:39:50" CustomerKey="Z9qJt" Hierarchy_ID="113" Hierarchy_Name="Test" Modified_By="bharath@cygnussoftwares.com" Modified_Date="2018/06/21 13:09:10" Unique_ID="87808">
+<Workflow Current_Stage_Name="Initiate" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="103,107,121,199,202,205,221,222,287,292,293,307,308,309,384" Hierarchy_ID="113" Total_No_Stages="4" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+<Stage Stage_Name="Initiate" Stage_No="1" Stage_Role="Creator" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="Final">Initiate</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="Creator" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Stage_Name="Create" Stage_No="2" Stage_Role="Creator" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="Creator" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="159" E-mail="vinoth.g@cygnussoftwares.com" User_Role="Creator" User_Status="YTS">vinoth.g@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+<Stage Stage_Name="Review" Stage_No="3" Stage_Role="Reviewer" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="Reviewer" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="Reviewer" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Stage_Name="Approve" Stage_No="4" Stage_Role="Approver" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="Approver" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+
+
+
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="201" Unique_ID="87896">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" Hierarchy_ID="201" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		<Stage Stage_Name="Create" Stage_No="1" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">YTS</Status_Code>
+				<Status_Code level="2">WIP</Status_Code>
+				<Status_Code level="Final">Completed</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Review" Stage_No="2" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Approve" Stage_No="3" Stage_Status="YTS">
+			<Status_Codes>
+			    <Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+	</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/05/31 20:13:09" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="202" Hierarchy_Name="Finance_Workflow" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/05/31 20:13:09" Unique_ID="87897">
+<Workflow Current_Stage_Name="Initiator" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="98,99,100,116,117,264" Hierarchy_ID="202" Total_No_Stages="5" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+<Stage Stage_Name="Initiator" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="Final">Initiate</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+
+<Stage Stage_Name="Creator" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Remind</Status_Code>
+<Status_Code level="3">Escalate</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+<Stage Pass_Notification_To="All_Members_in_Stage" Rejected_Notification_To="All_Members_in_Stage" Rejected_Return_To="Previous_Stage" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Stage_Name="Manager" Stage_No="4" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="3">Pause</Status_Code>
+<Status_Code level="4">Remind</Status_Code>
+<Status_Code level="5">Escalate</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="159" E-mail="vinoth.g@cygnussoftwares.com" User_Role="" User_Status="YTS">vinoth.g@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" UserName="maha@cygnussoftwares.com">maha@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Stage_Name="VP" Stage_No="5" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Pass_Notification_To="All_Members_in_Stage" Rejected_Notification_To="All_Members_in_Stage" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="bharath@cygnussoftwares.com" Stage_Name="Reviewer" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="3">Remind</Status_Code>
+<Status_Code level="4">Escalate</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/06/20 12:51:29" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="206" Hierarchy_Name="ABC Finance WF" Modified_By="thambi@cygnussoftwares.com" Modified_Date="2018/06/21 10:58:52" Unique_ID="87901">
+<Workflow Current_Stage_Name="Initiator" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="101,102,120,152,170,204,217,282,286,311" Hierarchy_ID="206" Total_No_Stages="5" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+
+
+
+
+
+<Stage Pass_Notification_To="All_Members_in_WF" Rejected_Notification_To="All_Members_in_WF" Rejected_Return_To="Previous_Stage" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="Choose Status" Select_Member="maha@cygnussoftwares.com" Stage_Name="Manager" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Pause</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="null" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="159" E-mail="vinoth.g@cygnussoftwares.com" User_Role="null" User_Status="YTS">vinoth.g@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" UserName="maha@cygnussoftwares.com">maha@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+
+
+<Stage Pass_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" Stage_Name="Initiator" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="Final">Initiate</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+<Stage Allow_Upload="false" Auto_Login="true" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" Stage_Name="VP" Stage_No="5" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="bharath@cygnussoftwares.com" Stage_Name="Reviewer" Stage_No="4" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="3">Remind</Status_Code>
+<Status_Code level="4">Escalate</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+
+<Stage Allow_Upload="true" Auto_Login="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="bharath@cygnussoftwares.com" Stage_Name="Creator" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Remind</Status_Code>
+<Status_Code level="4">Escalate</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/08/05 16:47:32" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="257" Hierarchy_Name="ABZ InfoTek" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/09/08 22:53:08" Unique_ID="87952">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="113,155,191,192,232,241,224,264,267,269,321,322,324,325,327" Hierarchy_ID="257" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+<Stage Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" Stage_Name="Review" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="3">Approved</Status_Code>
+<Status_Code level="4">YTS</Status_Code>
+<Status_Code level="Final">Remind</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="null" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+<Stage Pass_Notification_To="" Rejected_Notification_To="All_Members_in_Stage" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="bharath@cygnussoftwares.com" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="null" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="true" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="vishnu@cygnussoftwares.com" SendPrimaryFileOnly="false" Stage_Name="Create" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" UserName="vishnu@cygnussoftwares.com">vishnu@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/08/05 18:05:36" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="258" Hierarchy_Name="CYG" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/08/05 18:05:36" Unique_ID="87953">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="122,125,128,131,132,133,134,135,136,137,150,177,180,193,220,241,269" Hierarchy_ID="258" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	<Stage Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" Stage_Name="Create" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="Final">Initiate</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Pass_Notification_To="" Rejected_Notification_To="All_Members_in_Stage" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="bharath@cygnussoftwares.com" Stage_Name="Review" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="3">Approved</Status_Code>
+<Status_Code level="Final">Escalate</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="null" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" UserName="bharath@cygnussoftwares.com">bharath@cygnussoftwares.com</Name>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+<Stage Pass_Notification_To="" Rejected_Notification_To="All_Members_in_Stage" Rejected_Return_To="Previous_Stage" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="Choose Status" Select_Member="" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="null" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/08/14 15:40:45" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="259" Hierarchy_Name="DEMODATA" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/08/14 15:40:45" Unique_ID="87954">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="129,130" Hierarchy_ID="259" RuleAttributeName="FEE" RuleAttributeType="Custom" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+<Stage Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" Stage_Name="Create" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+
+
+
+
+
+
+<Stage Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" Stage_Name="Review" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="166" E-mail="dinesh@cygnussoftwares.com" User_Role="" User_Status="YTS">dinesh@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+<Stage Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="176" E-mail="siva@cygnussoftwares.com" User_Role="null" User_Status="YTS">siva@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="null" User_Status="YTS">settu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="09/06/2018 16:13:38" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="273" Hierarchy_Name="Rules Test" Modified_By="maha@cygnussoftwares.com" Modified_Date="09/06/2018 16:43:16" Unique_ID="87968">
+<Workflow Current_Stage_Name="Creator" Current_Stage_No="1" DependentObjectID="318,319,320,321" Hierarchy_ID="273" RuleAttributeDataType="Currency#~#Text" RuleAttributeName="PO Amount#~#PO State" RuleAttributeType="Custom#~#Custom" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	<Stage Allow_Upload="true" Auto_Login="true" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Creator" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="null" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+
+
+
+
+
+
+
+<Rules>
+<Rule CurrentStage="Create" JoinOperator="And" RuleAttributesOperator="greaterthan~#~equals" RuleAttributesValue="PO Amount~50000~#~PO State~CA" RuleName="Rule #1" TargetStage="Approve"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Reviewer" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="null" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="09/10/2018 23:17:53" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="274" Hierarchy_Name="CapEx WF" Modified_By="maha@cygnussoftwares.com" Modified_Date="09/10/2018 23:25:46" Unique_ID="87969">
+<Workflow Current_Stage_Name="Creator" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="328,329,330,331,332,333" Hierarchy_ID="274" RuleAttributeDataType="Currency#~#Text" RuleAttributeName="PO Amount#~#PO State" RuleAttributeType="Custom#~#Custom" Total_No_Stages="6" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="true" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Creator" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="null" User_Status="YTS">settu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Reviewer" Stage_No="2" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="true" Change_PrimaryFileOnly="false" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Vendors" Stage_No="3" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="187" E-mail="sudeesh@cygnussoftwares.com" User_Role="" User_Status="YTS">sudeesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="GM" Stage_No="4" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="true">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules>
+<Rule CurrentStage="GM" JoinOperator="And" RuleAttributesOperator="lesserthan~#~equals" RuleAttributesValue="PO Amount~50000~#~PO State~CA" RuleName="Rule #1" TargetStage="Finalize"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="VP" Stage_No="5" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="YTS" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Finalize" Stage_No="6" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/09/07 09:58:11" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="270" Hierarchy_Name="WF_Test_01" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/09/07 10:08:44" Unique_ID="87965">
+<Workflow Current_Stage_Name="Creator" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="310,312,313,314,315,316,318,319,320,323,326,334,335" Hierarchy_ID="270" RuleAttributeDataType="Currency#~#Text" RuleAttributeName="PO Amount#~#PO Date" RuleAttributeType="Custom#~#Custom" Total_No_Stages="5" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Creator" Stage_No="1" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="null" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+
+<Rules/>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="true" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Vendor" Stage_No="2" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="null" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="null" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="166" E-mail="dinesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">dinesh@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="176" E-mail="siva@cygnussoftwares.com" User_Role="null" User_Status="YTS">siva@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="3" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+
+
+
+<Rules>
+<Rule CurrentStage="Vendor" JoinOperator="And" RuleAttributesOperator="greaterthan~#~equals" RuleAttributesValue="PO Amount~50000~#~PO Date~CA" RuleName="Rule #1" TargetStage="Manager_2"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Manager" Stage_No="3" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="null" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Manager_2" Stage_No="4" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="CEO" Stage_No="5" Stage_Role="" Stage_Status="YTS">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="2018/09/08 15:16:53" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="272" Hierarchy_Name="TEST1" Modified_By="maha@cygnussoftwares.com" Modified_Date="2018/09/08 15:20:59" Unique_ID="87967">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" DependentObjectID="317" Hierarchy_ID="272" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+<Stage Allow_Upload="false" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Review" Stage_No="2" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="true">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="null" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="true" Auto_Login="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Create" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="3" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="273" Unique_ID="87968"/>
+<Hierarchy_Level Hierarchy_ID="274" Unique_ID="87969"/>
+<Hierarchy_Level Hierarchy_ID="275" Unique_ID="87970">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" Hierarchy_ID="275" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		<Stage Stage_Name="Create" Stage_No="1" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">YTS</Status_Code>
+				<Status_Code level="2">WIP</Status_Code>
+				<Status_Code level="Final">Completed</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Review" Stage_No="2" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Approve" Stage_No="3" Stage_Status="YTS">
+			<Status_Codes>
+			    <Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+	</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="10/04/2018 15:12:14" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="276" Hierarchy_Name="BP" Modified_By="maha@cygnussoftwares.com" Modified_Date="10/09/2018 17:23:56" Unique_ID="87971">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" CustomerKey="xbstjb1ciumjt3hu" DependentObjectID="336,337,338,339,340,341,342" Hierarchy_ID="276" RuleAttributeDataType="Text" RuleAttributeName="Member Email ID" RuleAttributeType="Default" Total_No_Stages="4" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Create" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+<Rules/>
+</Stage>
+
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Review" Stage_No="2" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="null" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+
+
+
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Approve" Stage_No="3" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="223" E-mail="john@cygnussoftwares.com" User_Role="" User_Status="YTS">john@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+<Rules>
+<Rule CurrentStage="Approve" JoinOperator="And" RuleAttributesOperator="equals" RuleAttributesValue="Member Email ID~" RuleName="Rule #1" TargetStage="Vendor"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="true" Change_PrimaryFileOnly="false" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Vendor" Stage_No="4" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Acknowledged</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="10/09/2018 20:00:43" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="277" Hierarchy_Name="New Rule" Modified_By="maha@cygnussoftwares.com" Modified_Date="10/09/2018 20:12:40" Unique_ID="87972">
+<Workflow Current_Stage_Name="Contract_Admin" Current_Stage_No="1" DependentObjectID="343,344,345,346,347" Hierarchy_ID="277" RuleAttributeDataType="Text#~#Text" RuleAttributeName="Vendor ID#~#Contract Amount" RuleAttributeType="Default#~#Custom" Total_No_Stages="5" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="true" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Contract_Admin" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="null" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Manager" Stage_No="2" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+<Rules>
+<Rule CurrentStage="Manager" JoinOperator="Or" RuleAttributesOperator="equals~#~lesserthan" RuleAttributesValue="Vendor ID~~#~Contract Amount~10000" RuleName="Rule #1" TargetStage="Cont_Admin"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="VP" Stage_No="3" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="null" User_Status="YTS">maha@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Cont_Admin" Stage_No="4" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+<Rules>
+<Rule CurrentStage="Cont_Admin" JoinOperator="And" RuleAttributesOperator="equals~#~equals" RuleAttributesValue="Vendor ID~~#~Contract Amount~" RuleName="Rule #1" TargetStage="Contract_Admin"/>
+</Rules>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="true" Change_PrimaryFileOnly="false" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="Vendor" Stage_No="5" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="Final">Acknowledged</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="maha@cygnussoftwares.com" Created_Date="10/09/2018 21:39:57" CustomerKey="xbstjb1ciumjt3hu" Hierarchy_ID="278" Hierarchy_Name="Demo Rule" Modified_By="maha@cygnussoftwares.com" Modified_Date="10/09/2018 22:32:19" Unique_ID="87973">
+<Workflow Current_Stage_Name="GM" Current_Stage_No="1" DependentObjectID="348,349,350,351,352" Hierarchy_ID="278" RuleAttributeDataType="Number#~#Text" RuleAttributeName="Contract Amount#~#Vendor ID" RuleAttributeType="Custom#~#Default" Total_No_Stages="6" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		
+		
+		
+	
+
+
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="true" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="GM" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Completed</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="null" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+
+
+
+
+
+<Rules>
+<Rule CurrentStage="GM" JoinOperator="Or" RuleAttributesOperator="lesserthan~#~equals" RuleAttributesValue="Contract Amount~10000~#~Vendor ID~Don't use" RuleName="Rule #1" TargetStage="Legal"/>
+<Rule CurrentStage="Contract_Admin" JoinOperator="Or" RuleAttributesOperator="equals~#~equals" RuleAttributesValue="Contract Amount~~#~Vendor ID~Use" RuleName="Rule #2" TargetStage="vendor"/>
+</Rules>
+</Stage>
+
+
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="COO" Stage_No="4" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="157" E-mail="vignesh@cygnussoftwares.com" User_Role="" User_Status="YTS">vignesh@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Contract_Admin" Stage_No="5" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="156" E-mail="thambi@cygnussoftwares.com" User_Role="" User_Status="YTS">thambi@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="VP" Stage_No="2" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="153" E-mail="maha@cygnussoftwares.com" User_Role="" User_Status="YTS">maha@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="223" E-mail="john@cygnussoftwares.com" User_Role="" User_Status="YTS">john@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="true" Change_PrimaryFileOnly="false" ExternalUser="true" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="true" Stage_Name="vendor" Stage_No="6" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="Final">Acknowledged</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="161" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Parallel" Min_Approvers="1" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+<Rules/>
+</Stage>
+<Stage Allow_Upload="false" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="Affected_Members" Rejected_Return_To="First_Stage" Rejected_Set_Status_To="WIP" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Legal" Stage_No="3" Stage_Role="" Stage_Status="WIP" StatusCode4Documents="false">
+<Status_Codes>
+<Status_Code level="1">WIP</Status_Code>
+<Status_Code level="2">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="160" E-mail="kishorkumar@cygnussoftwares.com" User_Role="" User_Status="YTS">kishorkumar@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers>
+<Name Access_Unique_ID="" E-mail="" UserName=""/>
+</Escalate_Managers>
+<Properties Concurrency="Serial">Serial</Properties>
+<Rules/>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+
+<Hierarchy_Level Created_By="settu@cygnussoftwares.com" Created_Date="12/05/2018 15:48:24" CustomerKey="RSUqE" Hand_Shake_Key="IiWwC1QEe5s9YMma" Hierarchy_ID="285" Hierarchy_Name="WK-TEST01" Modified_By="settu@cygnussoftwares.com" Modified_Date="12/05/2018 15:48:24" Unique_ID="87980">
+<Workflow Current_Stage_Name="Stage1" Current_Stage_No="1" DependentObjectID="357" Hierarchy_ID="285" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage1" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="236" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="237" E-mail="krishnaraj@cygnussoftwares.com" User_Role="" User_Status="YTS">krishnaraj@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="settu@cygnussoftwares.com" Created_Date="12/05/2018 16:30:46" CustomerKey="RSUqE" Hand_Shake_Key="8Xwl1zFeTs97MAao" Hierarchy_ID="286" Hierarchy_Name="First_workFlow_01" Modified_By="settu@cygnussoftwares.com" Modified_Date="12/05/2018 16:30:46" Unique_ID="87981">
+<Workflow Current_Stage_Name="Stage1" Current_Stage_No="1" DependentObjectID="358,359" Hierarchy_ID="286" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="" Rejected_Notification_To="" Rejected_Return_To="" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage1" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="2" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="238" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="239" E-mail="krishnaraj@cygnussoftwares.com" User_Role="" User_Status="YTS">krishnaraj@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="settu@cygnussoftwares.com" Created_Date="12/06/2018 11:58:15" CustomerKey="RSUqE" Hand_Shake_Key="Bb2p6VJjXxDRrft0" Hierarchy_ID="287" Hierarchy_Name="Devil_workflow" Modified_By="settu@cygnussoftwares.com" Modified_Date="12/06/2018 11:58:15" Unique_ID="87982">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="360,361" Hierarchy_ID="287" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="2" sendremainderwithdaysCount="2" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="238" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="settu@cygnussoftwares.com" Created_Date="12/06/2018 18:04:16" CustomerKey="RSUqE" Hand_Shake_Key="Pod4I8Wwk1zEeSs9" Hierarchy_ID="288" Hierarchy_Name="WF112" Modified_By="settu@cygnussoftwares.com" Modified_Date="12/06/2018 18:04:16" Unique_ID="87983">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="288" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="2" sendremainderwithdaysCount="3" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="settu@cygnussoftwares.com" Created_Date="12/06/2018 18:11:29" CustomerKey="RSUqE" Hand_Shake_Key="XxD2Rrf6t0ZNn3GV" Hierarchy_ID="289" Hierarchy_Name="WF113" Modified_By="settu@cygnussoftwares.com" Modified_Date="12/06/2018 18:11:29" Unique_ID="87984">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="289" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="2" aftersendremainderFlag="true" sendremainderCount="2" sendremainderwithdaysCount="2" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 16:33:54" CustomerKey="i3b0G" Hand_Shake_Key="1zEeSsg7MAao53Ii" Hierarchy_ID="290" Hierarchy_Name="WF115" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 16:33:54" Unique_ID="87985">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="362,363" Hierarchy_ID="290" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="2" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="238" E-mail="settu@cygnussoftwares.com" User_Role="" User_Status="YTS">settu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="bharath@cygnussoftwares.com" Created_Date="12/07/2018 22:34:43" CustomerKey="eb455" Hand_Shake_Key="m31GfUti9NCb2p64" Hierarchy_ID="291" Hierarchy_Name="Bharath" Modified_By="bharath@cygnussoftwares.com" Modified_Date="12/07/2018 22:34:43" Unique_ID="87986">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="364" Hierarchy_ID="291" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 22:51:20" CustomerKey="i3b0G" Hand_Shake_Key="f6t0ZNn42HVvjPDd" Hierarchy_ID="292" Hierarchy_Name="software" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 22:51:20" Unique_ID="87987">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="292" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 23:00:18" CustomerKey="i3b0G" Hand_Shake_Key="2H6VJj0xDdRrfLZz" Hierarchy_ID="293" Hierarchy_Name="WF118" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 23:00:18" Unique_ID="87988">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="293" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 23:09:19" CustomerKey="i3b0G" Hand_Shake_Key="VKj0yDdRrf6LZzn4" Hierarchy_ID="294" Hierarchy_Name="WF121" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 23:09:19" Unique_ID="87989">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="294" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 23:22:25" CustomerKey="i3b0G" Hand_Shake_Key="Wwk1QEeSs97Mmao5" Hierarchy_ID="295" Hierarchy_Name="WF122" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 23:22:25" Unique_ID="87990">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="365" Hierarchy_ID="295" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/07/2018 23:25:12" CustomerKey="i3b0G" Hand_Shake_Key="Hh8vBaPpd4IWwl1z" Hierarchy_ID="296" Hierarchy_Name="WF123" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/07/2018 23:25:12" Unique_ID="87991">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="366" Hierarchy_ID="296" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/08/2018 03:41:45" CustomerKey="i3b0G" Hand_Shake_Key="ZNn42H6Vvj0PDdRr" Hierarchy_ID="297" Hierarchy_Name="WF124" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/08/2018 03:41:46" Unique_ID="87992">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="367,369,371" Hierarchy_ID="297" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/11/2018 12:19:38" CustomerKey="i3b0G" Hand_Shake_Key="7VKj0xD3Rrf6LZNn" Hierarchy_ID="298" Hierarchy_Name="WF125" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/11/2018 12:19:38" Unique_ID="87993">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="368,370" Hierarchy_ID="298" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="158" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="240" E-mail="cygnus.nithin@gmail.com" User_Role="" User_Status="YTS">cygnus.nithin@gmail.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/13/2018 21:05:35" CustomerKey="i3b0G" Hand_Shake_Key="On42H6Vvj0PDdRr8" Hierarchy_ID="299" Hierarchy_Name="WF126" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/13/2018 21:05:35" Unique_ID="87994">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="299" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="241" E-mail="cygnus.nithin@gmail.com" User_Role="" User_Status="YTS">cygnus.nithin@gmail.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vijay@cygnussoftwares.com" Created_Date="12/13/2018 21:06:52" CustomerKey="i3b0G" Hand_Shake_Key="On42H6Vvj0PDdRr8" Hierarchy_ID="300" Hierarchy_Name="WF126" Modified_By="vijay@cygnussoftwares.com" Modified_Date="12/13/2018 21:06:52" Unique_ID="87995">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" Hierarchy_ID="300" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="241" E-mail="cygnus.nithin@gmail.com" User_Role="" User_Status="YTS">cygnus.nithin@gmail.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Parallel" Min_Approvers="2" Min_Approvers_Percent="" Parallel_Type="Members">Parallel</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="cygnus.nithin@gmail.com" Created_Date="12/15/2018 10:14:25" CustomerKey="Z9qJt" Hand_Shake_Key="8XLlZzF4TthvBbPp" Hierarchy_ID="301" Hierarchy_Name="Testing_flw" Modified_By="cygnus.nithin@gmail.com" Modified_Date="12/15/2018 10:14:25" Unique_ID="87996">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="372" Hierarchy_ID="301" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="242" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="vishnu@cygnussoftwares.com" Created_Date="12/15/2018 18:58:13" CustomerKey="CgOjF" Hand_Shake_Key="h8vBbpd4JXxl2zFf" Hierarchy_ID="302" Hierarchy_Name="New WF" Modified_By="vishnu@cygnussoftwares.com" Modified_Date="12/15/2018 18:58:13" Unique_ID="87997">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="373,374,375,376" Hierarchy_ID="302" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="" sendremainderwithdaysCount="" sendremainderwithdaysFlag="false">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="154" E-mail="vishnu@cygnussoftwares.com" User_Role="" User_Status="YTS">vishnu@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="155" E-mail="bharath@cygnussoftwares.com" User_Role="" User_Status="YTS">bharath@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="242" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Created_By="cygnus.nithin@gmail.com" Created_Date="12/26/2018 12:10:48" CustomerKey="Z9qJt" Hand_Shake_Key="K9Yym3SGgUuAOocq" Hierarchy_ID="303" Hierarchy_Name="WF129" Modified_By="cygnus.nithin@gmail.com" Modified_Date="12/26/2018 12:10:48" Unique_ID="87998">
+<Workflow Current_Stage_Name="Stage_001" Current_Stage_No="1" DependentObjectID="378,379,380,381,382,383" Hierarchy_ID="303" Total_No_Stages="1" Workflow_Level="Default" Workflow_Type="Simple">
+<Stage Allow_Upload="true" Auto_Login="false" Change_PrimaryFileOnly="false" ExternalUser="false" Pass_Notification_To="All_Members_Before_Stage" Rejected_Notification_To="Affected_Members" Rejected_Return_To="Previous_Member" Rejected_Set_Status_To="" Rejected_Set_Status_To_Type="First Status Code" Select_Member="" SendPrimaryFileOnly="false" Stage_Name="Stage_001" Stage_No="1" Stage_Role="" Stage_Status="YTS" StatusCode4Documents="false" aftersendremainderCount="1" aftersendremainderFlag="true" sendremainderCount="1" sendremainderwithdaysCount="1" sendremainderwithdaysFlag="true">
+<Status_Codes>
+<Status_Code level="1">YTS</Status_Code>
+<Status_Code level="2">WIP</Status_Code>
+<Status_Code level="3">Rejected</Status_Code>
+<Status_Code level="Final">Approved</Status_Code>
+</Status_Codes>
+<Employee_Names>
+<Name Access_Unique_ID="242" E-mail="vijay@cygnussoftwares.com" User_Role="" User_Status="YTS">vijay@cygnussoftwares.com</Name>
+<Name Access_Unique_ID="241" E-mail="cygnus.nithin@gmail.com" User_Role="" User_Status="YTS">cygnus.nithin@gmail.com</Name>
+<Name Access_Unique_ID="243" E-mail="krishnaraj@cygnussoftwares.com" User_Role="" User_Status="YTS">krishnaraj@cygnussoftwares.com</Name>
+</Employee_Names>
+<Escalate_Managers/>
+<Properties Concurrency="Serial">Serial</Properties>
+</Stage>
+</Workflow>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="304" Unique_ID="87999">
+<Workflow Current_Stage_Name="Create" Current_Stage_No="1" Hierarchy_ID="304" Total_No_Stages="3" Workflow_Level="Default">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		<Stage Stage_Name="Create" Stage_No="1" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">YTS</Status_Code>
+				<Status_Code level="2">WIP</Status_Code>
+				<Status_Code level="Final">Completed</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Review" Stage_No="2" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Approve" Stage_No="3" Stage_Status="YTS">
+			<Status_Codes>
+			    <Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+	</Workflow>
+</Hierarchy_Level>
+</Hierarchy_Levels>

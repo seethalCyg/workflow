@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<o:popupLayer id="SrcWarHusJoinClum4Func"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 2px solid orange;">
+		<table><tr><td><fieldset><legend class="label2">Choose Column(s)</legend><table>
+		
+		<tr>
+		<td>
+		
+	
+																							<h:panelGroup id="textAreA1">
+																							<h:inputTextarea id="textarea4columnFunc" style="height: 60px;width:200px " value="#{hierarchyDBBean.additionalFunc4Column}">
+																							
+																							<f:ajax event="change" render="@this" execute="@this"></f:ajax>
+																							</h:inputTextarea></h:panelGroup>
+																							
+																							
+		
+		</td>
+		
+		
+		</tr>
+		
+		<tr><td align="left"><h:commandButton value="OK" action="#{hierarchyDBBean.addColumns2Table(hierarchyDBBean.flag4CallSrcWarHusPopup)}" image="/resources/images/ok1.png" onclick="O$('#{hierarchyBean.formID}:SrcWarHusJoinClum4Func').hide();">
+		<f:ajax render="textarea4columnFunc :#{hierarchyBean.formID}:configWH :#{hierarchyBean.formID}:meas"></f:ajax>
+		</h:commandButton><h:commandButton value="Cancel" image="/resources/images/close.png" onclick="O$('#{hierarchyBean.formID}:SrcWarHusJoinClum4Func').hide();"><f:ajax/> </h:commandButton></td></tr></table></fieldset></td></tr></table>
+		
+		
+		</o:popupLayer>
+</h:body>
+</html>

@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Config>
+	<Sequences>
+		<RootLevel_Node ID="100"/>
+		<Hier_Cat_Code ID="100"/>
+		<Hierarchy_ID ID="304"/>
+		<Hierarchy_Code ID="100"/>	
+		<Hierarchy_Level_ID ID="387"/>	
+		<Node_Level_ID ID="82327"/>	
+		<Row_ID4Oracle ID="87999"/>
+		<Sort_Order4Oracle ID="69251"/>	
+		<Acess_User_ID ID="243"/>
+		<Segments_ID ID="1210"/>
+		<Dummy_CodeCombination_ID ID="-9928804"/>
+		<Login_Acces_ID ID="3026"/>
+		<DB_Temp_Table_ID ID="3007"/>
+		<WF_Unique_ID ID="1822"/>
+		<Document_Unique_ID ID="384"/>
+		<UltraWF_Unique_ID ID="129"/>
+	</Sequences>	
+	<Connection>
+	<Data_Connection>
+		<ConnectionName>Data_Connection</ConnectionName>
+		<HostName>system5</HostName>
+		<PortName>1522</PortName>
+		<DBName>ORCL</DBName>
+		<UserName>scott</UserName>
+		<Password>tiger</Password>
+		<ConnectionType>OCI 10g/11g</ConnectionType>
+	</Data_Connection>
+	<DW_Connection>
+		<ConnectionName>DW_Connection</ConnectionName>
+		<HostName>system5</HostName>
+		<PortName>1521</PortName>
+		<DBName>ORCL</DBName>
+		<UserName>scott</UserName>
+		<Password>tiger</Password>
+		<ConnectionType>OCI 10g/11g</ConnectionType>
+	</DW_Connection>
+	<EBS_TEST_INS>
+<ConnectionName>EBS_TEST_INS</ConnectionName>
+<HostName>system14</HostName>
+<PortName>1522</PortName>
+<DBName>orcl</DBName>
+<UserName>ABC123</UserName>
+<Password>abc123</Password>
+<ConnectionType>OCI 10g/11g</ConnectionType>
+</EBS_TEST_INS>
+<DW_TEST_INST>
+<ConnectionName>DW_TEST_INST</ConnectionName>
+<HostName>system5</HostName>
+<PortName>1521</PortName>
+<DBName>orcl</DBName>
+<UserName>scott</UserName>
+<Password>tiger</Password>
+<ConnectionType>OCI 10g/11g</ConnectionType>
+</DW_TEST_INST>
+</Connection>
+<Hierarchy_Category>
+<Category_1>GL</Category_1>
+<Category_2>DH</Category_2>
+<Category_3>RH</Category_3>
+<Category_4>IH</Category_4>
+</Hierarchy_Category>
+	<Property>
+<Property_1>Measure</Property_1>
+<Property_2>Attribute</Property_2>
+<Property_3>Period</Property_3>
+</Property>
+	<No_Of_segments>8</No_Of_segments>
+
+<Segment_SQL>select distinct  account_seg1_code, account_seg1_name from W_GL_ACCOUNT_D;</Segment_SQL>
+
+
+	<Segment_Trigger_SQL>
+		<SQL>select $$COLUMN_NAME$$ from $$TABLE_NAME$$ T91397</SQL>
+		<TABLE_NAME>W_GL_ACCOUNT_D</TABLE_NAME>
+	<COLUMN_NAME>ROW_WID</COLUMN_NAME>
+	<Segment_1>account_seg1_code</Segment_1>
+	<Segment_2>account_seg2_code</Segment_2>
+	<Segment_3>account_seg3_code</Segment_3>
+	<Segment_4>account_seg4_code</Segment_4>
+	<Segment_5>account_seg5_code</Segment_5>
+	<Segment_6>account_seg6_code</Segment_6>
+	<Segment_7>account_seg7_code</Segment_7>
+	<Segment_8>account_seg8_code</Segment_8>
+	</Segment_Trigger_SQL>
+	
+	<row_wid_SQL>SELECT distinct mcal_period_wid, MCAL_period_NAME  FROM W_MCAL_PERIOD_D WHERE  MCAL_CAL_NAME = 'ABC Accounting'</row_wid_SQL>
+	<join_SQL_1>SELECT WC_FLEX_HIERARCHY_D.ROW_WID,WC_FLEX_HIERARCHY_D.HIER_CAT_CODE,WC_FLEX_HIERARCHY_D.HIERARCHY_ID,WC_FLEX_HIERARCHY_D.SORT_ORDER,WC_FLEX_HIERARCHY_D.HIER20_CODE, WC_FLEX_HIERARCHY_D.HIER20_NAME, WC_FLEX_HIERARCHY_D.PARENT_CODE</join_SQL_1>
+	<join_SQL_2>,WC_FLEX_HIERARCHY_D.PARENT_ROW_WID,WC_FLEX_HIERARCHY_D.NODE_TYPE FROM (select * from WC_FLEX_HIERARCHY_D WHERE</join_SQL_2>
+	
+	<Detail_Table>INSERT INTO WC_FLEX_HIERARCHY_REPORT_DET_F (ROW_WID,HIER_CAT_CODE,HIERARCHY_ID,SORT_ORDER,HIER20_CODE,HIER20_NAME,DOC_AMT,PERIOD_WID)</Detail_Table>
+	<Fact_Table>INSERT INTO WC_FLEX_HIERARCHY_REPORT_F (ROW_WID,HIER_CAT_CODE,HIERARCHY_ID,SORT_ORDER,HIER20_CODE,HIER20_NAME,DOC_AMT,PERIOD_WID,PARENT_CODE,MTD_AMT)</Fact_Table>
+	<Data_Table>INSERT INTO $$TARGET_TABLE_NAME$$ (HIER_CAT_CODE,HIERARCHY_ID,PERIOD_WID,</Data_Table>
+
+<Segment_SQLS>
+<Segment_SQL1 Column_Name1="account_seg1_code" Column_Name2="account_seg1_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL1>
+<Segment_SQL2 Column_Name1="account_seg2_code" Column_Name2="account_seg2_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL2>
+<Segment_SQL3 Column_Name1="account_seg3_code" Column_Name2="account_seg3_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL3>
+<Segment_SQL4 Column_Name1="account_seg4_code" Column_Name2="account_seg4_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL4>
+<Segment_SQL5 Column_Name1="account_seg5_code" Column_Name2="account_seg5_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL5>
+<Segment_SQL6 Column_Name1="account_seg6_code" Column_Name2="account_seg6_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL6>
+<Segment_SQL7 Column_Name1="account_seg7_code" Column_Name2="account_seg7_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL7>
+<Segment_SQL8 Column_Name1="account_seg8_code" Column_Name2="account_seg8_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL8>
+<Segment_SQL9 Column_Name1="account_seg4_code" Column_Name2="account_seg4_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL9>
+<Segment_SQL10 Column_Name1="account_seg5_code" Column_Name2="account_seg5_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL10>
+<Segment_SQL11 Column_Name1="account_seg6_code" Column_Name2="account_seg6_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL11>
+<Segment_SQL12 Column_Name1="account_seg7_code" Column_Name2="account_seg7_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL12>
+<Segment_SQL13 Column_Name1="account_seg8_code" Column_Name2="account_seg8_name" Table_Name="W_GL_ACCOUNT_D">select distinct $$Column_Name1$$, $$Column_Name2$$ from $$Table_Name$$</Segment_SQL13>
+
+</Segment_SQLS>
+
+
+
+<Fact_Tables Connection_Source="Data_Connection" Connection_Target="DW_Connection">
+<Table Source_Fact_TableName="W_GL_OTHER_F" Source_Period_Column="ACCT_PERIOD_END_DT_WID" Target_Fact_TableName="WC_FLEX_HIERARCHY_DATA_F">
+
+<Measure_Columns>
+<Measure_Column1 Column_Property="Measure">WC_FLEX_HIERARCHY_DATA_F.DOC_AMT=W_GL_OTHER_F.OTHER_DOC_AMT</Measure_Column1>
+<Measure_Column2 Column_Property="Attribute">WC_FLEX_HIERARCHY_DATA_F.GL_ACCOUNT_WID=W_GL_OTHER_F.GL_ACCOUNT_WID</Measure_Column2>
+<Measure_Column3 Column_Property="Attribute">WC_FLEX_HIERARCHY_DATA_F.LEDGER_WID=W_GL_OTHER_F.LEDGER_WID</Measure_Column3>
+<Measure_Column4 Column_Property="Period">WC_FLEX_HIERARCHY_DATA_F.PERIOD_WID=W_MCAL_PERIOD_D.ROW_WID</Measure_Column4>
+</Measure_Columns>
+<Join_Columns>
+<Join_Column1>WC_FLEX_HIERARCHY_D.HIER20_NUM=W_GL_OTHER_F.GL_ACCOUNT_WID</Join_Column1>
+</Join_Columns>
+<Source_Warehouse_Joins>
+<Source_Warehouse_Joins1 Join_Operator="=" Join_type="Column" Source_Column="W_GL_OTHER_F.ACCT_PERIOD_END_DT_WID" Source_Connection="Data_Connection" Target_Column="W_MCAL_PERIOD_D.ROW_WID" Target_Connection="DW_Connection"/>
+<Source_Warehouse_Joins2 Join_Operator="=" Join_type="String" Source_Column="W_MCAL_PERIOD_D.MCAL_CAL_NAME" Source_Connection="DW_Connection" Target_Column="'ABC Accounting'" Target_Connection=""/>
+</Source_Warehouse_Joins>
+<Period_Values>Nov-12;</Period_Values>
+<DB_Connection>Data_Connection</DB_Connection>
+</Table>
+<Fact_Result>Generated</Fact_Result>
+<Error_Message>Table_1: WC_FLEX_HIERARCHY_DATA_F is Generated ; </Error_Message>
+</Fact_Tables>
+
+<Default_Status_Codes>
+ <Status_Code>YTS</Status_Code>
+ <Status_Code>WIP</Status_Code>
+ <Status_Code>Completed</Status_Code>
+ <Status_Code>Rejected</Status_Code>
+ <Status_Code>Pause</Status_Code>
+ <Status_Code>Approved</Status_Code>
+ <Status_Code>Acknowledged</Status_Code>
+ <Status_Code>Initiate</Status_Code>
+ <Status_Code>Remind</Status_Code>
+ <Status_Code>Escalate</Status_Code>
+</Default_Status_Codes>
+
+
+
+
+
+<Target_Fact_Tables>
+     <Table_Name1>WC_FLEX_HIERARCHY_DATA_F</Table_Name1>
+     <Table_Name2>W_FLEX_HEIR_DATA_F1</Table_Name2>
+     <Table_Name3>W_FLEX_HEIR_DATA_F2</Table_Name3>
+     <Table_Name4>W_FLEX_HEIR_DATA_F3</Table_Name4>
+     <Table_Name5>W_FLEX_HEIR_DATA_F4</Table_Name5>
+</Target_Fact_Tables>
+
+<Target_DIM_Tables>
+     <Dim_Table_Name>WC_FLEX_HIERARCHY_D</Dim_Table_Name>
+</Target_DIM_Tables>
+
+<EMail_Details>
+ <EMail_ID>jaices911112@gmail.com</EMail_ID>
+ <Password>test</Password>
+</EMail_Details>
+
+<Mail_Configuration>
+   <Mail_ID_Send_by>sysadmin@cygnussoftwares.com</Mail_ID_Send_by>
+   <Mail_Password>Cygnus$admin</Mail_Password>
+   <Signature ImagePath="">&lt;br/&gt;&lt;br/&gt;Regards,&lt;br/&gt;
+Ultra Workflow Team </Signature>
+   <Mail_Message> tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Please see the below Details here for workflow progress  tdend trend   
+     trstart tdstart From  Stage   : $FromStage$  tdend trend  
+     trstart tdstart  From  Status  : $FromStatu$   tdend trend      
+     trstart tdstart tdend trend          
+     trstart tdstart  Last Access Member : $LastAccessMember$  tdend trend     
+     trstart tdstart Last Member Role : $LastMemberRole$   tdend trend       
+     trstart tdstart Last Member Status : $LastMemberStatus$ tdend trend  
+     trstart tdstart  Last Access Member EmailID : $LastAccessMemberEmailID$ tdend trend       
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend
+     
+    
+   </Mail_Message>
+   <Mail_Message HTMLFileName="Reject.html" Subject="Document is rejected by $LastAccessMember$." To="Next" Type="Rejected">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A document is rejected.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Rejected By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Rejected Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+      <Mail_Message HTMLFileName="Attach.html" Subject="Document is attached to the workflow. Awaiting your action" To="Next" Type="Attach">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Attach Document  tdend trend
+     trstart tdstart The $DocName$ document is attached to the workflow $WorkflowName$  tdend trend   
+     trstart tdstart A request to approve document $DocName$ is sent to $ToStage$.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Attached By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Attached Date : $CurrDate$  tdend trend        
+     trstart tdstart  tdend trend  
+     trstart tdstart  Request sent to tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+	 trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+   <Mail_Message HTMLFileName="Approved.html" Subject="Awaiting your action" To="Next" Type="RequestApproval">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A request to approve document $DocName$ is sent to $ToStage$.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+     trstart tdstart  Request sent to tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+    <Mail_Message Subject="You have requested $ToStage$ to approve your document $DocName$." To="Initiator" Type="RequestApproval">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A request to approve document $DocName$ was sent to $ToStage$.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	 trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tablestart trstart tdstart Available Actions &lt;a href='$cancellink$'&gt;Cancel this request&lt;/a&gt; tdend trend tableend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	
+    
+    <Mail_Message HTMLFileName="Approved.html" Subject="A document sent by $LastAccessMember$ is waiting for your approval." To="Next" Type="Completed">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A document is waiting for your approval…  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+     trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	  
+          
+    <Mail_Message HTMLFileName="Approved.html" Subject="A document sent by $LastAccessMember$ is waiting for your approval." To="Next" Type="Approve">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A document is waiting for your approval…  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+      trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	  
+    <Mail_Message Subject="You have sent a reminder to $ToStage$ to approve your document $DocName$." To="Initiator" Type="Remind">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Your reminder to approve $DocName$ was sent to $ToStage$.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	
+    <Mail_Message HTMLFileName="Remind.html" Subject="$LastAccessMember$ has sent you a reminder to approve document $DocName$." To="Next" Type="Remind">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A document is waiting for your approval…  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	
+   <Mail_Message HTMLFileName="Escalate.html" Subject="Escalation is initiated." To="Next" Type="Escalate">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart A document approval request has beeen escalated to you.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Sent By  : $LastAccessMember$ tdend trend          
+     trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend       
+	 trstart tdstart Delayed By : $Days$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Request sent to tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+	 trstart tdstart  Team  : $ToStage$ tdend trend
+	  trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+	 trstart tdstart  Member(s)  : $Members$ tdend trend
+      tablestart trstart tdstart Notes : $Notes$ tdend trend tableend
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+    <Mail_Message HTMLFileName="WFCompleted.html" Subject="Workflow is completed." To="Next" Type="Finished">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart $DocName$ is finally approved by $LastAccessMember$.  tdend trend  
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+     trstart tdstart Approved By  : $LastAccessMember$ tdend trend         
+     trstart tdstart Status : $DueDate$   tdend trend     
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Request sent to tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+     trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+    <Mail_Message Subject="Your request to cancel document $DocName$." To="Failed" Type="Cancel">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Your action to cancel this request was not successful.   tdend trend  
+     trstart tdstart Reason: The document was processed already.   tdend trend  
+	 trstart tdstart  tdend trend  	 
+     trstart tdstart Current Status tdend trend          
+     trstart tdstart Workflow : $WorkflowName$  tdend trend     
+     trstart tdstart Team : $FromStage$   tdend  tdstart Status : $FromStatu$   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Original Request tdend trend   
+	 trstart tdstart  Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt; tdend trend	
+	 trstart tdstart  Sent By  : $LastAccessMember$ tdend trend
+	 trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend     
+	 trstart tdstart Workflow : $WorkflowName$  tdend trend  
+	 trstart tdstart Team : $CancelStage$   tdend trend  
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>		
+
+<Mail_Message Subject="Your request to cancel document $DocName$." To="Success" Type="Cancel">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Your action to cancel this request was successful.\n An E Mail confirmation was sent to the Initiators and the current Team.   tdend trend  
+	 trstart tdstart  tdend trend  	 
+	 trstart tdstart  tdend trend  	 
+     trstart tdstart Current Status tdend trend          
+     trstart tdstart Workflow : $WorkflowName$  tdend trend     
+     trstart tdstart Team : $FromStage$   tdend  tdstart Cancelled By : $LastAccessMember$   tdend trend       
+	 trstart tdstart Status : Cancelled   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Original Request tdend trend   
+	 trstart tdstart  Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt; tdend trend	
+	 trstart tdstart  Sent By  : $LastAccessMember$ tdend trend
+	 trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend     
+	 trstart tdstart Workflow : $WorkflowName$  tdend trend  
+	 trstart tdstart Team : $CancelStage$   tdend trend  
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>
+    <Mail_Message Subject="Workflow is paused." To="Next" Type="Pause">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Workflow is paused by $LastAccessMember$.  tdend trend  
+	 trstart tdstart  tdend trend  	 
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+	 trstart tdstart Team Name  : $FromStage$ tdend trend   
+     trstart tdstart Paused By  : $LastAccessMember$ tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+      trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+	  trstart tdstart  tdend trend  	 
+	  trstart tdstart  No email will be delivered. tdend trend	
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	      		
+    <Mail_Message Subject="Workflow is resumed back." To="Next" Type="Resume">tablestart
+   trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Workflow is resumed by $LastAccessMember$.  tdend trend  
+	 trstart tdstart  tdend trend  	 
+     trstart tdstart Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt;   tdend trend      
+	 trstart tdstart Team Name  : $FromStage$ tdend trend   
+     trstart tdstart Resumed By  : $LastAccessMember$ tdend trend   
+	 trstart tdstart  Workflow  : $WorkflowName$ tdend trend	
+     trstart tdstart  Attachments  : $Attachments$ tdend trend
+	trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+      trstart tdstart Notes : $Notes$ tdend trend 
+      tableend
+	  trstart tdstart  tdend trend  	 
+       tablestart trstart tdstart tdend trend 
+       trstart tdstart tdend trend
+       tableend</Mail_Message>	 
+       
+       <Mail_Message HTMLFileName="ExternalUser.html" Subject="A request is sent by $title$." To="Next" Type="ExternalUser">
+       </Mail_Message>
+       
+      <Mail_Message HTMLFileName="wkCancel.html" Subject="Your request to cancel document $DocName$." To="Success" Type="Cancelled">tablestart
+     trstart trend
+     trstart tdstart Dear $User$ tdend tdstart tdend trend
+     trstart tdstart Your action to cancel this request was successful.\n An E Mail confirmation was sent to the Initiators and the current Team.   tdend trend  
+	 trstart tdstart  tdend trend  	 
+	 trstart tdstart  tdend trend  	 
+     trstart tdstart Current Status tdend trend          
+     trstart tdstart Workflow : $WorkflowName$  tdend trend     
+     trstart tdstart Team : $FromStage$   tdend  tdstart Cancelled By : $LastAccessMember$   tdend trend       
+	 trstart tdstart Status : Cancelled   tdend trend       
+     trstart tdstart  tdend trend  
+	 trstart tdstart  Original Request tdend trend   
+	 trstart tdstart  Document Name  : &lt;a href='$downloadlink$'&gt;$DocName$&lt;/a&gt; tdend trend	
+	 trstart tdstart  Sent By  : $LastAccessMember$ tdend trend
+	 trstart tdstart Sent Date : $CurrDate$  tdend trend     
+     trstart tdstart Due Date : $DueDate$   tdend trend     
+	 trstart tdstart Workflow : $WorkflowName$  tdend trend  
+	 trstart tdstart Team : $CancelStage$   tdend trend  
+     trstart tdstart  Attachments  : $Attachments$ tdend trend
+	 trstart tdstart &lt;a href='$$Actions$$'&gt;Please click here to process the document&lt;/a&gt;  tdend trend
+     trstart tdstart Notes : $Notes$ tdend trend 
+     tableend
+     tablestart trstart tdstart tdend trend 
+     trstart tdstart tdend trend
+     tableend</Mail_Message>
+</Mail_Configuration>
+
+<LDAP_SERVER>
+<Ldap_Port>389</Ldap_Port>
+<Search_Scope>2</Search_Scope>
+<Ldap_Version>3</Ldap_Version>
+<Attribute_Only>false</Attribute_Only>
+<Attributes>*</Attributes>
+<Ldap_Host>SERVER</Ldap_Host>
+<Search_Base>CN=Users,DC=cygnussoftwares,DC=com</Search_Base>
+<Search_Filter>(objectCategory=person)</Search_Filter>
+<Domain_Name>cygnussoftwares\</Domain_Name>
+</LDAP_SERVER>
+<Download_Link URL="http://localhost:8080/rbid/download?filename=$docName$&amp;filepath=$filepath$&amp;docID=$docID$&amp;username=$username$&amp;downloadFrom=$downloadFrom$&amp;attachmentType=$Type$"/>
+<Action_Link URL="http://localhost:8080/rbid/Statuspopup.jsf?documentId=$documentid$&amp;documentName=$documentname$&amp;username=$userName$"/>
+<GoogleRedirectURL URL="http://192.168.0.113:1234/DocumentWF/Callback"/>
+<Download_Template URL="http://192.168.0.113:8081/rbid/downloadtemplate"/>
+<FormSubmit_Link URL="http://localhost:38391/successmsg.aspx"/>
+<Form_Builder>
+<TextField_Form>&lt;tr&gt;&lt;td&gt;&lt;label id="$$Row1ID$$"&gt;$$FieldName$$&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;label id="$$Row2ID$$"&gt;$$HelpTEXT$$&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input id="$$Row3ID$$" type="text" value="$$Value$$"&gt;&lt;/input&gt;&lt;/td&gt;&lt;/tr&gt;</TextField_Form>
+<DropDown_Form Option="&gt;option value=&quot;$$Value$$&quot;&gt;$$Value$$&gt;/option&gt;">&lt;tr&gt;&lt;td&gt;&lt;label id="$$Row1ID$$"&gt;$$FieldName$$&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;label id="$$Row2ID$$"&gt;$$HelpText$$&lt;/label&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;select id="$$Row2ID$$"&gt;$$Option$$&lt;/select&gt; &lt;/td&gt;&lt;/tr&gt;</DropDown_Form>
+</Form_Builder>
+<Rejected_Return Previus_Stage="Previous_Member" Send_Notification="Affected_Members" Set_Status="First Status Code"/>
+<Pause_Handling Send_Notificaion_Flag="All_Members_Before_Stage"/>
+</Config>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://openfaces.org/"
+		xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<h:head>
+<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+<script type="text/javascript">
+function RestoreMess1(){
+	
+	   O$('HRYTree1:VersionComment').show(); 
+	
+	return false;
+}
+</script>
+</h:head>
+<h:body>
+<h:inputHidden value="#{hierarchyBean.selectedRows}"></h:inputHidden>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+<h:form id="HRYTree1">
+
+  <div id="Demo" style="float: left">
+   
+<fieldset>
+<legend class="label2">Hierarchy</legend>
+<table style="width: 450px"><tr align="right"><td style="width: 513px; "><h:commandButton title="LogOut" value="logout" image="/resources/images/logout.png" actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}" ></h:commandButton></td></tr></table>
+	<table><tr><td style="width: 168px; height: 130px"><fieldset style="height:120px; width: 450px">
+		<legend class="label2">Hierarchy Information</legend>
+		<table>
+		
+		<tr><td style="width: 168px; "><h:outputText value="Hierarchy"/><h:outputText value=" ID / " rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText value="Name"></h:outputText></td><td style="width: 20px"><h:outputText value=":" ></h:outputText></td><td> <h:outputText id="HierarchyId" value="#{hierarchyBean.hierarchy_ID}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText value=" / " rendered="#{hierarchyBean.renderValue4SessionInfo}"/>
+		<h:outputText id="HierarchyName" value="#{hierarchyBean.hierarchyName}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:inputText id="hireName" value="#{hierarchyBean.hirename}" styleClass="invalidInput" style="width: 115px; " rendered="#{hierarchyBean.renderValue4SessionInfo1}"></h:inputText></td>
+		</tr>
+	
+		<tr><td><h:outputText value=" Created / Modified Date" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td><td><h:outputText value=":" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td><td colspan="2"><h:outputText id="HierarchycrtDate" value="#{hierarchyBean.hierarchyCreatedDate}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText id="HierarchycrtmodifyDate" value=" || #{hierarchyBean.hierarchyModifiedDate}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td></tr>
+		
+		
+		
+		<tr><td> <h:outputText value="Hierarchy Version"></h:outputText></td><td>:</td><td colspan="2"><h:outputText value="#{hierarchyBean.versionNo}"></h:outputText> </td></tr>
+		
+		
+		</table>
+		</fieldset></td></tr></table>
+   
+    
+<fieldset style="width: 450px">
+		<legend class="label2">Hierarchy</legend>
+    <table style="width:430px">
+    <tr bordercolor="232" align="right"></tr>
+    
+    
+    <tr>
+    
+    <td>
+    <o:treeTable id="hierarchyTree" var="node" sortLevel="-1" sortAscending="true" sortColumnId="repname"
+				style="margin-top: 5px;  width:430px; height: 290px;"
+				commonHeaderRowClass="table-header" headerRowClass="table-header"
+				
+				headerVertSeparator="1px solid #a0a0a0"
+				sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+				subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+				textStyle="font-family: verdana,Helvetica,sans-serif; font-size: 10pt; white-space: nowrap;"
+				preloadedNodes="all" expansionState="levelsExpanded:5">
+				
+				
+				<o:multipleNodeSelection nodeDatas="#{hierarchyBean.selectedRows}"
+                         style="background: url('../resources/images/selected.gif') repeat-x #5d8bba !important; color: white !important;"
+                         />
+				
+				
+			
+				<o:dynamicTreeStructure
+					nodeChildren="#{reportsInvXMLTreeBean.nodeChildren}"
+					nodeHasChildren="#{reportsInvXMLTreeBean.nodeHasChildren}"
+					nodeKey="#{node.id}" />
+				<o:scrolling />
+				<o:columnResizing />
+				<o:columnReordering />
+
+				
+			
+				
+				<o:column header="Hierarchy Levels IDs"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Level IDs" /></f:facet>
+				<o:hintLabel value="#{node.ID}"  rendered="true"/>
+			</o:column>
+			
+			<o:column header="Levels"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Levels" /></f:facet>
+				<o:hintLabel value="#{node.levelNode}"  rendered="true"/>
+			</o:column>
+				
+				<o:treeColumn header="Node" style="width: 15px;"
+					bodyStyle="text-align: left;">
+					<f:facet name="subHeader">
+						
+					</f:facet>
+					<o:hintLabel class="label3" value="#{node.levelName}" styleClass="treeTableText" />
+				
+				</o:treeColumn>
+
+				<o:column  style="width: 5px;">
+					<f:facet name="header">
+						<h:outputText value="Node Type" />
+					</f:facet>
+				<center>
+				<h:outputText style="font-size:11px;"  value="#{node.hierType}"></h:outputText>
+						</center> 
+				</o:column>
+				
+			
+			</o:treeTable>
+    </td></tr>
+    <tr>
+					
+				</tr>
+				
+</table>
+<table><tr><td><h:commandButton title="Close" value="Close" image="/resources/images/close.png" actionListener="#{hierarchyBean.redirectPage('Hierarchytree.xhtml')}">
+<f:ajax render="stusmsg" execute="stusmsg"></f:ajax>
+</h:commandButton><h:outputText style=" width:5px;" />
+<h:commandButton value="Version" title="Version Restore" image="/resources/images/restore.png" actionListener="#{hierarchyBean.setVersionFrom('Restore1')}">
+<a4j:ajax render="save restore leg mess" oncomplete="return RestoreMess1();"/>
+</h:commandButton></td>
+         
+         
+          
+       
+          <td colspan="4"><h:panelGroup id="stusmsg"	rendered="true">
+			<h:outputText id="msg4VerDisp" class="error" styleClass="label2" value="#{hierarchyBean.msg2}" title="#{hierarchyBean.fullmsg2}"/></h:panelGroup><h:outputText id="statusMsg"/>
+		  </td>
+          </tr>
+          
+          <tr><td valign="bottom"> <ui:include src="/VersionDetailsPopup.xhtml"/></td></tr>
+         
+
+         
+         
+</table>
+
+</fieldset>
+</fieldset>
+
+  </div>
+
+ 
+</h:form>
+
+</h:body>
+</html>

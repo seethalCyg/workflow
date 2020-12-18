@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>Workflow Resubmit Status</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>	
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+   <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+<!--   <script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+
+ <style>
+
+   
+.modal
+{
+    overflow: hidden;
+    background-color: transparent;
+} 
+
+.signBTNcss{
+padding: 5px 10px !important;
+background: #1F6AAF !important;
+color: #fff !important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+
+.signBTNcss:hover{
+padding: 5px 10px !important;
+background: #037193 !important;
+color: #fff!important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+</style>
+
+
+
+<script>
+function viewDisp(count, url) {
+	  
+	  if(count > 0)
+	  $('#viewDoc_UserPopup').modal('show');
+	  else
+		  downloadFile(url);
+	 
+	 
+}
+function getscreenSize(){
+
+var width = screen.width;
+var height = screen.height;
+document.getElementById("hierarchytable:sWidth").value=width;
+document.getElementById("hierarchytable:sHeight").value=height;
+
+}
+$('textarea.max').keyup(function() {
+var $textarea = $(this);
+var max = 400;
+if ($textarea.val().length > max) {
+    $textarea.val($textarea.val().substr(0, max));
+}
+});
+</script> 
+    
+ <script>
+ function downloadFile(url) {
+//	 alert("URL :"+url);
+	  window.open(url, '_newtab');
+}
+ </script>
+      
+</h:head>
+
+
+
+
+
+<body class="hold-transition skin-purple sidebar-mini"
+	style="padding-right: 0px !important;" onload="getscreenSizeUI();">
+<h:form id="statusCod">
+<h:inputHidden value="#{statuscode.docID1}"></h:inputHidden>
+
+<div class="wrapper" style="background-color: #ededed !important;">
+
+			<header class="main-header">
+
+				<a href="#" class="logo"> <span class="logo-mini"><img
+						src="BootstrapResource/dist/img/prodenlogo.png" width="35px;"></img></span>
+					<span class="logo-lg"><img
+						src="BootstrapResource/dist/img/logo.png"></img></span>
+				</a>
+
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- <a class="btn" id="playbutton" data-toggle="offcanvas"
+						role="button" style="margin-top: 8px;" onclick="playButtonPress()">
+						<i class="fa fa-arrow-left " style="color: white"></i>
+
+					</a> -->
+
+					<div class="navbar-custom-menu">
+
+						<ul class="nav navbar-nav">
+
+
+
+							<li class="dropdown notifications-menu"><a href="https://prodentechnologies.net/"
+								class="dropdown-toggle" data-toggle="dropdown"> Home </a></li>
+
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/aboutus.html" target="_blank"> About </a></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a>
+
+							</li>
+
+
+							<li class="dropdown user user-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <img
+									src="BootstrapResource/dist/img/user3-160x160.jpg"
+									class="user-image" alt="User Image"></img> <span
+									class="hidden-xs"> </span>
+							</a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header"><img
+										src="BootstrapResource/dist/img/user3-160x160.jpg"
+										class="img-circle" alt="User Image"></img>
+
+										<p>
+											Welcome to accel-BI <small></small>
+										</p></li>
+									<!-- Menu Body -->
+									<div class="user-body signout"
+										style="background-color: #c6c6ec;">
+										<div class="user-footer">
+											<div class="pull-right">
+												<h:commandLink class="btn btn-default btn-flat"
+													immediate="true" onclick="loadmsg()"
+													actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}">Sign out
+                  <a4j:ajax render="@this" execute="@this"
+														oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink>
+
+											</div>
+										</div>
+									</div>
+								</ul></li>
+
+
+
+
+
+
+						</ul>
+
+					</div>
+
+
+				</nav>
+
+
+			</header>
+		
+<div class="login-box" style="width:500px !important;margin: 225px auto !important;">
+
+   
+  <div class="login-box-body">
+   <div class="row" style="width:100%;">
+   		<div class="col-lg-12">
+       		 <div class="col-lg-8">
+        		<div class="pull-right">
+        
+   					<h:outputText style="background:#fff;border:1px solid lightgray; display:none;" id= "statusLBL" value="#{statuscode.status}" > </h:outputText>
+   					</div>
+    			<div class="col-lg-11">
+    		</div>
+   		</div>
+   		</div>
+   </div>
+   <div class="row">
+   <div class="col-lg-12">
+   <div class="text-center">
+   <p style="text-align: center;font-size: 20px;">Revise Document</p>
+   </div>
+   </div>
+   </div>
+   
+    <div class="row">
+    <div class="col-lg-4">
+   <label class="text-blue"><b>Document Name:</b></label>  
+    </div>
+    <div class="col-lg-7">
+   <h:commandLink id="statusDocName" value="#{statuscode.statusDocNamestr}" style="margin-left: -25px; font-size: 14px;" actionListener="#{statuscode.downloadDocument(statuscode.statusDocNamestr)}">
+   <a4j:ajax oncomplete="viewDisp(#{statuscode.viewDocattachmentsList.size()}, '#{statuscode.downloadURL}');" render="@this :statusCod:resubmitoutStatus :statusCod:attachmentviewDocTable :statusCod:attachmentTable :statusCod:attachmentTableGroup" execute="@this :statusCod:attachmentviewDocTable"></a4j:ajax>
+   </h:commandLink>
+  
+    
+   <h:commandButton title="Upload" id="attachBrowseDocBTN"   value="Upload"  onclick="O$('statusCod:popupLayer33').show();"  action="#{statuscode.getSelectedDocumentDetails(statuscode.statusDocNamestr)}" style="padding: 2px 8px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-left: 10px;">
+	<a4j:ajax render="@this upload33 :statusCod:statusDocName" ></a4j:ajax>
+    </h:commandButton> 
+    <o:popupLayer id="popupLayer33" style="border:1px solid lightgray; position:absolute;width:246px;z-index:10;bottom: -95px;left: 74%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+    
+  <rich:fileUpload 
+			fileUploadListener="#{statuscode.uploadFile33}"
+			id="upload33" style="height:105px;width:245px;overflow-x: auto;" maxFilesQuantity="5" autoclear="true"
+																		onuploadcomplete="O$('statusCod:popupLayer33').hide();" >
+	<a4j:ajax event="uploadcomplete"  render=":statusCod:attachmentTable :statusCod:attachmentTableGroup  :statusCod:attachmentTableGroupVIEW :statusCod:statusDocName" />
+	
+	</rich:fileUpload>
+	<table>								
+																			<tr>
+																				<td align="right"><input type="button" class="button_add"
+																					id="popupInvoker" value="Close" align="right"
+																					onclick="O$('statusCod:popupLayer33').hide();">
+																				</input></td>
+																			</tr>
+																		</table>
+																	</o:popupLayer>
+    </div>
+
+    </div>
+   
+   
+   <div class="row">
+   <div class="col-lg-4">
+   
+   <label class="text-blue" ><b>User Name:</b></label> 
+   </div>
+    <div class="col-lg-7">
+    <h:outputText id="statusUserName" value="#{statuscode.statusUserNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+  <h:panelGroup id="ExternalUserPG" rendered="#{statuscode.externalUserFlag != 'true'}">
+     <div class="row" style="display:#{statuscode.onlyshowADVworkflow}">
+   <div class="col-lg-4">
+   <label class="text-blue" ><b>Workflow Name:</b></label>
+   </div>
+   <div class="col-lg-7">
+     <h:outputText id="statusWFName" value="#{statuscode.statusWFNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+   
+ 
+   <div class="row" style="display:#{statuscode.onlyshowADVworkflow}">
+    <div class="col-lg-4">
+   
+    <label class="text-blue"><b>Current Stage Name:</b></label> 
+    </div>
+     <div class="col-lg-7">
+     <h:outputText id="statusStageName" value="#{statuscode.statusStageNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+   </h:panelGroup>
+  
+    <div class="row">
+    <div class="col-lg-4">   
+   <h:outputText styleClass="text-blue" style="font-weight: bold;display: none;" value="Attachments"></h:outputText>  
+    </div>
+    </div>
+    <div class="row">
+    <div>
+    <p></p>
+<h:panelGroup id="attachmentTableGroupVIEW" style="display: none;">
+<h:panelGroup id="attachmentTableGroup">
+   <o:dataTable id="attachmentTable" value="#{statuscode.attachmentsList}" styleClass="table" var="attachmentTableobject"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="5" 
+											style="min-height:50px;min-width:290px;max-width:450px;margin-left: 14px;">
+
+											<o:multipleRowSelection
+												
+												style="background: #116a93; color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+											
+
+											<o:column >
+												<f:facet name="header">File Name</f:facet>
+												<h:outputLabel id="tableFileID" title="#{attachmentTableobject.attfileName}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachmentTableobject.attfileNameSubStr}"></h:outputLabel>
+
+														
+											</o:column>
+											<o:column >
+												<f:facet name="header">Uploaded By</f:facet>
+												
+
+												
+												<h:outputLabel  title="#{attachmentTableobject.uploadDetails}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachmentTableobject.uploadDetailsSubStr}"></h:outputLabel>
+												
+											
+											</o:column>
+											<o:column>
+												<f:facet name="header">Upload</f:facet>
+												
+<center>
+												
+											 <h:commandLink title="Upload" id="attachBrowseLocalBTN"   value="Upload"  onclick="O$('statusCod:popupLayer33').show();"  action="#{statuscode.getSelectedDocument(attachmentTableobject)}" style="padding: 2px 8px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;">
+												<a4j:ajax render="@this :statusCod:upload33" ></a4j:ajax>
+    										</h:commandLink> 
+    										
+												</center>
+											
+											</o:column>
+											<o:column >
+												<f:facet name="header">View</f:facet>
+												
+												
+											<center>
+													<h:commandLink value="View" onclick="viewDisp(#{statuscode.viewDocattachmentsList.size()}, '#{statuscode.downloadURL}');" action="#{statuscode.getResubmitDocument(attachmentTableobject)}">
+														<a4j:ajax  render="@this :statusCod:resubmitoutStatus :statusCod:attachmentviewDocTable :statusCod:attachmentTable :statusCod:attachmentTableGroup" execute="@this :statusCod:attachmentviewDocTable"></a4j:ajax></h:commandLink>
+													
+											</center>
+											</o:column>
+											
+
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+										</h:panelGroup>
+										</h:panelGroup>
+    </div>
+    </div>
+ 
+   <div class="row" style="width:100%;display:none;">
+       	 
+        	<div class="col-lg-4">
+        		<label class="text-blue" ><b>Action:</b></label> 
+       				 </div>
+        <div class="col-lg-7">
+<h:selectOneMenu value="#{statuscode.selvalue}" style="width:200px;margin-left: -15px;background:#fff;border:1px solid lightgray;" id="selection" > 
+   <f:selectItems value="#{statuscode.statusCodeArr}"/>
+   	
+   	<f:ajax render="@this statusCod:statusLBL" listener="#{statuscode.valuechange}" process="statusCod:statusLBL" />
+</h:selectOneMenu> 	
+ 		</div> 
+ 			
+ 				</div> 
+<div class="row" style="width:100%;">
+			<div class="col-lg-12">
+				<label class="text-blue"><b>Notes:</b></label>
+				</div>
+<div class="col-lg-2">
+ 	<h:inputTextarea id="notes" value="#{statuscode.selNotesvalue}" style="height: 160px;width:450px; min-height:50px;min-width:290px;max-width:450px; " />
+ 
+    		</div>
+    	
+       <p></p>
+    <div class="row" style="width:100%;">
+        <div class="col-lg-12">	
+        <div class="col-lg-4">	
+        <h:commandButton style="width:80px;height:30px;margin-top: 10px;" id="updateStatus" onclick="loadmsg();" value="Submit" action="#{statuscode.sendresubmituserMail(statuscode.selvalue,statuscode.selNotesvalue, 'Primary')}" >
+        <a4j:ajax render="@this :statusCod:resubmitoutStatus" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+     </h:commandButton>
+     </div>
+    
+     
+         </div>
+    </div>
+    <div class="row" style="width:100%;">
+    <div class="col-lg-12">	
+    <div class="col-lg-12">	
+    <h:outputLabel id="resubmitoutStatus" style="color:#{statuscode.resubmitoutputvaluecolor}" value="#{statuscode.resubmitoutputvalue}" title="#{statuscode.resubmitoutputvalue}"></h:outputLabel>
+        </div>
+    </div>
+    </div>
+    
+   </div>
+</div>
+</div>
+
+
+   <div class="modal fade" id="viewDoc_UserPopup" role="dialog"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" style="border: 1px solid lightgray;width: 740px ! important;margin-top: 200px">
+      <div class="modal-content">
+	<div class="modal-header">
+	<div class="box-tools pull-right">
+	
+	
+
+<h:commandButton title="Close" id="ClosePassBTN" value="close" onclick="$('#viewDoc_UserPopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"  >
+<a4j:ajax render="@this" execute="@this" oncomplete="hidemsg()" ></a4j:ajax>
+ </h:commandButton> 
+	 
+	</div>
+	
+	 <h4  class="modal-title" >Attachment</h4>
+	</div>
+	
+	<div class="modal-header">
+	
+	<label class="text-blue"><b>Attachment Table:</b></label>
+	<div style="border: 1px solid lightgray;overflow-x:hidden;overflow-y:auto;height:250px;">
+<h:panelGroup id="attachmentviewDocTableGroup">
+	<o:dataTable id="attachmentviewDocTable" value="#{statuscode.viewDocattachmentsList}" styleClass="table" var="resubmitTableobject"
+											headerVertSeparator="1px solid #a0a0a0" 
+											style="min-height:50px;min-width:290px;max-width:700px;">
+
+											<o:multipleRowSelection
+												
+												style="background: #116a93; color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+											
+
+											<o:column >
+												<f:facet name="header">File Name</f:facet>
+												<h:outputLabel title="#{resubmitTableobject.reSattfileName}"  value="#{resubmitTableobject.reSattfileName}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" ></h:outputLabel>
+
+														
+											</o:column>
+											<o:column >
+												<f:facet name="header">File Size</f:facet>
+												<h:outputLabel title="#{resubmitTableobject.reSattfileSize}" value="#{resubmitTableobject.reSattfileSize}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" ></h:outputLabel>
+
+														
+											</o:column>
+											<o:column >
+												<f:facet name="header">Uploaded By</f:facet>
+												
+
+												
+												<h:outputLabel title="#{resubmitTableobject.reSattachUser}" value="#{resubmitTableobject.reSattachUser}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" ></h:outputLabel>
+												
+											
+											</o:column>
+											<o:column >
+												<f:facet name="header">Uploaded Time </f:facet>
+												
+												<h:outputLabel title="#{resubmitTableobject.reSuploadeddate}" value="#{resubmitTableobject.reSuploadeddate}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" ></h:outputLabel>
+												
+											
+											</o:column>
+											<o:column >
+												<f:facet name="header">View</f:facet>
+<center>
+						<h:commandLink value="View" actionListener="#{statuscode.DownloadAttachFile(resubmitTableobject.reSattfileName, 'Attachment')}">
+						<a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax></h:commandLink> 
+										
+											</center>
+											</o:column>
+											
+
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+										</h:panelGroup>
+										</div>
+		</div>
+		</div>
+		</div>
+		</div>
+
+<footer class="main-footer"
+				style="padding-top: 3px; padding-bottom: 3px;margin-left: 0 !important;">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 0.1.1
+				</div>
+				<strong>Powered by <a href="http://prodentechnologies.net"
+					target="_blank" style="color: #116a93;">Proden Technologies,Inc</a>.
+				</strong> All rights reserved.
+			</footer>
+	</div>
+	<ui:include src="/LoadingWindow.xhtml"></ui:include>
+	
+<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+<script src="BootstrapResource/dist/js/app.min.js"></script>
+</h:form>
+</body>
+
+</html>

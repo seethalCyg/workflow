@@ -1,0 +1,169 @@
+.globalMesgArea {
+	overflow: auto;
+	width: 300px;
+	height: 50px;
+	position: absolute;
+	bottom: 1em;
+	left: 95px;
+}
+.bimage { 
+    background-image:url("#{resource['images:L.png']}"); 
+}
+
+.invalidInput {
+	border: 2px solid red;
+}
+
+.fieldsetStyle {
+	border: 2px solid red;
+}
+
+.red-color {
+	color: #FF0000;
+	font-size: 20px;
+}
+
+.label1 {
+	font-family: Garamond;
+	font-size: 11pt;
+	color: black;
+	font-weight: bold;
+	text-align: left;
+}
+
+.label2 {
+	font-family: Garamond;
+	font-size: 11pt;
+	color: maroon;
+	font-weight: bold;
+	text-align: left;
+	font-style: normal
+}
+
+.label3 {
+	font-family: Garamond;
+	font-size: 11pt;
+	color: black;
+	font-weight: normal;
+}
+
+.label4 {
+	font-family: Garamond;
+	font-size: 14pt;
+	color: blue;
+	font-weight: bold;
+}
+
+.label5 {
+	font-family: Garamond;
+	font-size: 7pt;
+	color: black;
+	font-weight: bold;
+	text-align: justify;
+}
+.label6
+{
+	font-family: Garamond;
+	font-size: 9pt;
+	font-weight:normal;
+	color:green;
+	text-align:right;
+}
+.label7
+{
+	font-family: Garamond;
+	font-size: 9pt;
+	font-weight:bold;
+	color:black;
+	text-align:right;
+}
+
+.fmtborder1 {
+	border-style: none;
+	border-width: 0px 0px 0px 0px;
+	background-color: white;
+	color: white;
+}
+
+.fmtborder2 {
+	border-bottom: 1px solid gray;
+}
+
+
+/*BHARATH*/
+
+/* #Aoption
+{
+	background-color:#ffca68;
+	border-bottom: 1px solid #CCC;
+	padding: 0 0.5em;
+	
+	
+	
+} */
+
+.button
+            {
+           background-image: url('resources/images/discover.gif');
+            cursor:pointer;
+                        border: none;
+            }
+
+/* 
+#dir{
+	
+	display: none;
+	
+} */
+
+input.button_add {
+   
+    background-color: #adddff; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: 0px 0px;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    height: 15px;           /* make this the size of your image */
+    padding-left: 15px;     /* make text start to the right of the image */
+    vertical-align: middle; /* align the text vertically centered */
+   
+}
+
+.error
+{
+ color: red;
+ background-color: white;
+	
+}
+
+.message
+{
+ color: blue;
+ background-color: white;
+	
+}
+
+/*BHARATH Code Chane 06APR13*/
+
+.hintLabel_hint {
+  background-color: #ffffff;
+  color: black;
+}
+
+.hintLabel_column {
+  text-align: left;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.fuploadspace
+{
+	display:none;
+}
+.fupload
+{
+	max-height:25px;
+	border-right-width:25px;
+}
+
+}

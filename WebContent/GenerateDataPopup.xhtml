@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+
+
+
+</h:head>
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<o:popupLayer id="generateFactPopup"
+		draggable="true" modalLayerClass="modalLayer" 
+		style="left: 0px; top: 0px; border: 3px solid orange;">
+		
+	
+		<table><tr><td>
+
+		<fieldset>
+		<legend class="label2">Generate Data</legend>
+			<table><tr><td colspan="2">This will delete and generate hierarchy and fact data.</td>
+		</tr>
+	
+	<tr>	
+		<td>
+		
+		
+		
+		</td>
+		<td>
+		<h:panelGroup rendered="false">
+		<table><tr><td>
+		
+		<fieldset style="width:230px;"><legend class="label2">Source Fact Table(s)</legend>
+		<table>
+		<tr>	
+		<td>
+		<h:selectOneMenu id="gendatafact" value="#{hierarchyDBBean.selectedTableOperator}" style="width:100px">
+       		
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>&nbsp; <h:inputText id="gendatafactfiltervals" value="#{hierarchyDBBean.selectedTablefilterValue}" size="7"></h:inputText> &nbsp;<h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('selectedTablesFilter')}" style="width:15px"><f:ajax render="gendatafact gendatafactfiltervals gendataseltable genDatavalmsg" execute="gendatafact gendatafactfiltervals gendataseltable genDatavalmsg"></f:ajax> </h:commandButton> 
+		</td>
+		
+		</tr>
+		<tr><td>
+		
+		<h:selectManyListbox id="gendataseltable" value="#{hierarchyDBBean.tableName}" size="3" style="width:185px;">
+			<f:selectItems value="#{hierarchyDBBean.selectedTableNameTM}"/>
+			 
+        		<f:ajax render="genDataperiodclumn" execute="genDataperiodclumn" listener="#{hierarchyDBBean.getColumnNames('dataGen','Data_Connection')}"></f:ajax>
+			
+		</h:selectManyListbox></td></tr></table></fieldset></td>  
+		
+		
+		
+		</tr></table></h:panelGroup></td>
+		
+		
+		</tr>
+		
+		
+		<tr><td colspan="2">
+		<table><tr><td>
+		<h:selectBooleanCheckbox id="genHeraarchy" immediate="true" value="#{hierarchyDBBean.checkbox4Regen}" disabled="false">
+																	<a4j:ajax execute="genHeraarchy"></a4j:ajax></h:selectBooleanCheckbox><h:outputText styleClass="label3" id="genHi" value="Generate Hierarchy"></h:outputText>
+		</td>
+		<td style="width:20px; "></td>
+		<td>
+		<h:selectBooleanCheckbox id="genFact" immediate="true" value="#{hierarchyDBBean.checkbox4genFact}" disabled="false">
+																	<a4j:ajax render="gendataper gendataperiodvals  genDataMatchCase genDataPeriodValues genDataselectedvaluesfilter genDataselectedPeriodvals  genDataperiodMatchCase genDataselPeriodValues" execute="genFact"></a4j:ajax></h:selectBooleanCheckbox><h:outputText styleClass="label3" id="genfa" value="Generate Facts"></h:outputText>
+		
+		</td>
+		
+		</tr>
+		</table>
+		</td>
+	
+		
+		
+		
+		
+		</tr>
+		
+    			
+	
+		
+    			<tr>
+    			
+    			
+    			
+    			<td>
+    			
+    			
+    			
+    			
+    			<table>
+    			
+    			<tr><td>
+    			<fieldset style="width:230px"><legend class="label2">Period Value(s)</legend>
+    			<table>
+    			<tr><td>
+    			<h:selectOneMenu id="gendataper" value="#{hierarchyDBBean.periodvalueOperator}" style="width:100px" disabled="#{not hierarchyDBBean.checkbox4genFact}">
+       			
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>&nbsp; <h:inputText id="gendataperiodvals" value="#{hierarchyDBBean.filterPeriodValues}" size="7" disabled="#{not hierarchyDBBean.checkbox4genFact}"></h:inputText></td></tr><tr><td><h:selectBooleanCheckbox id="genDataMatchCase" value="#{hierarchyDBBean.matchCase4genData}" disabled="#{not hierarchyDBBean.checkbox4genFact}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton title="Filter" id="periodFilter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('periodValueFilter')}" style="width:15px"><f:ajax render="gendataper gendataperiodvals genDataPeriodValues genDatavalmsg" execute="gendataper genDataMatchCase gendataperiodvals genDataPeriodValues genDatavalmsg"></f:ajax> </h:commandButton></td></tr>
+    			<tr><td>
+    			<h:selectManyListbox id="genDataPeriodValues" value="#{hierarchyDBBean.selectedPeriodValues}" size="3" style="width:185px" disabled="#{not hierarchyDBBean.checkbox4genFact}">
+			<f:selectItems value="#{hierarchyDBBean.periodValuesAL}"/>
+			
+		</h:selectManyListbox></td></tr></table></fieldset></td>
+		
+		
+		
+		<td>
+		
+		<table><tr><td>
+		<br/>
+		<h:commandButton id="dataGenmveforward" title="Move Forward"
+																								image="/resources/images/mn.gif"
+																								value="&gt;&gt;"
+																								actionListener="#{hierarchyDBBean.moveForwardBackwardPV('periodvalues','forward')}">
+																								<f:ajax execute="@this genDataPeriodValues genDatavalmsg"
+																									render="genDataPeriodValues genDataselPeriodValues genDatavalmsg" />
+																							</h:commandButton></td></tr>
+																							
+																							<tr>
+																							<td><h:commandButton title="Move Backward" id="gendatamvebackward" image="/resources/images/mp.gif" value="backward" actionListener="#{hierarchyDBBean.moveForwardBackwardPV('selperiodvalues','backward')}">
+																								<f:ajax execute="@this genDataPeriodValues genDataselPeriodValues genDatavalmsg" render="@this genDataPeriodValues genDataselPeriodValues genDatavalmsg"/>
+																							</h:commandButton></td>
+																							</tr>
+																							
+																							</table></td></tr>
+		
+		
+	</table>
+    			
+    			 </td><td>
+    			 <table><tr><td><fieldset style="width:230px"><legend class="label2">Selected Period Value(s)</legend>
+    			 <table>
+    			 
+    			 <tr><td><h:selectOneMenu id="genDataselectedvaluesfilter" value="#{hierarchyDBBean.selectedPeriodvalueOperator}" disabled="#{not hierarchyDBBean.checkbox4genFact}" style="width:100px">
+       		
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>&nbsp; <h:inputText id="genDataselectedPeriodvals" value="#{hierarchyDBBean.filterSelectedPeriodValues}" size="7" disabled="#{not hierarchyDBBean.checkbox4genFact}"></h:inputText></td></tr><tr><td><h:selectBooleanCheckbox id="genDataperiodMatchCase" value="#{hierarchyDBBean.matchCase4GenDataSelPer}" disabled="#{not hierarchyDBBean.checkbox4genFact}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<h:commandButton title="Filter" id="selectedPeriodFilter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('selectedPeriodValues')}" style="width:15px"><f:ajax render="genDataselectedvaluesfilter genDataselectedPeriodvals genDataselPeriodValues genDatavalmsg" execute="genDataselectedvaluesfilter genDataselectedPeriodvals genDataperiodMatchCase genDataselPeriodValues genDatavalmsg"></f:ajax> </h:commandButton></td></tr>
+    			 
+    			 
+    			 <tr><td>
+    			<h:selectManyListbox id="genDataselPeriodValues" value="#{hierarchyDBBean.frwdPeriodValues}" size="3" style="width:185px" disabled="#{not hierarchyDBBean.checkbox4genFact}">
+			<f:selectItems value="#{hierarchyDBBean.selectedPeriodValuesAL}"/>
+			
+		</h:selectManyListbox></td></tr></table></fieldset></td>
+		
+		<td> &nbsp; &nbsp; &nbsp;
+		<h:panelGroup rendered="false">
+		<fieldset style="width:325px;height:114px"><legend class="label2">Period Column(s)</legend>
+		<table>
+		<tr><td><br/></td></tr>
+		<tr><td>
+		<h:selectOneMenu id="genDataperiodclumn" value="#{hierarchyDBBean.periodcolumn}" style="width:295px">
+       			<f:selectItem itemValue="#{null}" itemLabel="-- select Value --" />
+        		<f:selectItems value="#{hierarchyDBBean.columnNameTM4Period}" />
+        	
+    			</h:selectOneMenu></td></tr></table></fieldset>
+		</h:panelGroup>
+		</td>
+		
+		</tr></table></td></tr>
+		
+		</table>
+				
+		</fieldset>
+						<table>
+						<tr style="height: 14px; "></tr>
+						<tr>
+						
+						<td></td>
+						<td align="right" valign="top"><h:commandButton  title="Generate-FullLoad" value="Add" rendered="#{securityBean.factFullLoad}" style="width:25px" image="/resources/images/GFcopy.png" actionListener="#{hierarchyDBBean.writeGenDataToXml('','GenerateFact')}"><a4j:ajax render="genDatavalmsg" execute="genDataselPeriodValues genHeraarchy genFact"></a4j:ajax></h:commandButton></td>
+						<td valign="top"><h:commandButton title="Generate-IncrementalLoad" value="Add" rendered="#{securityBean.factIncrementalload}" image="/resources/images/GIcopy.png" style="width:25px" actionListener="#{hierarchyDBBean.writeGenDataToXml('','InsertFact')}"><a4j:ajax render="genDatavalmsg" execute="genDataselPeriodValues genHeraarchy genFact"></a4j:ajax></h:commandButton></td>
+					<td valign="top"><h:commandButton title="Generate Data" value="Add" image="/resources/images/GDcopy.png" rendered="#{securityBean.factGenerateLoad}" style="width:25px" actionListener="#{hierarchyDBBean.writeGenDataToXml('','GenerateData')}"><a4j:ajax render="genDatavalmsg" execute="genDataselPeriodValues genHeraarchy genFact"></a4j:ajax></h:commandButton>
+						</td><td><h:commandButton  title="Close" value="close" onclick="genDatahidemodeldim2();" style="width:25px" image="/resources/images/close.png">
+						<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+						</h:commandButton>
+						</td><td><h:outputText id="genDatavalmsg" title="#{hierarchyDBBean.genDataTitleMessage}" style="color:#{hierarchyDBBean.color4FactMsg}" value="#{hierarchyDBBean.message}"/></td>
+						</tr>
+						</table>
+						</td></tr></table>
+		</o:popupLayer>
+	
+</h:body>
+</html>

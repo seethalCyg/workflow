@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<script type="text/javascript">
+function showEnableMess(){
+	if(confirm("If you click OK the sql will be changed according to UI configured. Do you to proceed? ")){
+		return true;
+	}else{
+		return false;
+	}
+	
+		}
+	function editSQL(){
+	if(confirm("If You edit the sql manually the UI configuration won't be used in sql")){
+		return true;
+	}else{
+		return false;
+	}
+	}
+	</script>
+
+</h:head>
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	
+	<o:popupLayer id="CopyofdataPopup"
+		draggable="true" modalLayerClass="modalLayer" 
+		style="left: 0px; top: 0px; border: 3px solid orange;" left="200" top="0">
+		
+		
+		<table><tr><td style="width:5px"></td><td>
+		<h:panelGroup id="cpyDataNode">
+		<fieldset>
+		<legend class="label2">Add Node</legend>
+		<table>
+							
+							</table>
+		<table>
+		<tr>
+						<td colspan="2">
+							<h:selectOneRadio  layout="lineDirection" id="seladata" value="#{hierarchyBean.selectedType}" >
+							<f:selectItem itemValue="Child" itemLabel="Child Node" /> 
+							<f:selectItem itemValue="Sibling" itemLabel="Sibling" itemDisabled="#{hierarchyBean.disableSibling}"/>
+							<f:selectItem itemValue="InsertUP" itemLabel="New Level (Insert Above)" itemDisabled="#{hierarchyBean.disableSibling}"/> 
+							<f:selectItem itemValue="InsertDOWN" itemLabel="New Level (Insert Below)" />
+							</h:selectOneRadio>
+							</td> 
+							</tr>
+							<tr><td colspan="3">
+							
+							<fieldset style="width:600">
+		<legend class="label2">Create Code Combination</legend>
+		<h:selectOneRadio style="width:580px" layout="lineDirection" id="codeComb4Direct" value="#{hierarchyBean.codeCombinationflag4Data}" disabled="#{hierarchyBean.disableOption4hier}">
+							<f:selectItem itemValue="DuringFactGen" itemLabel="During Fact"/> 
+							<f:selectItem itemValue="CreateCodeCombinationAtLeaf" itemLabel="In Dimension"/>
+							<f:selectItem itemValue="ItselfCodeCombination" itemLabel="This is the Code Combination"/> 
+						    </h:selectOneRadio></fieldset></td></tr>
+							
+							
+							</table>
+							<table><tr>
+							
+							
+							</tr></table>
+							
+							<table>
+							<tr><td align="right"><h:selectBooleanCheckbox id="codeComb14Direct" value="#{hierarchyBean.codeCombinationflag4Lastnode}" rendered="false"></h:selectBooleanCheckbox><h:outputText value="Create Code Combinations" rendered="false"/></td></tr></table>
+							
+							
+						<!-- 	<fieldset>    -->
+	<!-- 	<legend class="label2">Segment/Data Details</legend>    -->
+							<table><tr><td>
+							<fieldset>
+		<legend class="label2">Direct SQL</legend>
+							<table><tr>
+		
+		<td valign="top">
+		<table>
+		<tr>
+		<td colspan="2"><h:outputText value="Choose Segment" rendered="true" id="meas"></h:outputText> 
+				<h:selectOneMenu id="data4Direct" value="#{hierarchyDBBean.selectedsegment1}" disabled="#{hierarchyDBBean.enable4DirectSQL}">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --" />
+        		<f:selectItems value="#{hierarchyDBBean.segmentAL}" />
+        		<f:ajax event="change" update="@this" execute="@this" render="@this"/>
+    			</h:selectOneMenu></td><td valign="top"><h:commandButton value="Version" id="enable" title="Enable" disabled="#{not hierarchyDBBean.enable4DirectSQL}" image="/resources/images/E.png" onclick="if (! confirm('If you click OK the sql will be changed according to UI configured. Do you to proceed? ')) return false" actionListener="#{hierarchyDBBean.enableSQL()}" style="height: 20px; width: 20px; ">
+		<f:ajax render="@this cons directSQLEdit textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd" execute="textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd"/></h:commandButton></td></tr>
+		 <tr><td colspan="2"><h:selectOneMenu id="selectedvaluesfilter4Direct" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{hierarchyDBBean.selectedOperator}" style="width:100px">
+       			 
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu><h:selectBooleanCheckbox id="AddDatamatchCase4Direct" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{hierarchyDBBean.matchCase4TableSelect}"></h:selectBooleanCheckbox><h:outputText style="font-size:13px" value="Match Case"></h:outputText>
+    			</td></tr><tr><td>
+    			
+    			<h:inputText id="selectedPeriodvals4Direct" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{hierarchyDBBean.filterValue}" size="12"/>  <h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" disabled="#{hierarchyDBBean.enable4DirectSQL}" action="#{hierarchyDBBean.filterFacts('filterTables')}" style="width:15px">
+    			<f:ajax render="selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName" execute="selectedvaluesfilter4Direct AddDatamatchCase4Direct selectedPeriodvals4Direct tableName"/> </h:commandButton></td></tr>
+		<tr><td style="width:80px">
+		
+		<h:outputLabel  class="label2" value="Tables"></h:outputLabel>
+		
+		<h:selectManyListbox id="tableName" disabled="#{hierarchyDBBean.enable4DirectSQL}" size="5" value="#{hierarchyDBBean.tableName}" style="width:185px" >	
+			<f:selectItems value="#{hierarchyDBBean.tableNameTM}"/>
+			
+		</h:selectManyListbox></td><td valign="middle" >
+		<h:commandButton id="mveTable" title="Move Forward" disabled="#{hierarchyDBBean.enable4DirectSQL}" image="/resources/images/mn.gif" value=">>" actionListener="#{hierarchyDBBean.moveForward4DrectSQL(hierarchyDBBean.tableName,'table')}">
+				<f:ajax render="seleTableName colName tableName" execute="mveTable seleTableName tableName"></f:ajax>
+				</h:commandButton></td><td><legend class="label2">Selected Tables</legend>
+		<h:selectManyListbox id="seleTableName" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{hierarchyDBBean.selectedTableName4DirectSQL}" size="5" style="width:185px" required="false">	
+			<f:selectItems value="#{hierarchyDBBean.selectedTableNameTM4DirectSQL}"/>
+			<f:ajax event="change" render="colName" execute="colName" listener="#{hierarchyDBBean.getColumnNames('directSQL','Data_Connection')}"/>
+			
+		</h:selectManyListbox></td><td><h:commandButton id="Dele" disabled="#{hierarchyDBBean.enable4DirectSQL}" title="Delete" value="Delete" image="/resources/images/delete.png">
+       
+        <f:ajax execute="@this seleTableName" render="@this seleTableName" listener="#{hierarchyDBBean.deleteColumnTable(hierarchyDBBean.selectedTableName4DirectSQL,'Table')}"/>
+       </h:commandButton></td></tr><tr>
+		
+		<td style="width:100px"><legend class="label2">Columns</legend>
+		
+		
+		
+		<h:selectManyListbox id="colName" value="#{hierarchyDBBean.columnName1}" disabled="#{hierarchyDBBean.enable4DirectSQL}" style="width:185px" size="5" required="false">	
+			<f:selectItems value="#{hierarchyDBBean.columnNameTM4DirectSQL}"/>
+			<f:ajax execute="@this"></f:ajax>
+		</h:selectManyListbox>
+		</td><td valign="middle" style="width: 16px"><table><tr><td valign="bottom"><h:commandButton title="Add Code" disabled="#{hierarchyDBBean.enable4DirectSQL}" id="addcode4Direct" image="/resources/images/addcode.png" value="Add Code" >
+	
+		<f:ajax render="selecolName" execute="selecolName colName" listener="#{hierarchyDBBean.moveForward4DrectSQL(hierarchyDBBean.columnName1,'CodeColumn')}"></f:ajax>
+		</h:commandButton></td></tr>
+		
+		<tr><td><h:commandButton id="addname4Direct" title="Add Name" disabled="#{hierarchyDBBean.enable4DirectSQL}" image="/resources/images/addname.png" value="Add Name" actionListener="#{hierarchyDBBean.moveForward4DrectSQL(hierarchyDBBean.columnName1,'NameColumn')}">
+		<f:ajax execute="@this selecolName colName" render="selecolName textarea4DirectSQL"></f:ajax>
+		</h:commandButton></td></tr>
+			
+		</table></td><td><legend class="label2">Select Columns List</legend>
+		<h:selectManyListbox id="selecolName" value="#{hierarchyDBBean.selectedcolumnName4DirectSQL}" disabled="#{hierarchyDBBean.enable4DirectSQL}" style="border: 1px;border-style:solid;width:185px" size="5" required="false">
+			<f:selectItems value="#{hierarchyDBBean.selectedColumnNameTM4DirectSQL}"/>
+			<f:ajax execute="@this"></f:ajax>
+		</h:selectManyListbox></td><td><h:commandButton id="dele1" disabled="#{hierarchyDBBean.enable4DirectSQL}" title="Delete" actionListener="#{hierarchyDBBean.deleteColumnTable(hierarchyDBBean.selectedcolumnName4DirectSQL,'Column')}" value="Delete" image="/resources/images/delete.png">
+       
+        <f:ajax execute="selecolName" render="selecolName"/>
+       </h:commandButton></td>
+		</tr></table><table><tr align="right"><td><table><tr><td align="right" valign="middle"><h:outputText value="Join Operator:"></h:outputText></td><td><h:selectOneRadio id="factTypes2" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{hierarchyDBBean.selectedJoinType4Direct}" layout="lineDirection">
+							
+							<f:selectItem itemValue="and" itemLabel="And"/> 
+							<f:selectItem itemValue="or" itemLabel="Or"/> 	
+							
+							</h:selectOneRadio>
+		</td></tr></table></td></tr><tr><td><h:panelGroup id="conf123"><h:panelGroup id="conf">
+		<o:dataTable id="configWH" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.whereClauseList}" 
+		var="segmentobject" pageSize="3" noDataMessageAllowed="false" commonHeaderRowClass="table-header" 
+		headerRowClass="table-header" bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="width:800px" 
+		bodyRowStyle="background-color:#FFFFF;" bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" 
+		preloadedNodes="all" expansionState="levelsExpanded:2">
+		<o:multipleRowSelection rowDatas="#{hierarchyDBBean.selectedWhereClauseList}" style="background: #a4aec5; color: #7E0000;">
+		<f:ajax execute="@this" render="@this delete"/>
+		</o:multipleRowSelection>
+		<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+		</o:selectionColumn>
+		<o:columnResizing/>
+		<o:columnGroup>
+		<o:column style="width:15px;" rendered="true">
+			<f:facet name="header">Table
+       </f:facet>
+
+																				<h:selectOneMenu id="seleSrcTable" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{segmentobject.selectedTableName}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.selectedSrcTableNameTM}"/>
+        		<a4j:ajax execute="@this conf" render="@this conf seleSrcColumn" listener="#{hierarchyDBBean.displayColumnName4SeleTable(segmentobject.selectedTableName)}"/>
+    			</h:selectOneMenu>
+																				
+																				
+																			</o:column>
+																			<o:column style="width:11px;">
+																				<f:facet name="header">Column
+       </f:facet>
+																				<center>
+																					<h:selectOneMenu id="seleSrcColumn" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{segmentobject.selectedSrcColumn}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.selectedSrcColumnTM}"/>
+        		</h:selectOneMenu>
+																				</center>
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup width="10px">
+																			<o:column width="10px" rendered="true">
+																				<f:facet name="header">Operator
+       </f:facet>
+																				<center>
+																					<h:selectOneMenu id="ope" value="#{segmentobject.joinColumnOper}" style="width:50px" disabled="#{hierarchyDBBean.enable4DirectSQL}">
+																						<f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+																						<f:selectItems value="#{segmentobject.joinColumnOperTM}"/>
+
+																					</h:selectOneMenu>
+																				</center>
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup>
+																			<o:column width="30px">
+																				<f:facet name="header">Table
+       </f:facet>
+																				<center>
+
+																					<h:inputText id="tarTableName" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="#{segmentobject.tarTableName}"/>
+																					<h:commandButton id="confsel1" disabled="#{hierarchyDBBean.enable4DirectSQL}" title="Choose Table" value="c" style="width:20px;" image="/resources/images/chooseTable.png" onclick="O$('HRYTree:selectTablePopup').show()" action="#{hierarchyDBBean.selectedType4Table('DirectSQL','')}">
+																						<a4j:ajax render="configWH :HRYTree:connection :HRYTree:dim1 :HRYTree:tableNames" execute="@this :HRYTree:configWH :HRYTree:connection :HRYTree:dim1"/>
+																					</h:commandButton>
+																				</center>
+
+
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup>
+																			<o:column width="25px">
+																				<f:facet name="header">Column
+       </f:facet>
+																				<center>
+
+																					<h:inputText id="tarColumnName" value="#{segmentobject.tarColumnName}" disabled="#{hierarchyDBBean.enable4DirectSQL}"/>
+																					<h:commandButton id="CnfSrcClumnPopup" title="Choose Table" value="chooseColumns" style="width:20px;" disabled="#{hierarchyDBBean.enable4DirectSQL}" image="/resources/images/chooseTable.png" onclick="O$('HRYTree:SrcWarHusJoinClum').showCentered()">
+																						<a4j:ajax execute="@this :HRYTree:configWH" render=":HRYTree:textarea4column :HRYTree:JoinColumnsList" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('DirectSQL')}"/>
+																						
+																					</h:commandButton>
+																				</center>
+
+
+																			</o:column>
+																		</o:columnGroup>
+																		<o:column width="1px">
+
+																			<h:commandButton id="delete" title="Delete" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="Delete" image="/resources/images/delete.png">
+																				
+																				<o:ajax execute="@this :HRYTree:configWH" render="@this :HRYTree:configWH :HRYTree:textarea4DirectSQL" immediate="true" listener="#{hierarchyDBBean.deleteColumnTable(hierarchyDBBean.selectedcolumnName4DirectSQL,'Where')}"/>
+																			</h:commandButton>
+																		</o:column>
+																		<f:facet name="below">
+																			<h:panelGroup id="panelGroup">
+																				<o:dataTablePaginator id="paginator"/>
+																			</h:panelGroup>
+																		</f:facet>
+																	</o:dataTable></h:panelGroup>
+																</h:panelGroup></td>
+						<td><h:commandButton title="Add Where Clause" id="configAdd" disabled="#{hierarchyDBBean.enable4DirectSQL}" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.addRows4WhereClause()}">
+		<f:ajax render="configWH textarea4DirectSQL valiMsg" execute="configWH factTypes2"/></h:commandButton><br></br>
+		<h:commandButton title="Construct SQL" id="cons" image="/resources/images/CSQL.png" style="width: 25px;" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="Construct SQL" actionListener="#{hierarchyDBBean.constructingSQL('FULL')}">
+		<f:ajax render="textarea4DirectSQL" execute="configWH factTypes2"/></h:commandButton></td></tr>
+		<tr><td><h:outputText id="valiMsg" value="#{hierarchyDBBean.valiMsg}" style="color:red"></h:outputText> </td></tr>
+		<tr><td><table><tr><td><h:inputTextarea id="textarea4DirectSQL" style="height: 60px;width:800px" disabled="#{hierarchyDBBean.customDirectSql}" value="#{hierarchyDBBean.directSQL}">
+																							
+																							<f:ajax event="change" render="@this" execute="@this"/>
+																							</h:inputTextarea></td><td>
+		<h:commandButton title="Edit" id="directSQLEdit" disabled="#{hierarchyDBBean.enable4DirectSQL}" value="Add" image="/resources/images/edit.jpg" onclick="if (! confirm('If You edit the sql manually the UI configuration will not be used in sql')) return false" actionListener="#{hierarchyDBBean.customDirectSQL()}">
+		<f:ajax render="@this cons enable textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd" execute="textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd"/></h:commandButton></td></tr></table></td><td>
+		</td></tr>
+		<tr><td><h:commandButton title="Add as Data" value="Add" style="width: 25px;" actionListener="#{hierarchyDBBean.addSQLasData()}"><f:ajax render="textarea4DirectSQL" execute="textarea4DirectSQL"/>
+		 <a4j:ajax render="dataTab4Direct"></a4j:ajax>
+		</h:commandButton></td></tr>
+		</table>
+		<table><tr><td colspan="2" style="color:red"><h:outputText id="msgData4Direct" value="#{hierarchyDBBean.dataInfoMsg}"></h:outputText> </td></tr></table></td>
+		
+		
+		
+		</tr></table></fieldset>
+		<table id="segmentTable">
+		<tr><td colspan="2">
+		<fieldset >
+		<legend class="label2">Segment/Data List</legend>
+		
+<table>
+  <tr><td colspan="2">
+
+  <table align="right">
+  <tr> 
+  <td align="right"><h:commandButton title="Delete" value="Delete" action="#{hierarchyDBBean.deleteSelectedDataSegments}" image="/resources/images/delete.png" rendered="false"><a4j:ajax render="genRepSessions4Direct" execute="genRepSessions4Direct"></a4j:ajax></h:commandButton></td>
+  </tr>
+  <tr>
+  <td>
+  <h:panelGroup id="dataTab4Direct" style="display: #{hierarchyDBBean.dispTable4Data}"><o:dataTable id="genRepSessions4Direct" sortLevel="-1" sortAscending="false" sortColumnId="sessionId" 
+  value="#{hierarchyDBBean.data4DirectSQLAL}" var="grSessions" pageSize="5" noDataMessageAllowed="false" 
+  height="200px" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+  bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" bodyRowStyle="background-color:#FFFFF;"
+   bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+   expansionState="levelsExpanded:2" immediate="true"  style="width: 510px;">
+      <o:multipleRowSelection rowDatas="#{hierarchyDBBean.selecteddata4DirectSQLAL}" style="background: #a4aec5; color: #7E0000;" />
+      <o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+      </o:selectionColumn>
+      
+      
+      <o:column style="width:50px;">
+       <f:facet name="header">Code
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.code4DirectSQL}"></o:hintLabel>
+      </o:column>
+      
+      
+      <o:column style="width:50px;">
+       <f:facet name="header">Value
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.name4DirectSQL}"></o:hintLabel>
+      </o:column>
+     
+      <f:facet name="below">
+       <h:panelGroup id="panelGroup">
+        <o:dataTablePaginator id="paginator"/>
+       </h:panelGroup>
+      </f:facet>
+      
+      </o:dataTable></h:panelGroup>
+  </td><td valign="bottom">
+						</td>
+  </tr>
+  </table>
+  </td></tr>
+      
+      </table></fieldset></td></tr>
+						
+						</table></td></tr></table></fieldset>
+			<!-- 			</fieldset>   -->
+					</h:panelGroup></td></tr></table>
+						<table>
+						<tr>
+						<td></td>
+						<td><h:panelGroup id="addDataBtn4Direct"><h:commandButton title="Add" value="Add" image="/resources/images/addb.png" action="#{hierarchyDBBean.addData(hierarchyDBBean.modeType)}"><a4j:ajax render="seladata genRepSessions4Direct" execute="data4Direct seleTableName selecolName configWH factTypes2 codeComb4Direct value4DirectSQL name4DirectSQL genRepSessions4Direct" listener="#{hierarchyBean.redirect('Hierarchytree.xhtml','Reload','','','','','',objread.hierCodeCombination,'')}"/></h:commandButton></h:panelGroup></td>
+						<td><h:commandButton  title="Close" value="close" onclick="O$('HRYTree:CopyofdataPopup').hide();" image="/resources/images/close.png"><f:ajax render="@this" execute="@this"></f:ajax></h:commandButton></td>
+						
+						</tr>
+						</table>
+						
+		</o:popupLayer>
+	
+</h:body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<FormsList>
+  <Form ID="nHbTlqWV" Name="HardRock" Type="Folder">
+
+    
+<Form CreatedBy="john@cygnussoftwares.com" CreatedDate="12/18/2018 10:56:32" CustomerKey="0X4Ko" FormDescription="Analysis" ID="FORM95286" MetadataFilePath="C:\inetpub\ultra\businessplanner\FormsMetadata\Hard Rock_0X4Ko\FormMetadata_82091.json" ModifiedBy="john@cygnussoftwares.com" ModifiedDate="12/18/2018 16:13:09" Name="Property Analysis" OutputFilePath="C:\inetpub\ultra\businessplanner\FormsHTML\Hard Rock_0X4Ko\FORM95286\FormsHTML_31427.html" Type="Form"/>
+<Form CreatedBy="john@cygnussoftwares.com" CreatedDate="12/18/2018 11:02:03" CustomerKey="0X4Ko" FormDescription="Chart" ID="FORM32308" MetadataFilePath="C:\inetpub\ultra\businessplanner\FormsMetadata\Hard Rock_0X4Ko\FormMetadata_97316.json" ModifiedBy="john@cygnussoftwares.com" ModifiedDate="12/19/2018 18:58:23" Name="Property Analysis Data Chart" OutputFilePath="C:\inetpub\ultra\businessplanner\FormsHTML\Hard Rock_0X4Ko\FORM32308\FormsHTML_42788.html" Type="Form"/>
+
+  </Form>
+</FormsList>

@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title></title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+ <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+	
+
+	
+	<style>
+	.rf-fu-hdr {
+	
+	    background-color: #D4CFC7;
+	   
+	    border-color: #D4CFC7;
+	    border-style: solid;
+	    border-width: 1px;
+	    margin-left: 1px;
+	    margin-top: 1px;
+	    white-space: nowrap;
+	
+	}
+	.rf-fu-btns-rgh {
+	
+	    text-align: right;
+	    width: 34%;
+	    display: none;
+	    }
+	    .rf-fu-btn-upl, .rf-fu-btn-clr {
+	
+	height:29px;
+	}
+.subtitlestyle1{
+color:#116a93;
+font-size: 17px;
+border: 1px solid transparent !important;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+    overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+ 
+</style>	
+	
+	
+	
+
+<script>
+function showname() {
+    var name = document.getElementById('fileInput'); 
+    alert('Selected file: ' + name.files.item(0).name);
+    alert('Selected file: ' + name.files.item(0).size);
+    alert('Selected file: ' + name.files.item(0).type);
+    document.getElementById("myText").value = "Johnny Bravo";
+    
+  };
+  
+  function showRuleAttrPopup(size) {
+	  if(size > 0)
+		  $('#ruleAttrValuepopup').modal('show');
+	  else
+		  alert("Rules are not created in the selected workflow.");
+}
+  
+  function showimg() {
+	  
+	  document.getElementById("loadingPANE").style.display = "block";  
+  
+  }
+  function hideimg() {
+	  
+	  document.getElementById("loadingPANE").style.display = "none";  
+  
+  }
+function showimg1() {
+	  
+	  document.getElementById("loadingPANE1").style.display = "block";  
+  
+  }
+  function hideimg1() {
+	  
+	  document.getElementById("loadingPANE1").style.display = "none";  
+  
+  }
+function showimg2() {
+	  
+	  document.getElementById("loadingPANE2").style.display = "block";  
+  
+  }
+  function hideimg2() {
+	  
+	  document.getElementById("loadingPANE2").style.display = "none";  
+  
+  }
+</script>
+
+
+</h:head>
+
+
+
+<body class="hold-transition skin-purple sidebar-mini">
+<h:form id="attachDocumentform">
+
+<div class="modal fade" id="AttachDocumentPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" style="border: 1px solid lightgray;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+	
+								
+							
+							<h:commandButton id="attachdocStartWFBTN" title="Start Workflow" value="Start Workflow" disabled="#{workflowTabBean.startWFBtnDisableFlag}" action="#{workflowTabBean.saveAction('Move2NextStage')}" image="/BootstrapResource/dist/hierarchy/startworkflow.png" onclick="showimg2();">							
+								<a4j:ajax render="@this :hierarchytable:attachDocumentform:attachdocsaveBTN :hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:workflowdocTable1 :hierarchytable:workflowdocTable10" execute=":hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:liworkflow :hierarchytable:attachDocumentform:sendalertsubseqBox :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:sendalertAfterdeadLineBox :hierarchytable:attachDocumentform:sendalertBox :hierarchytable:attachDocumentform:exholidayBox :hierarchytable:attachDocumentform:showHoursBox :hierarchytable:attachDocumentform:exweekBox :hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:documentTextareaID :hierarchytable:attachDocumentform:chooseprimaryFileName :hierarchytable:attachDocumentform:deadLinebeforeTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox2 :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:choosewfName :hierarchytable:attachDocumentform:timelineBox :hierarchytable:attachDocumentform:timelineBoxforEachtimeBox :hierarchytable:attachDocumentform:timelineBoxshowHoursBox :hierarchytable:attachDocumentform:timelineBoxexweekBox :hierarchytable:attachDocumentform:timelineBoxexholidayBox :hierarchytable:attachDocumentform:timelineBoxcalenderLink :hierarchytable:attachDocumentform:timelineBoxtimeLineTable :hierarchytable:attachDocumentform:timelineBoxsendalertBox :hierarchytable:attachDocumentform:timelineBoxdeadLinebeforeTextBox1 :hierarchytable:attachDocumentform:timelineBoxsendalertAfterdeadLineBox :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox1 :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox2 :hierarchytable:attachDocumentform:timelineBoxdeadLineSelectMenu :hierarchytable:attachDocumentform:timelineBoxsendalertsubseqBox :hierarchytable:attachDocumentform:timelineBoxliworkflow" oncomplete="hideimg2();"></a4j:ajax>
+								 </h:commandButton> 
+	<h:commandButton id="attachdocsaveBTN" title="Save" value="Save" action="#{workflowTabBean.saveAction('Save')}" disabled="#{workflowTabBean.saveBtnDisableFlag}" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" onclick="showimg2();">							
+								<a4j:ajax render="@this :hierarchytable:attachDocumentform:attachdocStartWFBTN :hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:workflowdocTable1 :hierarchytable:workflowdocTable10" execute=":hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:liworkflow :hierarchytable:attachDocumentform:sendalertsubseqBox :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:sendalertAfterdeadLineBox :hierarchytable:attachDocumentform:sendalertBox :hierarchytable:attachDocumentform:exholidayBox :hierarchytable:attachDocumentform:showHoursBox :hierarchytable:attachDocumentform:exweekBox :hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:documentTextareaID :hierarchytable:attachDocumentform:chooseprimaryFileName :hierarchytable:attachDocumentform:deadLinebeforeTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox2 :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:choosewfName :hierarchytable:attachDocumentform:timelineBox :hierarchytable:attachDocumentform:timelineBoxforEachtimeBox :hierarchytable:attachDocumentform:timelineBoxshowHoursBox :hierarchytable:attachDocumentform:timelineBoxexweekBox :hierarchytable:attachDocumentform:timelineBoxexholidayBox :hierarchytable:attachDocumentform:timelineBoxcalenderLink :hierarchytable:attachDocumentform:timelineBoxtimeLineTable :hierarchytable:attachDocumentform:timelineBoxsendalertBox :hierarchytable:attachDocumentform:timelineBoxdeadLinebeforeTextBox1 :hierarchytable:attachDocumentform:timelineBoxsendalertAfterdeadLineBox :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox1 :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox2 :hierarchytable:attachDocumentform:timelineBoxdeadLineSelectMenu :hierarchytable:attachDocumentform:timelineBoxsendalertsubseqBox :hierarchytable:attachDocumentform:timelineBoxliworkflow" oncomplete="hideimg2();"></a4j:ajax>
+								 </h:commandButton> 
+
+<h:commandButton title="Close" id="attachdocscloseBTN" value="close" onclick="$('#AttachDocumentPopup').modal('hide');loadmsg();" action="#{workflowTabBean.emptyAllvalues()}" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+
+<a4j:ajax execute=":hierarchytable:attachDocumentform:attachDocumentMsg" render=":hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:liworkflow :hierarchytable:attachDocumentform:sendalertsubseqBox :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:sendalertAfterdeadLineBox :hierarchytable:attachDocumentform:sendalertBox :hierarchytable:attachDocumentform:exholidayBox :hierarchytable:attachDocumentform:showHoursBox :hierarchytable:attachDocumentform:exweekBox :hierarchytable:attachDocumentform:timeLineTable :hierarchytable:attachDocumentform:attachdocTable :hierarchytable:attachDocumentform:attachDocumentMsg :hierarchytable:attachDocumentform:documentTextareaID :hierarchytable:attachDocumentform:chooseprimaryFileName :hierarchytable:attachDocumentform:deadLinebeforeTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox1 :hierarchytable:attachDocumentform:deadLineTextBox2 :hierarchytable:attachDocumentform:deadLineSelectMenu :hierarchytable:attachDocumentform:choosewfName :hierarchytable:attachDocumentform:timelineBox :hierarchytable:attachDocumentform:timelineBoxforEachtimeBox :hierarchytable:attachDocumentform:timelineBoxshowHoursBox :hierarchytable:attachDocumentform:timelineBoxexweekBox :hierarchytable:attachDocumentform:timelineBoxexholidayBox :hierarchytable:attachDocumentform:timelineBoxcalenderLink :hierarchytable:attachDocumentform:timelineBoxtimeLineTable :hierarchytable:attachDocumentform:timelineBoxsendalertBox :hierarchytable:attachDocumentform:timelineBoxdeadLinebeforeTextBox1 :hierarchytable:attachDocumentform:timelineBoxsendalertAfterdeadLineBox :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox1 :hierarchytable:attachDocumentform:timelineBoxdeadLineTextBox2 :hierarchytable:attachDocumentform:timelineBoxdeadLineSelectMenu :hierarchytable:attachDocumentform:timelineBoxsendalertsubseqBox :hierarchytable:attachDocumentform:timelineBoxliworkflow" oncomplete="hidemsg();"></a4j:ajax>
+ </h:commandButton> 
+	 
+	</div>
+	
+	 <h4 id="attachdocTitle" class="modal-title" >Start New Workflow</h4>
+	</div>
+	
+   <div class="modal-body" style="margin-top: -13px;">
+   <div class="row">
+	<div class="col-lg-12">
+	<h5 style="color: #1F6AAF;"> Choose a document and assign it to a workflow. You can attach various document types such as MS Word, PDF.</h5>
+	</div>
+	</div>
+   
+   
+    
+    <div class="row">
+								<div class="col-lg-12" style=";margin-left: -15px;">	 	
+								<div >	
+								<div class="col-lg-2" style="width:22.667% !important;margin-top: 5px;">
+								<h:outputText value="Choose Primary Document: " ></h:outputText>
+								</div>
+								<div class="col-lg-9">
+								<h:inputText id="chooseprimaryFileName" value="#{workflowTabBean.primaryFileName}" placeholder=" Choose Primary File " class="textfiledcss" style="width: 280px !important;"></h:inputText>
+                                 <h:commandButton title="Choose Local Folder" id="primaryFileBTN" value="Choose Local Folder" onclick="O$('hierarchytable:attachDocumentform:popupLayer2').show();" style="margin-left: 10px;padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+								 <a4j:ajax render="@this upload2 chooseprimaryFileName" execute="@this"> </a4j:ajax>	
+								 </h:commandButton>
+								 
+								 <h:commandButton disabled="true" title="Other Data Source" id="primaryDSBTN" value="Other Data Source"  style=" padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+								 <a4j:ajax render="@this upload2 chooseprimaryFileName" execute="@this"> </a4j:ajax>	
+								 </h:commandButton>
+								 
+								 	</div>
+								 	  <div class="row">
+								 	<div class="col-lg-12">
+								 	<div class="col-lg-12">
+								 	
+								 	
+								 	<o:popupLayer id="popupLayer2" style="border:1px solid lightgray; position:absolute;width:246px;z-index:10;bottom: -95px;left: 74%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+																					<div class="row">
+																					<div class="col-lg-10" style="text-align: left;font-weight: bold; ">
+																					<p>Choose File</p>
+																					</div>
+																					<div class="col-lg-2" style="text-align: right; ">
+																						<h:commandButton 
+																						 id="popupInvoker1" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="margin-left: -60%;width: 24px;"
+																						onclick="O$('hierarchytable:attachDocumentform:popupLayer2').hide();">
+																							<a4j:ajax
+																		render="@this hierarchytable:attachDocumentform:upload2 :hierarchytable:ListUsers:externalFileName"
+																		execute="@this">
+																	</a4j:ajax>
+																					</h:commandButton>
+																					</div>
+																					</div>
+																					<div class="row">
+																<div class="col-lg-12" style="margin-left: 1%;">
+																			<rich:fileUpload 
+			fileUploadListener="#{workflowTabBean.uploadFile2}"
+			id="upload2" style="height:105px;width: 236px;margin-bottom: 2px;" maxFilesQuantity="1" 
+																			immediateUpload="#{workflowTabBean.autoUpload2}"
+																			allowFlash="#{workflowTabBean.useFlash}"
+																			onuploadcomplete="O$('hierarchytable:attachDocumentform:popupLayer2').hide();"  >
+			<a4j:ajax event="uploadcomplete" execute="@none" render="chooseprimaryFileName"/>
+	
+	</rich:fileUpload>
+													<div class="row" id="loadingPANE" style="display: none">
+								<div class="col-lg-12">
+								<img src="BootstrapResource/dist/hierarchy/loader128.gif" style="width: 30px;height: 30px;"></img>
+								
+								</div>
+								</div>								
+																			</div>
+																			</div>
+																			
+																		</o:popupLayer>
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+								 	
+							
+								</div></div>
+								</div>
+								</div>
+								</div>
+	</div>
+    
+   
+      <div class="row">
+	<div class="col-lg-12" style="margin-bottom: 5px;;margin-left: -15px;">	
+	<div style="width:100%;">	
+		<div class="col-lg-6" style="margin-top: 6px;">
+	 <LABEL style="">Choose additional documents</LABEL>
+	</div>
+   <div class="col-lg-6 pull-right" style="text-align: right;margin-right: -30px;">	
+	<h:commandButton title="Choose Local Folder" id="attachBrowseLocalBTN"   value="Choose Local Folder"  onclick="O$('hierarchytable:attachDocumentform:popupLayer1').show();" style="padding: 6px 12px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+	<a4j:ajax render="@this upload"  oncomplete="hidemsg()" ></a4j:ajax>
+    </h:commandButton> 
+    
+   
+	
+	<h:commandButton title="Other Data Source" id="attachDSBTN" disabled="true" value="Other Data Source" style="padding: 6px 12px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;">
+  <a4j:ajax render="@this" oncomplete="hidemsg()" ></a4j:ajax>
+    </h:commandButton> 
+ 
+
+    
+    
+    <o:popupLayer id="popupLayer1" style="border:1px solid lightgray; position:absolute;width: 278px;z-index:10;bottom: -109px;left: 66%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+    <div class="row">
+																					<div class="col-lg-10" style="text-align: left;font-weight: bold; ">
+																					<p>Choose File</p>
+																					</div>
+																					<div class="col-lg-2" style="text-align: right; ">
+																						<h:commandButton 
+																						 id="popupInvoker2" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="margin-left: -60%;width: 24px;"
+																						onclick="O$('hierarchytable:attachDocumentform:popupLayer1').hide();">
+																							<a4j:ajax
+																		render="@this hierarchytable:attachDocumentform:upload2 :hierarchytable:ListUsers:externalFileName"
+																		execute="@this">
+																	</a4j:ajax>
+																					</h:commandButton>
+																					</div>
+																					</div>
+		<div class="row">
+																<div class="col-lg-12" style="margin-left: 1%;">																			
+  <rich:fileUpload 
+			fileUploadListener="#{workflowTabBean.uploadFile}"
+			id="upload" style="height: 146px;width: 270px;margin-bottom: 2px;overflow-x: scroll;text-align:left;" maxFilesQuantity="5" autoclear="true"
+																			immediateUpload="#{workflowTabBean.autoUpload}"
+																			allowFlash="#{workflowTabBean.useFlash}"
+																			onuploadcomplete="O$('hierarchytable:attachDocumentform:popupLayer1').hide();" >
+			<a4j:ajax event="uploadcomplete" execute="@none" render="attachdocTable" />
+	
+	</rich:fileUpload>
+		<div class="row" id="loadingPANE1" style="display: none">
+								<div class="col-lg-12" style="margin-left: -7px;">
+								<img src="BootstrapResource/dist/hierarchy/loader128.gif" style="width: 30px;height: 30px;"></img>
+								
+								</div>
+								</div>
+	</div>
+	</div>
+	<table>
+																
+																		</table>
+																	</o:popupLayer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- <input type="file" id="fileInput" onchange="showname();"  >
+    <a4j:ajax render="@this :hierarchytable:attachdocTable"></a4j:ajax>
+    </input>
+     -->
+ 
+		
+
+    
+   </div>
+   
+	
+	
+	</div>
+	</div>
+	</div>
+    
+
+     
+    <div class="row">
+    
+     <div class="col-lg-12">
+									<div id="attachdocTablePANE"  style="width: 100%;height: 150px;border: 1px solid lightgray;overflow-y: auto;overflow-x: hidden;">
+											
+										<o:dataTable id="attachdocTable" value="#{workflowTabBean.attachdocumentDetailsAL}" styleClass="table" var="attachdocTableobject"
+											headerVertSeparator="1px solid #a0a0a0" 
+											style="min-width:100%;max-width:100%;border: 1px solid lightgray;">
+
+											<o:multipleRowSelection style="background: #116a93; color: #fff;">
+											<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+								
+
+											<o:column >
+												<f:facet name="header">File Name</f:facet>
+												
+												<center>
+												<h:outputLabel title="#{attachdocTableobject.fileNameAttachStr}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachdocTableobject.fileNameAttachStr}"></h:outputLabel>
+														
+												</center>
+											
+											</o:column>
+											<o:column >
+												<f:facet name="header">File Type</f:facet>
+												<center>
+													<h:outputLabel title="#{attachdocTableobject.fileTypeAttachStr}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachdocTableobject.fileTypeAttachStr}"></h:outputLabel>
+														
+												</center>
+											</o:column>
+											<o:column >
+												<f:facet name="header">File Size</f:facet>
+												
+												<center>
+														<span title="#{attachdocTableobject.fileSizeAttachStr}">#{attachdocTableobject.fileSizeAttachStr}</span>
+												</center>
+											
+											</o:column>
+											
+											
+											<o:column rendered="false">
+												<f:facet name="header">File Date</f:facet>
+												
+
+												<center>
+														<span title="#{attachdocTableobject.fileDateAttachStr}">#{attachdocTableobject.fileDateAttachStr}</span>
+												</center>
+											
+											</o:column>
+
+											
+
+									
+											<o:column style="width: 80px !important;">
+												<f:facet name="header"></f:facet>
+												
+												 <center>
+									
+												 <h:commandLink value="View" >
+												 <a4j:ajax render="@this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+												 </h:commandLink>
+												 </center>
+
+											</o:column>
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+
+								
+									</div>				</div>
+
+								</div>
+    
+    
+    		<div class="row">
+								<div class="col-lg-12" style="margin-top: 7px;margin-left: -15px;">		
+								<div>	
+							<div class="col-lg-2" style="width: 17.667% !important;margin-top: 5px;">
+								<h:outputText value="Choose Workflow:" ></h:outputText>
+								</div>
+								<div class="col-lg-8">
+								<h:inputText id="choosewfName"  value="#{workflowTabBean.choosewfNameStr}" placeholder=" Choose Workflow " class="textfiledcss" ></h:inputText>
+                                 <h:commandButton title="List of Workflows" id="liWFBTN" onclick="$('#popupLayerWorkflow').modal('show');loadmsg();"  action="#{workflowTabBean.loadWF}" value="Choose Workflow" style="margin-top: -12px;margin-bottom: -10px;" image="/BootstrapResource/dist/hierarchy/chosewF.png" >
+								 <a4j:ajax render="@this :hierarchytable:attachDocumentform:liworkflow" execute="@this" oncomplete="hidemsg();"> </a4j:ajax>	
+								 </h:commandButton>
+								</div>
+								</div>
+								</div>
+								
+	</div>
+    
+    
+    
+     <div class="row">
+     <LABEL style="margin-left: 15px;">Notes to send along the document</LABEL>
+	<div class="col-lg-12"  style=";margin-left: -12px;">
+	<h:inputTextarea id="documentTextareaID" row = "10" col = "10" value ="#{workflowTabBean.documentTextarea}" style="width:100%;border:1px solid lightgray;margin-left: 12px;min-height:100px;min-width:100%;max-width:100%;"/>
+	</div>
+	
+	
+	</div>
+<p></p>
+<div class="row">
+<div class="col-lg-12">
+
+<div>
+
+<LABEL >Enter Attribute Values</LABEL>
+<br></br>
+  <h:outputText style="margin-left: 2px;" value="Click "></h:outputText>
+   <h:commandLink value="here" style="font-size: 15px;"  action="#{workflowTabBean.getAllAttributesFromWorkflow4AttachDoc(workflowTabBean.globlworkflowID)}">
+		<a4j:ajax render="@this :hierarchytable:attachDocumentform:attrValuePanelGroup" execute="@this" oncomplete="showRuleAttrPopup(#{workflowTabBean.rulesAttrDetailsAL.size()});hidemsg();"></a4j:ajax>
+   </h:commandLink>
+   <h:outputText style="margin-left: 2px;" value=" to enter attribute values."></h:outputText> 
+   
+   
+   	</div>
+   	<p></p>
+		<div>
+	
+		<LABEL >Assign Timeline</LABEL>
+		<br></br>
+    <h:outputText style="margin-left: 2px;" value="Click "></h:outputText>
+   <h:commandLink value="here" style="font-size: 15px;"  onclick="$('#timelinepopup').modal('show');">
+		<a4j:ajax render="@this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+   </h:commandLink>
+  <h:outputText style="margin-left: 2px;" value=" to assign timeline for workflow."></h:outputText> 
+   
+   
+   	</div>
+    
+</div>
+
+</div>
+
+
+
+   <div class="modal fade" id="timelinepopup" role="dialog">
+    <div class="modal-dialog modal-md" style="border: 1px solid lightgray;width: 90%;">
+      <div class="modal-content">
+   	<div class="modal-header">
+	<div class="box-tools pull-right">
+	
+	
+
+<h:commandButton title="Close" id="timelinepopupcloseBTN" value="close" onclick="$('#timelinepopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+
+<a4j:ajax execute="@this" render="@this" oncomplete="hidemsg();"></a4j:ajax>
+ </h:commandButton> 
+	 
+	</div>
+	
+	 <h4 id="attachdocTitle" class="modal-title" >Assign Timeline </h4>
+	</div>
+   	
+   	 <div class="modal-body" >
+    <div class="row">
+	<div class="col-lg-12" style="margin-left: -25px;margin-top: 5px;">	
+	<div>
+	<div class="col-lg-3">
+				<h:selectBooleanCheckbox id="timelineBox" value="#{workflowTabBean.timelineBoxStr}" >
+			<a4j:ajax listener="#{workflowTabBean.timelineBoxAction(workflowTabBean.timelineBoxStr)}" render="@this :hierarchytable:attachDocumentform:timeLineTable" execute="@this :hierarchytable:attachDocumentform:timeLineTable" ></a4j:ajax>
+				</h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Assign Timeline"></h:outputText> </b>
+				</div>
+				
+	<div class="col-lg-3">
+				
+				</div>			
+				<div class="col-lg-3">
+				<h:selectBooleanCheckbox id="forEachtimeBox"  value="#{workflowTabBean.forEachtimeBoxStr}">
+				<a4j:ajax listener="#{workflowTabBean.EachtimeBoxAction(workflowTabBean.forEachtimeBoxStr)}" render="@this :hierarchytable:attachDocumentform:timeLineTable" execute="@this :hierarchytable:attachDocumentform:timeLineTable" ></a4j:ajax>
+				</h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="For each team"></h:outputText> </b>
+				</div>
+					</div>
+					</div>
+			
+	
+	<div class="col-lg-12" style="margin-left: -25px;">	
+	<div>
+	<div class="col-lg-3">
+				<h:selectBooleanCheckbox id="showHoursBox"   value="#{workflowTabBean.showHoursBoxStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Show Hours"></h:outputText> </b>
+	</div>
+				
+	<div class="col-lg-3">
+				<h:selectBooleanCheckbox id="exweekBox" value="#{workflowTabBean.exweekBoxStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Exclude Weekends"></h:outputText> </b>
+				</div>			
+	<div class="col-lg-3">
+				<h:selectBooleanCheckbox id="exholidayBox"  value="#{workflowTabBean.exholidayBoxStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Exclude Holidays"></h:outputText> </b>
+				</div>
+				
+				<div class="col-lg-3">
+				<h:commandLink id="calenderLink" value="Holiday Calendar" onclick="$('#holidayWorkflowpopup').modal('show');" action="#{workflowTabBean.calcalenderLink()}">
+				<a4j:ajax render="@this :hierarchytable:attachDocumentform:calendarTable"></a4j:ajax>
+				</h:commandLink>
+ </div>
+				</div>
+				</div>
+	</div>
+				
+    
+    
+    <div class="row" id="timeLineTablelayout" style="margin-top: 5px;display:#{workflowTabBean.timelinedisplay}" >
+   
+    <div class="col-lg-12">
+   
+									<div id="timeLineTablePANE"  style="width: 100%;height: 150px;border: 1px solid lightgray;overflow-y: auto;overflow-x: hidden;">
+											
+										<o:dataTable id="timeLineTable" value="#{workflowTabBean.timeLineTableAL}" styleClass="table" var="timeLineTableobject"
+											headerVertSeparator="1px solid #a0a0a0"  rowKey="#{timeLineTableobject.rowKey}" 
+											style="min-width:100%;max-width:100%;border: 1px solid lightgray;">
+
+											<o:multipleRowSelection style="background: #116a93; color: #fff;">
+											<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+				
+
+											<o:column indexVar="colIndex">
+												<f:facet name="header">Team</f:facet>
+												
+												<center>
+														<span title="#{timeLineTableobject.stageTeamstr}">#{timeLineTableobject.stageTeamstr}</span>
+												</center>
+											
+											</o:column>
+											<o:column indexVar="colIndex">
+												<f:facet name="header">Start Date</f:facet>
+												<center>
+											
+												
+												<h:inputText id="startDateId" style="height:background:color:white;height:25px;" value="#{timeLineTableobject.stageSDstr}">
+    														<f:ajax listener="#{workflowTabBean.startDateIdAction(timeLineTableobject.rowKey)}" render="startEffectiveDateId" />
+											   </h:inputText>	
+												</center>
+											</o:column>
+											<o:column indexVar="colIndex">
+												<f:facet name="header">End Date</f:facet>
+												
+												<center>
+												
+												<h:inputText id="endDateId" style="height:background:color:white;height:25px;" value="#{timeLineTableobject.stageEDstr}">
+    														<f:ajax listener="#{workflowTabBean.endDateIdAction(timeLineTableobject.rowKey)}" render="endEffectiveDateId" />
+											   </h:inputText>
+												
+												
+												
+															
+												</center>
+											
+											</o:column>
+											
+											
+											<o:column indexVar="colIndex">
+												<f:facet name="header">Effective Start Date</f:facet>
+												
+
+												<center>
+															<h:outputLabel id="startEffectiveDateId" value="#{timeLineTableobject.stageESDstr}" > </h:outputLabel>
+												</center>
+											
+											</o:column>
+
+											
+
+									
+											<o:column indexVar="colIndex">
+												<f:facet name="header">Effective End Date</f:facet>
+												
+
+												<center>
+															<h:outputLabel id="endEffectiveDateId" value="#{timeLineTableobject.stageEEDstr}" > </h:outputLabel>
+												</center>
+											
+											</o:column>
+										
+											
+
+										</o:dataTable>
+
+								     </div>
+       </div>
+								</div>
+    
+    
+     <div class="row" >
+    
+     
+	<div class="col-lg-12"  style=";margin-left: -10px;margin-top: 5px;">
+	<div>
+	<h:selectBooleanCheckbox id="sendalertBox"  value="#{workflowTabBean.sendalertStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Send alerts "></h:outputText> </b>
+	<h:inputText id="deadLinebeforeTextBox1" value="#{workflowTabBean.deadLinebeforeTextBox1Str}" style="width:30px;margin-left: 5px;height:25px;background:#fff;border:1px solid lightgray;"></h:inputText>
+	<LABEL>day before deadline</LABEL>
+	</div>
+	  </div>
+	  
+	<div class="col-lg-12"  style=";margin-left: -10px;">
+		<div>
+	<h:selectBooleanCheckbox id="sendalertAfterdeadLineBox"  value="#{workflowTabBean.sendalertAfterdeadLineStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Send alerts After deadline."></h:outputText> </b>
+   <LABEL>Send </LABEL>
+   <h:inputText id="deadLineTextBox1" value="#{workflowTabBean.deadLineTextBox1Str}" style="width:30px;height:25px;margin-left: 5px;background:#fff;border:1px solid lightgray;"></h:inputText>
+   <LABEL>alert at </LABEL>
+	<h:inputText id="deadLineTextBox2" value="#{workflowTabBean.deadLineTextBox2Str}" style="width:30px;height:25px;margin-left: 5px;background:#fff;border:1px solid lightgray;"></h:inputText>
+	
+	<h:selectOneMenu  id="deadLineSelectMenu" value="#{workflowTabBean.deadLineSelectMenuStr}" style="width:100px;margin-left: 5px;background:#fff;height:25px;border:1px solid lightgray;">
+       			<f:selectItem itemValue="Day" itemLabel="Day"/>
+        		
+   </h:selectOneMenu>
+	<LABEL>intervals</LABEL>
+	</div>
+	
+	</div>
+	
+	<div class="col-lg-12"  style=";margin-left: -12px;">
+		<div>
+	<h:selectBooleanCheckbox id="sendalertsubseqBox"  value="#{workflowTabBean.sendalertsubseqStr}"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Send alerts to subsequent teams also if they are overdue as well."></h:outputText> </b>
+   	</div>
+	
+	</div>
+	
+	</div>
+	</div>
+   	
+   	
+	</div>
+    </div>
+	</div>
+	<p></p>
+	
+	<div class="col-lg-12"  style=";margin-left: -12px;">
+		
+    </div>
+	
+	
+		
+  
+    <div class="modal fade" id="popupLayerWorkflow" role="dialog">
+    <div class="modal-dialog modal-sm" style="border: 1px solid lightgray;bottom: -330px;right: -210px;width: 330px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+    
+    <h:commandButton title="Select Workflow" id="selectliWFBTN" action="#{workflowTabBean.selListAction}" image="/BootstrapResource/dist/hierarchy/Liworkflow.png" >
+	<a4j:ajax oncomplete="$('#popupLayerWorkflow').modal('hide');" render="@this :hierarchytable:attachDocumentform:liworkflow :hierarchytable:attachDocumentform:choosewfName :hierarchytable:attachDocumentform:timeLineTable :hierarchytable:attachDocumentform:attachdocStartWFBTN :hierarchytable:attachDocumentform:attachdocsaveBTN" execute="@this :hierarchytable:attachDocumentform:liworkflow :hierarchytable:attachDocumentform:choosewfName"> </a4j:ajax>	
+	</h:commandButton>
+    
+     <h:commandButton title="Close Workflow" id="closeliWFBTN" onclick="$('#popupLayerWorkflow').modal('hide');"  image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+								 <a4j:ajax render="@this" execute="@this"> </a4j:ajax>	
+	</h:commandButton>
+	
+	</div>
+	 <h4 class="modal-title" >List of Workflows </h4>
+	</div>
+    
+   <div class="modal-body">
+   <div class="row">
+ 
+     <div class="col-sm-12">
+	
+	<h:selectManyListbox id="liworkflow" value="#{workflowTabBean.listWorkflowALsel}" size="5" style="width: 300px;background: white;">
+		<f:selectItems value="#{workflowTabBean.listWorkflowAL}"/>
+   </h:selectManyListbox>
+	</div>
+   </div>
+   </div>
+ </div>
+ </div>
+ </div>
+   
+   <div class="modal fade" id="ruleAttrValuepopup" role="dialog">
+    <div class="modal-dialog modal-md" style="border: 1px solid lightgray;bottom:-100px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+    
+    <h:commandButton title="Save Rule Attribute Values" id="attrValuesSaveBTN" action="#{workflowTabBean.saveAttributesValue()}" onclick="$('#ruleAttrValuepopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" >
+		<a4j:ajax render="@this" execute="@this :hierarchytable:attachDocumentform:attrValuePanelGroup"> </a4j:ajax>	
+	</h:commandButton>
+    
+     <h:commandButton title="Close Rule Attribute Values" id="attrValuesCloseBTN" onclick="$('#ruleAttrValuepopup').modal('hide');"  image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+								 <a4j:ajax render="@this" execute="@this"> </a4j:ajax>	
+	</h:commandButton>
+	
+	</div>
+	 <h4 class="modal-title" >Enter Rule Attributes </h4>
+	</div>
+    
+   <div class="modal-body">
+   
+    
+   <h5 style="color: #1F6AAF;">Attributes are used in the rules created for this workflow.</h5>
+   <div class="row">
+   
+    <div class="col-lg-12">
+    
+
+   
+									<div id="attrValuePANE" class="" style="width: 100%;height: 200px;border: 1px solid lightgray;">
+											<h:panelGroup id="attrValuePanelGroup">
+										<c:forEach items="#{workflowTabBean.rulesAttrDetailsAL}" var="item"  begin="0" end="#{workflowTabBean.rulesAttrDetailsAL.size()}" varStatus="status">
+                        <div class="row" style="margin-top: 10px;">
+                        <div class="col-lg-4">
+        <h:outputText id="ruleAttrName_#{status.index}" value="#{item.attributeName}: "></h:outputText>
+           </div>
+           <div class="col-lg-7" style="margin-left: -57px;">
+        <h:inputText id="ruleAttrVal_#{status.index}" value="#{item.attrValue}" placeholder=" Enter #{item.attributeName} value " class="textfiledcss" style="width: 226px !important;"></h:inputText>
+		   </div>
+		</div>
+        </c:forEach>
+</h:panelGroup>
+								     </div>
+       </div>
+								</div>
+   </div>
+ </div>
+ </div>
+ </div>
+   
+   
+   
+   <div class="modal fade" id="holidayWorkflowpopup" role="dialog">
+    <div class="modal-dialog modal-md" style="border: 1px solid lightgray;bottom: -330px;right: -134px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+    
+    <h:commandButton title="Select Workflow" id="holidaysaveBTN" action="#{workflowTabBean.selListAction}" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" >
+		
+	</h:commandButton>
+    
+     <h:commandButton title="Close Workflow" id="holidaycloseBTN" onclick="$('#holidayWorkflowpopup').modal('hide');"  image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+								 <a4j:ajax render="@this" execute="@this"> </a4j:ajax>	
+	</h:commandButton>
+	
+	</div>
+	 <h4 class="modal-title" >Calendar </h4>
+	</div>
+    
+   <div class="modal-body">
+   
+    <div class="row">
+   
+    <div class="col-lg-12">
+   <div class="pull-right">
+   
+   <h:commandButton id="calendaraddicon" title="Add" value="Add" image="/BootstrapResource/dist/hierarchy/list_add.png"  action="#{workflowTabBean.calendarAddAction}">
+   <a4j:ajax render="@this :hierarchytable:attachDocumentform:calendarTable"></a4j:ajax>
+ 	</h:commandButton>
+   </div>
+   </div>
+   </div>
+   
+   <div class="row">
+   
+    <div class="col-lg-12">
+    
+
+   
+									<div id="calendarPANE" class="" style="width: 100%;height: 200px;border: 1px solid lightgray;">
+											
+										<o:dataTable id="calendarTable" value="#{workflowTabBean.calendarDetailsAL}" styleClass="table" var="calendarTableobject"
+											headerVertSeparator="1px solid #a0a0a0"   rowKey="#{calendarTableobject.rowKeyCount}" 
+											style="min-width:100%;max-width:100%;border: 1px solid lightgray;overflow:scroll;">
+
+											<o:multipleRowSelection style="background: #116a93; color: #fff;">
+											<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+										
+
+											<o:column >
+												<f:facet name="header">S.No</f:facet>
+												
+												<center>
+														<span title="#{calendarTableobject.serialNo}">#{calendarTableobject.serialNo}</span>
+												</center>
+											
+											</o:column>
+											<o:column >
+											
+												<f:facet name="header">From</f:facet>
+												<center>
+														<rich:calendar style="width:170px" id="fromdate4Edit" datePattern="dd/MM/yyyy"
+														 value="#{calendarTableobject.calendarFrom}">
+														 <f:ajax listener="#{workflowTabBean.calendarFromAction(calendarTableobject.rowKeyCount)}" ></f:ajax>
+                                                        </rich:calendar>
+												</center>
+											</o:column>
+											<o:column >
+												<f:facet name="header">To</f:facet>
+												
+												<center>
+														<rich:calendar style="width:170px" id="todate4Edit" datePattern="dd/MM/yyyy" value="#{calendarTableobject.calendarTo}">
+   												 <f:ajax listener="#{workflowTabBean.calendarToAction(calendarTableobject.rowKeyCount)}" ></f:ajax>
+   												 </rich:calendar>
+												</center>
+											
+											</o:column>
+										
+
+											
+
+									
+											 <o:column style="width:60px;">
+       <f:facet name="header">Delete
+       </f:facet>
+    <center> <h:commandButton id="calendardelteicon" title="Delete" value="Delete" image="/BootstrapResource/dist/hierarchy/list_delte.png"  >
+   
+ 	</h:commandButton></center> 
+      </o:column>
+										
+											
+
+										</o:dataTable>
+
+								     </div>
+       </div>
+								</div>
+   </div>
+ </div>
+ </div>
+ </div>
+   
+  
+    <div class="row">
+	<div class="col-lg-12" style="margin-top: 5px;">	
+		<img src="BootstrapResource/dist/hierarchy/loader128.gif" style="width: 30px;height: 30px;display: none" id="loadingPANE2"></img>
+	<h:outputText id="attachDocumentMsg" value="#{workflowTabBean.attachDocumentMsgstr}" style="color:#{workflowTabBean.attachDocumentMsgColor}"></h:outputText>
+	</div>
+	</div>
+    
+    </div>
+	
+
+		
+	</div>
+	</div>
+	</div>
+					
+
+			
+<script>
+ 
+$("#AttachDocumentPopup").draggable({
+handle: ".modal-content"
+});
+         
+
+</script>
+
+
+<ui:include src="/LoadingWindow.xhtml"></ui:include>
+
+</h:form>
+</body>
+</html>
+	

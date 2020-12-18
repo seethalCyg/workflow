@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:o="http://openfaces.org/">
+
+
+
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title>Hierarchy Workflow</title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+      overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+</style>
+<script type="text/javascript">
+function openOneDriveAuthURL(authurl, mailId) {
+	var idd = document.getElementById("form:oneDriveMailId").value;
+	alert("===========-");
+	authurl = authurl.replace("\\$\\$mailID\\$\\$", idd);
+	window.open(authurl,'_blank');
+}
+</script>
+</h:head>
+
+
+
+<h:body>
+
+	<div class="modal fade" id="oneDriveAuthPopup" role="dialog">
+		<div class="modal-dialog modal-lg" style="width: 30%;">
+		<div class="modal-content" >
+			 <div class="modal-header">
+	<div class="box-tools pull-right">
+         
+          
+      <h:commandButton value="Cancel" style="margin-left:485px " title="Close" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" onclick="$('#oneDriveAuthPopup').modal('hide');">
+		<a4j:ajax render="@this" execute="@this :form:ruleTableCreate"> </a4j:ajax>
+		</h:commandButton>
+         
+         </div>
+	
+	   <h4  class="modal-title" >OneDrive Authentication</h4>
+	
+		</div>
+			
+			
+			
+			
+			
+			
+<div class="modal-body">
+
+<div class="row">
+					<div class="col-lg-12  ">
+					
+						<div class="pull-left">
+						<h:outputText id="oneDriveHTxt" value="#{dashboardBean.oneDriveHTxt}" style="font-size: 14px"></h:outputText>
+						</div>
+					</div>
+					</div>
+
+<div class="row">
+<p></p>
+<div class="col-lg-3  ">
+					
+						<div class="pull-left">
+						<h:outputText value="Enter Email ID: " style="font-size: 14px"></h:outputText>
+						</div>
+					</div>
+					<div class="col-lg-9">
+					
+						<div class="pull-left">
+						<h:inputText id="oneDriveMailId" value="#{dashboardBean.oneDriveMailID}" style="font-size: 14px">
+						<a4j:ajax execute="@this" render=":form:authText" event="change"/></h:inputText>
+						</div>
+					</div>
+					</div>
+
+						<div class="row">
+					<div class="col-lg-12">
+					<div class="pull-left">
+					<p></p>
+						<h:commandLink id="authText" value="#{dashboardBean.authText}" style="font-size: 16px" onclick="openOneDriveAuthURL('#{dashboardBean.oneDriveAuthURL}', '#{dashboardBean.oneDriveMailID}'); loadmsg();" action="#{dashboardBean.check4AuthDate()}">
+						<a4j:ajax execute="@this :form:oneDriveMailId" render="@this :form:oneDriveMailId success-alert :form:msg4WF" oncomplete="hidemsg();showAlert('#{dashboardBean.authMsg}');"/></h:commandLink>
+</div>
+
+					</div>
+
+				</div>
+				
+
+				
+
+</div>
+
+
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

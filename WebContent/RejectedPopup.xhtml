@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title></title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+	<style>
+
+.subtitlestyle1{
+color:#116a93;
+font-size: 17px;
+border: 1px solid transparent !important;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+      overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+
+</style>
+
+</h:head>
+
+
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+
+<div class="modal fade" id="RejectedPopup" role="dialog">
+    <div class="modal-dialog modal-sm" style="border: 1px solid lightgray;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+	
+	
+	<h:commandButton id="save" title="Save" value="Save" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" action="#{dashboardBean.WriteRejectedReturnToXml('Rejection')}" rendered="#{securityBean.workFlowProcess}">							
+								 <f:ajax render="returnRejMsg " execute="returnto setStatus stageStatus Notification goToStage"></f:ajax>
+								 </h:commandButton> 
+
+<h:commandButton title="Close" id="closeRejectedPopup" value="close" onclick="$('#RejectedPopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+<a4j:ajax render="@this :form:returnRejMsg" execute="@this Notification" oncomplete="hidemsg()" ></a4j:ajax>
+ </h:commandButton> 
+	 
+	</div>
+	
+	 <h4 id="rejectedTitle" class="modal-title" >Rejection Handling</h4>
+	</div>
+	
+   <div class="modal-body">
+   <div class="row">
+	<div class="col-lg-12">
+	<h5 style="color: #1F6AAF">Configure how to handle when a document in rejected in this stage.</h5>
+	</div>
+	</div>
+   
+    <div class="row">
+	<div class="col-lg-12">	
+		<p class="subtitlestyle1"> If Rejected, Return to</p>
+	
+	
+	 <h:selectOneRadio styleClass="myradio" layout="pageDirection" id="returnto" value="#{dashboardBean.rejectedReturn2}">
+							<f:selectItem itemValue="Previous_Member" itemLabel="Previous Member (s)"/> 
+							<f:selectItem itemValue="Previous_Stage" itemLabel="Previous Stage (First Member)"/>
+							<f:selectItem itemValue="First_Stage" itemLabel="First Stage (First Member)"/>
+							<f:selectItem itemValue="Goto_Stage" itemLabel="Goto Stage" />
+	</h:selectOneRadio>
+	<h:selectOneMenu id="goToStage" value="#{dashboardBean.selectedgotoStages}">
+       			<f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{dashboardBean.rejectedReturngotostageAL}"/>
+        	
+    </h:selectOneMenu>
+		
+	<p class="subtitlestyle1"> Set Status to:</p>
+	
+	
+	<h:selectOneRadio styleClass="myradio" layout="pageDirection" id="setStatus" value="#{dashboardBean.rejectedSetStatus2}">
+							<f:selectItem itemValue="First Status Code" itemLabel="First Status Code"/> 
+							<f:selectItem itemValue="Choose Status" itemLabel="Choose Status"/> 
+						
+						
+	</h:selectOneRadio>
+							
+	<h:selectOneMenu id="stageStatus" value="#{dashboardBean.selectedStatus}">
+       			<f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{dashboardBean.rejectedReturnstagestatusAL}"/>
+        	
+    </h:selectOneMenu> 			
+    			
+    			<p></p>
+    <p class="subtitlestyle1"> Send Notification to:</p>
+    			
+    			
+      <h:selectOneRadio styleClass="myradio"   layout="pageDirection" id="Notification" value="#{dashboardBean.rejectedSendNotification2}">
+							<f:selectItem itemValue="Affected_Members" itemLabel="Only Affected Member (s)"/> 
+							<f:selectItem itemValue="All_Members_in_Stage" itemLabel="All Members in the Stage"/>
+							<f:selectItem itemValue="All_Members_in_WF" itemLabel="All Members in this Workflow"/>
+						
+						
+	</h:selectOneRadio>
+    			
+	</div>
+	</div>
+	</div>
+	
+
+    <div class="row">
+	<div class="col-lg-12">	
+<h:outputText id="returnRejMsg" style="color:#{dashboardBean.returnRejectedMessagecolor}" value="#{dashboardBean.returnRejectedMessage}"></h:outputText>
+	</div>
+	</div>
+		
+		
+		
+	</div>
+	</div>
+	</div>
+			
+<script>
+ 
+$("#RejectedPopup").draggable({
+handle: ".modal-content"
+});
+          
+</script>
+</body>
+</html>
+	

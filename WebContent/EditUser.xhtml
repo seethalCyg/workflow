@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title></title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+	<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+    overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+
+</style>
+
+</h:head>
+
+
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+
+
+<div class="modal fade" id="EditUser" role="dialog">
+    <div class="modal-dialog modal-md" style="border: 1px solid lightgray;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+<h:commandButton id="update" title="Update" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" value="Update" action="#{hierarchyBean.updateUser}" onclick="return mailValidation();">
+	<f:ajax render="loginId4Edit emailId4Edit date4Edit date14Edit accessstatus4Edit msg4Update" execute="loginId4Edit emailId4Edit date4Edit date14Edit accessstatus4Edit addusertabel msg4Update sap" />
+    
+    </h:commandButton>
+    <h:commandButton title="Close" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" value="Admin" onclick="$('#EditUser').modal('hide');"   actionListener="#{hierarchyBean.setMsg4UpdateUser('')}">
+    <a4j:ajax render="@this" execute="@this"></a4j:ajax>
+    </h:commandButton>
+
+</div>
+ <h4 id="editTitle" class="modal-title" >Edit User</h4>
+</div>
+
+
+
+
+
+
+
+ <div class="modal-body" id="comfil">
+    <div class="row">
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+    <label><b>Login ID:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+   <h:panelGroup id="login4Edit"> <h:inputText id="loginId4Edit" disabled="true" value="#{hierarchyBean.userLoginId4Edit}" style="width: 180px;"  /></h:panelGroup>  
+     </div>
+	
+	</div>
+	
+	
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+    <label><b>E Mail ID:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+   <h:inputText id="emailId4Edit" value="#{hierarchyBean.eMailID4Edit}" style="width: 180px;"/>    
+     </div>
+	
+	</div>
+	
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+    <label><b>Access Start Date:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+   				
+	<rich:calendar style="width:170px" id="date4Edit" value="#{hierarchyBean.accessStartDate4Edit}">
+    </rich:calendar>
+     </div>
+	
+	</div>
+	
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+    <label><b>Access End Date:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+   				
+	<rich:calendar style="width:170px"  id="date14Edit" value="#{hierarchyBean.accessEndDate4Edit}">
+    </rich:calendar>
+     </div>
+	
+	</div>
+	
+	
+
+	
+	
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+    <label><b>Access:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+   				
+	<h:selectOneRadio styleClass="label3" id="accessstatus4Edit" value="#{hierarchyBean.accessStatus4Edit}" layout="lineDirection">
+							
+							<f:selectItem itemValue="Enabled" itemLabel="Enabled"/> 
+							<f:selectItem itemValue="Disabled" itemLabel="Disabled"/> 	
+		</h:selectOneRadio>
+     </div>
+	
+	</div>
+	
+	
+	<div class="col-lg-12">	
+	<div class="col-lg-3">
+  <!--   <label><b>Grant Super Admin Role:</b></label> -->
+    	
+    </div>
+    <div class="col-lg-6">
+    
+   				
+	<h:selectBooleanCheckbox id="sap" value="#{hierarchyBean.superAdminPrivillage}"></h:selectBooleanCheckbox>
+	<h:outputText value="Grant Super Admin Role"></h:outputText> 
+     </div>
+	
+	</div>
+	</div>
+<div class="col-lg-12">	
+
+	<h:outputText id="msg4Update" style="color: #{hierarchyBean.color4EditUserMsg}" value="#{hierarchyBean.msg4UpdateUser}"></h:outputText> 
+		</div>
+	</div>
+
+
+
+</div>
+</div>
+</div>
+</body>
+</html>

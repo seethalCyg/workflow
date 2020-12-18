@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	template="/templates/ui.xhtml"
+	xmlns:o="http://openfaces.org/">
+	
+	
+	
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>Hierarchy Workflow</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+	
+<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+}
+</style>	
+	
+   <script>
+                function getExternalStorageAccess(url) {
+                	
+                	if(url != '')
+						window.open(url, '_blank');
+                	else
+                		alert("This account is already authorized. It is not needed to authorize again.");
+				}
+                function onApiLoad() {
+                	
+                    gapi.load('picker', onPickerApiLoad);
+                  }
+                function onAuthApiLoad() {
+                	
+                }
+                var pickerApiLoaded = false;
+                function onPickerApiLoad(oauthToken, developerKey) {
+                	if(oauthToken == null){
+                		return false;
+                	}
+                	
+                    pickerApiLoaded = true;
+                    createPicker(oauthToken, developerKey);
+                  }
+                function createPicker(oauthToken, developerKey) {
+                    if (pickerApiLoaded) {
+                      var docsView = new google.picker.DocsView()
+                        .setIncludeFolders(true) 
+                        .setMimeTypes('application/vnd.google-apps.folder')
+                        .setSelectFolderEnabled(true);
+                      var picker = new google.picker.PickerBuilder().
+                          addView(docsView).
+                          setOAuthToken(oauthToken).
+                          setDeveloperKey(developerKey).
+                          setCallback(pickerCallback).
+                          build();
+                      picker.setVisible(true);
+                      
+                    }
+                  }
+                function pickerCallback(data) {
+                    var id = '~nothing';
+                    if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+                      var doc = data[google.picker.Response.DOCUMENTS][0];
+                      id = doc[google.picker.Document.ID];
+                    }
+                    var message = id;
+                    if(id == '~nothing'){
+                    	
+                    }else{
+                    	
+                        document.getElementById('form:choosenFolderID').value = message;
+                        
+                        document.getElementById('form:saveFolderID').click(); 
+                    }
+                    
+                  }
+                function name(val) {
+                	alert(document.getElementById('form:choosenFolderID').value+"-=-=-=-=-val=-=-=-=-="+val);
+				}
+                </script> 
+                <script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+</h:head>
+
+
+
+<h:body>
+
+
+	<o:popupLayer id="workProperitesPopup"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 1px solid lightgray;background:white;height:210px;width: 550px; -webkit-box-shadow:2px 2px 6px 1px #d2d2d2;
+    -moz-box-shadow:2px 2px 6px 1px #d2d2d2;
+    box-shadow:2px 2px 6px 1px #d2d2d2;" >
+		
+		<table style="margin-top: -12px;">
+		<tr>
+		<td style="float: left;margin-left: 10px;">
+		<p class="subtitlestyle">Properties</p>
+		</td>
+		<td align="right" style="float: right ;">
+     	<h:commandButton value="Cancel"  image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" onclick="O$('form:workProperitesPopup').hide();">
+		<a4j:ajax render="@this" execute="@this"> </a4j:ajax>
+		</h:commandButton>
+		
+		</td>
+		
+		</tr>
+		
+		<tr>
+		<td align="left" style="float: left ;">
+		<h5 style="color:#1F6AAF;text-align: justify;margin-left: 10px;margin-right: 5px;">This Workflow property will tell the workflow where to save the document if you choose Use Server built-in folder the document will be saved in  workflow server,
+		if you choose Store in an external location the document will be saved in google drive. (you can enter the your email address in enter email field and authorize your account)
+		</h5>
+		</td>
+		<td>
+		</td>
+		</tr>
+		<tr>
+
+     <td style="float: left;margin-left: 10px;font-size: 15px;">
+ 
+     <h:outputText value="Choose Folder: "></h:outputText>
+  </td>
+     <td style="float: left ;">
+    <h:selectOneRadio id="folderTypeS" styleClass="myradio" value="#{dashboardBean.folderType}">
+            <f:selectItem itemValue = "InBuild" itemLabel = "Use Server built-in folder" />
+            <f:selectItem itemValue = "External" itemLabel = "Store in an external location" />
+            <a4j:ajax execute=":form:folderTypeS" render=":form:folderTypeS :form:externalAuthGrp :form:externalEmailGrp" event="change"></a4j:ajax>
+    </h:selectOneRadio>
+ </td>
+     
+     </tr>
+     
+    <br></br>
+     <tr>
+<td style="float: left;margin-left: 10px;margin-top: 5px;">
+     <h:panelGroup id="externalEmailGrp">
+   		<h:outputText value="Enter Email ID: " id="externalEmailLabel" rendered="#{dashboardBean.folderType == 'External'}"/>
+   	</h:panelGroup>
+</td>
+
+      <td style="float: right ;">
+    <h:panelGroup id="externalAuthGrp">
+    
+    <h:inputText id="userID" rendered="#{dashboardBean.folderType == 'External'}" value="#{dashboardBean.externalUserName}"  class="textfiledcss" style="margin-left: 10px;"></h:inputText>
+    <h:commandButton id="authBtn" value="Authorize" rendered="#{dashboardBean.folderType == 'External'}" action="#{dashboardBean.getAccessForExternalStorage(dashboardBean.externalUserName)}"
+    style="margin-left:10px;color:#000;background:white! important;border:1px solid lightgray ! important;padding:5px 10px ! important;">
+    <a4j:ajax execute=":form:userID" render="@this :form:authorizeMsg" oncomplete="getExternalStorageAccess('#{dashboardBean.externalAuthURL}')"></a4j:ajax></h:commandButton>
+    <h:commandButton id="picker" value="Picker" rendered="#{dashboardBean.folderType == 'External'}" action="#{dashboardBean.getAccessToken4Picker()}"
+    style="margin-left:10px;color:#000;background:white! important;border:1px solid lightgray ! important;padding:5px 10px ! important;">
+    <a4j:ajax execute="@this :form:userID"  render="@this result :form:authorizeMsg" oncomplete="onPickerApiLoad('#{dashboardBean.accessToken}','#{dashboardBean.developerKey}')"></a4j:ajax></h:commandButton>
+    </h:panelGroup>
+  </td>
+  </tr>
+  
+     <h:inputHidden id="choosenFolderID" value="#{dashboardBean.folderID}" style="display:none;"/> 
+    <h:commandButton id="saveFolderID" style="display:none;" value="save" action="#{dashboardBean.saveFolderID(dashboardBean.folderID)}">
+     <a4j:ajax execute="@this :form:choosenFolderID" render="@this"></a4j:ajax>
+     </h:commandButton> 
+     	
+
+
+	  <tr>
+	 <h:outputText id="authorizeMsg" style="color:#{dashboardBean.authorizeMsgColor}" value="#{dashboardBean.authorizeMsgstr}"></h:outputText>
+    	</tr>
+		
+		
+		</table>
+		
+		
+	</o:popupLayer>
+</h:body>
+</html>

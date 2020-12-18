@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Referential_Integrity>
+<Rule_Description>
+<RI-001 Rule="Cannot violate parent-child relation with Reference Hierarchy"></RI-001> 
+<RI-002 Rule="Cannot violate siblings relation with Reference Hierarchy"></RI-002> 
+<RI-003 Rule="A parent node (at any Level) should have exact same children as in the Reference Hierarchy;The children can be rolled up or grouped differently at the lowest level (Leaf Node)"></RI-003> 
+<RI-004 Rule="Once a node is added, its siblings has to be added as well for any  of its children to be added;"></RI-004> 
+<RI-005 Rule="Once a child node is added directly ignoring its parent, the parent's siblings cannot be added as well"></RI-005> 
+<RI-006 Rule="All lowest level children can rollup to an intermediate parent or root node"></RI-006> 
+<RI-007 Rule="A data element can appear in only one hierarchy family"></RI-007>
+</Rule_Description>
+
+<Rule_Failure_Description Description="Failure">
+<RI-001 Failure_ID="Fail_RI-001" Failure_Msg="R1-001: Cannot Violate Parent-Child Relation with Reference Hiearchy. $childName$ is a not child of $parentName$ and cannot be added under $parentName$."></RI-001> 
+<RI-002 Failure_ID="Fail_RI-002" Failure_Msg="R1-002: Cannot Violate Siblings Relation with Reference Hiearchy.Missed Sibling From Reference Hierarchy $currentNodeValue$ , $SiblingsValue$"></RI-002> 
+<RI-003 Failure_ID="Fail_RI-003" Failure_Msg="R1-003: Cannot Violate A Parent Node (at any Level) should have exact same Children as in the Reference Hierarchy mismatch Relation both Reference Hierarchy and Dependent Hierarchy ($childName$,$parentName$)"></RI-003> 
+<RI-004 Failure_ID="Fail_RI-004" Failure_Msg="R1-004: Cannot Violate Once a Node is added, its Siblings has to be added. Mismatch sibling relation in both Reference Hierarchy an Dependent Hierarchy ($currentNodeValue$ , $SiblingsValue$)"></RI-004> 
+<RI-005 Failure_ID="Fail_RI-005" Failure_Msg="R1-005: Cannot Violate Once a Child Node is added directly ignoring its Parent, the Parent's Siblings cannot be added as well. Mismatch sibling relation in both Reference Hierarchy an Dependent Hierarchy ($currentNodeValue$ , $SiblingsValue$)"></RI-005> 
+<RI-006 Failure_ID="Fail_RI-006" Failure_Msg="R1-006: Cannot Violate All Lowest Level Children can rollup to an intermediate Parent or Root Node. Mismatch sibling relation in both Reference Hierarchy an Dependent Hierarchy ($currentNodeValue$ , $ParentName$)"></RI-006> 
+<RI-007 Failure_ID="Fail_RI-007" Failure_Msg="R1-007: Cannot Violate All A Data element can appear in only one Hierarchy Family."></RI-007>
+</Rule_Failure_Description>
+
+</Referential_Integrity>

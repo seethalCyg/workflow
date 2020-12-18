@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title> Approve / Review the Document</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>	
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+   <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+<!--   <script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+
+ <style>
+ @media only screen and  (min-width: 100px)  and (max-width: 325px)
+ {
+ .login-box {
+    width: 315px !important;
+    margin: auto !important;
+    
+    }
+    body{
+font-size: 12px !important;
+}
+.hidecls{
+display: none !important;
+}
+.unhidecls{
+display: block !important;
+}
+.main-footer{
+padding-right: 10px !important;
+}
+.font12pxmob
+{
+font-size: 12px !important;;
+}
+.btncssmob{
+padding: 3px 5px !important;   
+    font-size: 10px !important;
+}
+.dropdownmob{
+width:140px !important;
+}
+.notetxtmob {
+   width: 275px !important;    
+   min-width: 275px !important;
+   margin-left: 0px !important; 
+}
+    }
+    
+    
+  
+
+
+@media only screen and (min-width: 326px) and (max-width: 375px)
+{
+.login-box{width: 370px !important; margin:  auto !important; height: 88vh !important;}
+  body{
+font-size: 12px !important;
+}
+.hidecls{
+display: none !important;
+}
+.unhidecls{
+display: block !important;
+}   
+.main-footer{
+padding-right: 10px !important;
+}
+.font12pxmob
+{
+font-size: 12px !important;;
+}
+.btncssmob{
+padding: 3px 5px !important;   
+    font-size: 10px !important;
+}
+.dropdownmob{
+width:165px !important;
+}
+.notetxtmob {
+    width: 340px !important;
+    margin-left: 0px !important;
+}
+}
+
+  @media only screen and (min-width: 376px) and (max-width: 425px)
+{
+.login-box{ width: 420px !important; margin:  auto !important; height: 88vh !important;}
+  body{
+font-size: 12px !important;
+}
+.hidecls{
+display: none !important;
+}
+.unhidecls{
+display: block !important;
+}   
+.main-footer{
+padding-right: 10px !important;
+}
+.font12pxmob
+{
+font-size: 12px !important;;
+}
+.btncssmob{
+padding: 3px 5px !important;   
+    font-size: 10px !important;
+}
+.notetxtmob{
+width:378px !important;
+    margin-left: 0px !important;
+}
+}
+
+
+   
+.modal
+{
+    overflow: hidden;
+    background-color: transparent;
+} 
+
+.signBTNcss{
+padding: 5px 10px !important;
+background: #1F6AAF !important;
+color: #fff !important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+.signBTNcss:hover{
+padding: 5px 10px !important;
+background: #037193 !important;
+color: #fff!important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+</style>
+
+
+
+<script>
+
+function getscreenSize(){
+
+var width = screen.width;
+var height = screen.height;
+document.getElementById("hierarchytable:sWidth").value=width;
+document.getElementById("hierarchytable:sHeight").value=height;
+
+}
+$('textarea.max').keyup(function() {
+var $textarea = $(this);
+var max = 400;
+if ($textarea.val().length > max) {
+    $textarea.val($textarea.val().substr(0, max));
+}
+});
+</script> 
+    
+ <script>
+ function downloadFile(url) {
+//	 alert("URL :"+url);
+	  window.open(url, '_newtab');
+}
+ function showAlert() {
+     $("#success-alert").fadeTo(10000, 500).slideUp(500, function () {
+         $("#success-alert").slideUp(1000);
+     });
+     
+ }
+ </script>
+      
+</h:head>
+
+
+
+
+
+<body class="hold-transition skin-purple sidebar-mini"
+	style="padding-right: 0px !important;" onload="getscreenSizeUI();">
+<h:form id="statusCod">
+<h:inputHidden value="#{statuscode.docID1}"></h:inputHidden>
+
+<div class="wrapper" style="background-color: #ededed !important;">
+
+			<header class="main-header">
+
+				<a href="#" class="logo hidecls"> <span class="logo-mini"><img
+						src="BootstrapResource/dist/img/prodenlogo.png" width="35px;"></img></span>
+					<span class="logo-lg"><img
+						src="BootstrapResource/dist/img/ultra_logo.png"></img></span>
+				</a>
+<nav class="navbar navbar-inverse unhidecls" style="display: none;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background: #116a93;">
+       
+        <!-- <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> --> 
+                             <img src="BootstrapResource/dist/img/user3-160x160.jpg" style="width:35px; "
+									class="img-circle" alt="User Image"></img>   
+      </button>
+      <a href="#" class="navbar-brand" style="margin-top: -5px;" > <span class="logo-mini"><img src="BootstrapResource/dist/img/prodenlogo.png" width="35px;"></img></span>
+					<span class="logo-lg"><img 	src="BootstrapResource/dist/img/ultra_logo.png"></img></span>
+				</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a href="https://prodentechnologies.net/">Home</a></li>
+        
+        <li><a href="http://prodentechnologies.net/aboutus.html" target="_blank">About </a></li>
+        <li><a href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a></li>
+      
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+        <li><a href="#"><span  ><h:commandLink class="glyphicon glyphicon-log-out" immediate="true" onclick="loadmsg()" actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}"> Sign out
+                  <a4j:ajax render="@this" execute="@this"	oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink></span> </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+				<nav class="navbar navbar-static-top hidecls" role="navigation">
+					<!-- <a class="btn" id="playbutton" data-toggle="offcanvas"
+						role="button" style="margin-top: 8px;" onclick="playButtonPress()">
+						<i class="fa fa-arrow-left " style="color: white"></i>
+
+					</a> -->
+
+					<div class="navbar-custom-menu">
+
+						<ul class="nav navbar-nav">
+
+
+
+							<li class="dropdown notifications-menu"><a href="https://prodentechnologies.net/"
+								class="dropdown-toggle" data-toggle="dropdown"> Home </a></li>
+
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/aboutus.html" target="_blank"> About </a></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a>
+
+							</li>
+
+
+							<li class="dropdown user user-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <img
+									src="BootstrapResource/dist/img/user3-160x160.jpg"
+									class="user-image" alt="User Image"></img> <span
+									class="hidden-xs"> </span>
+							</a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header"><img
+										src="BootstrapResource/dist/img/user3-160x160.jpg"
+										class="img-circle" alt="User Image"></img>
+
+										<p>
+											Welcome to accel-BI <small></small>
+										</p></li>
+									<!-- Menu Body -->
+									<div class="user-body signout"
+										style="background-color: #c6c6ec;">
+										<div class="user-footer">
+											<div class="pull-right">
+												<h:commandLink class="btn btn-default btn-flat"
+													immediate="true" onclick="loadmsg()"
+													actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}">Sign out
+                  <a4j:ajax render="@this" execute="@this"
+														oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink>
+
+											</div>
+										</div>
+									</div>
+								</ul></li>
+
+
+
+
+
+
+						</ul>
+
+					</div>
+
+
+				</nav>
+
+
+			</header>
+		<div class="row" >
+   		<div class="col-lg-2"></div>
+   		<div class="col-lg-8 col-xs-12">
+   		  <div class="alert alert-success" id="success-alert" style="z-index:22;  position:absolute;width:100%;justify-content: center; align-items: center;display:none;" >                 
+             <center> <span class="font12pxmob" style="font-size:14px;"><h:outputText id="alertLbl" value="#{statuscode.outputvalueSubStr}" title="#{statuscode.outputvalue}"></h:outputText></span></center>   
+                        </div>
+                         
+   		</div> 
+   		<div class="col-lg-2"></div>  		
+   		</div>
+<div class="login-box" style="width:625px ;margin: 175px auto ;">
+
+   
+  <div class="login-box-body">
+   <div class="row" style="width:100%;">
+   		<div class="col-lg-12">
+       		 <div class="col-lg-8">
+        		<div class="pull-right">
+        
+   					<h:outputText style="background:#fff;border:1px solid lightgray; display:none;" id= "statusLBL" value="#{statuscode.status}" > </h:outputText>
+   					</div>
+    			<div class="col-lg-11">
+    		</div>
+   		</div>
+   		</div>
+   </div>
+   <div class="row">
+   <div class="col-lg-12 col-xs-12">
+   <div class="text-center">
+   <p class="processbtn"  style="text-align: center;font-size: 20px;"> #{statuscode.statusCodeTitle}</p>
+   </div>
+   </div>
+   </div>
+   <div class="row" style="display: #{statuscode.statusDisplayFlag}">
+   <div class="col-lg-12 col-xs-12">
+   <div class="">
+   <span class="font12pxmob" style="text-align: left;font-size: 16px;">#{statuscode.statusDisplayMss}</span>
+   
+  <span>  <h:commandLink id="statusDoclik" value="Click here" style="font-size: 14px; text-decoration: underline;display:#{statuscode.statusDisplayMssdisplay};" actionListener="#{statuscode.DownloadAttachFile(statuscode.statusDocNamestr, 'Primary')}">
+   <a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax>
+   </h:commandLink>
+   <span style="text-align: left;font-size: 15px;display:#{statuscode.statusDisplayMssdisplay};">#{statuscode.statusDisplayMss1}</span>
+   </span>
+   </div>
+   </div>
+   </div>
+   <p></p>
+   <div class="row">
+    <div class="col-lg-4 col-xs-6" style="padding-top: 2px;"> 
+   <label class="text-blue"><b>Document Name:</b></label>  
+    </div> 
+    <div class="col-lg-7 col-xs-6">
+   <h:commandLink class="statusN font12pxmob" id="statusDocName" value="#{statuscode.statusDocNamestrshowValue}" style="margin-right: 10px;margin-left: -25px; font-size: 14px; text-decoration: underline;" actionListener="#{statuscode.DownloadAttachFile(statuscode.statusDocNamestr, 'Primary')}">
+   <a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax>
+   </h:commandLink>
+   
+
+   <h:commandButton class="btncssmob" title="Re-upload Document"  id="reUploadLocalBTN" rendered="#{statuscode.reuploadShowFlag}"   value="Re-upload"  onclick="O$('statusCod:popupLayer_Reupload').show();" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-bottom: 2px;">
+	<a4j:ajax render="@this " ></a4j:ajax>
+    </h:commandButton>
+    <h:commandButton class="btncssmob" title="Re-upload History" id="reUploadHistoryBTN"   rendered="false" value="History"   action="#{statuscode.historydataTableXmlRead()}"   onclick=" O$('statusCod:popupLayer_History').show();" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-left: 10px;margin-bottom: 2px;">
+	<a4j:ajax render="@this :statusCod:pmryHistoryTable" ></a4j:ajax>
+    </h:commandButton>
+      
+      <o:popupLayer id="popupLayer_Reupload" style="padding:4px; border:1px solid lightgray; position:absolute;width:280px;z-index:10;bottom: -95px;left: 74%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+<table style="width: 272px;"><tr><td align="left"><p><b>Choose File</b></p></td><td align="right">
+																						<h:commandButton 
+																						 id="popupInvoker_Reupload" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="width: 24px;"
+																						onclick="O$('statusCod:popupLayer_Reupload').hide();">
+																							<a4j:ajax render=":statusCod:popupLayer_Reupload "></a4j:ajax>
+																					</h:commandButton></td></tr></table>
+																					
+																					
+											<table><tr>   <rich:fileUpload 
+			fileUploadListener="#{statuscode.reUploadFile}"
+			id="upload_Reupload" style="height:105px;width:270px;overflow: auto;" maxFilesQuantity="1" autoclear="true"
+																			allowFlash="false">
+			<a4j:ajax event="uploadcomplete" execute="@none" render=":statusCod:statusDocName :statusCod:popupLayer_History" />	
+	</rich:fileUpload></tr>
+	
+	
+	</table>										
+																					
+	</o:popupLayer>
+	<o:popupLayer id="popupLayer_History" style="padding:4px; border:1px solid lightgray; position:absolute;width:375px;z-index:10;bottom: -95px;left: 74%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+   <table style="width: 315px;"><tr><td align="left"><p><b>Primary File History</b></p></td><td align="right">
+																						<h:commandButton 
+																						 id="popupInvoker_History" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="width: 24px;margin-right:-45px;"
+																						onclick="O$('statusCod:popupLayer_History').hide();">
+																							<a4j:ajax render="@this :statusCod:popupLayer_History"></a4j:ajax>
+																					</h:commandButton></td></tr></table>
+	<div style="max-height:300px; overflow-x:hidden;overflow-y:auto;">	<o:dataTable id="pmryHistoryTable" value="#{statuscode.historyPopList}" styleClass="table" var="pmryHistoryTableobject"
+											headerVertSeparator="1px solid #a0a0a0"
+											style="min-height:50px;min-width:290px;max-width:450px;">
+											
+											<o:column >
+												<f:facet name="header">File Name</f:facet>
+												<h:commandLink title="#{pmryHistoryTableobject.atchFile}" value="#{pmryHistoryTableobject.atchFile}" actionListener="#{statuscode.DownloadAttachFile(pmryHistoryTableobject.atchFile, 'Primary')}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" >
+														<a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax>
+														</h:commandLink>
+														
+											</o:column>
+											<o:column >
+												<f:facet name="header">Uploaded By</f:facet>
+												
+
+												
+												<h:outputLabel title="#{pmryHistoryTableobject.atchUsr}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{pmryHistoryTableobject.atchUsr}"></h:outputLabel>
+												
+											
+											</o:column>
+											
+										
+											</o:dataTable>	
+											</div>																		
+																					
+    </o:popupLayer>
+    </div>
+    
+    </div>
+    
+       <div class="row" style="width:100%;">
+       	 
+        	<div class="col-lg-4 col-xs-6">
+        		<label class="text-blue" ><b>Choose your action:</b></label> 
+       				 </div>
+        <div class="col-lg-7 col-xs-6">
+<h:selectOneMenu class="dropdownmob" value="#{statuscode.selvalue}" style="width:200px;margin-left: -15px;background:#fff;border:1px solid lightgray;" disabled="#{statuscode.disableUIProp}"  id="selection" > 
+   <f:selectItems value="#{statuscode.statusCodeArr}"/>
+   	
+   	<f:ajax render="@this statusCod:statusLBL" listener="#{statuscode.valuechange}" process="statusCod:statusLBL" />
+</h:selectOneMenu> 	
+ 		</div> 
+ 	</div> 
+ 	
+ 	
+ 	<div class="row" style="width:100%;margin-top: 5px;">
+			<div class="col-lg-4">
+				<label class="text-blue"><b>Notes:</b></label>
+				</div>
+<div class="col-lg-7">
+ 	<h:inputTextarea class="note notetxtmob" id="notes" value="#{statuscode.selNotesvalue}" disabled="#{statuscode.disableUIProp}" style="margin-left: -15px;height: 135px;;width:400px; min-height:50px;min-width:290px;max-width:400px; " />
+ 
+    		</div>
+ 	</div>
+   <div class="row">
+   <div class="col-lg-4 col-xs-6">
+   
+   <label class="text-blue" ><b>User Name:</b></label> 
+   </div>
+    <div class="col-lg-7 col-xs-6">
+    <h:outputText class="statusB"  id="statusUserName" value="#{statuscode.statusUserNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+   
+
+  <h:panelGroup id="ExternalUserPG" rendered="#{statuscode.externalUserFlag != 'true'}">
+  
+     <div class="row" style="display:#{statuscode.onlyshowADVworkflow}">
+   <div class="col-lg-4 col-xs-6">
+   <label class="text-blue" ><b>Workflow Name:</b></label>
+   </div>
+   <div class="col-lg-7 col-xs-6">
+     <h:outputText class="statuswf" id="statusWFName" value="#{statuscode.statusWFNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+   
+ 
+   <div class="row" style="display:#{statuscode.onlyshowADVworkflow}">
+    <div class="col-lg-4">
+   
+    <label class="text-blue"><b>Current Stage Name:</b></label> 
+    </div>
+     <div class="col-lg-7">
+     <h:outputText id="statusStageName" value="#{statuscode.statusStageNamestr}" style="margin-left: -25px;"></h:outputText>
+   </div>
+   </div>
+   </h:panelGroup>
+  
+    
+    <div class="row">
+    <div class="col-lg-4 col-xs-6">
+   <h:outputText styleClass="text-blue" style="font-weight: bold;" rendered="true" value="Upload Documents:"></h:outputText>  
+    </div>
+    <div class="col-lg-7 col-xs-6">
+   <h:commandButton title="Upload" class="uploadb btncssmob" id="attachBrowseLocalBTN" rendered="true"  value="Upload"  onclick="O$('statusCod:popupLayer1').show();" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-left: -23px;">
+	<a4j:ajax render="@this upload" ></a4j:ajax>
+    </h:commandButton> 
+    <o:popupLayer  id="popupLayer1" class="popularL"  style="border:1px solid lightgray; position:absolute;width:246px;z-index:10;bottom: -95px;left: -54%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+    
+  <rich:fileUpload 
+			fileUploadListener="#{statuscode.uploadFile}"
+			id="upload" style="height:105px;width:245px;overflow-x: auto;" maxFilesQuantity="5" autoclear="true"
+																			allowFlash="false"
+																			onuploadcomplete="O$('statusCod:popupLayer1').hide();"  render=":statusCod:attachmentTable :statusCod:updateStatus">
+			<a4j:ajax event="uploadcomplete" execute="@none" render=":statusCod:attachmentTable" />
+	
+	</rich:fileUpload>
+	<table>
+																			<tr>
+																				<td align="right"><input type="button" class="button_add"
+																					id="popupInvoker" value="Close" align="right"
+																					onclick="O$('statusCod:popupLayer1').hide();">
+																				</input></td>
+																			</tr>
+																		</table>
+																	</o:popupLayer>
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-lg-4">
+   <h:outputText styleClass="text-blue" style="font-weight: bold;" value="Attachments"></h:outputText>  
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12 col-xs-12">
+   <h:commandLink id="esignTab" class="font12pxmob" value="Click here to config E-Sign." style=" font-size: 14px; display: none" actionListener="#{statuscode.esignTabClik(statuscode.eSignstrURL, 'Primary')}">
+   <a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax>
+   </h:commandLink>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+    <p></p>
+   <o:dataTable class="font12pxmob" id="attachmentTable" value="#{statuscode.attachmentsList}" styleClass="table" var="attachmentTableobject"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="5" 
+											style="min-height:50px;min-width:200px;max-width:580px;">
+
+											<o:multipleRowSelection
+												
+												style="background: #116a93; color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+											
+
+											<o:column >
+												<f:facet class="font12pxmob" name="header">File Name</f:facet>
+												<h:outputLabel class="font12pxmob" title="#{attachmentTableobject.attfileName}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachmentTableobject.attfileNameSubStr}"></h:outputLabel>
+
+														
+											</o:column>
+											<o:column >
+												<f:facet class="font12pxmob" name="header">Uploaded By</f:facet>
+												
+
+												
+												<h:outputLabel class="font12pxmob" title="#{attachmentTableobject.uploadDetails}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{attachmentTableobject.uploadDetailsSubStr}"></h:outputLabel>
+												
+											
+											</o:column>
+											<o:column rendered="#{statuscode.statusCode4DocsFlag == 'true'}">
+												<f:facet class="font12pxmob" name="header">Action</f:facet>
+												
+
+												
+												<h:commandLink class="font12pxmob" value="#{attachmentTableobject.actionDisplayName}" onclick="$('#statusmailpop').modal('show');" action="#{statuscode.getSelectedDocument(attachmentTableobject)}">
+														<a4j:ajax render="@this" ></a4j:ajax></h:commandLink>
+												
+											
+											</o:column>
+											<o:column >
+												<f:facet class="font12pxmob" name="header">View</f:facet>
+<center>
+														<h:commandLink class="font12pxmob" value="View" actionListener="#{statuscode.DownloadAttachFile(attachmentTableobject.attfileName, 'Attachment')}">
+														<a4j:ajax oncomplete="downloadFile('#{statuscode.downloadURL}')" render="@this" execute="@this"></a4j:ajax></h:commandLink>
+											</center>
+											</o:column>
+											
+
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+    </div>
+    </div>
+   
+<div class="row" style="width:100%;">
+			
+    			<div class="col-lg-12">
+     				<div class="col-lg-1">	
+     
+     					<h:panelGroup id="showpane" rendered="#{statuscode.switchComponents}">
+     						<o:dataTable id="addusertabel" var="user" styleClass="table" 
+   								headerVertSeparator="1px solid #a0a0a0" 
+						pageSize="10" rowIndexVar="rowI" style="margin-left:-15px; min-width:100%;width:320px;height:200px; max-width:320px;border: 1px solid lightgray;">
+						
+						</o:dataTable>
+						
+				</h:panelGroup>
+         </div>
+        </div>
+       <p></p>
+    <div class="row" style="width:100%;">
+        <div class="col-lg-12">	
+        <div class="col-lg-4">	
+        <h:commandButton style="width:80px;height:30px;margin-top: 10px;" id="updateStatus" onclick="loadmsg();" value="Submit" action="#{statuscode.saveStatusBtnAction(statuscode.selvalue,statuscode.selNotesvalue, 'Primary')}" disabled="#{statuscode.disableUIProp}">
+        <a4j:ajax render="@this statusCod:selection statusCod:notes statusCod:outStatus statusCod:alertLbl" execute=":statusCod:selection :statusCod:notes :statusCod:outStatus" oncomplete="hidemsg();showAlert();"></a4j:ajax>
+     </h:commandButton>
+     </div>
+    
+     
+         </div>
+    </div>
+    <div class="row" style="width:100%;">
+    <div class="col-lg-12">	
+    <div class="col-lg-12">	
+    <h:outputText id="outStatus" rendered="false" value="#{statuscode.outputvalueSubStr}" title="#{statuscode.outputvalue}"></h:outputText>
+        </div>
+    </div>
+    </div>
+    
+   </div>
+</div>
+</div>
+
+<footer class="main-footer"
+				style="padding-top: 3px; padding-bottom: 3px;margin-left: 0 !important;">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 0.1.1
+				</div>
+				<strong>Powered by <a href="http://prodentechnologies.net"
+					target="_blank" style="color: #116a93;">Proden Technologies,Inc</a>.
+				</strong> All rights reserved.
+			</footer>
+	</div>
+	<ui:include src="/LoadingWindow.xhtml"></ui:include>
+	<ui:include src="/StatusMailPopup.xhtml"></ui:include>
+<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+<script src="BootstrapResource/dist/js/app.min.js"></script>
+</h:form>
+</body>
+
+</html>

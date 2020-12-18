@@ -1,0 +1,23 @@
+.lbl1{
+ font-family: tahoma;
+   font-size: 10pt;
+   color: black;
+   font-weight: normal;
+   text-align: left;
+}
+
+.lbl2{
+ font-family: tahoma;
+   font-size: 10pt;
+   color: maroon;
+   font-weight: bold;
+   text-align: left;
+}
+
+.msg1{
+  color: red;
+  font-family : Verdana;
+  font-weight: normal;
+  FONT-SIZE:10pt;
+  text-align:center;
+}

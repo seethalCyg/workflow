@@ -1,0 +1,1207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>HOME HIERARCHY</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+   <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+
+ <!-- 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link> -->
+ 
+ 
+   <style>
+   
+   #loadingPage {
+   
+   width: 100%;
+   height: 100%;
+   top: 0px;
+   left: 0px;
+   position: fixed;
+   display: block;
+   opacity: 0.7;
+   background-color: #000;
+   z-index: 99;
+   text-align: center;
+}
+	.rf-fu-hdr {
+	
+	    background-color: #D4CFC7;
+	   
+	    border-color: #D4CFC7;
+	    border-style: solid;
+	    border-width: 1px;
+	    margin-left: 1px;
+	    margin-top: 1px;
+	    white-space: nowrap;
+	
+	}
+	.rf-fu-btns-rgh {
+	
+	    text-align: right;
+	    width: 34%;
+	    display: none;
+	    }
+	    .rf-fu-btn-upl, .rf-fu-btn-clr {
+	
+	height:29px;
+	}
+#loadingPage-image {
+  position: absolute;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
+}
+.divouter2{
+border: 1px solid;
+border-color:#f0f0f5;
+width: 100%;
+}
+.modal
+{
+    overflow: hidden;
+    background-color: transparent;
+}
+
+
+    
+    .table{
+  
+    min-width:100%;
+    width:1600px;
+    max-width:100%;
+    vertical-align: text-top;
+    padding: 3px 3px;
+    }
+    
+</style>
+
+
+<style>
+/* USER PROFILE PAGE */
+ .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+
+.textfiledcss{
+padding-left: 5px ! important;
+height: 28px ! important;
+width:280px ! important;
+background: white ! important;
+color: #000000 ! important;
+font-size: 12px ! important;
+border: 1px solid ! important;
+margin-bottom: 10px ! important;
+border-color: #116a93 ! important;
+
+}
+.staticBTN{
+background: transparent ! important;
+}
+
+.btntap{
+background: #0074AA ! important;
+color: #fff ! important;
+
+
+}
+.btntap:hover{
+background: #036B9B ! important;
+color: #fff ! important;;
+
+
+}
+.lablcss{
+font-size:13px;
+margin-top:-10px;
+}
+
+.o_table_paginator_field {
+
+    width: 40px;
+    text-align: right;
+    pointer-events: none;
+
+}
+.underlineOver{
+color: #3c8dbc;
+
+
+} 
+.underlineOver:hover{
+color: #3c8dbc;
+text-decoration: underline;
+
+} 
+</style>
+  
+  <script>
+  
+ function editACtion() {
+	  
+	  
+	  $('#add_UserPopup').modal('show');
+	 document.getElementById("localDirID").click();
+ 	 document.getElementById("editTitle").innerHTML = "Edit User"; 
+ 	document.getElementById("cfmPassDiv").style.display = "none"; 
+ 	
+ 	document.getElementById("edithelptextlbl").innerHTML = "This popup used to edit user and the added the new can be used in workflow."; 
+ 	
+ 	 document.getElementById("hierarchytable:ListUsers:editsaveBTN").style.display = "block"; 
+	  document.getElementById("hierarchytable:ListUsers:saveBTN").style.display = "none";  
+	  document.getElementById("hierarchytable:ListUsers:closeBTN").style.display = "block";  
+	  document.getElementById("hierarchytable:ListUsers:closeBTN").style.marginLeft = "70px";
+	  document.getElementById("hierarchytable:ListUsers:closeBTN").style.marginTop = "-29px";
+	 
+	 
+}
+  function downloadTemplate(){
+	  var url = document.getElementById("hierarchytable:ListUsers:templateUrl").value;
+	  window.open(url, '_newtab');
+  }
+  function update() {
+	  document.getElementById("hierarchytable:ListUsers:editsaveBTN").style.marginRight = "450px";  
+  }
+  function savealign() {
+	  document.getElementById("hierarchytable:ListUsers:saveBTN").style.marginRight = "450px";  
+  }
+  function addACtion() {
+	  
+	    
+		  $('#add_UserPopup').modal('show');
+		  document.getElementById("localDirID").click();
+		 document.getElementById("editTitle").innerHTML = "Add User";
+		 document.getElementById("cfmPassDiv").style.display = "block";
+		
+		 document.getElementById("edithelptextlbl").innerHTML = "This popup used to create user and the added the new can be used in workflow."; 
+		 document.getElementById("hierarchytable:ListUsers:editsaveBTN").style.display = "none"; 
+		 document.getElementById("hierarchytable:ListUsers:saveBTN").style.display = "block";
+	    document.getElementById("hierarchytable:ListUsers:closeBTN").style.display = "block"; 
+	    document.getElementById("hierarchytable:ListUsers:closeBTN").style.marginLeft = "70px";
+		  document.getElementById("hierarchytable:ListUsers:closeBTN").style.marginTop = "-29px";
+	}
+  
+  
+  function checkedfunction(){
+	  
+	  
+	var newcustomercheckBOXVAL = document.getElementById("hierarchytable:ListUsers:newcustomerBox");
+	
+	
+	if(newcustomercheckBOXVAL.checked){
+		
+		document.getElementById("hierarchytable:ListUsers:superPrivilegeBox").checked = true;
+		
+	}
+	  
+	  
+  }
+  
+  $(document).ready(function() {
+	  $(".btn-pref .btn").click(function () {
+	      $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+	      // $(".tab").addClass("active"); // instead of this do the below 
+	      $(this).removeClass("btn-default").addClass("btn-primary");   
+	  });
+ });
+  
+  
+  $(document).ready(function() {
+  $("#localDirID").button().click(function(){
+	   
+	    $("#login_ID").click();
+	    $("#import_user").removeClass("btntap");
+	    $("#login_ID").addClass("btntap");
+	    $("#ldap_DirID").removeClass("btntap");
+	});
+  });
+  
+ 
+  
+  
+  
+  
+  $(document).ready(function() {
+	  $("#login_ID").button().click(function(){
+		
+		 $("#localDirID").addClass("btntap");
+		 $("#login_ID").addClass("btntap");
+		 $("#import_user").removeClass("btntap");
+		 $("#additional_InfoID").removeClass("btntap");
+		 
+		    
+		});
+	  });
+  
+  $(document).ready(function() {
+	  $("#additional_InfoID").button().click(function(){
+		  $("#login_ID").removeClass("btntap");
+		  $("#localDirID").addClass("btntap");
+		  $("#import_user").removeClass("btntap");
+		  $("#additional_InfoID").addClass("btntap");
+  });
+	  });
+  
+  $(document).ready(function() {
+	  $("#ldap_DirID").button().click(function(){
+		  $("#login_ID").removeClass("btntap");
+		  $("#additional_InfoID").removeClass("btntap");
+		  $("#localDirID").removeClass("btntap");
+		  $("#import_user").removeClass("btntap");
+		  $("#ldap_DirID").addClass("btntap");
+		 
+  });
+	  });
+ 
+  
+  $(document).ready(function() {
+	  $("#import_user").button().click(function(){
+		  $("#login_ID").removeClass("btntap");
+		  $("#additional_InfoID").removeClass("btntap");
+		  $("#localDirID").removeClass("btntap");
+		  $("#ldap_DirID").removeClass("btntap");
+		  $("#import_user").addClass("btntap");
+		 
+		    
+		});
+	  });
+  </script>
+  
+  <script>
+  function check(val) {
+	  var test = document.getElementById("hierarchytable:ListUsers:test1").value;
+	  alert(test+"-=-=-=-=-=-=-="+val)
+}
+  </script>
+
+<script type="text/javascript">
+function mailValidation(){ //code change Jayaramu 10APR14
+var selectedMailType3 = document.getElementById("ListUsers:emailId4Edit").value;
+		if(selectedMailType3 == ''){
+		alert('Please Enter E Mail ID');
+		return false;
+		}else{
+		
+ var pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+if(!pattern.test(selectedMailType3))
+  {
+  alert("Please Enter Valid E Mail ID");
+  return false;
+  }
+		
+		}
+}
+
+function checkboxValidation(){
+	alert("1");
+if(document.getElementById("newcustomerBox").checked) {
+	alert("CLICK");
+} else {
+	alert("NPY CLICK");
+}
+}
+
+</script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+});
+</script>
+</h:head>
+
+
+
+<body class="hold-transition skin-purple sidebar-mini" style="padding-right: 0px !important;">
+
+<h:form id="ListUsers" >
+
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<h:inputHidden value="#{hierarchyBean.dbData}"/>
+	<h:inputHidden id="templateUrl" value="#{hierarchyBean.redirectURL}"></h:inputHidden>
+	
+	<div class="row" >
+
+<div class="col-lg-12"  style="width:100%;"> 
+<div class="col-lg-6">
+<p style="font-size: 20px;margin: 0 0 0;margin-left: -15px;">User(s) List</p>
+</div>
+<div class="col-lg-6" style="text-align: right;">
+<h:commandButton title="Add User(s)" value="AddUser"  style="margin-right: -20px;" image="/BootstrapResource/dist/hierarchy/list_add.png" action="#{hierarchyBean.newmode()}" rendered="#{securityBean.addUserHierarchy}" onclick="addACtion();loadmsg();" actionListener="#{hierarchyBean.clearMsg}">
+ <a4j:ajax  render="add_UserPopup :hierarchytable:ListUsers:msglabel :hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:newcustomerBox :hierarchytable:ListUsers:activeBox :hierarchytable:ListUsers:disableBox :hierarchytable:ListUsers:userEmailId :hierarchytable:ListUsers:emailPassword :hierarchytable:ListUsers:list_firstNameTXT :hierarchytable:ListUsers:list_lastNameTXT :hierarchytable:ListUsers:list_titleTXT :hierarchytable:ListUsers:list_ph1TXT :hierarchytable:ListUsers:list_ph2TXT :hierarchytable:ListUsers:list_ph3TXT :hierarchytable:ListUsers:list_Mail1TXT :hierarchytable:ListUsers:list_Mail2TXT :hierarchytable:ListUsers:list_addressTXT :hierarchytable:ListUsers:list_stateTXT :hierarchytable:ListUsers:list_cityTXT :hierarchytable:ListUsers:list_countryTXT :hierarchytable:ListUsers:list_zipTXT :hierarchytable:ListUsers:addusertabel :hierarchytable:ListUsers:templateUrl" execute="@this :hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:msglabel :hierarchytable:ListUsers:addusertabel " oncomplete="hidemsg();"></a4j:ajax>
+</h:commandButton> 
+
+</div>
+
+</div>
+</div>
+
+
+
+	
+	<div class="row" >
+
+<div class="col-lg-12"  style="width:100%;"> 
+
+
+<h:panelGroup id="adduserdiv">
+
+ <!--   sortLevel="-1" sortAscending="false" sortColumnId="accessID"  -->
+   <o:dataTable id="addusertabel"  var="user" 
+   value="#{hierarchyBean.userListAL}" styleClass="table" 
+   headerVertSeparator="1px solid #a0a0a0" height="300px"
+						pageSize="10" rowIndexVar="rowI" style="min-width:100%;width:1600px;max-width:100%;border: 1px solid lightgray;">
+						
+      <o:multipleRowSelection rowDatas="#{hierarchyBean.selectedUserslistAL}" style="background: rgb(122, 180, 207) none repeat scroll 0% 0%;color: #7E0000;" >
+     <o:ajax render="@this loginId emailId date date1 accessstatus addus add addusertabel updateus update editicon editUserNameTXT edit_lastNameTXT edit_titleTXT delteicon"  execute="@this loginId emailId date date1 accessstatus addus add addusertabel updateus update editicon" listener="#{hierarchyBean.AddeditUser('fromClickTabel',user.userLoginID)}"></o:ajax> 
+      </o:multipleRowSelection>
+       <o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+       <o:column id="accessID"  rendered="false" sortingExpression="#{user.accessID}" >
+       <f:facet name="header">Access <br />ID
+       </f:facet>
+        <h:outputText value="#{user.accessID}" />
+       <!-- <h:hintLabel value="#{user.accessID}"></o:hintLabel> -->
+      </o:column>
+       <o:column id="nodeName"  rendered="false" sortingExpression="#{user.nodeName}">
+       <f:facet name="header">Node <br />Name       </f:facet>
+       
+       <h:outputText value="#{user.nodeName}" />
+      </o:column>
+      <o:column sortingExpression="#{user.userLoginID}" >
+       <f:facet name="header">User Login ID
+       </f:facet>
+       
+       
+       <h:outputText value="#{user.userLoginID}" />
+      </o:column>
+      
+       <o:column sortingExpression="#{user.edit_firstNameTXT}">
+       <f:facet name="header">First Name
+       </f:facet>
+      
+       <h:outputText value="#{user.edit_firstNameTXT}" />
+      </o:column>
+     
+       <o:column sortingExpression="#{user.edit_lastNameTXT}">
+       <f:facet name="header">Last Name
+       </f:facet>
+       
+       <h:outputText value="#{user.edit_lastNameTXT}" />
+      </o:column>
+      
+       <o:column sortingExpression="#{user.edit_titleTXT}">
+       <f:facet name="header">Title
+       </f:facet>
+       
+       <h:outputText value="#{user.edit_titleTXT}" />
+      </o:column>
+      
+       <o:column sortingExpression="#{user.access}">
+       <f:facet name="header">Access
+       </f:facet>
+       
+       <h:outputText value="#{user.access}" />
+      </o:column>
+       <!-- <o:column id="accessID"  rendered="false" sortingExpression="#{user.accessID}">
+       <f:facet name="header">Access <br />ID
+       </f:facet>
+       
+       <o:hintLabel value="#{user.accessID}"></o:hintLabel>
+      </o:column>
+       <o:column id="nodeName"  rendered="false">
+       <f:facet name="header">Node <br />Name       </f:facet>
+       
+       <o:hintLabel value="#{user.nodeName}"></o:hintLabel>
+      </o:column>
+      <o:column >
+       <f:facet name="header">User LoginID
+       </f:facet>
+       
+       <o:hintLabel value="#{user.userLoginID}"></o:hintLabel>
+      </o:column>
+      
+       <o:column >
+       <f:facet name="header">First Name
+       </f:facet>
+       <o:hintLabel value="#{user.edit_firstNameTXT}"></o:hintLabel>
+      </o:column>
+     
+       <o:column >
+       <f:facet name="header">Last Name
+       </f:facet>
+       <o:hintLabel value="#{user.edit_lastNameTXT}"></o:hintLabel>
+      </o:column>
+      
+       <o:column >
+       <f:facet name="header">Title
+       </f:facet>
+       <o:hintLabel value="#{user.edit_titleTXT}"></o:hintLabel>
+      </o:column>
+      
+       <o:column >
+       <f:facet name="header">Access
+       </f:facet>
+       <o:hintLabel value="#{user.access}"></o:hintLabel>
+      </o:column> -->
+     
+      <o:column style="width:50px;">
+       <f:facet name="header">Edit 
+       </f:facet>
+      <!--  onclick="$('#EditUser').modal('show');" -->
+     <center>   <h:commandButton id="editicon" title="Edit Selected User" image="/BootstrapResource/dist/hierarchy/list_edit.png"  onclick="loadmsg();editACtion();" actionListener="#{hierarchyBean.AddeditUser('FromEdit',user.userLoginID)}" value="Edit">
+    <a4j:ajax oncomplete="hidemsg();" render="@this :hierarchytable:ListUsers:msglabel :hierarchytable:ListUsers:userEmailId :hierarchytable:ListUsers:emailPassword :hierarchytable:ListUsers:newcustomerBox :hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:activeBox :hierarchytable:ListUsers:disableBox :hierarchytable:ListUsers:list_firstNameTXT :hierarchytable:ListUsers:list_firstNameTXT :hierarchytable:ListUsers:list_lastNameTXT :hierarchytable:ListUsers:list_titleTXT :hierarchytable:ListUsers:list_ph1TXT :hierarchytable:ListUsers:list_ph2TXT :hierarchytable:ListUsers:list_ph3TXT  :hierarchytable:ListUsers:list_Mail1TXT :hierarchytable:ListUsers:list_Mail2TXT :hierarchytable:ListUsers:list_addressTXT :hierarchytable:ListUsers:list_stateTXT :hierarchytable:ListUsers:list_cityTXT :hierarchytable:ListUsers:list_countryTXT :hierarchytable:ListUsers:list_zipTXT :hierarchytable:ListUsers:loginId4Edit :hierarchytable:ListUsers:emailId4Edit :hierarchytable:ListUsers:date4Edit :hierarchytable:ListUsers:date14Edit :hierarchytable:ListUsers:accessstatus4Edit :hierarchytable:ListUsers:sap editTitle edithelptextlbl" execute="@this"></a4j:ajax>
+     </h:commandButton></center> 
+      </o:column>
+      
+     
+      
+      <o:column style="width:60px;" rendered="#{securityBean.addUserHierarchy}">
+       <f:facet name="header">Delete
+       </f:facet>
+    <center> <h:commandButton id="delteicon" title="Delete" value="Delete" onclick="if (!confirm('Are you sure you want to Delete the selected record(s)?')) return false" action="#{hierarchyBean.deleteUserbyAdmin(user.userLoginID, rowI)}" image="/BootstrapResource/dist/hierarchy/list_delte.png"  >
+     <a4j:ajax li="hidemsg();" render=":hierarchytable:ListUsers:adduserdiv :hierarchytable:ListUsers:addusertabel :hierarchytable:ListUsers:msglabel" execute="@this :hierarchytable:ListUsers:adduserdiv"></a4j:ajax>
+ 	</h:commandButton></center> 
+      </o:column>
+     
+     <o:column rendered="false">
+       <f:facet name="header">User MailID
+       </f:facet>
+       
+       <o:hintLabel value="#{user.emailID}"></o:hintLabel>
+      </o:column>
+     
+      <o:column rendered="false">
+       <f:facet name="header">Access <br/> Start Date
+       </f:facet>
+       
+       <o:hintLabel value="#{user.accessStartDate}"></o:hintLabel>
+      </o:column>
+       <o:column rendered="false">
+       <f:facet name="header">Access <br/> End Date
+       </f:facet>
+       
+       <o:hintLabel value="#{user.endDate}"></o:hintLabel>
+      </o:column>
+     
+      <f:facet name="below">
+       <h:panelGroup id="panelGroup">
+        <o:dataTablePaginator id="paginator"/>
+       </h:panelGroup>
+      </f:facet>
+      
+      </o:dataTable>
+      </h:panelGroup>	
+	
+	
+	<h:outputText id="listMsg" style="color:red;" value="#{hierarchyBean.listOfUsersMsg}"></h:outputText>
+</div>
+</div>
+
+
+
+
+
+
+	
+	<div class="row" >
+
+<div class="col-lg-12"  style="width:100%;"> 
+	
+	<h:commandButton title="Close" value="Close" image="/resources/images/close.png" rendered="false" action="#{hierarchyBean.redirect('HierarchyList.xhtml','addNewHry','','','','','','false','')}" onclick="loadmsg();">
+<a4j:ajax oncomplete="hidemsg()"></a4j:ajax>
+</h:commandButton> 
+<br></br>
+ 
+	
+</div>
+</div>	
+	
+	
+	
+	<div class="modal fade" id="add_UserPopup" role="dialog"  data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" style="border: 1px solid lightgray;width: 1120px ! important;">
+      <div class="modal-content">
+	
+	
+	
+	<div class="modal-header">
+	<div class="box-tools pull-right">
+	
+    <!--  actionListener="#{hierarchyBean.setMsg4UpdateUser('')}" -->
+   
+
+	</div>
+ 	<h4 id="editTitle" class="modal-title" style="color:#1F6AAF;">Add User</h4>
+	</div>
+	
+	
+
+	
+<div class="row" >
+<div class="col-lg-12"  style="width:100%;"> 
+<div class="col-lg-12 ">
+<h5 id="edithelptextlbl"  >This popup used to create user's and the added the new can be used in workflow.</h5>
+</div>
+</div>
+</div>
+
+<div class="row" >
+<div class="col-lg-12"  style="width:100%;"> 
+
+
+<div class="col-lg-12 ">
+
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="localDirID" class="btn btn-primary " href="#tab1" data-toggle="tab"><i class="fa fa-folder-o" aria-hidden="true"></i>
+                <div class="hidden-xs">Add in the Local Directory</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="ldap_DirID" class="btn btn-default " href="#tab2" data-toggle="tab"><i class="fa fa-folder" aria-hidden="true"></i>
+                <div class="hidden-xs">Add from an LDAP Directory</div>
+            </button>
+        </div>
+       <div class="btn-group" role="group">
+            <button type="button" id="import_user" class="btn btn-default " href="#tab5" data-toggle="tab"><i class="fa fa-user" aria-hidden="true"></i>
+                <div class="hidden-xs">Import Users</div>
+            </button>
+        </div>
+    </div>
+
+        <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+          <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="login_ID" class="btn btn-primary " href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                <div class="hidden-xs">Login</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="additional_InfoID" class="btn btn-default " href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <div class="hidden-xs">Additional Info</div>
+            </button>
+        </div>
+       
+    </div>
+    
+     <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab3">
+      <div class="row" >
+    <div class="col-lg-12"  >
+         
+    <div class="col-lg-12"  style="width:100%;">
+		
+      <div class="col-lg-2"  style="margin-left: 100px;">
+      </div>
+	<div class="col-lg-2">
+    <label class="lablcss"><b>E Mail ID:</b></label>
+    </div>
+    <div class="col-lg-6">
+    <h:inputText  id="userEmailId" value="#{loginRegistrationBean.userEmailId}" placeholder=" Enter E Mail ID *" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     <div class="col-lg-12"  style="width:100%;">
+		
+        <div class="col-lg-2"  style="margin-left: 100px;">
+      </div>
+	<div class="col-lg-2">	
+    <label class="lablcss"><b>Password:</b></label>
+    </div>
+    <div class="col-lg-6">
+    <h:inputSecret id="emailPassword" value="#{loginRegistrationBean.emailPassword}" type="text" placeholder=" Enter Password *"  redisplay="true" class="textfiledcss" ></h:inputSecret>
+    
+     </div>
+     </div>
+     
+    <div id="cfmPassDiv" class="col-lg-12"  style="width:100%;">
+		
+        <div class="col-lg-2"  style="margin-left: 100px;">
+      </div>
+	<div class="col-lg-2">	
+    <label class="lablcss"><b>Confirm Password:</b></label>
+    </div>
+    <div class="col-lg-6">
+    <h:inputSecret id="confrmPassword" value="#{loginRegistrationBean.confrmPassword}" type="text" placeholder=" Confirm Password *"  redisplay="true" class="textfiledcss"  ></h:inputSecret>
+    
+     </div>
+    
+     </div>
+     
+     
+        <div class="col-lg-12"  style="width:100%;">
+      <div class="col-lg-2"  style="margin-left: 100px;">
+      </div>
+	<div class="col-lg-2">
+    <label class="lablcss"><b>First Name:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+    <h:inputText  id="list_firstNameTXT" value="#{hierarchyBean.listfirstNameTXT}" class="textfiledcss" placeholder=" Enter First Name *"></h:inputText>
+     </div>
+     
+     </div>
+     
+     
+     
+       <div class="col-lg-12"  style="width:100%;">
+		
+       <div class="col-lg-2"  style="margin-left: 100px;">
+      </div>
+	<div class="col-lg-2">
+    <label class="lablcss"><b>Last Name:</b></label>
+    </div>
+    <div class="col-lg-6">
+    <h:inputText id="list_lastNameTXT" type="text" value="#{hierarchyBean.listlastNameTXT}" placeholder=" Enter Last Name *" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     
+     
+     
+     <div class="col-lg-12"  style="width:100%;">
+		<div class="col-lg-6">
+        <div class="col-lg-2" style="margin-left: 90px;">
+      </div>
+	<div class="col-lg-8" style="margin-left: 240px;">
+   
+   <h:selectBooleanCheckbox id="newcustomerBox" value="#{loginRegistrationBean.newcustomerBoxVAL}" onclick="checkedfunction();"></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Register a New Customer"></h:outputText> </b>
+  <img src="BootstrapResource/dist/hierarchy/helpicon.png" title="By checking this checkbox you will save this user a new customer you will  receive email about the password and unique identification number.">
+  </img>
+    </div>
+    </div>
+    
+    
+    
+    <div class="col-lg-6">
+       <div class="col-lg-2" style="margin-left: 90px;">
+      </div>
+	<div class="col-lg-8">
+   
+   <h:selectBooleanCheckbox id="activeBox" value="#{loginRegistrationBean.activeBoxVAL}" ></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Temporary Inactive User"></h:outputText> </b>
+    
+  <img src="BootstrapResource/dist/hierarchy/helpicon.png" title="This will temporary inactivated the user's where user will not get notification E-mail from new activated document where as you will receive email notification old document.">
+  </img>
+    </div>
+    </div>
+    
+    
+    
+     </div>
+     
+     
+     <div class="col-lg-12"  style="width:100%;">
+		<div class="col-lg-6">
+        <div class="col-lg-2" style="margin-left: 90px;">
+      </div>
+	<div class="col-lg-8" style="margin-left: 240px;">
+   
+   <h:selectBooleanCheckbox id="superPrivilegeBox" value="#{loginRegistrationBean.superPrivilegeVAL}" ></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Super Privilege Admin"></h:outputText> </b>
+ <img src="BootstrapResource/dist/hierarchy/helpicon.png" title="This user can login into server workflow manager and this user can changes and workflow details and user details.">
+ </img>
+    </div>
+    </div>
+    
+   <div class="col-lg-6">
+     <div class="col-lg-2" style="margin-left: 90px;">
+      </div>
+	<div class="col-lg-8">
+   
+   <h:selectBooleanCheckbox id="disableBox" value="#{loginRegistrationBean.disableBoxVAL}" ></h:selectBooleanCheckbox>
+   <b> <h:outputText style="margin-left: 2px;font-size: 15px;" value="Disable User"></h:outputText> </b>
+   
+   <img src="BootstrapResource/dist/hierarchy/helpicon.png" title="This will totally disable the user from login into workflow and you will not get email notification from any document.">
+   </img>
+  
+    </div>
+    </div>
+    
+    
+     </div>
+     
+    
+   
+     
+     <div style="height: 10px;"></div>  
+    
+     </div>
+        </div>
+        </div>
+        
+         <div class="tab-pane fade in" id="tab4">
+        <div class="row" >
+        
+      <div class="col-lg-12" >   
+    <div class="col-lg-6" >
+ 
+     
+        <div class="col-lg-12"  style="width:100%;">
+		
+      
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Title:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_titleTXT" type="text" value="#{hierarchyBean.listtitleTXT}" placeholder=" Enter Title " class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     
+     
+   
+   <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Phone Number 1:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_ph1TXT" type="text" placeholder=" Enter Phone Number " value="#{hierarchyBean.listph1TXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+ 
+     <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Phone Number 2:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_ph2TXT" type="text" placeholder=" Enter Phone Number " value="#{hierarchyBean.listph2TXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+ 
+     
+   <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Phone Number 3:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_ph3TXT" type="text" placeholder=" Enter Phone Number"  value="#{hierarchyBean.listph3TXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+ 
+ 
+ 
+ 
+     <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>E Mail ID 1:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_Mail1TXT" type="text" placeholder=" Enter E Mail ID "  value="#{hierarchyBean.listMail1TXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     
+      <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>E Mail ID 2:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_Mail2TXT" type="text" placeholder=" Enter E Mail ID "  value="#{hierarchyBean.listMail2TXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+  
+     
+
+          </div>
+        
+        
+        <!-- NEXT UI PART -->
+        
+        
+        <div class="col-lg-6"  >
+         
+
+     
+    
+         
+
+     <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Address:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_addressTXT" type="text" placeholder=" Enter Address" value="#{hierarchyBean.listaddressTXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+         
+         
+    <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>City:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_cityTXT"  type="text" placeholder=" Enter City" value="#{hierarchyBean.listcityTXT}" class="textfiledcss" ></h:inputText>
+   
+     </div>
+     </div>
+     
+    <div class="col-lg-12"  style="width:100%;">
+	
+	<div class="col-lg-4">
+    <label class="lablcss"><b>State:</b></label>
+    </div> 
+    <div class="col-lg-8">
+    <h:inputText id="list_stateTXT" type="text" placeholder=" Enter State" value="#{hierarchyBean.liststateTXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+        
+         
+    <div class="col-lg-12"  style="width:100%;">
+		
+	<div class="col-lg-4">
+    <label class="lablcss" ><b>Country:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_countryTXT" type="text" placeholder=" Enter Country " value="#{hierarchyBean.listcountryTXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     
+   
+         
+    <div class="col-lg-12"  style="width:100%;">
+		
+    
+	<div class="col-lg-4">
+    <label class="lablcss"><b>Zip:</b></label>
+    </div>
+    <div class="col-lg-8">
+    <h:inputText id="list_zipTXT" type="text" placeholder=" Enter Zip " value="#{hierarchyBean.listzipTXT}" class="textfiledcss" ></h:inputText>
+    
+     </div>
+     </div>
+     
+ 
+          </div>
+          
+       </div>
+        </div>
+          
+        </div>
+        
+           
+	
+ 
+	
+	
+	
+	
+        </div>
+        </div>
+       <div class="row">
+        
+      <div class="col-lg-6"  style="text-align: left;">
+      
+       <h:outputText id="msglabel" style="font-size:14px;color:#{hierarchyBean.color4EditUserMsg};" value="#{hierarchyBean.msg4AddUsr}"/>
+     <!--  return mailValidation() -->
+      </div>
+      
+      <div class="col-lg-6"  style="text-align: right;">
+      
+          <h:commandButton id="editsaveBTN" value="Update" action="#{hierarchyBean.updateUser(loginRegistrationBean.userEmailId,loginRegistrationBean.emailPassword,loginRegistrationBean.confrmPassword,loginRegistrationBean.newcustomerBoxVAL,loginRegistrationBean.superPrivilegeVAL,loginRegistrationBean.activeBoxVAL,loginRegistrationBean.disableBoxVAL,hierarchyBean.listfirstNameTXT,hierarchyBean.listlastNameTXT,hierarchyBean.listtitleTXT,hierarchyBean.listph1TXT,hierarchyBean.listph2TXT,hierarchyBean.listph3TXT,hierarchyBean.listMail1TXT,hierarchyBean.listMail2TXT,hierarchyBean.listaddressTXT,hierarchyBean.listcityTXT,hierarchyBean.liststateTXT,hierarchyBean.listcountryTXT,hierarchyBean.listzipTXT)}" onclick="loadmsg();update();" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+	  <a4j:ajax  execute=":hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:newcustomerBox :hierarchytable:ListUsers:activeBox :hierarchytable:ListUsers:disableBox :hierarchytable:ListUsers:userEmailId :hierarchytable:ListUsers:emailPassword :hierarchytable:ListUsers:confrmPassword :hierarchytable:ListUsers:list_firstNameTXT :hierarchytable:ListUsers:list_lastNameTXT :hierarchytable:ListUsers:list_titleTXT :hierarchytable:ListUsers:list_ph1TXT :hierarchytable:ListUsers:list_ph2TXT :hierarchytable:ListUsers:list_ph3TXT :hierarchytable:ListUsers:list_Mail1TXT :hierarchytable:ListUsers:list_Mail2TXT :hierarchytable:ListUsers:list_addressTXT :hierarchytable:ListUsers:list_stateTXT :hierarchytable:ListUsers:list_cityTXT :hierarchytable:ListUsers:list_countryTXT :hierarchytable:ListUsers:list_zipTXT :hierarchytable:ListUsers:addusertabel" render=":hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:msglabel :hierarchytable:ListUsers:addusertabel" oncomplete="hidemsg();"></a4j:ajax>
+	  </h:commandButton>
+	              
+	  <h:commandButton id="saveBTN" value="Save" onclick="loadmsg();savealign();" action="#{loginRegistrationBean.registervalidation(loginRegistrationBean.userEmailId,loginRegistrationBean.emailPassword,loginRegistrationBean.confrmPassword,loginRegistrationBean.newcustomerBoxVAL,loginRegistrationBean.superPrivilegeVAL,loginRegistrationBean.activeBoxVAL,loginRegistrationBean.disableBoxVAL,hierarchyBean.listfirstNameTXT,hierarchyBean.listlastNameTXT,hierarchyBean.listtitleTXT,hierarchyBean.listph1TXT,hierarchyBean.listph2TXT,hierarchyBean.listph3TXT,hierarchyBean.listMail1TXT,hierarchyBean.listMail2TXT,hierarchyBean.listaddressTXT,hierarchyBean.listcityTXT,hierarchyBean.liststateTXT,hierarchyBean.listcountryTXT,hierarchyBean.listzipTXT)}" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+	  <a4j:ajax  execute=":hierarchytable:ListUsers:superPrivilegeBox :hierarchytable:ListUsers:newcustomerBox :hierarchytable:ListUsers:activeBox :hierarchytable:ListUsers:disableBox :hierarchytable:ListUsers:userEmailId :hierarchytable:ListUsers:emailPassword :hierarchytable:ListUsers:confrmPassword :hierarchytable:ListUsers:list_firstNameTXT :hierarchytable:ListUsers:list_lastNameTXT :hierarchytable:ListUsers:list_titleTXT :hierarchytable:ListUsers:list_ph1TXT :hierarchytable:ListUsers:list_ph2TXT :hierarchytable:ListUsers:list_ph3TXT :hierarchytable:ListUsers:list_Mail1TXT :hierarchytable:ListUsers:list_Mail2TXT :hierarchytable:ListUsers:list_addressTXT :hierarchytable:ListUsers:list_stateTXT :hierarchytable:ListUsers:list_cityTXT :hierarchytable:ListUsers:list_countryTXT :hierarchytable:ListUsers:list_zipTXT :hierarchytable:ListUsers:addusertabel" render=":hierarchytable:ListUsers:adduserdiv :hierarchytable:ListUsers:msglabel" oncomplete="hidemsg();"></a4j:ajax>
+	  </h:commandButton>
+	  	  	  
+	   <h:commandButton title="Close" id="closeBTN" value="Close"  onclick="$('#add_UserPopup').modal('hide');" action="#{hierarchyBean.emptyMsg()}" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;" >
+       <a4j:ajax render=":hierarchytable:ListUsers:msglabel" execute="@this :hierarchytable:ListUsers:msglabel" oncomplete="hidemsg();"></a4j:ajax>
+       </h:commandButton>
+    
+    
+	 </div>
+	
+	 </div>
+        </div>
+        <div class="tab-pane fade in" id="tab2">
+          <ui:include src="/AddUsers.xhtml"></ui:include>
+        </div>
+        
+        
+        
+      <div class="tab-pane fade in" id="tab5">
+      <div class="row">
+												<div class="col-lg-12">
+        <h4>Import Users</h4>
+       <p>You can import users from an excel file. </p>
+
+   		<h:outputText value="Note: This import file should be in the pre-defined template. Click "></h:outputText>
+       <h:commandLink class="underlineOver"  value="here" style="font-size: 15px;"  onclick="downloadTemplate()">
+       <a4j:ajax render="@this" execute=":hierarchytable:ListUsers:templateUrl"/></h:commandLink>
+       	<h:outputText value=" to download the template file and add users in it. After adding the users please upload the file by clicking Browse button."></h:outputText>
+
+</div>
+<p></p>
+<br></br>
+
+								
+												<div class="">
+													<div id="externalPANE" class="col-lg-12"
+														style="margin-left: -15px;">
+														<div>
+															<div class="col-lg-2" style="margin-top: 5px;">
+																<h:outputText value="Choose Upload File:"></h:outputText>
+															</div>
+															<div class="col-lg-8" style="margin-left: -30px;">
+																<h:inputText id="externalFileName"
+																	value="#{dashboardBean.externalfilename}"
+																	placeholder=" Choose import file: "
+																	class="textfiledcss" style="width: 220px !important;"></h:inputText>
+																<h:commandButton title="Choose file in Local"
+																	value="Browse" id="externalFileBTN"
+																	onclick="O$('hierarchytable:ListUsers:externalpopupLayer').show();"
+																	style="margin-left: 10px;padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 10px;">
+																	<a4j:ajax
+																		render="@this :hierarchytable:ListUsers:externalupload :hierarchytable:ListUsers:externalFileName"
+																		execute="@this">
+																	</a4j:ajax>
+																</h:commandButton>
+
+
+															</div>
+
+															<div class="row">
+																<div class="col-lg-12">
+																	<div class="col-lg-12" >
+
+																		<o:popupLayer id="externalpopupLayer"
+																			style="border:1px solid lightgray; position:absolute;width:246px;z-index:10;bottom: -78px;left:44%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+																					<div class="row">
+																					<div class="col-lg-10" style="text-align: left;font-weight: bold; ">
+																					<p>Choose import file</p>
+																					</div>
+																					<div class="col-lg-2" style="text-align: right; ">
+																						<h:commandButton 
+																						 id="popupInvoker" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="margin-left: -60%;width: 24px;"
+																						onclick="O$('hierarchytable:ListUsers:externalpopupLayer').hide();">
+																							<a4j:ajax
+																		render="@this :hierarchytable:ListUsers:externalupload :hierarchytable:ListUsers:externalFileName"
+																		execute="@this">
+																	</a4j:ajax>
+																					</h:commandButton>
+																					</div>
+																					</div>
+																					<div class="row">
+																<div class="col-lg-12" style="margin-left: 1%;">
+																			<rich:fileUpload
+																				fileUploadListener="#{dashboardBean.externalUpload}"
+																				acceptedTypes="xls,xlsx" id="externalupload"
+																				style="height:105px;width: 236px;" 
+																				immediateUpload="#{dashboardBean.externalUpload}"
+																				allowFlash="#{dashboardBean.useFlash}"
+																				onuploadcomplete="O$('hierarchytable:ListUsers:externalpopupLayer').hide();">
+																				
+																				<a4j:ajax event="uploadcomplete" execute="@none fileuploadstatusID"
+																					render="externalFileName fileuploadstatusID" />
+
+																			</rich:fileUpload>
+																			
+																			</div>
+																			</div>
+																			
+																		</o:popupLayer>
+																	</div>
+																</div>
+															</div>
+															
+															
+															
+														</div>
+														
+														
+														<div class="row">
+																<div class="col-lg-12">
+																
+																
+											<h:outputText id="fileuploadstatusID" value="#{dashboardBean.fileuploadstatusStr}" style="color:blue;margin-left: 15px;"></h:outputText>					
+																
+																</div>
+																</div>
+														
+													</div>
+												</div>
+										
+
+</div>
+
+
+
+
+
+											<div class="row"  style="text-align: right;margin-right: 25px;">
+        
+           <h:commandButton title="Close" id="closetab5BTN" value="Close"  onclick="$('#add_UserPopup').modal('hide');" action="#{dashboardBean.emptyimportuser()}" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;" >
+       <a4j:ajax render=":hierarchytable:ListUsers:externalFileName :hierarchytable:ListUsers:fileuploadstatusID" execute="@this " oncomplete="hidemsg();"></a4j:ajax>
+       </h:commandButton>
+       </div>
+       
+       
+       
+       
+       
+        </div>
+      </div>
+    </div>
+    
+    </div>
+
+</div>
+</div>	
+	
+	
+	</div>
+	</div>
+	</div>
+	
+	
+	<div class="row" >
+	<div class="col-lg-12"  style="width:100%;"> 
+	 
+	
+	<ui:include src="/EditUser.xhtml"></ui:include>
+	
+	
+	</div>
+	</div>
+
+	
+	    <script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script>
+		<script src="BootstrapResource/dist/js/app.min.js"></script> 
+		
+		<ui:include src="/LoadingWindow.xhtml"></ui:include>
+		
+		
+</h:form>
+</body>
+</html>

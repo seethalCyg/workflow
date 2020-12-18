@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Stage_RoleMap>
+
+<Creator addHierarchy="false" deleteHierarchy="false" addUserHierarchy="false" addEditHierarchy="false" adminSetting="false" segmentAdminstration="false" configCommonSegment="false" generateData="false" configSetting="false" viewingAudit="true"  versionRestore="false"  savingVersion="false"
+ reGenerateHierarchy="false" workFlowProcess="false" addRollUpNode="true" addDataNode="true" addHierarchyNode="true" editSelectedNode="true"  generateFact="false" viewHierarchy="true" Role="Creator" auditEnable="true" auditDisable="true"
+ pushOnLevelOut="true" pushOnLevelIn="true" moveUP="true" moveDown="true" deleteNode="true" copyHierarchy="true" restoreHierarchy="true" createVersionHierarchy="true" auditingHierarchy="false" referenceHierarchy="true" riValidationOnhtree="true"
+ factFullLoad="false" factIncrementalload="false" factGenerateLoad="true"></Creator> 
+ 
+<Reviewer addHierarchy="false" deleteHierarchy="false" addUserHierarchy="false" addEditHierarchy="false" adminSetting="false" segmentAdminstration="false" configCommonSegment="false" generateData="false" configSetting="false" viewingAudit="false"  versionRestore="false"  savingVersion="false"
+ reGenerateHierarchy="false" workFlowProcess="false" addRollUpNode="false" addDataNode="false" addHierarchyNode="false" editSelectedNode="false" generateFact="false" viewHierarchy="true" Role="Reviewer" auditEnable="false" auditDisable="false"
+ pushOnLevelOut="false" pushOnLevelIn="false" moveUP="false" moveDown="false" deleteNode="false" copyHierarchy="false" restoreHierarchy="false" createVersionHierarchy="false" auditingHierarchy="false" referenceHierarchy="true" riValidationOnhtree="false"
+ factFullLoad="false" factIncrementalload="false" factGenerateLoad="true"></Reviewer>
+ 
+ 
+<Approver addHierarchy="false" deleteHierarchy="false" addUserHierarchy="false" addEditHierarchy="false" adminSetting="false" segmentAdminstration="false" configCommonSegment="false" generateData="true" configSetting="false" viewingAudit="false"  versionRestore="false"  savingVersion="false"
+ reGenerateHierarchy="true" workFlowProcess="false" addRollUpNode="false" addDataNode="false" addHierarchyNode="false" editSelectedNode="false" generateFact="true" viewHierarchy="true" Role="Approver" auditEnable="false" auditDisable="false"
+ pushOnLevelOut="false" pushOnLevelIn="false" moveUP="false" moveDown="false" deleteNode="false" copyHierarchy="false" restoreHierarchy="false" createVersionHierarchy="false" auditingHierarchy="false" referenceHierarchy="true" riValidationOnhtree="false"
+ factFullLoad="false" factIncrementalload="false" factGenerateLoad="true"></Approver>
+ 
+ 
+<Admin addHierarchy="true" deleteHierarchy="true" addUserHierarchy="false" addEditHierarchy="false" adminSetting="true" segmentAdminstration="true" configCommonSegment="true" generateData="true" configSetting="true" viewingAudit="true"  versionRestore="true"  savingVersion="true"
+ reGenerateHierarchy="true" workFlowProcess="true" addRollUpNode="true" addDataNode="true" addHierarchyNode="true" editSelectedNode="true" generateFact="true" viewHierarchy="true" Role="Admin" auditEnable="true" auditDisable="true"
+ pushOnLevelOut="true" pushOnLevelIn="true" moveUP="true" moveDown="true" deleteNode="true" copyHierarchy="true" restoreHierarchy="true" createVersionHierarchy="true" auditingHierarchy="true" referenceHierarchy="true" riValidationOnhtree="true"
+ factFullLoad="true" factIncrementalload="true" factGenerateLoad="false"></Admin>
+ 
+ 
+ <Public addHierarchy="false" deleteHierarchy="false" addUserHierarchy="false" addEditHierarchy="false" adminSetting="false" segmentAdminstration="false" configCommonSegment="false" generateData="false" configSetting="false" viewingAudit="false"  versionRestore="false"  savingVersion="false"
+ reGenerateHierarchy="false" workFlowProcess="false" addRollUpNode="false" addDataNode="false" addHierarchyNode="false" editSelectedNode="false" generateFact="false" viewHierarchy="true" Role="Public" auditEnable="false" auditDisable="false"
+ pushOnLevelOut="false" pushOnLevelIn="false" moveUP="false" moveDown="false" deleteNode="false" copyHierarchy="false" restoreHierarchy="false" createVersionHierarchy="false" auditingHierarchy="false" referenceHierarchy="false" riValidationOnhtree="false"
+ factFullLoad="false" factIncrementalload="false" factGenerateLoad="false"></Public>
+ 
+ <AllDisable addHierarchy="false" deleteHierarchy="false" addUserHierarchy="false" addEditHierarchy="false" adminSetting="false" segmentAdminstration="false" configCommonSegment="false" generateData="false" configSetting="false" viewingAudit="false"  versionRestore="false"  savingVersion="false"
+ reGenerateHierarchy="false" workFlowProcess="false" addRollUpNode="false" addDataNode="false" addHierarchyNode="false" editSelectedNode="false" generateFact="false" viewHierarchy="true" Role="AllDisable" auditEnable="false" auditDisable="false"
+ pushOnLevelOut="false" pushOnLevelIn="false" moveUP="false" moveDown="false" deleteNode="false" copyHierarchy="false" restoreHierarchy="false" createVersionHierarchy="false" auditingHierarchy="false" referenceHierarchy="false" riValidationOnhtree="false"
+ factFullLoad="false" factIncrementalload="false" factGenerateLoad="false"></AllDisable>
+ 
+ 
+ <SuperPrivilegeAdmin addHierarchy="true" deleteHierarchy="true" addUserHierarchy="true" addEditHierarchy="true" adminSetting="true" segmentAdminstration="true" configCommonSegment="true" generateData="true" configSetting="true" viewingAudit="true"  versionRestore="true"  savingVersion="true"
+ reGenerateHierarchy="true" workFlowProcess="true" addRollUpNode="true" addDataNode="true" addHierarchyNode="true" editSelectedNode="true" generateFact="true" viewHierarchy="true" Role="SuperPrivilegeAdmin" auditEnable="true" auditDisable="true"
+ pushOnLevelOut="true" pushOnLevelIn="true" moveUP="true" moveDown="true" deleteNode="true" copyHierarchy="true" restoreHierarchy="true" createVersionHierarchy="true" auditingHierarchy="true" referenceHierarchy="true" riValidationOnhtree="true"
+ factFullLoad="true" factIncrementalload="true" factGenerateLoad="false" ></SuperPrivilegeAdmin>
+ 
+</Stage_RoleMap>

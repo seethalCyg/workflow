@@ -1,0 +1,116 @@
+     <ui:component xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      >
+      <script>
+       function navigate2page(page){
+    	   go2page(page);
+       }
+      
+      </script>
+      <script type="text/javascript">
+		function logFilepopUP()
+		{
+			mywindow = window.open(
+					'fileExplorer4fulllog.jsf?reportID=openLogFile',
+					'FullConsoleApplet',
+					'width=900,height=230,top=250,left=100,scrollbars=yes,toolbars=no,resizable=no');
+
+}
+</script>
+       <script type="text/javascript">
+	
+	var mywindow;
+	
+		// Launches Test Case Applet, embedded in LaunchCaseApplet.xhtml.
+		// Also, passes Selected Report to this JSF file.
+		//
+		function LaunchConsoleApplet(reportID) {
+			//alert('Launching RBIDApplet...');
+			mywindow = window
+					.open(
+							'LaunchConsoleApplet.jsf?reportID='+reportID,
+							'CaseApplet',
+							'width=800,height=530,top=40,left=10,scrollbars=no,toolbars=no,resizable=yes');
+		
+			//alert('Launched RBIDApplet');
+			return false;
+		}
+		
+	</script>
+
+	<div id="headr" class="navlist">
+		<ul id="navlist">
+
+			<li><c:choose>
+					<c:when test='#{headerBean.menuname=="WFadminscreen.xhtml"}'>
+						<h:commandLink value="Workflow Administration"
+							style="background-color:orange;color: #FFF" immediate="true"
+							action="#{headerBean.processMenu('WFadminscreen.xhtml')}" />
+					</c:when>
+					<c:otherwise>
+						<h:commandLink value="Workflow Administration" immediate="true"
+							actionListener="#{headerBean.processMenu('WFadminscreen.xhtml')}"
+							action="#{dashboardBean.DashboardStage('Default','hierarchyTree')}" />
+					</c:otherwise>
+
+				</c:choose></li>
+
+
+			<li><c:choose>
+					<c:when test='#{headerBean.menuname=="RIConstraintsPopUp.xhtml"}'>
+						<h:commandLink value="Constraints Administration"
+							style="background-color:orange;color: #FFF" immediate="true"
+							action="#{headerBean.processMenu('RIConstraintsPopUp.xhtml')}" />
+					</c:when>
+					<c:otherwise>
+						<h:commandLink value="Constraints Administration" immediate="true"
+							actionListener="#{headerBean.processMenu('RIConstraintsPopUp.xhtml')}"
+							action="#{hierarchyBean.setValidationMsg}" />
+					</c:otherwise>
+
+				</c:choose></li>
+
+			<li><c:choose>
+					<c:when test='#{headerBean.menuname=="SegmentAdmin.xhtml"}'>
+						<h:commandLink value="Segment Administration"
+							style="background-color:orange;color: #FFF" immediate="true"
+							action="#{headerBean.processMenu('SegmentAdmin.xhtml')}" />
+					</c:when>
+					<c:otherwise>
+						<h:commandLink value="Segment Administration" immediate="true"
+							action="#{headerBean.processMenu('SegmentAdmin.xhtml')}"
+							actionListener="#{hierarchyDBBean.EditSegmentAdministration(hierarchyBean.hierarchy_ID)}" />
+
+					</c:otherwise>
+
+				</c:choose></li>
+
+
+
+
+			<li><c:choose>
+					<c:when test='#{headerBean.menuname=="FactPopup.xhtml"}'>
+						<h:commandLink value="Facts Configuration"
+							style="background-color:orange;color: #FFF" immediate="true"
+							action="#{headerBean.processMenu('FactPopup.xhtml')}" />
+					</c:when>
+					<c:otherwise>
+						<h:commandLink value="Facts Configuration" immediate="true"
+							action="#{hierarchyDBBean.loadPeriodColumnValues}"
+							actionListener="#{hierarchyDBBean.getFactTables4Edit('FromFactPopup','','')}">
+
+							<f:actionListener binding="#{headerBean.processMenu('FactPopup.xhtml')}" />
+						</h:commandLink>
+					</c:otherwise>
+
+				</c:choose></li>
+		</ul>
+	</div>
+
+</ui:component>
+
+
+

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+<link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+  
+  <script type="text/javascript" >
+  function temp(){
+  	alert("1");
+  	$("#signUpDemo").modal("show");
+  	alert("2");
+  }
+  </script>
+</h:head>
+<h:body>
+	<h:form id="demoForm">
+	<div class="login-box">
+	
+	  <div class="login-box-body">
+    <p class="login-box-msg">SIGN <SPAN class="text-blue"></SPAN></p>
+   
+  <div class="row">
+        <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           <h:outputLabel value="Login Id: "></h:outputLabel>
+           </div>
+           </div>
+           <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           <h:inputText id="signidUserName" value="#{demo.userName}"></h:inputText>
+           </div>
+           </div>
+           </div>
+           
+           <div class="row">
+        <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           <h:outputLabel value="Password: "></h:outputLabel>
+           </div>
+           </div>
+           <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           <h:inputText id="signidPassword" value="#{demo.password}"></h:inputText>
+           </div>
+           </div>
+           </div>
+           
+           <div class="row">
+        <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+          <h:commandButton value="Sign In" action="#{demo.signInAction()}">
+          <f:ajax execute="signidUserName signidPassword currStg" render="status"></f:ajax>
+          </h:commandButton>
+          <h:outputText id="status" value="#{demo.statusMsg}"/>
+           </div>
+           </div>
+           <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           <h:commandButton value="Sign Up" onclick="$('#signUpDemo').modal('show');" action="#{demo.signUpAction()}">
+           <f:ajax execute="@this" render=":demoForm:userTable signupName signupUserName signupPassword"></f:ajax>
+           </h:commandButton>
+           
+           </div>
+           </div>
+           <div class="col-xs-6">
+           <div class="social-auth-links text-center">
+           
+           
+           <h:selectOneMenu id="currStg" value="#{demo.currStageName}" style="width:200px;background:#fff;border:1px solid lightgray;">
+           
+           <f:selectItems value="#{demo.stageNameHT}"/>
+           </h:selectOneMenu>
+           </div>
+           </div>
+           <ui:include src="/signup.xhtml" />
+           </div>
+        <div class="row">
+        <div class="col-xs-12">
+           <div class="social-auth-links text-center">
+           <h:outputText id="num" value="#{demo.userAL.size()}"/>
+           
+           <h:dataTable id="userTable" value="#{demo.userAL}" var="mobile" border="2" cellspacing="1" cellpadding="1">
+				<h:column>
+				<f:facet name="header">Name</f:facet>
+                    <center style="width: 50px;">
+										<span style="width: 100px;" title="#{mobile.name}">#{mobile.name}</span>
+									</center>
+				</h:column>
+				<h:column>
+				<f:facet name="header">UserName</f:facet>
+				<center style="width: 50px;">
+										<span style="width: 100px;" title="#{mobile.username}">#{mobile.username}</span>
+									</center>
+				</h:column>
+				<h:column>
+				<f:facet name="header">Password</f:facet>
+				<center style="width: 50px;">
+										<span style="width: 100px;" title="#{mobile.password}">#{mobile.password}</span>
+									</center>
+				</h:column>
+				<h:column>
+				<f:facet name="header">View</f:facet>
+				<center style="width: 50px;">
+										<h:commandButton value="Sign Up" onclick="$('#signUpDemo').modal('show');" action="#{demo.EditSignUpAction(mobile.empid)}">
+           <f:ajax execute="@this" render=":demoForm:signupName :demoForm:signupUserName :demoForm:signupPassword"></f:ajax>
+           </h:commandButton>
+									</center>
+				</h:column>
+				<h:column>
+				<f:facet name="header">View</f:facet>
+				<center style="width: 50px;">
+										<h:commandButton value="Sign Up" onclick="$('#signUpDemo').modal('show');" action="#{demo.EditSignUpAction(mobile)}">
+           <f:ajax execute="@this" render=":demoForm:signupName :demoForm:signupUserName :demoForm:signupPassword"></f:ajax>
+           </h:commandButton>
+									</center>
+				</h:column>
+			</h:dataTable>
+           </div>
+           </div>
+           </div>
+           
+           <div class="row">
+        <div class="col-xs-12">
+           <div class="social-auth-links text-center">
+           <c:forEach items="#{demo.userAL}" var="item"  varStatus="status">
+           <h:outputText value="#{item.name}"/><br/>
+           <h:outputText value="#{item.username}"/><br/>
+           <h:outputText value="#{item.password}"/><br/>
+        </c:forEach>
+           
+           </div>
+           </div>
+           </div>
+       </div>
+	<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+			<script src="BootstrapResource/dist/js/app.min.js"></script>
+	</div>
+	
+	
+			
+			
+	
+	</h:form>
+</h:body>
+</html>

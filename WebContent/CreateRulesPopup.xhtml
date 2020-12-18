@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:o="http://openfaces.org/">
+
+
+
+
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title>Hierarchy Workflow</title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+      overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+</style>
+</h:head>
+
+
+
+<h:body>
+
+	<div class="modal fade" id="createRulePopup"  role="dialog">
+		<div class="modal-dialog modal-lg" style="width: 70%;">
+		<div class="modal-content" >
+			 <div class="modal-header">
+	<div class="box-tools pull-right">
+         
+          
+      <h:commandButton value="Cancel" style="margin-left:485px " title="Close" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" onclick="$('#createRulePopup').modal('hide');" action="#{dashboardBean.saveRulesInStage()}">
+		<a4j:ajax render="@this" execute="@this :form:ruleTableCreate"> </a4j:ajax>
+		</h:commandButton>
+         
+         </div>
+	
+	   <h4  class="modal-title" >Create Rules</h4>
+	
+		</div>
+			
+			
+			
+			
+			
+			
+<div class="modal-body">
+
+<div class="row">
+					<div class="col-lg-12  ">
+					
+						<div class="pull-right">
+						<h:commandButton image="/BootstrapResource/dist/hierarchy/Hierarchy_Add.png"
+							style="margin-left:990px " title="Add" value="Add" action="#{dashboardBean.addNewRulesInStage()}">
+		<a4j:ajax render="@this :form:ruleTableCreate" execute="@this :form:ruleTableCreate"> </a4j:ajax>
+		</h:commandButton>
+						<h:commandButton image="/BootstrapResource/dist/hierarchy/Hierarchy_Delete.png"
+							title="Delete" value="Delete" action="#{dashboardBean.deleteRules(dashboardBean.selectedrulesAL)}">
+		<a4j:ajax render="@this :form:ruleTableCreate" execute="@this :form:ruleTableCreate"> </a4j:ajax>
+		</h:commandButton>
+						</div>
+					</div>
+					</div>
+
+
+
+						<div class="row">
+					<div class="col-lg-12">
+						<div style="overflow-x: scroll; overflow-y: scroll ! important;border: 1px solid lightgray; height: 400px; ">
+
+							<!-- 	 overflow-x: scroll; overflow-y: hidden ! important; -->
+								
+								 <o:dataTable id="ruleTableCreate" var="objread"
+											value="#{dashboardBean.rulesAL}"  styleClass="table"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="10"
+											
+											>
+							<!-- <o:scrolling />  -->
+								
+								
+								<o:multipleRowSelection
+									rowDatas="#{dashboardBean.selectedrulesAL}"
+									style="background: rgb(122, 180, 207) none repeat scroll 0% 0%; color: #000;"/>
+									
+									
+									
+									
+									<o:columnReordering />
+									
+									
+									<o:column>
+									<f:facet name="header">Rule #</f:facet>
+									<center style="width: 50px;">
+										<span style="width: 100px;" title="#{objread.ruleName}">#{objread.ruleName}</span>
+									</center>
+
+								</o:column>
+						
+
+								<o:column>
+												<f:facet name="header">Current Stage</f:facet>
+												<center>
+													<h:selectOneMenu id="currStg" value="#{objread.currStageName}" style="width:200px;background:#fff;border:1px solid lightgray;">
+									       			<f:selectItems value="#{objread.stageNameAL}"/>
+									        		</h:selectOneMenu>
+												</center>
+
+											</o:column>
+											
+											<o:columns value="#{dashboardBean.rulesALTemp}" var="_mass" indexVar="colIndex">
+											    <f:facet name="header">
+											        <h:outputText value="#{_mass.attributeName}"/>
+											    </f:facet>
+									                <h:inputText value="#{objread.valuesAL[colIndex]}" style="height: 22px;" rendered="#{colIndex % 2 == 0 and _mass.attributeType == 'Custom'}"/>
+									                <h:selectOneMenu value="#{objread.valuesAL[colIndex]}" rendered="#{colIndex % 2 == 0 and _mass.attributeType == 'Default'}" style="width:200px;background:#fff;border:1px solid lightgray;">
+									       			<f:selectItem itemLabel="Don't use" itemValue="Don't use"/>
+									        		<f:selectItem itemLabel="Use" itemValue="Use"/>
+									       			</h:selectOneMenu>
+									                <h:selectOneMenu value="#{objread.valuesAL[colIndex]}" rendered="#{colIndex % 2 == 1}" style="width:200px;background:#fff;border:1px solid lightgray;">
+									       			<f:selectItems value="#{_mass.operatorsHT}"/>
+									        		</h:selectOneMenu>
+									              
+											    
+											</o:columns>
+											
+											<o:column>
+												<f:facet name="header">Target Stage</f:facet>
+												<center>
+													<h:selectOneMenu id="trgStg" value="#{objread.trgStageName}" style="width:200px;background:#fff;border:1px solid lightgray;">
+									       			<f:selectItems value="#{objread.stageNameAL}"/>
+									        		</h:selectOneMenu>
+												</center>
+
+											</o:column>
+											
+											<o:column>
+												<f:facet name="header">Join Operator</f:facet>
+												<center>
+													<h:selectOneMenu id="joinStg" value="#{objread.selectedJoinType}" style="width:200px;background:#fff;border:1px solid lightgray;">
+									       			<f:selectItems value="#{objread.joinTypeAL}"/>
+									        		</h:selectOneMenu>
+												</center>
+
+											</o:column>
+										<!-- 	<f:facet name="below">
+												<h:panelGroup id="panelGroupCreateRule">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet> -->
+
+										</o:dataTable>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+
+
+							
+							<h:outputText id="attributeMsgCreateRule" style="margin-left:10px;color:#{dashboardBean.authorizeMsgColor}" value="#{dashboardBean.authorizeMsgstr}"></h:outputText>
+
+					</div>
+
+
+
+
+				</div>
+
+</div>
+
+
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

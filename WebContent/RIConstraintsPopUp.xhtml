@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+	<script type="text/javascript">
+		function showRIValidationPopUp(ischanged)
+		{
+		if(ischanged)
+		{
+		O$('RIConstraints:RIValidation').showCentered();
+		return false;
+		}
+		}
+	</script>
+
+
+</h:head>
+
+
+
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+<h:form id="RIConstraints">
+<table>
+	<tr><td><ui:include src="/Admin_Header.xhtml"></ui:include></td></tr></table>
+
+		<table width="680" cellspacing="0" cellpadding="0" >
+			<tr>
+		<td>
+		<fieldset>
+<legend class="label2">Hierarchy Types</legend>
+		<h:selectOneRadio id="HierarchyTypes" value="#{hierarchyBean.selectedHierarchyType}" layout="lineDirection">
+							
+							<f:selectItem itemValue="Reference" itemLabel="Reference"/> 
+							<f:selectItem  itemValue="Reporting" itemLabel="Reporting"/> 	
+							<f:selectItem itemValue="Dependent" itemLabel="Dependent"/> 
+							<f:selectItem itemValue="Independent" itemLabel="Independent"/> 
+							<f:ajax render="@this referOutput referenceHierarchy chooseHier chooseHier1 RHimg enforcechckbox enforceRIC RIConstraints valimessage rfpanel" execute="@this" listener="#{hierarchyBean.getAL4RIConstraints('FromRICPopup')}"></f:ajax>
+							</h:selectOneRadio>
+							
+						
+						<h:panelGroup id="chooseHier1">
+						<h:panelGroup id="chooseHier">
+						<table>
+						<tr>
+						<td><h:selectBooleanCheckbox id="enforcechckbox" value="#{hierarchyBean.enforceRIConstraints}" rendered="#{hierarchyBean.selectedHierarchyType != 'Reference' and hierarchyBean.selectedHierarchyType != 'Independent'}" disabled="true"/><h:outputText id="enforceRIC" style="font-size:15px" value="Enforce Referential Integrity Constraints" rendered="#{hierarchyBean.selectedHierarchyType != 'Reference' and hierarchyBean.selectedHierarchyType != 'Independent'}"></h:outputText></td>
+						
+						<td style="width: 40px; "></td><td>
+							<h:outputText id="referOutput" style="font-size:15px" value="Choose Reference Hierarchy : " rendered="#{hierarchyBean.selectedHierarchyType != 'Reference' and hierarchyBean.selectedHierarchyType != 'Independent'}"></h:outputText>
+							
+							
+							<h:selectOneMenu id="referenceHierarchy" value="#{hierarchyBean.selectedReferenceHierarchy}" style="width:170px" rendered="#{hierarchyBean.selectedHierarchyType != 'Reference' and hierarchyBean.selectedHierarchyType != 'Independent'}">
+       			<f:selectItem itemValue="selectValue" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{hierarchyBean.referenceHierarchyAL}"/>
+        	<f:ajax render="@this RHimg" execute="@this"></f:ajax>
+    			</h:selectOneMenu> </td><td>
+    			<h:panelGroup id="RHimg" rendered="#{hierarchyBean.selectedHierarchyType != 'Reference'}">
+    			</h:panelGroup></td></tr></table></h:panelGroup></h:panelGroup>
+							
+							</fieldset></td></tr><tr>
+				<td>
+			<h:panelGroup id="rfpanel" rendered="#{hierarchyBean.selectedHierarchyType != 'Independent'}">
+				<fieldset>
+				<legend class="label2" >Referential Integrity Constraints</legend>
+				<o:dataTable id="RIConstraints" sortLevel="-1" sortAscending="false" sortColumnId="sessionId" 
+  value="#{hierarchyBean.rIConstraintsRulesAL}" var="rIConstraints" pageSize="10" noDataMessageAllowed="true" 
+  height="200px" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+  bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" bodyRowStyle="background-color:#FFFFF;"
+   bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+   expansionState="levelsExpanded:2" immediate="true" style="width:850px" rendered="#{hierarchyBean.selectedHierarchyType != 'Independent'}">
+      <o:multipleRowSelection rowDatas="#{hierarchyBean.selectedRIConsRule}" style="background: #a4aec5; color: #7E0000;"/>
+      <o:selectionColumn style="width: 3%;" sortable="true">
+
+      </o:selectionColumn>
+      
+      
+      <o:column style="width:50px;">
+       <f:facet name="header">Rule No
+       </f:facet>
+       
+       <o:hintLabel value="#{rIConstraints.rICRuleNode}"></o:hintLabel>
+      </o:column>
+      
+      
+      <o:column>
+       <f:facet name="header">Rule(s)
+       </f:facet>
+       
+       <h:outputText value="#{rIConstraints.rICRule}"></h:outputText>
+      </o:column>
+     
+   
+      <f:facet name="below">
+       <h:panelGroup id="rICpanelGroup">
+        <o:dataTablePaginator id="rICpaginator"/>
+       </h:panelGroup>
+      </f:facet>
+      
+      </o:dataTable>
+				</fieldset></h:panelGroup>
+					
+				</td>
+			</tr>
+			
+			</table>
+	<table><tr>
+			<td><h:commandButton value="Save" title="Save Rule" style="width:25px" image="/resources/images/save.png" actionListener="#{hierarchyBean.WriteSelectedRulesToHry}">
+		<a4j:ajax execute="RIConstraints HierarchyTypes referenceHierarchy valimessage HRYTree:statusH validMsg" render="valimessage HRYTree:statusH validMsg" oncomplete="showRIValidationPopUp(#{hierarchyBean.flag4OpenRIConsValiPopup});"></a4j:ajax>
+		</h:commandButton></td><td><h:commandButton value="Close" title="Close" style="width:25px" image="/resources/images/close.png" action="#{headerBean.processMenu('Hierarchytree.xhtml')}" actionListener="#{hierarchyBean.clearMsg}">
+		
+		</h:commandButton></td><td><h:outputText style="color:blue" id="valimessage" value="#{hierarchyBean.message4RIconstraints}"></h:outputText> </td>
+		
+			</tr></table>
+			<table><tr><td valign="bottom"> <ui:include src="/RIValidationConfirmPopup.xhtml"/></td></tr></table>
+</h:form>
+</h:body>
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	>
+<h:head>
+<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title>Hierarchy Workflow</title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	
+	<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+      overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+</style>
+</h:head>
+<h:body>
+	<div class="modal fade" id="signUpDemo" role="dialog">
+	<div class="modal-dialog modal-lg" style="width: 70%;">
+		<div class="modal-content" >
+			 <div class="modal-header">
+	<div class="box-tools pull-right">
+         
+         </div>
+	
+	   <h4  class="modal-title" >Sign Up</h4>
+	
+		</div>
+		
+		<div class="modal-body">
+
+<div class="row">
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:outputText value="Name:"></h:outputText>
+						</div>
+					</div>
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:inputText id="signupName" value="#{demo.signupName}"></h:inputText>
+						</div>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:outputText value="Email Id"></h:outputText>
+						</div>
+					</div>
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:inputText id="signupUserName" value="#{demo.signupUserName}"></h:inputText>
+						</div>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:outputText value="Password"></h:outputText>
+						</div>
+					</div>
+					<div class="col-lg-6  ">
+					
+						<div class="pull-left">
+							<h:inputText id="signupPassword" value="#{demo.signupPassword}"></h:inputText>
+						</div>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-lg-12  ">
+					
+						<div class="pull-left">
+							<h:commandButton value="Sign Up" action="#{demo.saveUser(demo.signupName, demo.signupUserName, demo.signupPassword)}" onclick="$('#signUpDemo').modal('hide');">
+							<f:ajax execute=":demoForm:signupName :demoForm:signupUserName :demoForm:signupPassword" render=":demoForm:userTable :demoForm:num"/>
+							</h:commandButton>
+						</div>
+					</div>
+					</div>
+					
+					
+					
+					
+					</div>
+		
+		
+		
+		
+		
+		
+		
+		</div>
+		</div>
+	
+	
+	
+	
+	</div>
+</h:body>
+</html>

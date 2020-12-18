@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>HOME HIERARCHY</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+   <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+  <script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+ 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+     $( "#datepicker1" ).datepicker();
+  });
+  </script>
+
+</h:head>
+
+
+<style>
+   
+   #loadingPage {
+   
+   width: 100%;
+   height: 100%;
+   top: 0px;
+   left: 0px;
+   position: fixed;
+   display: block;
+   opacity: 0.7;
+   background-color: #000;
+   z-index: 99;
+   text-align: center;
+}
+
+#loadingPage-image {
+  position: absolute;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
+}
+.divouter2{
+border: 1px solid;
+border-color:#f0f0f5;
+width: 100%;
+}
+.modal
+{
+    overflow: hidden;
+    background-color: transparent;
+}
+
+
+    
+    .table{
+  
+    min-width:100%;
+    width:1600px;
+    max-width:100%;
+    vertical-align: text-top;
+    padding: 3px 3px;
+    }
+    
+</style>
+ <style>
+ .o_table_header_section {
+    font-weight: bold;
+    text-align: center;
+    height: 10px;
+    }
+    
+    .vl {
+    border-left: 3px solid lightgray;
+    height: 300px;
+}
+ </style>
+ 
+<h:body>
+
+
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+<div id="AddUsers">
+
+
+<div class="row" >
+
+<div class="col-lg-12"  style="width:100%;"> 
+<p style="font-size: 18px;margin: 0 0 0;margin-left: -15px;">Admin Settings</p>
+
+
+</div>
+
+</div>
+
+<br></br>
+
+<div class="row" >
+
+<div class="col-lg-12"> 
+
+
+<div class="col-lg-6" style=" border: 2px solid transparent;border-right-color: lightgray;height: 220px;"> 
+ <div class="col-lg-12">
+  <div class="col-lg-7" style="text-align: left;">
+<p style="font-size: 18px;margin: 0 0 0;">Logon Information</p>
+</div>
+ <div class="col-lg-5" style="text-align: left;">
+     <h:commandButton value="Add User(s)" title="Add User(s)" action="#{hierarchyBean.writeUserToXml}" image="/BootstrapResource/dist/hierarchy/addduser.png" style="margin-left:60px;	">
+					<f:ajax render="adduserMsg ListUsers:addusertabel" execute="usersList"/>
+	</h:commandButton>
+	 </div>
+
+ </div>
+  
+ <div class="col-lg-12"  style="width:100%;">
+  
+	<div class="col-lg-2">
+    <label><b>Domain:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+    <h:inputText id="dom" value="#{hierarchyBean.hostName}" class="textfiledcss" ></h:inputText>
+     </div>
+     </div>
+     
+     
+      <div class="col-lg-12"  style="width:100%;">
+ 
+	<div class="col-lg-2">
+    <label><b>UserID:</b></label>
+    </div>
+    <div class="col-lg-6">
+    
+    <h:inputText id="userId" value="#{hierarchyBean.loginID}" class="textfiledcss" ></h:inputText>
+     </div>
+     </div>
+     
+      <div class="col-lg-12"  style="width:100%;">
+
+	<div class="col-lg-2">
+    <label><b>Password:</b></label>
+    </div>
+    <div class="col-lg-6">
+    <h:inputSecret id="pass" value="#{hierarchyBean.password}" class="textfiledcss" ></h:inputSecret>
+    
+     </div>
+     </div>
+     
+      <div class="col-lg-12">
+     <h:commandButton value="Submit"  style="margin-left: 15px;" image="/resources/images/sub1.png" actionListener="#{hierarchyBean.getusersfromLDAP}">
+					<f:ajax execute="dom userId pass" render="usersList adduserMsg"></f:ajax></h:commandButton>
+					
+     </div>
+   
+    
+</div>
+
+
+
+
+<div class="col-lg-6"> 
+ <div class="col-lg-12"  style="width:100%;">
+
+  
+
+<h:selectOneMenu id="tablefilterS4User" value="#{hierarchyDBBean.selectedOperator}" style="width: 150px;background: white;height: 31px;">
+       		
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>
+ 		
+    	
+    	 
+    	  <h:inputText style="width: 200px !important;margin-left: 5px;" id="filtervalS4User" value="#{hierarchyDBBean.filterValue}" size="7" class="textfiledcss" ></h:inputText>
+    	
+    	    <h:commandButton title="Filter" value="Filter" style="margin-bottom: -10px;" image="/BootstrapResource/dist/hierarchy/filter_user.png" action="#{hierarchyDBBean.filterFacts('fromUsersList')}" ><f:ajax render="tablefilterS4User filtervalS4User usersList" execute="tablefilterS4User filtervalS4User usersList"></f:ajax>
+    	    </h:commandButton>
+    		
+
+</div>
+
+ <div class="col-lg-12"  >
+
+
+ <o:dataTable id="usersList"  var="user" sortLevel="-1" sortAscending="false" sortColumnId="hierarchyID" 
+   value="#{hierarchyBean.allUsersAL}" styleClass="table" 
+   headerVertSeparator="1px solid #a0a0a0" style="height: 175px;"
+						pageSize="5" >
+						
+
+						<o:multipleRowSelection
+							rowDatas="#{hierarchyBean.selectedUserList}"
+							style="background: #a4aec5; color: #7E0000;" />
+					
+						<o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+
+					
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+						</o:selectionColumn>
+						
+					
+						<o:column style="width: 100px;">
+							<f:facet name="header">User ID</f:facet>
+							<o:hintLabel value="#{user.userLoginID}"></o:hintLabel>
+							
+						</o:column>
+						
+						<o:column style="width: 200px;">
+							<f:facet name="header">E Mail ID</f:facet>
+							<o:hintLabel value="#{user.emailID}"></o:hintLabel>
+							
+						</o:column>
+						
+						
+					</o:dataTable>
+ 
+ </div>
+</div>
+
+ <div class="col-lg-12"  style="text-align: right;">
+<h:commandButton title="Close" value="Close" style="padding: 5px 10px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-right: 0px;" onclick="$('#add_UserPopup').modal('hide'); return false" ><f:ajax render="adduserMsg" execute="adduserMsg"/> </h:commandButton> 
+
+<h:outputText id="adduserMsg" title="#{hierarchyBean.titleMsg4AddUsr}" style="color:#{hierarchyBean.color4AddUserMsg}" value="#{hierarchyBean.msg4AddUsr}"/>
+</div>
+</div>
+
+</div>
+
+	
+
+
+
+</div>
+
+</h:body>
+</html>

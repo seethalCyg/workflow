@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title></title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+	
+	
+	<script type="text/javascript">
+	
+	function showAlertstage(e) {
+	
+		
+		 if(e.includes('updated successfully')){      
+				
+    		document.getElementById("success-alert-stage").className = "alert alert-success";
+    		
+    		
+    	}
+    	else{          
+    		
+    		document.getElementById("success-alert-stage").className = "alert alert-danger";
+    		
+    	}
+		  $("#success-alert-stage").fadeTo(10000, 500).slideUp(500, function () {
+             $("#success-alert-stage").slideUp(10000);
+        });
+        
+    }
+	
+		function closeSetSatgePopup(ischanged)
+		{	
+		if(ischanged){
+		if (!confirm('You have modified in stage are you sure you want to close without save?')) {
+		return false;
+		}else{
+			$('#setStagesPopup').modal('hide');
+		}
+		
+		}else{
+
+$('#setStagesPopup').modal('hide');
+}
+}
+		 $('#sourceCars').dblclick(function() {
+		        $('#sourceCars option:selected').appendTo('#targetCars');
+		        $("#targetCars option").attr("selected", "selected");
+		    });
+
+		    $('#dbleMeRight').click(function() {
+		        $('#sourceCars option:selected').appendTo('#targetCars');
+		        $("#targetCars option").attr("selected", "selected");
+		    });
+
+		    $('#targetCars').dblclick(function() {
+
+		        var targetList=$('#targetCars option:selected');
+		        var filterVal= $('#filterDis').val();
+		        if( filterVal === 'ALL' || targetList.text().indexOf('[' + filterVal + ']') >= 0)
+		            targetList.appendTo('#sourceCars');
+		        else
+		            targetList.remove();
+		        var foption = $('#sourceCars option:first');
+		        var soptions = $.makeArray($('#sourceCars option:not(:first)')).sort(function(a, b) {
+		            return a.text == b.text ? 0 : a.text &lt; b.text ? -1 : 1
+		        });
+		        $('#sourceCars').html(soptions).prepend(foption);
+		        foption.attr("selected", true).siblings("option").removeAttr("selected");
+		        $("#targetCars option").attr("selected", "selected");
+		    });
+
+		    $('#dbleMeLeft').click(function() {
+
+		        var targetList=$('#targetCars option:selected');
+		        var filterVal= $('#filterDis').val();
+		        if( filterVal === 'ALL' || targetList.text().indexOf('[' + filterVal + ']') >= 0)
+		            targetList.appendTo('#sourceCars');
+		        else
+		            targetList.remove();
+		        var foption = $('#sourceCars option:first');
+		        var soptions = $.makeArray($('#sourceCars option:not(:first)')).sort(function(a, b) {
+		            return a.text == b.text ? 0 : a.text &lt; b.text ? -1 : 1
+		        });
+		        $('#sourceCars').html(soptions).prepend(foption);
+		        foption.attr("selected", true).siblings("option").removeAttr("selected");
+		        $("#targetCars option").attr("selected", "selected");
+		    });
+		    
+		    
+		    
+		    function externalcheck(){
+		  	  
+		    	var checkexternalUser = document.getElementById("form:externalUser");
+		    	
+		    	if(checkexternalUser.checked){
+		    		document.getElementById("form:autologinID").checked = true;
+		    		document.getElementById("form:primaryDocOnly").checked = true;
+		    	}else {
+		    		document.getElementById("form:autologinID").checked = false;
+		    		document.getElementById("form:primaryDocOnly").checked = false;
+				}
+		    	
+		    	
+		      }
+		    function openAuthDetails(flag) {
+		    	if(flag == 'true')
+		    		$('#oneDriveAuthPopup').modal('show');
+			}
+</script>
+
+
+<style>
+@media only screen and (min-width: 700px) and (max-width: 1366px) {
+	#success-alert-stage {}
+}
+
+.subtitlestyle1{
+color:#116a93;
+font-size: 17px;
+border: 1px solid transparent !important;
+}
+
+ .modal
+{
+    overflow: hidden;
+    background-color: transparent;
+} 
+
+.myradio label {
+   font-weight: normal  !important;
+margin-left: 5px !important;
+font-size: 15px  !important;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal ! important;
+    margin-left: 10px ! important;
+    }
+</style>
+</h:head>
+<body class="hold-transition skin-purple sidebar-mini">
+	
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	
+	  <div class="modal fade" id="setStagesPopup" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md" style="width: 760px;">
+      <div class="modal-content">
+      
+    <div class="modal-header">
+	<div class="box-tools pull-right">
+         
+          
+         <h:commandButton id="Add" value="Add" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png"  action="#{dashboardBean.writeStagesToXml('saveStage')}" rendered="#{securityBean.workFlowProcess}">								
+		 <!-- <f:ajax execute=":form:changeprimarydocOnly :form:wfName :form:autologinID :form:allowuploadID :form:enableEsign :form:allowEditUD :form:externalUser :form:primaryDocOnly :form:individualDoc :form:selSourcecodes :form:selMembers :form:properties :form:minappin :form:parallType :form:selMembersRole :form:NotificationPass :form:returnto :form:setStatus :form:stageStatus :form:Notification :form:ruleTableCreate" render=":form:autologinID :form:allowuploadID :form:closeStagePopup :form:setStgMsg" />  --> 
+		<a4j:ajax execute=":form:changeprimarydocOnly :form:wfName :form:autologinID :form:allowuploadID :form:enableEsign :form:allowEditUD :form:externalUser :form:primaryDocOnly :form:individualDoc :form:selSourcecodes :form:selMembers :form:properties :form:minappin :form:parallType :form:selMembersRole :form:NotificationPass :form:returnto :form:setStatus :form:stageStatus :form:Notification :form:ruleTableCreate" render=":form:autologinID :form:allowuploadID :form:closeStagePopup :form:setStgMsg" oncomplete="showAlertstage('#{dashboardBean.setStageMsg}');" ></a4j:ajax>
+		 </h:commandButton>
+								 
+								 
+	    <h:commandButton title="Close" id="closeStagePopup" value="close" onclick="return closeSetSatgePopup(#{dashboardBean.ischangedStage1});" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" actionListener="#{dashboardBean.setStageMsgEmpty}">
+		<f:ajax render="@this" execute="@this"></f:ajax>
+		</h:commandButton>
+         
+         
+         </div>
+	
+	   <h4  class="modal-title" ><h:outputText  value=" Configure Stage : "/><h:outputText id="stageTitle"  value=" #{dashboardBean.stageNameFromAddStage}" style="color:#116a93;"/></h4>
+	
+		 
+		</div>
+	
+	
+	
+	
+   <div class="modal-body">
+
+    <div class="container">
+			
+				 <div class=" " id="success-alert-stage" style="margin-left: -280px;margin-top: -112px; z-index:22; position:absolute;width:1200px;justify-content: left; align-items: center;display:none;" >                 
+             <center> <span style="font-size:14px;"> <h:outputText id="setStgMsg" style="font-size:14px;color:white;" value="#{dashboardBean.setStageMsg} "/></span></center>   
+                        </div>  
+				</div> 
+	 <!-- <div class="row">
+	<div class="col-lg-12">
+	<div class="col-lg-12"><div class="col-lg-12">
+	<h:outputText id="setStgMsg" style="font-size:14px;color:#{dashboardBean.setStageMsgcolor}" value="#{dashboardBean.setStageMsg}"/>
+	</div>
+	</div></div>
+	</div>  -->
+   
+ <h:panelGroup id="visable4publicNadminID1"><h:panelGroup id="visable4publicNadminID" rendered="#{dashboardBean.visable4publicNadmin}">
+ <div class="row">
+ 
+ <div>
+
+	<div class="col-lg-12" >
+	
+	<!-- style="display:#{dashboardBean.visable4publicNadmin}" -->
+	<div class="col-lg-5">
+	<span class="subtitlestyle1" > All Status Code(s) </span>
+	<h:selectManyListbox id="statusCodes" value="#{dashboardBean.selectedStatusCodes}" size="5" style="width: 100%;background: white;">
+		<f:selectItems value="#{dashboardBean.statusCodesAL}"/>
+		<p:ajax 
+        event="dblclick" 
+        listener="#{dashboardBean.moveForwardBackward('statusCodes','forward')}"
+        update="statusCodes selSourcecodes rejbut handleTitle rejectedpopup butrej butpass passbut passpopup"/>
+   </h:selectManyListbox>
+	</div>
+	
+	<div class="col-lg-2" style="margin-top: 50px;text-align: center;">
+
+		
+		<h:commandButton id="mveforward"  title="Move Forward" image="/BootstrapResource/dist/hierarchy/wrk_rightside.png" value=">>" actionListener="#{dashboardBean.moveForwardBackward('statusCodes','forward')}" >
+				<f:ajax execute="@this statusCodes rejbut rejectedpopup passbut passpopup" render="statusCodes selSourcecodes rejbut handleTitle rejectedpopup butrej butpass passbut passpopup"/>
+		</h:commandButton>
+									
+									<br></br>														
+																					
+	<h:commandButton title="Move Backward" id="mvebackward" image="/BootstrapResource/dist/hierarchy/wrk_leftside.png" value="backward" actionListener="#{dashboardBean.moveForwardBackward('statusCodes','backward')}">
+	<f:ajax execute="@this selSourcecodes rejbut rejectedpopup passbut passpopup" render="selSourcecodes statusCodes rejbut rejectedpopup handleTitle butrej butpass passbut passpopup"/>
+	</h:commandButton>
+	
+   
+	
+	</div>
+	<div class="col-lg-5">
+	
+	
+	<div>
+	<span class="subtitlestyle1">Selected Status Code(s) <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="The selected codes are available to the members to choose from while processing the document(s).">
+        </img></span>
+	
+     <h:selectManyListbox id="selSourcecodes" value="#{dashboardBean.frwdStatusCodes}" size="5" style="width: 92%;background: white;">
+			<f:selectItems value="#{dashboardBean.viewstagestatusAL}"/>
+			<p:ajax 
+        event="dblclick" 
+        listener="#{dashboardBean.moveForwardBackward('statusCodes','backward')}"
+        update="statusCodes selSourcecodes rejbut handleTitle rejectedpopup butrej butpass passbut passpopup"/>
+	 </h:selectManyListbox>
+	
+	
+				<div style="float:right;margin-top: 30px;" >
+		<h:commandButton title="Move UP"  id="mveup"  image="/BootstrapResource/dist/hierarchy/wrk_upside.png" value="backward"  actionListener="#{dashboardBean.UpDownStatusCode('up')}">
+										<f:ajax render="selSourcecodes setStageMsg closeStagePopup handleTitle" execute="selSourcecodes handleTitle"></f:ajax>
+		</h:commandButton>
+	<br></br>
+		<h:commandButton title="Move Down" id="mvedown"  image="/BootstrapResource/dist/hierarchy/wrk_downside.png" value="backward" actionListener="#{dashboardBean.UpDownStatusCode('down')}">
+										<f:ajax render="selSourcecodes setStageMsg closeStagePopup handleTitle" execute="selSourcecodes handleTitle"></f:ajax>
+		</h:commandButton>
+																	
+				</div>												
+	</div>			
+	<h:outputText id="setStageMsg"  style="color:#{dashboardBean.message4SetStageColor}" value="#{dashboardBean.message4SetStage}"></h:outputText> 															
+    </div>
+    		
+	</div>
+	
+	</div>																			
+			
+					
+	</div>
+	</h:panelGroup>
+	</h:panelGroup>
+	
+	
+	
+	<p></p>
+	
+	<div class="row">
+	<div class="col-lg-12" >
+	
+	<div class="col-lg-5">
+	<span class="subtitlestyle1">All Members(s)</span>
+	<h:commandButton id="newUserBTN" value="Create User" title="Create User" onclick="$('#newUserPopup').modal('show');loadmsg();" action="#{dashboardBean.opennewuserPop}" style="background: #fff;border: 1px solid lightgray;padding: 5px 10px;font-size: 12px;margin-left: 16px;">								
+		 <f:ajax execute="@this " render="@this :form:members :form:createNewuserMsg :form:crateuserTablepanelGroup :form:crateuserTable"/>  
+		 </h:commandButton>
+	<div style="margin-top:1%;">
+	<h:inputText style="color:gray ! important;width:209px !important;font-size:15px; height:25px; background:white;border:1px solid lightgray;"  value="#{dashboardBean.filterVal}" id="nameID"  >
+	<a4j:ajax render="@this :form:members" event="keyup" execute="@this :form:members" listener="#{dashboardBean.filter()}" ></a4j:ajax>
+	</h:inputText>
+	
+	<h:commandButton image="/BootstrapResource/dist/hierarchy/ascending.png"  id="asort"  title="Ascending" actionListener="#{dashboardBean.assort}" style="margin-left: 10px;margin-bottom: -5px;"><f:ajax execute="@this desort" render="members"/></h:commandButton>
+	<h:commandButton image="/BootstrapResource/dist/hierarchy/descending.png"  id="desort" title="Descending" actionListener="#{dashboardBean.desort}" style="margin-left: 10px;margin-bottom: -5px;"><f:ajax execute="@this asort" render="members"/></h:commandButton>
+	
+	</div>
+	<p></p>
+		<h:selectManyListbox id="members" value="#{dashboardBean.selectedMembers}" size="5" style="width: 100%;background: white;margin-top: -5px;">
+			<f:selectItems value="#{dashboardBean.membersNameAL}"/>
+			<p:ajax 
+        event="dblclick" 
+        listener="#{dashboardBean.moveForwardBackward('members','forward')}"
+        update="members selMembers" />
+		</h:selectManyListbox>
+	</div>
+	<div class="col-lg-2" style="margin-top: 70px;text-align: center;">
+			
+		<h:commandButton id="memMveforward" title="Move Forward" image="/BootstrapResource/dist/hierarchy/wrk_rightside.png" value=">>" actionListener="#{dashboardBean.moveForwardBackward('members','forward')}">
+		<f:ajax execute="@this members" render="members selMembers"/>
+		</h:commandButton>
+																		<br></br>					
+																					
+	<h:commandButton title="Move Backward"  id="memMvebackward" image="/BootstrapResource/dist/hierarchy/wrk_leftside.png" value="backward" actionListener="#{dashboardBean.moveForwardBackward('members','backward')}">
+			<f:ajax execute="@this selMembers" render="selMembers members"/>
+	</h:commandButton>
+	</div>
+	
+	
+	<div class="col-lg-5">
+	<span class="subtitlestyle1"> Selected Member(s) <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="The selected users will become members in this stage.">
+        </img></span>
+      <div style="margin-top:1%;">
+	<h:inputText style="color:gray ! important;width:190px !important;font-size:15px; height:25px; background:white;border:1px solid lightgray;"  value="#{dashboardBean.filterVal1}" id="nameID1"  >
+	<a4j:ajax render="@this :form:selMembers" event="keyup" execute="@this :form:selMembers" listener="#{dashboardBean.filter1()}" ></a4j:ajax>
+	</h:inputText>
+	
+	<h:commandButton image="/BootstrapResource/dist/hierarchy/ascending.png"  id="asort1"  title="Ascending" actionListener="#{dashboardBean.assort1}" style="margin-left: 10px;margin-bottom: -5px;"><f:ajax execute="@this desort1" render="selMembers"/></h:commandButton>
+	<h:commandButton image="/BootstrapResource/dist/hierarchy/descending.png"  id="desort1" title="Descending" actionListener="#{dashboardBean.desort1}"  style="margin-left: 10px;margin-bottom: -5px;"><f:ajax execute="@this asort1" render="selMembers"/></h:commandButton>
+	
+	</div>
+		<h:selectManyListbox id="selMembers" value="#{dashboardBean.frwdMembers}" size="5" style="width: 92%;background: white;margin-top: 5px;">
+			<f:selectItems value="#{dashboardBean.viewMenberNameAL}"/>
+		<p:ajax 
+        event="dblclick" 
+        listener="#{dashboardBean.moveForwardBackward('members','backward')}" execute="@this selMembers"
+        update="selMembers members" />
+		</h:selectManyListbox>
+	
+	<div style="float:right;margin-top: 30px;" >
+		<h:commandButton title="Move UP" id="MemberSelmveup"  image="/BootstrapResource/dist/hierarchy/wrk_upside.png" value="backward"  actionListener="#{dashboardBean.UpDownMembersCode('up')}">
+										<f:ajax render="selMembers setStageMemberSelMsg handleTitle closeStagePopup" execute="selMembers"></f:ajax>
+		</h:commandButton>
+	<br></br>
+		<h:commandButton title="Move Down" id="memberSelmvedown" image="/BootstrapResource/dist/hierarchy/wrk_downside.png" value="backward" actionListener="#{dashboardBean.UpDownMembersCode('down')}">
+										<f:ajax render="selMembers setStageMemberSelMsg handleTitle closeStagePopup" execute="selMembers"></f:ajax>
+		</h:commandButton>
+																	
+				</div>
+		<h:outputText id="setStageMemberSelMsg" style="color:#{dashboardBean.message4MemberSetColor}" value="#{dashboardBean.message4MemberSetStage}"></h:outputText> 	
+	
+	
+	
+	</div>
+	
+	
+	
+	</div>
+	
+	
+	</div>
+	<p></p>
+	 	
+	<div class="row">
+	<div class="col-lg-12" >
+	<div class="col-lg-5" >
+		<span class="subtitlestyle1"> Document Flow <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="Specify how the documents should be distributed to this stage.">
+        </img></span>
+        <h:selectOneRadio  styleClass="myradio"  layout="lineDirection" id="properties" value="#{dashboardBean.viewstagePropertiesValue}" >
+							<f:selectItem itemValue="Serial" itemLabel="Serial" style="font-size: 16px ! important;font-weight: normal ! important;" />
+						
+							<f:selectItem itemValue="Parallel" itemLabel="Parallel" style="font-size: 16px ! important;font-weight: normal ! important;" />
+							<f:ajax render="@this :form:minapp minapprov minappin" execute="@this"></f:ajax>	
+		</h:selectOneRadio>
+		
+							<h:panelGroup id="minapprov">
+						<h:selectOneRadio  styleClass="myradio"  layout="lineDirection" id="parallType"  value="#{dashboardBean.parallelType}" rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}" >
+							<f:selectItem itemValue="Members"  itemLabel="Members" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+							<f:selectItem itemValue="Percent" itemLabel="Percent" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+						<f:ajax render="@this :form:minapp :form:minapp1 minapprov minappin" execute="@this" listener="#{dashboardBean.chgeType}">  </f:ajax>	
+							</h:selectOneRadio>
+							
+   <h:outputText id= "minapp" value="#{dashboardBean.minlablVAL}" rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}" style="margin-left: 12px;">  </h:outputText>
+    <h:inputText style="width:20px" id= "minappin" rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}" value="#{dashboardBean.vstageMinApprVal}"></h:inputText>
+     <h:panelGroup rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}">
+     <h:outputText id= "minapp1" value="%" rendered="#{dashboardBean.minlablVALpercent}" >  </h:outputText>
+<!--    <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="Min.Approvers will tell how many members are allowed to approve the document."> 
+        </img>-->
+		</h:panelGroup>				
+ 
+    </h:panelGroup>
+        
+	</div>
+	<div class="col-lg-2">
+	
+	</div>
+		<div class="col-lg-5" >
+	<span class="subtitlestyle1"> Escalate To </span>
+	<h:selectOneMenu id="selMembersRole" value="#{dashboardBean.selectedMember}" style="width:230px;background:#fff;border:1px solid lightgray;margin-top: 5px;">
+       			<f:selectItem itemValue="#{null}" itemLabel="-- select Members --"/>
+        		<f:selectItems value="#{dashboardBean.membersNameAL}"/>
+        	
+    			</h:selectOneMenu>
+	<div class="" style="margin-top: 5px;margin-bottom: -5px;">	
+			<!-- display:#{dashboardBean.showhandleTitleBox}  -->
+			<h:outputText id="handleTitle" style="font-size: 17px;;color:#116a93;" value="Advanced"></h:outputText>
+				  </div>
+				  <div class="" >	
+	   <h:panelGroup  id="createRulePanel">
+							
+							<span style="font-size: 15px ! important;">Create Rules</span>
+							<h:commandButton title="Create Rules" style="margin-left: 50px;margin-bottom: -10px;" id="createRuleBtn" value="Create Rules" onclick="$('#createRulePopup').modal('show');" image="/BootstrapResource/dist/hierarchy/handle.png" action="#{dashboardBean.createDynamicColumn4Rules()}">
+		  <a4j:ajax render=":form:ruleTableCreate :form:setStgMsg" execute="@this" oncomplete="hidemsg()" ></a4j:ajax>
+	   
+	   </h:commandButton>
+	
+	   </h:panelGroup>
+	   </div>
+				  <div class="" >	
+							<h:panelGroup id="butrej"><h:panelGroup  id="rejbut" rendered="#{dashboardBean.showRejectedButton}">
+							
+							<span style="font-size: 15px ! important;">Rejection Handling</span>
+							<h:commandButton title="Rejected Return To" style="margin-left: 10px;margin-bottom: -10px;" id="rejectedpopup" value="close" onclick="$('#RejectedPopup').modal('show');" image="/BootstrapResource/dist/hierarchy/handle.png" action="#{dashboardBean.getRejectedReturnFromHierXml('Rejection')}" rendered="#{dashboardBean.showRejectedButton}" >
+		  <a4j:ajax render="@this :form:returnto :form:setStatus :form:Notification :form:stageStatus :form:goToStage :form:returnRejMsg" execute="@this :form:returnRejMsg" oncomplete="hidemsg()" ></a4j:ajax>
+	   
+	   </h:commandButton>
+	
+	   </h:panelGroup></h:panelGroup>
+	   </div>
+	   <DIV style="height: 2px;"></DIV>
+	   <div class="" >	
+	   <h:panelGroup id="butpass"><h:panelGroup  id="passbut" rendered="#{dashboardBean.showPassButton}">
+							
+							<span style="font-size: 15px ! important;">Pause Handling</span>
+							<h:commandButton title="Pause Return To" style="margin-left: 32px;margin-bottom: -10px;" id="passpopup" value="close" onclick="$('#PassPopup').modal('show');loadmsg();" image="/BootstrapResource/dist/hierarchy/handle.png" action="#{dashboardBean.getRejectedReturnFromHierXml('Pause')}" rendered="#{dashboardBean.showPassButton}" >
+		  <a4j:ajax render=":form:NotificationPass :form:returnpassMsg" execute=":form:returnpassMsg" oncomplete="hidemsg()" ></a4j:ajax>
+	   
+	   </h:commandButton>
+	
+	   </h:panelGroup></h:panelGroup>
+	   </div>
+	</div>
+	<div class="col-lg-12" >
+<div class="col-lg-5" style="margin-left: -15px;">
+	
+		
+	
+		
+			</div>	
+			<div class="col-lg-2">
+	
+	</div>
+			<div class="col-lg-5" >
+	
+    			</div>
+    			<div style="display:#{dashboardBean.render4publicNadmin};">
+	<div class="col-lg-5" >
+	</div>
+	
+	<!-- <div class="col-lg-6" >
+		<span class="subtitlestyle1"> Properties <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="This property will allow workflow how to travels the user in the stage.if you choose serial workflow follow the Selected Member(s) order.
+		if you choose parallel any user can login workflow without following Selected Member(s) order.">
+        </img></span>
+		
+	
+		<h:selectOneRadio  styleClass="myradio"  layout="lineDirection" id="properties" value="#{dashboardBean.viewstagePropertiesValue}" >
+							<f:selectItem itemValue="Serial" itemLabel="Serial" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+							<f:selectItem itemValue="Parallel" itemLabel="Parallel" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+						<f:ajax render="@this minapp minapprov minappin" execute="@this"></f:ajax>	
+							</h:selectOneRadio>
+							<h:panelGroup id="minapprov">
+						<h:selectOneRadio  styleClass="myradio"  layout="lineDirection" id="parallType" value="#{dashboardBean.parallelType}" rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}" >
+							<f:selectItem itemValue="Members" itemLabel="Members" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+							<f:selectItem itemValue="Percent" itemLabel="Percent" style="font-size: 16px ! important;font-weight: normal ! important;" /> 
+							</h:selectOneRadio>
+							
+   <h:outputText id= "minapp" value="Min.Approvers : " rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}"> </h:outputText>
+    <h:inputText style="width:20px" id= "minappin" rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}" value="#{dashboardBean.vstageMinApprVal}"></h:inputText>
+     <h:panelGroup rendered="#{dashboardBean.viewstagePropertiesValue == 'Parallel'}">
+   <img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="Min.Approvers will tell how many members are allowed to approve the document.">
+        </img>
+		</h:panelGroup>				
+ 
+    </h:panelGroup>
+			</div>	 -->	
+			<div class="col-lg-2" >
+	
+	</div>
+			<div class="col-lg-5" style="margin-left: 20px;">	
+			
+			
+	   </div>
+	
+	
+	</div>
+	
+	
+	</div>
+	
+	
+	</div>
+
+	</div>
+	
+	
+	
+	<p></p>
+	
+	 <div class="row">
+<div class="col-lg-12">
+	<div class="col-lg-12" style="margin-left: 2px;">
+	<span class="subtitlestyle1"> Other Properties </span>
+	<br></br>
+	<h:selectBooleanCheckbox id="externalUser" value="#{dashboardBean.externalUserFlag}" onclick="externalcheck();" >
+	
+	</h:selectBooleanCheckbox><h:outputText value="External Stage" style="font-size:17px;margin-left:10px;"/>
+	<br></br>
+	<div class="col-lg-12" style="margin-left: 18px;">
+	<span>If checked, members in this stage will have limited access-they can view granted documents, upload documents. They cannot login to get a complete view of the workflow. Auto Login feature will be enabled by default.</span>
+	</div>
+	<br></br>
+	<h:selectBooleanCheckbox id="autologinID" value="#{dashboardBean.autologinbool}" ></h:selectBooleanCheckbox><h:outputText value="Auto Login" style="font-size:17px;margin-left:10px;"/>  	
+	<br></br>
+	<div class="col-lg-12" style="margin-left: 18px;">
+	<span>Members will be able to view granted documents, upload documents with out requiring a login ID and password.</span>
+	</div>
+    <br></br>
+	<h:selectBooleanCheckbox id="allowuploadID" value="#{dashboardBean.allowuploadbool}" ></h:selectBooleanCheckbox><h:outputText value="Allow Document Uploads" style="font-size:17px;margin-left:10px;"/>  	
+	<br></br>
+	
+	<h:selectBooleanCheckbox id="primaryDocOnly" value="#{dashboardBean.sendPrimaryFileOnlyFlag}" ></h:selectBooleanCheckbox><h:outputText value="Send Primary Document only" style="font-size:17px;margin-left:10px;"/>
+	<br></br>
+	<div class="col-lg-12" style="margin-left: 18px;">
+	<span>Members in the stage will be able to view the primary document only.</span>
+	</div>
+	<br></br>
+	
+	<h:selectBooleanCheckbox id="individualDoc" value="#{dashboardBean.statusCode4DocsFlag}" ></h:selectBooleanCheckbox><h:outputText value="Set Status Code for Documents" style="font-size:17px;margin-left:10px;"/>
+   <br></br>
+   <div class="col-lg-12" style="margin-left: 18px;">
+    <span>If checked,the members can reject/approve individual documents. Only the member who uploaded the document will be notified.</span>
+   </div>
+   <h:selectBooleanCheckbox id="changeprimarydocOnly" value="#{dashboardBean.changeprimarydocFlag}" ></h:selectBooleanCheckbox><h:outputText value="Change Primary Document" style="font-size:17px;margin-left:10px;"/>
+   <br></br>
+   <div class="col-lg-12" style="margin-left: 18px;">
+    <span>If checked,the members can change the primary document and re-upload the primary document.</span>
+   </div>
+   <br></br>
+   <h:selectBooleanCheckbox id="enableEsign" value="#{dashboardBean.enableEsign}" >
+   <a4j:ajax execute="@this" render=":form:oneDriveHTxt :form:authText :form:oneDriveMailId" oncomplete="openAuthDetails('#{dashboardBean.enableEsign}')" listener="#{dashboardBean.setOneDriveDetails()}"/>
+   </h:selectBooleanCheckbox><h:outputText value="Enable E-Sign" style="font-size:17px;margin-left:10px;"/>  	
+	<div class="col-lg-12" style="margin-left: 18px;">
+    <span></span>
+   </div>
+	<br></br>
+	<h:selectBooleanCheckbox id="allowEditUD" value="#{dashboardBean.allowEditUD}" ></h:selectBooleanCheckbox><h:outputText value="Allow Ultra Documents Edit" style="font-size:17px;margin-left:10px;"/>
+   <br></br>
+   <div class="col-lg-12" style="margin-left: 18px;">
+    <span>Allow Ultra Documents Edit</span>
+   </div>
+   <br></br>
+    </div>		
+    
+	</div>
+	
+	</div>
+	
+		<br></br>
+	
+	
+
+	</div>
+	</div>
+	
+	
+	
+	
+	
+       </div>
+		</div>
+	
+	
+	
+	
+	<!--  Create User Popup START -->
+	
+	
+	
+	
+	
+	
+	
+<div class="modal fade" id="newUserPopup" role="dialog" data-backdrop="false">
+    <div class="modal-dialog modal-sm" style="border: 1px solid lightgray;width: 710px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+
+	</div>
+	
+	 <h4 id="userTitle" class="modal-title" >Create Users</h4>
+	</div>
+	
+   <div class="modal-body" style="padding-top: 5px !important;">
+     <div class="row">
+	<div class="col-lg-12">
+	<h5 style="color: #1F6AAF">Create users for the Workflow.</h5>
+	</div>
+	</div>
+    <div class="row">
+	<div class="col-lg-12">	
+    <span class=""> Users Table </span>
+    	<h:commandButton id="useraddBTN" title="Add" value="Add" action="#{dashboardBean.addtablemethod()}" styleClass="buttonaddclass" style="float:right;margin-bottom: 5px;margin-top: -10px;padding: 6px 12px;background: white;border: 1px solid lightgray;">
+				<a4j:ajax render="@this :form:createNewuserMsg :form:crateuserTablepanelGroup :form:crateuserTable" execute="@this :form:crateuserTablepanelGroup :form:crateuserTable" oncomplete="hidemsg();"></a4j:ajax>
+				</h:commandButton>
+    
+    
+    			</div>
+	</div>
+	  <div class="row">
+	<div class="col-lg-12">
+					 	 
+					 	 <div style="border:1px solid lightblue;width:678px;height:230px;overflow-x:hidden;overflow-y:auto; ">
+					 	 <h:panelGroup id="crateuserTablepanelGroup">
+					 	 <o:dataTable id="crateuserTable" value="#{dashboardBean.crateuserDetailsAL}" styleClass="table" var="crateuserTableobject"
+									 rowIndexVar="userrowI"	headerVertSeparator="1px solid #a0a0a0" style="width: 675px !important;border: 1px solid lightgray;">
+
+											<o:multipleRowSelection style="background: rgb(122, 180, 207) none repeat scroll 0% 0%; color: #fff;">
+											
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+									
+											
+											<o:column  sortable="true" >
+												<f:facet name="header">E Mail ID</f:facet>
+										<center>	<h:inputText id="emailTextbox" value="#{crateuserTableobject.emailID}"  style="font-size:13px;width:100%;background:white;border:1px sold lightgray;height:30px;" >
+    											<a4j:ajax render="@this " execute="@this" ></a4j:ajax>
+											   </h:inputText>
+								
+											   
+											   
+									
+												</center>
+											</o:column>
+											<o:column sortable="true" >
+												<f:facet name="header">Name</f:facet>
+
+											<center>	
+												<h:inputText id="nameTextbox" value="#{crateuserTableobject.username}"  style="font-size:13px;width:100%;background:white;border:1px sold lightgray;height:30px;" >
+    											<a4j:ajax render="@this " execute="@this" ></a4j:ajax>
+											   </h:inputText>
+												
+												</center>
+														
+												
+											</o:column>
+										
+
+										<o:column style="width:5%;" >
+												<f:facet name="header"></f:facet>
+													<center> 	 <h:commandButton id="crateuserdelteTN" title="Delete" image="/BootstrapResource/dist/hierarchy/list_delte.png"  action="#{dashboardBean.deletetableMethod(userrowI)}" >
+     												<a4j:ajax render="@this :form:createNewuserMsg :form:crateuserTablepanelGroup :form:crateuserTable" execute="@this " oncomplete="hidemsg();"></a4j:ajax>
+ 															</h:commandButton>
+											</center>
+											</o:column>
+											
+									
+
+										</o:dataTable>
+										</h:panelGroup>
+										</div>
+					 	 </div>
+					 	 
+					 	 </div>
+					 	
+    			
+	
+	</div>
+	
+
+    <div class="row">
+	<div class="col-lg-12">	
+
+<div class="box-tools pull-right">
+	
+	
+	<h:commandButton id="okBTN" title="Save" action="#{dashboardBean.userSaveAction()}"  value="Save" style="padding: 7px 14px;background: white;border: 1px solid lightgray;margin-right: 10px;font-weight:bold;">							
+								 <f:ajax render="@this :form:members :form:createNewuserMsg :form:crateuserTablepanelGroup :form:crateuserTable" execute="@this :form:members :form:crateuserTable" oncomplete="hidemsg()"></f:ajax>
+	</h:commandButton> 
+
+<h:commandButton title="Close" id="CloseUserBTN" value="Close" onclick="$('#newUserPopup').modal('hide');" style="padding: 7px 14px;background: white;border: 1px solid lightgray;margin-right: 15px;font-weight:bold;"  >
+<a4j:ajax render="@this" execute="@this :form:members" oncomplete="hidemsg()" ></a4j:ajax>
+ </h:commandButton> 
+	 <p></p>
+	</div>
+	</div>
+	</div>
+		<div class="row">
+	<div class="col-lg-12">	
+<h:outputText id="createNewuserMsg" style="margin-left: 15px;color:#{dashboardBean.createNewusercolor}" value="#{dashboardBean.createNewuserMessage}"></h:outputText>
+</div>
+</div>
+		
+		
+	</div>
+	</div>
+	</div>
+	
+	
+	
+	
+	
+	<!-- END  -->
+		
+		
+		
+		
+<script>
+ 
+$("#setStagesPopup").draggable({
+handle: ".modal-content"
+});
+          
+</script>
+		
+<script>
+ 
+$("#newUserPopup").draggable({
+handle: ".modal-content"
+});
+          
+</script>
+	
+		</body></html>

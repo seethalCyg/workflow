@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/ui.xhtml">
+        
+       
+        
+    <ui:define name="head">
+    <h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+       
+        
+                <style type="text/css">
+                .ui-dashboard-column {
+                width:250px;
+                }
+        
+                </style>  
+                
+                <script type="text/javascript">
+                
+                function viewStagePopup(){
+                	alert('Enter');
+                	O$('form:viewStagePopup').show();
+                	return false;
+                }
+                
+                </script>    
+    </ui:define>
+    <ui:define name="content">
+    
+    <h:form id="form">
+   <table><tr><td> <fieldset>
+   <legend class="label2">Custom WorkFlow</legend>
+   
+		<p:growl id="msgs" showDetail="true"/> 
+		<table><tr><td width="1010px"></td><td>
+		
+		
+							<h:commandButton value="Default" title="Default" image="/resources/images/default.png" style="width:30px" actionListener="#{hierarchyBean.temdDirect('WFadminscreen.xhtml')}" action="#{dashboardBean.DashboardStage('Default','customScreen')}">
+						
+							
+							</h:commandButton>
+							</td><td><h:commandButton value="Custom" title="Custom" image="/resources/images/custom.png" style="width:30px" actionListener="#{hierarchyBean.temdDirect('customWFScreen.xhtml')}" action="#{dashboardBean.DashboardStage('Custom','customScreen')}">
+							
+							
+						
+							</h:commandButton>
+		
+		<h:selectOneRadio  layout="lineDirection" id="selectiontype" value="#{dashboardBean.selectionType}" rendered="false">
+							<f:selectItem itemValue="Default" itemLabel="Default" /> 
+							<f:selectItem itemValue="Custom" itemLabel="Custom"/>
+							
+							
+							</h:selectOneRadio></td></tr></table>
+							
+							<table><tr><td>
+   
+  <fieldset> 
+   
+    
+    <h:outputText id="cusstagenam" value="Stage Name : " styleClass="label2"></h:outputText> <h:inputText id="cusstgnme" value="#{dashboardBean.cusStageNameValue}">
+    
+   
+    </h:inputText> <h:commandButton id="cusokbuttn" value="Ok" actionListener="#{dashboardBean.addtoNode}">
+     <f:ajax execute="cusstgnme" render="cusstgnme cusstageboard"></f:ajax>
+      <f:ajax render="cusstageboard"></f:ajax>
+    </h:commandButton>
+   <br/>
+   
+   
+    </fieldset></td></tr></table>
+    
+    
+      
+    
+    <table><tr>
+    <td>
+    <p:growl id="growl11" showDetail="true" />
+    <fieldset>
+     <legend class="label2">New Stage</legend>
+    <p:dashboard id="cusstageboard" model="#{dashboardBean.stageModel}" style="width:250px;height:30px">
+        <p:ajax event="reorder" listener="#{dashboardBean.handleReorder}" update="growl11" />
+
+        <p:panel id="#{dashboardBean.cusStageNameValue}" header="#{dashboardBean.cusStageNameValue}" closable="false" toggleable="true" toggleSpeed="500" toggleTitle="Maximize" closeTitle="Close">
+   <f:facet name="options">  
+            <p:menu >
+                 <p:menuitem value="Remove" icon="ui-icon-close" onclick="if (!confirm('Are you sure you want to Delete the selected stage?')) return false" action="#{dashboardBean.deleteStage(_mass.panelName,_mass.stageNumber)}"/>
+                
+            </p:menu>  
+        </f:facet>
+   <fieldset>
+		<legend class="label2">View Stage</legend>
+   <h:commandButton value="view Stage Details" title="view Stage Details" onclick="O$('form:viewStagePopup').show();" image="/resources/images/a.png" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}"/>
+     
+    <h:commandButton value="view Stage Details" title="view Stage Details" onclick="O$('form:setStagesPopup').showCentered();" image="/resources/images/stage.png" style="width:20px" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}"/>
+    </fieldset>
+     
+   
+    
+       </p:panel>
+       
+       
+       </p:dashboard></fieldset></td><td> <h:panelGroup id="dashren1"> <fieldset>
+                      <legend class="label2">Stages</legend>
+   <p:dashboard id="stageboard1" model="#{dashboardBean.custommodel}" style="width:750px;height:200px">
+        <p:ajax event="reorder" listener="#{dashboardBean.handleReorder}" update="growl11" async="true"/>
+ 
+                                      <c:forEach items="#{dashboardBean.panelAL}" var="_mass">
+                                        <p:panel  id="#{_mass.panelName}" header="#{_mass.panelName}" closable="false" toggleable="true" toggleSpeed="500" toggleTitle="Maximize" closeTitle="Close">  
+   
+        
+  
+     <f:facet name="options">  
+            <p:menu >
+                 <p:menuitem value="Remove" icon="ui-icon-close" onclick="if (!confirm('Are you sure you want to Delete the selected stage?')) return false" action="#{dashboardBean.deleteStage(_mass.panelName,_mass.stageNumber)}"/>
+                
+            </p:menu>  
+        </f:facet>
+   <fieldset>
+		<legend class="label2">View Stage</legend>
+   <h:commandButton value="view Stage Details" title="view Stage Details" onclick="O$('form:viewStagePopup').show();" image="/resources/images/a.png" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}"/>
+     
+    <h:commandButton value="view Stage Details" title="view Stage Details" onclick="O$('form:setStagesPopup').showCentered();" image="/resources/images/stage.png" style="width:20px" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}"/>
+    </fieldset>
+   
+     
+   
+    
+       </p:panel>
+       
+       </c:forEach>
+       </p:dashboard></fieldset></h:panelGroup></td>
+     </tr>
+   
+    </table>
+    
+   <table><tr><td>
+    <p:growl id="growl1" showDetail="true" />  
+    
+        
+                     <table>   <tr></tr></table>
+   
+   
+   </td></tr></table>
+    <table><tr><td>
+             <h:commandButton value="ModifyChanges" image="/resources/images/modify.png" title="Save Changes" style="width:25px" actionListener="#{dashboardBean.modifyChanges('CustomScreen')}"/>
+              
+                
+</td><td> &nbsp; <h:commandButton  title="Close" value="close" actionListener="#{hierarchyBean.temdDirect('Hierarchytree.xhtml')}" image="/resources/images/close.png"></h:commandButton></td></tr></table>
+    </fieldset> </td></tr></table>
+     <table><tr><td valign="bottom"><ui:include src="/ViewStagePopup.xhtml"/>
+      
+     
+      </td><td valign="bottom"><ui:include src="/setStagesPopup.xhtml"/>
+      
+     
+      </td></tr></table>  
+		</h:form>
+    
+    
+    </ui:define>
+    
+    
+    
+    
+    </ui:composition>

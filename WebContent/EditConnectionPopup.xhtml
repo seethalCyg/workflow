@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<o:popupLayer id="EditConnectionPopup"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 2px solid orange; height:240px; width:410px;" left="200" top="200">
+		
+		<fieldset style="height:220px; width:390px;">
+		<table><tr><td><fieldset style="width: 350px; height:190px;"><legend class="label2">Edit Connection</legend>
+		<table><tr><td><h:outputText value="Connection Name"></h:outputText></td><td>:</td>
+		<td><h:inputText id="EditconNameText" value="#{hierarchyDBBean.connectionName4Edit}" disabled="true"></h:inputText></td></tr>
+		<tr><td><h:outputText value="Host Name"></h:outputText></td><td>:</td>
+		<td><h:inputText id="EdithostNameText" value="#{hierarchyDBBean.hostName4Edit}"></h:inputText></td></tr>
+		<tr><td><h:outputText value="Port"></h:outputText></td><td>:</td>
+		<td><h:inputText id="EditportText" value="#{hierarchyDBBean.portName4Edit}"></h:inputText></td></tr>
+		<tr><td><h:outputText value="DB Name"></h:outputText></td><td>:</td>
+		<td><h:inputText id="EditdbText" value="#{hierarchyDBBean.dBName4Edit}"></h:inputText></td></tr>
+		<tr><td><h:outputText value="User Name"></h:outputText></td><td>:</td>
+		<td><h:inputText id="EdituserNameText" value="#{hierarchyDBBean.conUserName4Edit}"></h:inputText></td></tr>
+		<tr><td><h:outputText value="Password"></h:outputText></td><td>:</td>
+		<td><h:inputSecret id="EditpasswordText" value="#{hierarchyDBBean.conPassword4Edit}" redisplay="true"></h:inputSecret></td></tr>
+		<tr><td colspan="3"><h:commandButton title="Test Connection" image="/resources/images/testConnection.png" style="Width:25px" actionListener="#{hierarchyDBBean.testDBConnection('testFromEditConnection')}" value="Save">
+		<f:ajax render="Editconmsg" execute="EdithostNameText EditportText EditdbText EdituserNameText EditpasswordText"></f:ajax>
+		</h:commandButton> &nbsp; <h:commandButton title="Update" image="/resources/images/save.png" action="#{hierarchyDBBean.SaveEditedConnections}" value="Save">
+		<f:ajax render="Editconmsg" execute="EditconNameText EdithostNameText EditportText EditdbText EdituserNameText EditpasswordText"></f:ajax>
+		</h:commandButton> &nbsp; <h:commandButton title="Close" value="close" image="/resources/images/close.png" onclick="O$('factConfig:EditConnectionPopup').hide();" action="#{hierarchyDBBean.connectionClose}"></h:commandButton>&nbsp;&nbsp;
+		<h:outputText id="Editconmsg" title="#{hierarchyDBBean.connMsg1}" style="color:#{hierarchyDBBean.color4SrcFactMsg};font-size:13px" value="#{hierarchyDBBean.connMsg}"/></td></tr></table></fieldset></td></tr></table></fieldset>
+	</o:popupLayer>
+</h:body>
+</html>

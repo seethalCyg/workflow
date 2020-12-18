@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Default_Workflow>
+	<Workflow Hierarchy_ID="" Workflow_Level="Default" Total_No_Stages="3" Current_Stage_No="1" Current_Stage_Name="Create">
+	<Stage Stage_Name="Admin" Stage_No="0" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+		<Stage Stage_Name="public" Stage_No="-1" Stage_Status="YTS">
+			<Employee_Names/>
+		</Stage>
+
+		<Stage Stage_Name="Create" Stage_No="1" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">YTS</Status_Code>
+				<Status_Code level="2">WIP</Status_Code>
+				<Status_Code level="Final">Completed</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Review" Stage_No="2" Stage_Status="YTS">
+			<Status_Codes>
+				<Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+		<Stage Stage_Name="Approve" Stage_No="3" Stage_Status="YTS">
+			<Status_Codes>
+			    <Status_Code level="1">WIP</Status_Code>
+				<Status_Code level="2">Rejected</Status_Code>
+				<Status_Code level="Final">Approved</Status_Code>
+			</Status_Codes>
+			<Employee_Names/>
+			<Properties Concurrency="Serial"/>
+		</Stage>
+	</Workflow>
+
+</Default_Workflow>

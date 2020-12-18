@@ -1,0 +1,828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+<script type="text/javascript">
+function validationMsg4Delete(connectionName){
+
+if(connectionName != '-- select Value --'){
+if(connectionName != 'Data_Connection'){
+if(connectionName != 'DW_Connection'){
+if (!confirm('Are you sure you want to Delete the selected connection?')) return false
+}
+}
+
+}}
+</script>
+<script>
+function showAlert(valid)
+		{	
+		
+		if(valid)
+		{
+		
+		O$('factConfig:confirmPopup4GenData').show();
+	
+		}	
+			return false;
+		}
+function generateFactPopup1(value,val)
+  {  
+  
+  if(value=='false'){
+  O$('factConfig:confirmPopup4GenData').show();
+ return false;
+  }else if (value=='fact') {
+	
+}
+ 
+  }
+  function generateFactPopup2(val){
+  alert(val);
+  return false;
+  }
+  
+		</script>
+
+</h:head>
+<h:body>
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<h:form id="factConfig">
+
+		<table>
+		<tr><td> <ui:include src="/Admin_Header.xhtml"/></td></tr>
+		<tr><td>
+
+		<fieldset>
+		<legend class="label2">Configure Fact(s)</legend>
+			<table><tr><td style="width:5px"></td><td>
+		</td></tr>
+	
+	<tr>	
+		
+		<td colspan="4">
+		<table><tr><td>
+		</td></tr>
+		<tr><td>
+		<fieldset><legend class="label2">Choose DB Connection, Source Transaction Table and Target Facts</legend>
+		<table><tr><td>
+		<table><tr><td>
+		<h:panelGroup id="connpanel">
+		<h:selectOneMenu id="chooseCon" value="#{hierarchyDBBean.connectionName}" style="width:150px">
+       			<f:selectItem itemValue="-- select Value --" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{hierarchyDBBean.connectionNameTM}"/>
+        	<f:ajax execute="@this connpanel delete" render="@this chooseCon delete"></f:ajax>
+    			</h:selectOneMenu> </h:panelGroup></td><td><h:commandButton style="width:20px" title="Test Connection" image="/resources/images/testConnection.png" value="TestConnection" actionListener="#{hierarchyDBBean.testDBConnection('testSourceConnection')}">
+		<f:ajax render="testConMsg tarTestConMsg" execute="chooseCon"></f:ajax>
+		</h:commandButton></td><td> <h:commandButton title="Edit Connection" image="/resources/images/edit.jpg" value="add" onclick="O$('factConfig:EditConnectionPopup').show();" actionListener="#{hierarchyDBBean.getConnectionDetails4Edit('FromSourceFactConnection')}">
+		
+		</h:commandButton></td><td><h:commandButton id="delete" style="width:20px" title="Delete Connection" image="/resources/images/delete.png" value="TestConnection" actionListener="#{hierarchyDBBean.deleteConnectionFromConfigXml('FromSourceFactDelete')}" onclick="return validationMsg4Delete('#{hierarchyDBBean.connectionName}');">
+		<f:ajax render="testConMsg tarTestConMsg chooseCon chooseTarCon" execute="chooseCon"></f:ajax>
+		</h:commandButton></td><td><h:outputText title="#{hierarchyDBBean.testConMsg1}" id="testConMsg" value="#{hierarchyDBBean.testConMsg}" style="color:#{hierarchyDBBean.color4SrcFactMsg};font-size:13px"></h:outputText> </td></tr></table></td><td></td><td>
+		<table><tr><td>
+		<h:selectOneMenu id="chooseTarCon" value="#{hierarchyDBBean.tarConnectionName}" style="width:150px">
+       			<f:selectItem itemValue="-- select Value --" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{hierarchyDBBean.connectionNameTM}"/>
+        	<f:ajax execute="@this tardelete" render="@this tardelete"></f:ajax>
+    			</h:selectOneMenu></td><td><h:commandButton style="width:20px" title="Test Connection" image="/resources/images/testConnection.png" value="TestConnection" actionListener="#{hierarchyDBBean.testDBConnection('testTargetConnection')}">
+		<f:ajax render="tarTestConMsg testConMsg" execute="chooseTarCon"></f:ajax>
+		</h:commandButton></td><td> <h:commandButton title="Edit Connection" image="/resources/images/edit.jpg" value="add" onclick="O$('factConfig:EditConnectionPopup').show();" actionListener="#{hierarchyDBBean.getConnectionDetails4Edit('FromTargetFactConnection')}">
+		
+		</h:commandButton></td><td><h:commandButton id="tardelete" style="width:20px" title="Delete Connection" image="/resources/images/delete.png" value="TestConnection" actionListener="#{hierarchyDBBean.deleteConnectionFromConfigXml('FromTargetFactDelete')}" onclick="return validationMsg4Delete('#{hierarchyDBBean.tarConnectionName}');">
+		<f:ajax render="tarTestConMsg testConMsg chooseTarCon chooseCon" execute="chooseTarCon"></f:ajax>
+		</h:commandButton></td><td><h:outputText title="#{hierarchyDBBean.tartestConMsg1}" id="tarTestConMsg" value="#{hierarchyDBBean.tartestConMsg}" style="color:#{hierarchyDBBean.color4SrcFactMsg};font-size:13px"></h:outputText> </td></tr></table>
+    			</td><td>
+    			<h:commandButton title="Add Connection" image="/resources/images/addb.png" value="add" onclick="O$('factConfig:connectionPopup').show();">
+		</h:commandButton>&nbsp;&nbsp;</td></tr>
+		<tr><td colspan="5">
+		<o:dataTable id="srcandTarfacts" sortLevel="-1" sortAscending="false" sortColumnId="sessionId" 
+  value="#{hierarchyDBBean.srcandTarFactTablesAl}" var="measureOB1" pageSize="3" noDataMessageAllowed="false" 
+  commonHeaderRowClass="table-header" headerRowClass="table-header" style="width: 640px;" width="150px"
+  bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" bodyRowStyle="background-color:#FFFFF;"
+   bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+   expansionState="levelsExpanded:2">
+    <o:multipleRowSelection rowDatas="#{hierarchyDBBean.srcandTarFactTablesSelectedAl}" style="background: #a4aec5; color: #7E0000;" >
+  
+<o:ajax excute="meas configWH srcandTarfacts joindataColumn incr selIncrColumn incrColumn incrUpdate incr4Update hierDim" render="joindataColumn meas PeriodValues selPeriodValues configWH valmsg incr incrUpdate incr4Update selIncrColumn incrColumn msg4SrcTgtFact msg4JoinCloumnList msg4SrcWarJoin msg4WarHouseLoad msg4IncrementLoad msg4IncrementLoad2 msg4IncrementLoad1" listener="#{hierarchyDBBean.getColumnname4SourceFactTable('FactSourceTargetDataTable')}"></o:ajax>
+    </o:multipleRowSelection>
+     
+      <o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+    <o:selectionColumn style="width: 3%;" sortable="true" header="">
+      </o:selectionColumn>
+     <o:column style="width:101px;" >
+       <f:facet name="header">Source Facts
+       </f:facet>
+      <o:hintLabel value="#{measureOB1.srcFactTable}"></o:hintLabel>
+	  
+      </o:column>
+      <o:column style="width:102px;">
+       <f:facet name="header">Period Column
+       </f:facet>
+     <h:selectOneMenu id="perCol" value="#{measureOB1.periodCol4src}" style="width:150px">
+       			<f:selectItem itemValue="-- select Value --" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{measureOB1.periodCols4srcTM}"/>
+        	
+    			</h:selectOneMenu>
+
+      </o:column>
+      <o:column style="width:112px;">
+       <f:facet name="header">Target Facts
+       </f:facet>
+      <o:hintLabel value="#{measureOB1.tarFactTables}"></o:hintLabel>
+
+      </o:column>
+      <o:column style="width:12px;">
+      
+    <h:commandButton title="Delete" value="Delete" onclick="if (!confirm('Are you sure you want to Delete the selected record(s)?')) return false" action="#{hierarchyDBBean.moveForwardBackwardPV('tableName','backward')}" image="/resources/images/delete.png">
+    </h:commandButton>
+
+      </o:column>
+      <f:facet name="below">
+							<h:panelGroup id="joinpanelGroup">
+								<o:dataTablePaginator id="joinpaginator"/>
+							</h:panelGroup>
+						</f:facet>
+   </o:dataTable>
+		</td><td valign="top"><h:commandButton title="Add Source and Target Fact Table" id="add" image="/resources/images/addb.png" value="add" onclick="O$('factConfig:srcandTarSelectPopup').show();" actionListener="#{hierarchyDBBean.gettingTableName('factPopup')}">
+		</h:commandButton></td></tr>
+		<tr><td><h:outputText id="msg4SrcTgtFact" style="color:#{hierarchyDBBean.color4SrcFactMsg}" value="#{hierarchyDBBean.msg4SrcTgtFact}"></h:outputText> </td></tr>
+		</table></fieldset></td>  
+		
+		</tr>
+		<tr><td>
+		<fieldset><legend class="label2">#{hierarchyDBBean.joinClumnListLegend}</legend>
+		<table><tr>
+		<td>
+		
+		<a4j:outputPanel id="joinpanel">
+	
+	<table>
+	
+	<tr><td><h:panelGroup id="join">
+																					<o:dataTable id="joindataColumn" sortLevel="-1"
+																						sortAscending="false" sortColumnId="sessionId"
+																						value="#{hierarchyDBBean.selectedJoinColumnsAL}"
+																						var="joinOB" pageSize="3"
+																						noDataMessageAllowed="false"
+																						commonHeaderRowClass="table-header"
+																						headerRowClass="table-header"
+																						style="width: 640px; "
+																						bodyRowClass="table-even-row"
+																						bodyOddRowClass="table-odd-row"
+																						bodyRowStyle="background-color:#FFFFF;"
+																						bodyOddRowStyle="background-color:#ADDDFF;"
+																						headerVertSeparator="1px solid #a0a0a0"
+																						preloadedNodes="all"
+																						expansionState="levelsExpanded:2">
+																						<o:multipleRowSelection
+																							rowDatas="#{hierarchyDBBean.selectedJoinList}"
+																							style="background: #a4aec5; color: #7E0000;" />
+
+
+																						<o:columnResizing />
+
+																						<o:selectionColumn style="width: 3%;"
+																							sortable="true" header="">
+
+																						</o:selectionColumn>
+
+																						<o:column style="width:110px;" rendered="false">
+																							<f:facet name="header">Source <br /> Table Name
+       </f:facet>
+																							<o:hintLabel
+																								value="#{joinOB.joinSourceTableName}"
+																								hint="#{joinOB.joinSourceTableName}" />
+
+																						</o:column>
+
+																						<o:column style="width:100px;">
+																							<f:facet name="header">Source Column
+       </f:facet>
+
+																							<h:selectOneMenu id="segcolmn3"
+																								value="#{joinOB.joinSourceTable}"
+																								style="width:150px">
+																								<f:selectItem itemValue="#{null}"
+																									itemLabel="-- select Value --" />
+																								<f:selectItems value="#{joinOB.joinsrcColumnTM}" />
+
+																							</h:selectOneMenu>
+																						</o:column>
+
+
+																						<o:column width="150px"
+																							title="#{hierarchyDBBean.joinTargetTableName}">
+																							<f:facet name="header"> Target Column Name #{hierarchyDBBean.tarTableName4FactJoin}
+       </f:facet>
+																							<h:selectOneMenu id="segcolmn4"
+																								value="#{joinOB.selectedJoinTargetTable}"
+																								style="width:150px">
+																								<f:selectItem itemValue="#{null}"
+																									itemLabel="-- select Value --" />
+																								<f:selectItems value="#{joinOB.joinTargetTable}" />
+
+																							</h:selectOneMenu>
+
+
+																						</o:column>
+																						<o:column width="12px">
+
+																							<h:commandButton title="Delete" value="Delete"
+																								
+																								image="/resources/images/delete.png">
+																								 <o:ajax execute="@this :factConfig:joindataColumn" render="@this valmsg msg4JoinCloumnList :factConfig:joindataColumn" listener="#{hierarchyDBBean.deleteFactDataTableList('deleteJoinDataTableList')}"></o:ajax>
+																							</h:commandButton>
+																						</o:column>
+																						<f:facet name="below">
+																							<h:panelGroup id="joinpanelGroup">
+																								<o:dataTablePaginator id="joinpaginator" />
+																							</h:panelGroup>
+																						</f:facet>
+
+																					</o:dataTable>
+																				</h:panelGroup></td><td valign="top"><h:commandButton title="Add Joins" id="addJoinrow" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('AddJoinRow')}">
+		<f:ajax render="joindataColumn msg4JoinCloumnList" execute="joindataColumn @this"></f:ajax></h:commandButton></td></tr>
+      
+      <tr><td><h:outputText value="Choose Code Column for Hierarchy Dim : " rendered="#{hierarchyDBBean.renderedTargDim}"></h:outputText> <h:selectOneMenu id="hierDim"
+																								value="#{hierarchyDBBean.selectedColumn4HierDim}"
+																								style="width:150px" rendered="#{hierarchyDBBean.renderedTargDim}">
+																								<f:selectItem itemValue="#{null}"
+																									itemLabel="-- select Value --" />
+																								<f:selectItems value="#{hierarchyDBBean.column4HierDimTM}" />
+
+																							</h:selectOneMenu> </td></tr>
+      <tr><td><h:outputText id="msg4JoinCloumnList" style="color:#{hierarchyDBBean.color4SrcFactMsg}" value="#{hierarchyDBBean.msg4JoinColumnList}"></h:outputText></td></tr>
+      </table></a4j:outputPanel>
+		</td>
+		</tr></table></fieldset>
+		</td></tr>
+		<tr><td>
+		<fieldset><legend class="label2">Configure Source and Warehouse Joins</legend>
+		<table><tr> <td><h:panelGroup id="conf">
+																	<o:dataTable id="configWH" sortLevel="-1"
+																		sortAscending="true" sortColumnId="segmentNo"
+																		value="#{hierarchyDBBean.srcAndWHJoinsAL}"
+																		var="segmentobject" pageSize="3"
+																		noDataMessageAllowed="false"
+																		commonHeaderRowClass="table-header"
+																		headerRowClass="table-header"
+																		bodyRowClass="table-even-row"
+																		bodyOddRowClass="table-odd-row" style="width:950px"
+																		bodyRowStyle="background-color:#FFFFF;"
+																		bodyOddRowStyle="background-color:#ADDDFF;"
+																		headerVertSeparator="1px solid #a0a0a0"
+																		preloadedNodes="all" expansionState="levelsExpanded:2">
+																		<o:multipleRowSelection
+																			rowDatas="#{hierarchyDBBean.selectedsrcAndWHJoinsAL}"
+																			style="background: #a4aec5; color: #7E0000;">
+																			<f:ajax execute="@this" render="@this"></f:ajax>
+																		</o:multipleRowSelection>
+																		<o:selectionColumn style="width: 3%;" sortable="true"
+																			header="">
+
+																		</o:selectionColumn>
+																		<o:columnResizing />
+																		<o:columnGroup>
+																			<o:column style="width:162px;" rendered="true">
+																				<f:facet name="header">Table
+       </f:facet>
+
+																				<h:outputText
+																					title="#{segmentobject.sourceTableName}"
+																					id="srcTable"
+																					value="#{segmentobject.subSourceTableName}" />
+																				
+																				<h:commandButton id="confsel" title="Choose Table"
+																					value="c" style="width:20px"
+																					image="/resources/images/chooseTable.png"
+																					onclick="O$('factConfig:selectTablePopup').show()"
+																					action="#{hierarchyDBBean.selectedType4Table('source','')}">
+																					<a4j:ajax render="configWH tableNames tablemsg1 :factConfig:connection"
+																						execute="@this configWH :factConfig:connection" />
+																				</h:commandButton>
+																			</o:column>
+																			<o:column style="width:190px;">
+																				<f:facet name="header">Column
+       </f:facet>
+																				<center>
+																					<h:inputText id="srcCol"
+																						value="#{segmentobject.sourcecolumnName}"
+																						style="width:150px">
+																						
+																							
+																					</h:inputText>
+																					<h:commandButton id="clumnPopup" title="Choose Table"
+																						value="chooseColumns" style="width:20px;"
+																						image="/resources/images/chooseTable.png"
+																						onclick="O$('factConfig:SrcWarHusJoinClum').showCentered()"
+																						>
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this :factConfig:JoinColumnsList :factConfig:textarea4column" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('SrcWarHusJoin')}"></o:ajax>
+																					</h:commandButton>
+																				</center>
+																			</o:column>
+																			<o:column style="width:53px;">
+																				<f:facet name="header">Src Col<br/> Func
+       </f:facet>
+																				
+																					<h:commandButton id="clumnPopup1" title="#{segmentobject.additionalFunction4SrcWarColumn}"
+																						value="chooseColumns" style="width:20px;"
+																						image="/resources/images/#{segmentobject.srcImageName4Whar}"
+																						onclick="O$('factConfig:SrcWarHusJoinClum4Func').showCentered()"
+																						>
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this factConfig:textarea4columnFunc" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('SrcWarHusJoin4Func')}"></o:ajax>
+																					</h:commandButton>
+																				
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup>
+																			<o:column width="75px" rendered="true">
+																				<f:facet name="header">Operator
+       </f:facet>
+																				<center>
+																					<h:selectOneMenu id="ope"
+																						value="#{segmentobject.joinColumnOper}"
+																						style="width:60px">
+																						<f:selectItem itemValue="#{null}"
+																							itemLabel="-- select Value --" />
+																						<f:selectItems
+																							value="#{segmentobject.joinColumnOperTM}" />
+
+																					</h:selectOneMenu>
+																				</center>
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup>
+																			<o:column width="145px">
+																				<f:facet name="header">Table
+       </f:facet>
+																				<center>
+
+																					<h:inputText id="tarTableName"
+																						value="#{segmentobject.tarTableName}" />
+																					<h:commandButton id="confsel1" title="Choose Table"
+																						value="c" style="width:20px;"
+																						image="/resources/images/chooseTable.png"
+																						onclick="O$('factConfig:selectTablePopup').show()"
+																						action="#{hierarchyDBBean.selectedType4Table('target','')}">
+																						<a4j:ajax render="configWH tableNames tablemsg1 :factConfig:connection"
+																							execute="@this ope configWH :factConfig:connection" />
+																					</h:commandButton>
+																				</center>
+
+
+																			</o:column>
+																		</o:columnGroup>
+																		<o:columnGroup>
+																			<o:column width="155px">
+																				<f:facet name="header">Column
+       </f:facet>
+																				<center>
+
+																					<h:inputText id="tarColumnName"
+																						value="#{segmentobject.tarColumnName}" />
+																					<h:commandButton id="CnfSrcClumnPopup" title="Choose Table" value="chooseColumns" style="width:20px;" image="/resources/images/chooseTable.png" onclick="O$('factConfig:SrcWarHusJoinClum').showCentered()">
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this :factConfig:JoinColumnsList :factConfig:textarea4column" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('ConfSrcWarHusJoins')}"/>
+																					</h:commandButton>
+																				</center>
+
+
+																			</o:column>
+																			<o:column style="width:85px;">
+																				<f:facet name="header">Tar Col<br/> Func
+       </f:facet>
+																				
+																					<h:commandButton id="clumnPopup2" title="#{segmentobject.additionalFunction4TarWarColumn}"
+																						value="chooseColumns" style="width:20px;"
+																						image="/resources/images/#{segmentobject.tarImageName4Whar}"
+																						onclick="O$('factConfig:SrcWarHusJoinClum4Func').showCentered()"
+																						>
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this factConfig:textarea4columnFunc" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('TarWarHusJoin4Func')}"></o:ajax>
+																					</h:commandButton>
+																				
+																			</o:column>
+																		</o:columnGroup>
+																		<o:column width="25px">
+
+																			<h:commandButton title="Delete" value="Delete"
+																				
+																				image="/resources/images/delete.png">
+																				
+																				<o:ajax execute="@this :factConfig:configWH" render="@this msg4SrcWarJoin valmsg :factConfig:configWH" listener="#{hierarchyDBBean.deleteFactDataTableList('deleteConfigureJoins')}"></o:ajax>
+																			</h:commandButton>
+																		</o:column>
+																		<f:facet name="below">
+																			<h:panelGroup id="panelGroup">
+																				<o:dataTablePaginator id="paginator" />
+																			</h:panelGroup>
+																		</f:facet>
+																	</o:dataTable>
+																</h:panelGroup>
+		</td><td valign="top"><h:commandButton title="Add Source and Warehouse Joins" id="configAdd" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('ConfigSrcandWHJoin')}">
+		<f:ajax render="configWH valmsg msg4SrcWarJoin" execute="configWH @this"/></h:commandButton></td>
+		</tr>
+		<tr><td> <h:outputText style="color:#{hierarchyDBBean.color4SrcFactMsg}" id="msg4SrcWarJoin" value="#{hierarchyDBBean.msg4SrcWarJoin}"></h:outputText></td></tr>
+		</table>
+		</fieldset>
+		</td></tr>
+		<tr>
+	
+		<td>
+		<fieldset><legend class="label2">Configure Warehouse Load</legend>
+		<table><tr> <td><h:panelGroup id="sss">
+		<o:dataTable id="meas" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.selectedMeasureColumnsAL}" 
+		var="segmentobject" pageSize="5" noDataMessageAllowed="false" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+		bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="width:850px" bodyRowStyle="background-color:#FFFFF;" 
+		bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+		expansionState="levelsExpanded:2">
+						<o:multipleRowSelection rowDatas="#{hierarchyDBBean.selectedMeasureList}" style="background: #a4aec5; color: #7E0000;">
+						<o:ajax render="@this" execute="@this"/>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+						
+						</o:selectionColumn>
+						<o:columnResizing/>	
+						<o:columnGroup>
+						<o:column style="width:160px;" rendered="true">
+       <f:facet name="header">Table
+       </f:facet>
+     
+<h:selectOneMenu id="seleSrcTable" value="#{segmentobject.selectedSrcTable}" style="width:145px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.selectedSrcTableTM}"/>
+        		<a4j:ajax execute="@this sss" render="@this msg4WarHouseLoad segcolm sss" listener="#{hierarchyDBBean.selectedType4Table('ChoosingMeasureColumn',segmentobject.selectedSrcTable)}"/>
+    			</h:selectOneMenu>
+      </o:column>
+      <o:column style="width:160px;">
+       <f:facet name="header">Selected Column
+       </f:facet>
+      
+<h:inputText id="segcolm" value="#{segmentobject.sourceTable}" style="width:120px">
+       			
+    			</h:inputText>
+    			
+    			
+    			<h:commandButton id="MapClumnPopup" title="Choose Table"
+																						value="chooseColumns" style="width:20px;"
+																						image="/resources/images/chooseTable.png"
+																						onclick="O$('factConfig:SrcWarHusJoinClum').showCentered()"
+																						>
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this :factConfig:JoinColumnsList :factConfig:textarea4column" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('ConfWarHusLoad')}"></o:ajax>
+																					</h:commandButton>
+    			
+      </o:column>
+      <o:column style="width:80px;">
+       <f:facet name="header">Src Col
+       </f:facet>
+      <h:commandButton id="MapClumnPopup1" title="#{segmentobject.additionalFunction4SrcColumn}" value="chooseColumns" style="width:20px;" image="/resources/images/#{segmentobject.srcImageName4measure}" onclick="O$('factConfig:SrcWarHusJoinClum4Func').showCentered()">
+																						<o:ajax execute="@this :factConfig:meas :factConfig:sss" render="@this :factConfig:textarea4columnFunc" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('ConfWarHusLoad4Src')}"/>
+																					</h:commandButton>
+    			
+      </o:column>
+      </o:columnGroup>
+      
+      <o:column style="width:130px;" rendered="false">
+       <f:facet name="header">Target <br/> Table Name
+       </f:facet>
+      <o:hintLabel value="#{segmentobject.measureTargetTableName}" hint="#{segmentobject.measureTargetTableName}"/>
+
+      </o:column>
+      <o:columnGroup>
+     
+      <o:column width="187px">
+       <f:facet name="header">Target Column
+       </f:facet>
+      
+<h:inputText id="segcolmn1" value="#{segmentobject.selectedTargetColumn}" style="width:150px">
+       			
+    			</h:inputText>
+      <h:commandButton id="confwarHusLoad" title="Choose Table"
+																						value="chooseColumns" style="width:20px;"
+																						image="/resources/images/chooseTable.png"
+																						onclick="O$('factConfig:SrcWarHusJoinClum').showCentered()"
+																						>
+																						<o:ajax execute="@this :factConfig:conf :factConfig:configWH" render="@this :factConfig:JoinColumnsList :factConfig:textarea4column" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('ConfWarHusLoadTarClumn')}"></o:ajax>
+																					</h:commandButton>
+
+      </o:column><o:column style="width:102px;">
+       <f:facet name="header">Tar Col
+       </f:facet>
+      <h:commandButton id="MapClumnPopup2" title="#{segmentobject.additionalFunction4TarColumn}" style="width:20px;" image="/resources/images/#{segmentobject.tarImageName4measure}" onclick="O$('factConfig:SrcWarHusJoinClum4Func').showCentered()">
+																						<o:ajax execute="@this :factConfig:meas :factConfig:sss" render="@this :factConfig:textarea4columnFunc" listener="#{hierarchyDBBean.getSelectedJoinRowColumn('ConfWarHusLoad4Tar')}"/>
+																					</h:commandButton>
+    			
+      </o:column>
+      </o:columnGroup>
+      
+      <o:column width="133px">
+       <f:facet name="header">Column Property
+       </f:facet>
+     <h:selectOneMenu id="colProp" value="#{segmentobject.property}" style="width:80px">
+       			 <f:selectItem itemValue="-- select Value --" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.propertyTM}"/>
+        		
+    			</h:selectOneMenu>
+
+      </o:column>
+     <o:column width="30px">
+    
+      <h:commandButton title="Delete" value="Delete" image="/resources/images/delete.png">
+       <o:ajax execute="@this :factConfig:meas" render="@this valmsg msg4WarHouseLoad :factConfig:meas" listener="#{hierarchyDBBean.deleteFactDataTableList('deleteMeasureDataTableList')}"></o:ajax>
+       </h:commandButton>
+      </o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup1">
+								<o:dataTablePaginator id="paginator1"/>
+								
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></h:panelGroup>
+		</td><td valign="top"><h:commandButton title="Add Warehouse Load" id="addMeasurerow" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('AddMeasureRow')}">
+		<f:ajax render="meas valmsg msg4WarHouseLoad @this" execute="meas @this"/></h:commandButton></td>
+		</tr>
+		<tr><td><h:outputText style="color:#{hierarchyDBBean.color4SrcFactMsg}" id="msg4WarHouseLoad" value="#{hierarchyDBBean.msg4WarHouseLoad}"/></td></tr>
+		</table>
+		</fieldset>
+		</td>
+		
+		
+		
+		</tr>
+		
+		<tr>
+	
+		<td>
+		<fieldset><legend class="label2">Incremental Load</legend>
+		<table><tr><td><fieldset><legend class="label2">Incremental Insert</legend>
+		<table><tr><td>Join Operator:</td><td></td><td><h:selectOneRadio id="factTypes1" value="#{hierarchyDBBean.selectedJoinType4InsertIncr}" layout="lineDirection">
+							
+							<f:selectItem itemValue="and" itemLabel="And"/> 
+							<f:selectItem itemValue="or" itemLabel="Or"/> 	
+							
+							</h:selectOneRadio></td></tr></table>
+		<table><tr> <td valign="top"><h:panelGroup id="sss1">
+		<o:dataTable id="incr" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.incrementalLoadAL}" 
+		var="segmentobject" pageSize="5" noDataMessageAllowed="false" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+		bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="width:310px" bodyRowStyle="background-color:#FFFFF;" 
+		bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+		expansionState="levelsExpanded:2">
+						<o:multipleRowSelection rowDatas="#{hierarchyDBBean.selectedincrementalLoadAL}" style="background: #a4aec5; color: #7E0000;">
+						<o:ajax render="@this" execute="@this"/>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+						
+						</o:selectionColumn>
+						<o:columnResizing/>	
+						
+						<o:column style="width:158px;" rendered="true">
+       <f:facet name="header">Source Column 
+       </f:facet>
+     
+<h:selectOneMenu id="srccolm" value="#{segmentobject.srcCloumn4incr}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.srcCloumnTM4incr}"/>
+        		</h:selectOneMenu>
+      </o:column>
+      <o:column style="width:158px;" rendered="false">
+       <f:facet name="header">Column Type
+       </f:facet>
+      
+<h:selectOneMenu id="tarcolm" value="#{segmentobject.incrementalType}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.incrementalTypeTM}"/>
+        		
+    			</h:selectOneMenu>
+      </o:column>
+      
+      
+      
+     <o:column width="20px">
+    
+      <h:commandButton title="Delete" value="Delete" image="/resources/images/delete.png">
+       
+        <o:ajax execute="@this :factConfig:sss1" render="@this msg4IncrementLoad valmsg :factConfig:sss1" listener="#{hierarchyDBBean.deleteFactDataTableList('IncrementalLoad')}"></o:ajax>
+       </h:commandButton>
+      </o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup1">
+								<o:dataTablePaginator id="paginator1"/>
+								
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></h:panelGroup>
+		</td><td valign="top"><h:commandButton title="Add Warehouse Load" id="addUpdaterow" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('IncrementalLoad')}">
+		<f:ajax render="incr valmsg msg4IncrementLoad @this" execute="incr @this"/></h:commandButton></td></tr>
+		<tr><td><h:outputText style="color:#{hierarchyDBBean.color4SrcFactMsg}" id="msg4IncrementLoad" value="#{hierarchyDBBean.msg4IncrementLoad}"/></td></tr></table></fieldset></td>
+		
+		</tr>
+		
+		<tr><td valign="top" colspan="2"><fieldset><legend class="label2">Incremental Update</legend>
+		<table><tr><td>Join Operator:</td><td/><td><h:selectOneRadio id="factTypes2" value="#{hierarchyDBBean.selectedJoinType4UpdateIncr}" layout="lineDirection">
+							
+							<f:selectItem itemValue="and" itemLabel="And"/> 
+							<f:selectItem itemValue="or" itemLabel="Or"/> 	
+							
+							</h:selectOneRadio></td></tr></table>
+		<table><tr><td colspan="2"><table><tr><td><h:panelGroup id="update">
+		<o:dataTable id="incr4Update" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.incrementalLoadUpdateAL}" var="segmentobject" pageSize="5" noDataMessageAllowed="false" commonHeaderRowClass="table-header" headerRowClass="table-header" bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="width:310px" bodyRowStyle="background-color:#FFFFF;" bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" expansionState="levelsExpanded:2">
+						<o:multipleRowSelection rowDatas="#{hierarchyDBBean.selectedincrementalLoadUpdateAL}" style="background: #a4aec5; color: #7E0000;">
+						<o:ajax render="@this" execute="@this"/>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+						
+						</o:selectionColumn>
+						<o:columnResizing/>	
+						
+						<o:column style="width:128px;" rendered="true">
+       <f:facet name="header">Source Column 
+       </f:facet>
+     
+<h:selectOneMenu id="srccolm4Update" value="#{segmentobject.srcCloumn4incrUpdate}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.srcCloumnTM4incrUpdate}"/>
+        		</h:selectOneMenu>
+      </o:column>
+
+      
+      
+      
+     <o:column width="15px">
+    
+      <h:commandButton title="Delete" value="Delete" image="/resources/images/delete.png">
+       
+        <o:ajax execute="@this :factConfig:update" render="@this msg4IncrementLoad2 valmsg :factConfig:update" listener="#{hierarchyDBBean.deleteFactDataTableList('UpdateLoad')}"/>
+       </h:commandButton>
+      </o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup1">
+								<o:dataTablePaginator id="paginator1"/>
+								
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></h:panelGroup>
+		</td><td valign="top"><h:commandButton title="Add Warehouse Load" id="addIncrrow" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('UpdateLoad')}">
+		<f:ajax render="update valmsg msg4IncrementLoad2 @this" execute="update @this"/></h:commandButton></td></tr></table></td></tr>
+		<tr><td colspan="2"><h:outputText style="color:#{hierarchyDBBean.color4SrcFactMsg}" id="msg4IncrementLoad2" value="#{hierarchyDBBean.msg4UpdateIncrLoad}"/></td></tr><tr><td style="width: 220px; "><o:dataTable id="incrUpdate" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.updateIncrementalLoadAL}"
+		var="segmentobject" pageSize="5" noDataMessageAllowed="false" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+		bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="width:440px" bodyRowStyle="background-color:#FFFFF;" 
+		bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+		expansionState="levelsExpanded:2">
+						<o:multipleRowSelection rowDatas="#{hierarchyDBBean.selectedUpdateIncrementalLoadAL}" style="background: #a4aec5; color: #7E0000;">
+						<o:ajax render="@this" execute="@this"/>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+						
+						</o:selectionColumn>
+						<o:columnResizing/>	
+						
+						<o:column style="width:146px;" rendered="true">
+       <f:facet name="header">Source Column 
+       </f:facet>
+     
+<h:selectOneMenu id="srccolm1" value="#{segmentobject.srcCloumn4uniqUpdate}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.srcCloumnTM4incrUpdate}"/>
+        		</h:selectOneMenu>
+      </o:column>
+      
+      <o:column style="width:138px;" rendered="true">
+       <f:facet name="header">Target Column 
+       </f:facet>
+     
+<h:selectOneMenu id="tarcolm" value="#{segmentobject.tarCloumn4incr}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.tarCloumnTM4incr}"/>
+        		</h:selectOneMenu>
+      </o:column>
+      
+      
+     <o:column width="18px">
+    
+      <h:commandButton title="Delete" value="Delete" image="/resources/images/delete.png">
+       
+        <o:ajax execute="@this :factConfig:incrUpdate" render="@this msg4IncrementLoad1 valmsg :factConfig:incrUpdate" listener="#{hierarchyDBBean.deleteFactDataTableList('UpdateIncrementalLoad')}"></o:ajax>
+       </h:commandButton>
+      </o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup1">
+								<o:dataTablePaginator id="paginator1"/>
+								
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></td><td valign="top"><h:commandButton title="Add Warehouse Load" id="addIncrUpdaterow" image="/resources/images/addb.png" value="addMeasureRow" actionListener="#{hierarchyDBBean.getColumnname4SourceFactTable('UpdateIncrementalLoad')}">
+		<f:ajax render="incrUpdate valmsg msg4IncrementLoad1 @this" execute="incrUpdate @this"/></h:commandButton></td></tr>
+		<tr><td colspan="2"><h:outputText style="color:#{hierarchyDBBean.color4SrcFactMsg}" id="msg4IncrementLoad1" value="#{hierarchyDBBean.msg4UpdateIncrementLoad}"/></td></tr>
+		</table></fieldset></td></tr>
+		
+		</table>
+		</fieldset>
+		</td>
+		
+		
+		
+		</tr>
+		
+		
+			</table></td>
+		
+		
+		</tr>
+		
+		<tr>
+    		<td>
+    			<table><tr><td><fieldset style="width:230px"><legend class="label2">All Periods</legend>
+    			<table>
+    			<tr><td>
+    			<h:selectOneMenu id="periodvaluesfilter" value="#{hierarchyDBBean.periodvalueOperator}" style="width:100px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>  <h:inputText id="periodvals" value="#{hierarchyDBBean.filterPeriodValues}" size="7"/> </td></tr><tr><td><h:selectBooleanCheckbox id="factMatchCase" value="#{hierarchyDBBean.matchCase4genData}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText> <h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('periodValueFilter')}" style="width:15px"><f:ajax render="periodvaluesfilter periodvals PeriodValues valmsg" execute="periodvaluesfilter factMatchCase periodvals PeriodValues valmsg"/> </h:commandButton></td></tr>
+    			<tr><td>
+    			<h:selectManyListbox id="PeriodValues" value="#{hierarchyDBBean.selectedPeriodValues}" size="3" style="width:185px">
+			<f:selectItems value="#{hierarchyDBBean.periodValuesAL}"/>
+			
+		</h:selectManyListbox></td></tr></table></fieldset></td>
+		<td><table><tr><td>
+		<br/>
+		<h:commandButton id="mveforward" title="Move Forward" image="/resources/images/mn.gif" value=">>" actionListener="#{hierarchyDBBean.moveForwardBackwardPV('periodvalues','forward')}">
+																								<f:ajax execute="@this PeriodValues valmsg" render="PeriodValues selPeriodValues valmsg"/>
+																							</h:commandButton></td></tr>
+																							
+																							<tr>
+																							<td><h:commandButton title="Move Backward" id="mvebackward" image="/resources/images/mp.gif" value="backward" actionListener="#{hierarchyDBBean.moveForwardBackwardPV('selperiodvalues','backward')}">
+																								<f:ajax execute="@this selPeriodValues valmsg" render="PeriodValues selPeriodValues valmsg"/>
+																							</h:commandButton></td>
+																							</tr>
+																							
+																							</table></td>
+				<td><fieldset style="width:230px"><legend class="label2">Selected Periods (to generate data)</legend>
+    			 <table>
+    			 
+    			 <tr><td><h:selectOneMenu id="selectedvaluesfilter" value="#{hierarchyDBBean.selectedPeriodvalueOperator}" style="width:100px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>  <h:inputText id="selectedPeriodvals" value="#{hierarchyDBBean.filterSelectedPeriodValues}" size="7"/> </td></tr><tr><td><h:selectBooleanCheckbox id="factSel" value="#{hierarchyDBBean.matchCase4GenDataSelPer}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText> <h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('selectedPeriodValues')}" style="width:15px"><f:ajax render="selectedvaluesfilter selectedPeriodvals selPeriodValues valmsg" execute="selectedvaluesfilter factSel selectedPeriodvals selPeriodValues valmsg"/> </h:commandButton></td></tr>
+    			 
+    			 
+    			 <tr><td>
+    			<h:selectManyListbox id="selPeriodValues" value="#{hierarchyDBBean.frwdPeriodValues}" size="3" style="width:185px">
+			<f:selectItems value="#{hierarchyDBBean.selectedPeriodValuesAL}"/>
+			
+		</h:selectManyListbox></td></tr></table></fieldset></td></tr></table>
+    			</td>
+		</tr>
+		
+		
+		</table>
+				
+		</fieldset><table>
+						<tr style="height: 14px; "></tr>
+						<tr>
+						
+						<td></td>
+						<td align="right"><h:commandButton  title="Generate-FullLoad" value="Add" rendered="#{securityBean.factGenerateLoad}" style="width: 25px;" image="/resources/images/GFcopy.png" actionListener="#{rIConstrainsBean.checkRefrentialConstrains(hierarchyBean.hierarchy_ID,'GenerateFact',true)}">
+						<a4j:ajax render="periodclumn selPeriodValues valmsg confirmPopup4GenData" execute="periodclumn selPeriodValues valmsg meas joindataColumn configWH" oncomplete="generateFactPopup1('#{rIConstrainsBean.flag4FactDimGenerate}','#{rIConstrainsBean.riConstraintMess}');"></a4j:ajax></h:commandButton></td>
+						<td><h:commandButton  title="Generate-IncrementalLoad" value="Add" rendered="#{securityBean.factIncrementalload}" image="/resources/images/GIcopy.png" style="width: 25px;" actionListener="#{rIConstrainsBean.checkRefrentialConstrains(hierarchyBean.hierarchy_ID,'InsertFact',true)}">
+						<a4j:ajax render="periodclumn selPeriodValues valmsg confirmPopup4GenData" execute="periodclumn selPeriodValues valmsg meas joindataColumn configWH" oncomplete="generateFactPopup1('#{rIConstrainsBean.flag4FactDimGenerate}','#{rIConstrainsBean.riConstraintMess}');"></a4j:ajax></h:commandButton>
+					</td>	<td><h:commandButton  title="Generate Data" value="Add" rendered="#{securityBean.factGenerateLoad}" image="/resources/images/GDcopy.png" style="width: 25px;" actionListener="#{rIConstrainsBean.checkRefrentialConstrains(hierarchyBean.hierarchy_ID,'GenerateData',true)}">
+						<a4j:ajax render="periodclumn selPeriodValues valmsg confirmPopup4GenData" execute="periodclumn selPeriodValues valmsg meas joindataColumn configWH" oncomplete="generateFactPopup1('#{rIConstrainsBean.flag4FactDimGenerate}','#{rIConstrainsBean.riConstraintMess}');"></a4j:ajax></h:commandButton>
+						</td>
+						<td><h:commandButton  title="Save" value="Add" image="/resources/images/save.png" action="#{hierarchyDBBean.writeFactTablesToXml('FromSaveLater','')}"><a4j:ajax render="periodclumn selPeriodValues valmsg" execute="factTypes2 factTypes1 periodclumn selPeriodValues srcandTarfacts meas joindataColumn measureColumn valmsg configWH factTypes incr incrUpdate incr4Update"></a4j:ajax></h:commandButton></td><td><h:commandButton  title="Close" value="close" image="/resources/images/close.png" actionListener="#{headerBean.processMenu('Hierarchytree.xhtml')}" action="#{hierarchyDBBean.resetValuesInFactPopup()}"></h:commandButton>
+						</td><td><h:outputText id="valmsg" style="color:#{hierarchyDBBean.factMessageColor};font-size:13px" value="#{hierarchyDBBean.message}"/></td>
+						</tr>
+						</table>
+						
+						</td></tr></table>
+						
+						<table><tr><td valign="bottom"> <ui:include src="/srcAndTarselectPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/ConnectionPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/selectTablePopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/selectColumnPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/EditConnectionPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/Alert4GenerateData.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/SrcWarehouseJoinsClmnPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/AdditionalColumnFunction.xhtml"/></td>
+						</tr></table>
+		</h:form>
+	
+</h:body>
+</html>

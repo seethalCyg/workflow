@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+
+</h:head>
+
+
+
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+	<o:popupLayer id="referenceHierarchyTreePopup"
+		draggable="true" modalLayerClass="modalLayer"
+		style="border: 2px solid orange;">
+
+		<table width="310" cellspacing="0" cellpadding="0" style="height:210px;" >
+		<tr align="right">
+		<td>
+		<h:commandButton title="Delete" value="Delete"  rendered="false" onclick="if (!confirm('Are you sure you want to Delete the selected Node(s)?')) return false" actionListener="#{reportsInvXMLTreeBean.deleteSelectedRefHierarchy('FromRefHierTree')}" image="/resources/images/delete.png">
+		<a4j:ajax render="ReferenceTreePopUp" execute="ReferenceTreePopUp" oncomplete="O$('HRYTree:RIValidation').showCentered();"></a4j:ajax>
+		</h:commandButton>
+		</td>
+		</tr>
+			<tr>
+		
+				<td>
+					<fieldset>
+					<legend class="label2">#{reportsInvXMLTreeBean.cpyNdPopupName}</legend>
+			<o:treeTable id="ReferenceTreePopUp" var="node" sortLevel="-1" sortAscending="true" sortColumnId="repname"
+				style="margin-top: 5px;  width:500px; height: 290px;"
+				commonHeaderRowClass="table-header" headerRowClass="table-header"
+				noDataMessageAllowed="false"
+				headerVertSeparator="1px solid #a0a0a0"
+				sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+				subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+				textStyle="font-family: verdana,Helvetica,sans-serif; font-size: 10pt; white-space: nowrap;"
+				preloadedNodes="all" expansionState="levelsExpanded:5">
+				
+				
+				<o:multipleNodeSelection nodeDatas="#{reportsInvXMLTreeBean.selectedRefHierarchyRows}"
+                         style="background: url('../resources/images/selected.gif') repeat-x #5d8bba !important; color: white !important;"
+                         />
+				
+				
+			
+				<o:dynamicTreeStructure
+					nodeChildren="#{reportsInvXMLTreeBean.nodeChildren1}"
+					nodeHasChildren="#{reportsInvXMLTreeBean.nodeHasChildren1}"
+					nodeKey="#{node.id}" />
+				<o:scrolling />
+				<o:columnResizing />
+				<o:columnReordering />
+
+				
+			
+				
+				<o:column header="Hierarchy Levels IDs"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Level IDs" /></f:facet>
+				<o:hintLabel value="#{node.ID}"  rendered="true"/>
+			</o:column>
+			
+			<o:column header="Levels"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Levels" /></f:facet>
+				<o:hintLabel value="#{node.levelNode}"  rendered="true"/>
+			</o:column>
+				
+				<o:treeColumn header="Node" style="width: 15px;"
+					bodyStyle="text-align: left;">
+					<f:facet name="subHeader">
+						
+					</f:facet>
+					<o:hintLabel class="label3" value="#{node.levelName}" styleClass="treeTableText" />
+				
+				</o:treeColumn>
+
+				<o:column  style="width: 5px;">
+					<f:facet name="header">
+						<h:outputText value="Node Type" />
+					</f:facet>
+				<center>
+				<h:outputText style="font-size:11px;"  value="#{node.hierType}"></h:outputText>
+						</center> 
+				</o:column>
+				
+			
+			</o:treeTable></fieldset>
+				</td>
+			</tr>
+			</table>
+		
+<table><tr><td><h:commandButton value="Add" title="Add Node" style="width:25px" image="/resources/images/add.png" actionListener="#{reportsInvXMLTreeBean.WriteSelectedRefHirchyToCurrentHry('addNode',reportsInvXMLTreeBean.cmgFromRI)}">
+		
+		</h:commandButton></td><td><h:commandButton value="AddWithChildNode" title="Add with child node" style="width:25px" image="/resources/images/childNode.jpg" actionListener="#{reportsInvXMLTreeBean.WriteSelectedRefHirchyToCurrentHry('addWithChildNode',reportsInvXMLTreeBean.cmgFromRI)}">
+		
+		</h:commandButton></td><td><h:commandButton immediate="true" value="Close" title="Close" onclick="return hideRefHier('#{reportsInvXMLTreeBean.cpyNdPopupName}');" style="width:25px" image="/resources/images/close.png">
+		<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+		</h:commandButton></td><td nowrap="nowrap"><h:outputText id="msg4RH" value="#{reportsInvXMLTreeBean.msg4RH}"></h:outputText> </td></tr></table>
+
+	</o:popupLayer>
+</h:body>
+</html>

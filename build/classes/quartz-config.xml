@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_2_0.xsd">
+
+<schedule>
+		<job>
+			<name>999</name>
+			<group>EveryDayBackUp</group>
+			<description>EveryDayBackUp</description>
+			<job-class>scheduler.EveryDayBackUp</job-class>
+			<durability>true</durability>
+			<recover>false</recover>
+		</job>
+		<trigger>
+		<simple>
+			<name>trigger-99</name>
+			<group>EveryDayBackUp</group>
+			<job-name>999</job-name>
+			<job-group>EveryDayBackUp</job-group>
+			<start-time>2014-04-26T07:22:00</start-time>
+			<repeat-count>-1</repeat-count>
+			<repeat-interval>3000000000</repeat-interval>
+		</simple>
+			
+		</trigger>
+	</schedule>
+	<schedule>
+		<job>
+			<name>Deadline</name>
+			<group>DeadlineManagement</group>
+			<description>DeadlineManagement</description>
+			<job-class>scheduler.DeadlineManagement</job-class>
+			<durability>true</durability>
+			<recover>false</recover>
+		</job>
+		<trigger>
+		<simple>
+			<name>trigger-999</name>
+			<group>DeadlineManagement</group>
+			<job-name>Deadline</job-name>
+			<job-group>DeadlineManagement</job-group>
+			<start-time>2018-05-11T15:34:00</start-time>
+			<repeat-count>-1</repeat-count>
+			<repeat-interval>86400000</repeat-interval>
+		</simple>
+			
+		</trigger>
+	</schedule>	
+</job-scheduling-data>

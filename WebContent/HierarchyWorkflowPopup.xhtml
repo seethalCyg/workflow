@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+</h:head>
+
+
+<h:body>
+
+    
+    
+<o:popupLayer id="hierarchyWorkflowPopup" 
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 1px solid orange; height:500px; width:800px;">
+		
+		  <h:form id="hierarchyWorkflowtables" >
+		  
+		  <br></br>
+		  <table align="center" style="width:100%"><tr>
+		 <td align="left"> <h2 style="font-size: 20px;text-align: center;margin-top: 10px;margin-left:54px;">Hierarchy Workflow</h2> </td> 
+   
+	 <td align="right" > <h:commandButton  value="Close" onclick="O$('hierarchytable:hierarchyWorkflowPopup').hide();" style="text-align:right">
+      <f:ajax render="" execute=""></f:ajax>
+     </h:commandButton> </td>
+		</tr>
+		  </table>
+		<br></br>
+
+
+
+<table align="center" style="width:100%;margin-left: 10px;"><tr>
+    <td>Choose Workflow </td><td> :</td><td><h:inputText id="workflowname" ></h:inputText> </td><td>Choose Team </td><td> :</td><td><h:inputText id="teamname" ></h:inputText> </td></tr>
+  
+    
+    </table>
+
+
+
+		
+	
+		
+		<br> </br>
+		
+		
+		<o:dataTable id="hierarchyWorkflowdatatable" sortLevel="-1" sortAscending="false" sortColumnId="hierarchyID"
+						
+						var="user"  commonHeaderRowClass="table-header" 
+						headerRowClass="table-header" bodyRowClass="table-even-row"
+						bodyOddRowClass="table-odd-row" noDataMessageAllowed="false"
+						bodyRowStyle="background-color:#FFFFF;"
+						bodyOddRowStyle="background-color:#ADDDFF;"
+						headerVertSeparator="1px solid #a0a0a0"
+						sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+						subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+						preloadedNodes="all" expansionState="levelsExpanded:2" style="width:790px;height:380px;margin-left:5px; ">
+
+
+						<o:multipleRowSelection
+							rowDatas="#{hierarchyBean.selectedUserList}"
+							style="background: #a4aec5; color: #7E0000;" />
+						<o:scrolling />
+						<o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+					
+						<o:column style="width: 50px;">
+							<f:facet name="header">S.No</f:facet>
+							<o:hintLabel value="1"></o:hintLabel>
+							
+						</o:column>
+						
+						<o:column >
+							<f:facet name="header">Document</f:facet>
+							<o:hintLabel value="dddd"></o:hintLabel>
+							
+						</o:column>
+						
+						<o:column>
+							<f:facet name="header">Workflow</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+							<o:columnGroup><f:facet name="header">Date</f:facet>
+						<o:column >
+							<f:facet name="header">Start Date</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column >
+							<f:facet name="header">Expected End Date</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						</o:columnGroup>
+						<o:column >
+							<f:facet name="header">From</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column>
+							<f:facet name="header">To</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column>
+							<f:facet name="header">Assigned Date</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column>
+							<f:facet name="header">Due Date</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+							<o:column>
+							<f:facet name="header">Approval History</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column >
+							<f:facet name="header">Status</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column>
+						<o:column >
+							<f:facet name="header">Available Action	</f:facet>
+							<o:hintLabel value="2"></o:hintLabel>
+							
+						</o:column >
+					</o:dataTable> 
+	
+		  </h:form>
+		  
+		  
+		  
+		  
+		  </o:popupLayer>
+
+
+
+
+
+</h:body>
+
+
+
+
+
+
+</html>

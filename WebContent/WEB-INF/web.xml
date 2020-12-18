@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>OpenFaces Demo Application</display-name>
+  <description>OpenFaces Demo Application</description>
+  <context-param>
+    <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Production</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>server</param-value>
+  </context-param>
+  <welcome-file-list>
+    <welcome-file>faces/index.jsf</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errorPage.jsf</location>
+  </error-page>
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/index.jsf</location>
+  </error-page>
+  <context-param>
+    <description>This parameter specifies the way of session expiration handling.
+      Possible values:
+      default - the confirmation that asks the user to reload the page appears when the current session is expired.
+      silent - the page is reloaded when the current session is expired.
+    </description>
+    <param-name>org.openfaces.ajax.sessionExpiration</param-name>
+    <param-value>default</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+    <param-value>.xhtml</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether client-side validation for the application is enabled.
+      Possible values:
+      onSubmit - Client-side validation is enabled for all the components within the application
+      and is triggered automatically before each form submission.
+      onDemand - Client-side validation is enabled for all the components within the application,
+      but is not triggered automatically.
+      off - Client-side validation is turned off for the application. This is the default value.
+    </description>
+    <param-name>org.openfaces.validation.clientValidation</param-name>
+    <param-value>onSubmit</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether the OpenFaces validation
+      for the entire application is disabled. The default is &quot;false&quot;.
+      If the org.openfaces.validation.disabled property is set to &quot;true&quot;, all OpenFaces validation features
+      are disabled. This property can be used for debugging purposes.
+    </description>
+    <param-name>org.openfaces.validation.disabled</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether validatable components use the default presentation
+      if no validation or conversion error presentation is set for these components.
+      This property is relevant when client-side validation is enabled for the application.
+    </description>
+    <param-name>org.openfaces.validation.useDefaultClientPresentation</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether validatable components use the default presentation
+      if no validation or conversion error presentation is set for these components.
+      This property is relevant when client-side validation is disabled for the application.
+    </description>
+    <param-name>org.openfaces.validation.useDefaultServerPresentation</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <description>The full class name of the component that will be used as a default validation
+      presentation component. The component should extend the UIMessage class.
+      If this parameter is omitted, the FloatingIconMessage component is used as
+      a default validation presentation component.
+    </description>
+    <param-name>org.openfaces.validation.defaultPresentationClass</param-name>
+    <param-value>org.openfaces.component.validation.FloatingIconMessage</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether the focus is saved between form submissions
+      for all application pages. The default is &quot;false&quot;.
+    </description>
+    <param-name>org.openfaces.autoSaveFocus</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <description>This flag indicates whether the scroll position is tracked for
+      all application pages. The default is &quot;false&quot;.
+    </description>
+    <param-name>org.openfaces.autoSaveScrollPos</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.sun.faces.expressionFactory</param-name>
+    <param-value>com.sun.el.ExpressionFactoryImpl</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/notfound.jsp</location>
+  </error-page>
+  <context-param>
+    <param-name>com.sun.faces.expressionFactory</param-name>
+    <param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
+  </context-param>
+  <listener>
+    <listener-class>sessionTimeout.SessionCounterListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>Document WF</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>workflow.operations</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Document WF</servlet-name>
+    <url-pattern>/operation/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Form</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>form.operations</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Form</servlet-name>
+    <url-pattern>/formoperation/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FileUploadServlet</display-name>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <servlet-class>servlet.FileUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileUploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadFileServlet</display-name>
+    <servlet-name>DownloadFileServlet</servlet-name>
+    <servlet-class>servlet.DownloadFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadFileServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Callback</display-name>
+    <servlet-name>Callback</servlet-name>
+    <servlet-class>servlet.Callback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Callback</servlet-name>
+    <url-pattern>/Callback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SMCallback</display-name>
+    <servlet-name>SMCallback</servlet-name>
+    <servlet-class>servlet.SMCallback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SMCallback</servlet-name>
+    <url-pattern>/SMCallback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateForms</display-name>
+    <servlet-name>CreateForms</servlet-name>
+    <servlet-class>servlet.CreateForms</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>DBCallback</display-name>
+    <servlet-name>DBCallback</servlet-name>
+    <servlet-class>servlet.DBCallback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DBCallback</servlet-name>
+    <url-pattern>/DBCallback</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateForms</servlet-name>
+    <url-pattern>/CreateForms</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadTemplateServlet</display-name>
+    <servlet-name>DownloadTemplateServlet</servlet-name>
+    <servlet-class>servlet.DownloadTemplateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadTemplateServlet</servlet-name>
+    <url-pattern>/downloadtemplate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SaveFormDetails</display-name>
+    <servlet-name>SaveFormDetails</servlet-name>
+    <servlet-class>servlet.SaveFormDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveFormDetails</servlet-name>
+    <url-pattern>/SaveFormDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GDCallback</display-name>
+    <servlet-name>GDCallback</servlet-name>
+    <servlet-class>servlet.GDCallback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GDCallback</servlet-name>
+    <url-pattern>/GDCallback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ODCallback</display-name>
+    <servlet-name>ODCallback</servlet-name>
+    <servlet-class>servlet.ODCallback</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ODCallback</servlet-name>
+    <url-pattern>/ODCallback</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>downloadesign</display-name>
+    <servlet-name>downloadesign</servlet-name>
+    <servlet-class>servlet.DownloadFileEsignServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>downloadesign</servlet-name>
+    <url-pattern>/downloadesign</url-pattern>
+  </servlet-mapping>
+</web-app>

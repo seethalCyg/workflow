@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:o="http://openfaces.org/"
+		xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	 <ui:component xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      >
+
+<h:head>
+<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+<style type="text/css">
+ .vertical-line {
+        /* add padding and margin to suite needs */ 
+        margin-top:0px;
+        border-left: 1px solid maroon;
+        height: 17px;
+        }
+       
+</style>
+<script type="text/javascript">
+		function showRolluppopup(valid)
+		{	
+		
+		if(valid)
+		{
+		
+		O$('HRYTree:addRollupType').show();
+	
+		}	
+			return false;
+		}
+		
+		</script>
+		
+		
+		<script type="text/javascript">
+		function showDataPopup(valid)
+		{	
+		
+		if(valid)
+		{
+		
+		O$('HRYTree:dataPopup').show();
+	
+		}	
+			return false;
+		}
+		
+		</script>
+		
+		
+		<script type="text/javascript">
+		function showStatusMsgPopup(valid)
+		{	
+		
+		if(valid)
+		{
+		
+		O$('HRYTree:statusPopup').show();
+	
+		}	
+			return false;
+		}
+		
+		</script>
+		
+		<script>
+ function downloadFile(url) {
+	  window.open(url, '_newtab');
+}
+ </script>
+		
+		
+		<script type="text/javascript">
+		function showEditPopup(selRowSize)
+		{
+		
+		if(selRowSize != 0){
+		O$('HRYTree:EditPopup').showAtXY(150, 50);
+		return false;
+		}
+		}
+		
+		</script>
+		
+		<script type="text/javascript">
+		function showEdit(valid)
+		{	
+		
+		alert(valid);
+		
+		if(valid)
+		{}else{
+		O$('HRYTree:EditPopup').hide();
+		
+		}
+			
+			return false;
+		}
+		
+		</script>
+		
+		
+		
+		
+		<script type="text/javascript">
+	function insertData()
+	{
+	
+		O$('HRYTree:insertUPNDOWN').hide();
+			O$('HRYTree:dataPopup').show();
+		
+		}
+		
+		</script>
+		
+		
+		<script type="text/javascript">
+  function showfactPopup()
+  {  
+  O$('HRYTree:factPopup').show();
+  return false;
+  }
+</script>
+<script type="text/javascript">
+    	function hidemodeldim()
+		{
+		O$('HRYTree:rollUpPopup').hide();
+			return false;
+		}
+		function hidemodeldim1()
+		{
+		O$('HRYTree:dataPopup').hide();
+			return false;
+		}
+ function hidemodeldim2()
+  {
+  O$('HRYTree:factPopup').hide();
+   return false;
+  }
+   function generateFactPopup(value,val)
+  {  
+  
+  if(value=='false'){
+  if(confirm(val)){
+   O$('HRYTree:generateFactPopup').showCentered();
+    return false;
+   }else{
+    return false;
+   }
+ 
+  }else if (value=='fact') {
+	O$('HRYTree:generateFactPopup').showCentered();
+    return false;
+}
+ 
+  }
+   function genDatahidemodeldim2()
+  {  
+  O$('HRYTree:generateFactPopup').hide();
+  return false;
+  }
+    	  </script>
+    	  <script>
+    	  function showHierarchypopup(valid){
+    	  if(valid){
+    	  O$('HRYTree:hierarchyPopup').show();
+    	  }
+    	  	
+			return false;
+    	  
+    	  }
+    	  
+    	  </script>
+   <script type="text/javascript">
+   	function saveVersioMess(){
+  
+   	  O$('HRYTree:VersionComment').show(); 
+      return false;
+     
+   	}
+   </script>
+   	<script type="text/javascript">
+		function showConfrimPopup(isrefHier)
+		{
+		
+		if(isrefHier=='Reference')
+		{
+		O$('HRYTree:RIValidation').showCentered();
+	return false;
+	}				
+		}
+		function showConfrimPopup1(isrefHier,datasel,valMsg,rhContainsDH)
+		{
+		
+		if(datasel != '0'){
+		
+		if(isrefHier=='Reference')
+		{
+		if(valMsg != 'Not possible to move DOWN')   
+		{
+		if(valMsg != 'Not possible to move UP')   
+		{
+		if(valMsg !='Not possible to move'){
+		if(rhContainsDH){
+		O$('HRYTree:RIValidation').showCentered();
+		}}}}
+	return false;
+	}
+		}
+							
+		}
+		function regenerateMethod(val,value){
+		
+		if(val=='false'){
+		if(confirm(value)){
+		O$('HRYTree:reconfirmPopup').showCentered();
+		 return false;
+		 }else{
+		 return false;
+		 }
+		 }else if(val=='fact'){
+		 O$('HRYTree:reconfirmPopup').showCentered();
+		 return false;
+		 }
+		}
+	</script>
+	<script type="text/javascript">
+	
+	function deleteconfirmation(selectedDataSize){
+	
+	if(selectedDataSize != '0'){
+	if (!confirm('Are you sure you want to Delete the selected Node(s)?')) 
+	return false;
+	}else{
+	return true;
+	}
+	}
+	</script>
+	<script type="text/javascript">
+	function showRIPopup(value){
+	
+		if(value=="Independent"){
+		
+		}else{
+		
+			O$('HRYTree:RIValidation').showCentered();
+		}
+	 	
+	}
+	</script>
+	<script type="text/javascript">
+		function showAlert(valid,val4App)
+		{	
+	
+		if(valid)
+		{
+		
+		O$('HRYTree:confirmPopup4GenData').show();
+	
+		}else if(val4App){
+		O$('HRYTree:statusPopup').show();
+		}
+			return false;
+		}
+		function isHiearchyCreated(isCreated)
+		{	
+		
+		if(isCreated != 'newAdded')
+		{
+		return true;
+		}
+		alert('Please create hierarchy to proceed further.');
+		return false;
+		}
+		
+		</script>
+		
+		
+		<script type="text/javascript">
+		
+	function openRefHier(){
+	O$('HRYTree:hierarchyList2').hide();
+	O$('HRYTree:referenceHierarchyTreePopup').showCentered();
+	
+	}
+	</script>
+		<script type="text/javascript">
+		function hideRefHier(value){
+		
+		O$('HRYTree:referenceHierarchyTreePopup').hide();
+		if(value=='Copy Hierarchy'){
+		O$('HRYTree:hierarchyList2').showCentered();
+		}
+		
+		}
+		
+		</script>
+		
+		
+	
+</h:head>
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+
+<h:form id="HRYTree">
+
+<table style="width: 1050px;"> <tr>
+  <td align="right"><h:outputText class="label2" value="Logged in as [#{hierarchyBean.memberloginID}]" /><h:outputText value=" " escape="false" /></td><td></td> <td valign="bottom" style="width: 36px;" align="right"> 
+   <h:commandButton title="LogOut" value="logout" image="/resources/images/logout.png" style="height: 25px; width: 25px;margin-bottom: 0px;" actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}" ></h:commandButton></td>
+   </tr></table>
+<fieldset style="width:980px;height: 535px;">
+<legend class="label2">Document Status - <h:outputText value="#{hierarchyBean.documentNameWF}"></h:outputText> </legend>
+<table style="width: 1032px;"><tr  ><td align="left"><div style="width:100%;height:auto;">
+
+<p>This document's workflow status is provided here. Choose an Action to process this document.</p>
+
+</div></td> <td><h:outputText style=" width:10px;"/>
+<h:panelGroup id="Processgroup" rendered="false">
+<table><tr><td><h:commandButton value="Version" title="Audit trace is Disabled" id="off" image="/resources/images/D.png" actionListener="#{hierarchyBean.toggle('true','false')}" rendered="#{hierarchyBean.auditEnable=='false' and securityBean.auditDisable}" style="height: 22px; width: 22px; ">
+		<a4j:ajax render="@form" execute="@this"/></h:commandButton></td><td>
+		<h:commandButton value="Version" id="on" title="Audit trace is Enabled" image="/resources/images/E.png" actionListener="#{hierarchyBean.toggle('false','true')}" rendered="#{hierarchyBean.auditDisable=='false' and securityBean.auditEnable}" style="height: 22px; width: 22px; ">
+		<a4j:ajax render="@form" execute="@this"/></h:commandButton></td><td>
+		<h:commandButton value="Version" title="View Audit" image="/resources/images/download.jpg" actionListener="#{hierarchyBean.viewingAuditRecords(hierarchyBean.hierarchy_ID)}" rendered="#{securityBean.viewingAudit}" style="height: 22px; width: 22px; "/></td><td></td><td></td><td><h:panelGroup rendered="#{securityBean.viewingAudit}"><div  class="vertical-line"></div></h:panelGroup> </td><td>
+		<h:commandButton value="Version" title="Workflow History" image="/resources/images/workflowaudit.png" actionListener="#{hierarchyBean.viewingWorkFlowRecords(hierarchyBean.hierarchy_ID)}" rendered="#{securityBean.viewingAudit}" style="height: 22px; width: 22px; "/></td><td><h:panelGroup rendered="#{securityBean.viewingAudit}"><div  class="vertical-line"></div></h:panelGroup></td><td></td><td>
+		<h:commandButton value="Version" title="Restore Version" image="/resources/images/restore.png" onclick="O$('HRYTree:confirmPopup1').show();" actionListener="#{hierarchyBean.displayingVersion(hierarchyBean.hierarchy_ID)}" rendered="#{securityBean.versionRestore}" style="height: 22px; width: 22px; ">
+		<f:ajax render="hierarchyList1 msg4VerDisp"/>
+		</h:commandButton></td><td>
+		 <h:commandButton value="Version" title="Save Version" image="/resources/images/ver.png" style="height: 22px; width: 22px;" actionListener="#{hierarchyBean.setVersionFrom('Save')}" action="#{hierarchyBean.getLatestVersionNumber(hierarchyBean.hierarchy_ID)}" rendered="#{securityBean.savingVersion}">
+		 <a4j:ajax render="save restore leg mess" oncomplete="return saveVersioMess();"></a4j:ajax>
+		 </h:commandButton></td><td><h:panelGroup rendered="#{securityBean.savingVersion}"><div  class="vertical-line"></div></h:panelGroup></td><td></td><td><h:commandButton value="Add Segments" title="Configure Common Segments" onclick="O$('HRYTree:addSegmentPopup').show();" image="/resources/images/segment.png" actionListener="#{hierarchyDBBean.retrieveSegmentsFromXml}" rendered="#{securityBean.configCommonSegment}" style="height: 22px; width: 22px; "><f:ajax render="segmsg segdata2 addSegmentPopup" execute="addSegmentPopup"/></h:commandButton></td><td>
+<h:commandButton id="Configure" title="Configuration" value="Hierarchy" image="/resources/images/workflow.png" onclick="return isHiearchyCreated('#{hierarchyBean.flagNew}');" actionListener="#{hierarchyBean.temdDirect('WFadminscreen.xhtml')}" action="#{dashboardBean.DashboardStage('Default','hierarchyTree')}" rendered="#{securityBean.workFlowProcess}" style="height: 22px; width: 22px; "/>
+		
+		</td><td>
+		 <h:commandButton id="reConfig" value="Regenerate" title="Regenerate Hierarchy" actionListener="#{rIConstrainsBean.checkRefrentialConstrains(hierarchyBean.hierarchy_ID,'',false)}" image="/resources/images/R.png" rendered="#{securityBean.reGenerateHierarchy}" style="height: 22px; width: 22px; "><a4j:ajax render="stusmsg statusMsg code" execute="code" oncomplete="regenerateMethod('#{rIConstrainsBean.flag4FactDimGenerate}','#{rIConstrainsBean.riConstraintMess}');"/></h:commandButton>
+		 
+		</td><td>
+		<h:commandButton id="Gendata" value="Generate Data" title="Load Data" image="/resources/images/Generate.png" actionListener="#{rIConstrainsBean.checkRefrentialConstrains(hierarchyBean.hierarchy_ID,'',false)}" rendered="#{securityBean.generateData}" style="height: 22px; width: 22px; ">
+		<a4j:ajax render="stusmsg statusMsg generateFactPopup genDatavalmsg" execute="generateFactPopup" oncomplete="generateFactPopup('#{rIConstrainsBean.flag4FactDimGenerate}','#{rIConstrainsBean.riConstraintMess}');" listener="#{hierarchyDBBean.readTableFromXmlAndPerValues}"/></h:commandButton>
+		
+		</td></tr></table></h:panelGroup>
+
+
+		
+		</td></tr></table>
+
+
+
+
+	<div style="width:100%;height:auto;">
+	<table  style="width: 70%;">
+	<tr>
+	
+	<td><h:outputText value="Workflow ID: "/></td>
+	<td><h:inputText id="workflowIDTEXT" value="#{hierarchyBean.hierarchy_ID}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" readonly="true" rendered="true"></h:inputText> </td>
+	
+	
+	<td><h:outputText value="Workflow Name: "/></td>
+	<td><h:inputText id="workflowNAMETEXT" value="#{hierarchyBean.hirename}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" readonly="true" rendered="true"></h:inputText> </td>
+	
+	</tr>
+	
+	<tr>
+	
+	
+	</tr>
+	</table>
+	</div>
+	<p></p>
+	
+	<fieldset style="width:980px" >
+		<legend class="label2">Workflow Information</legend>
+		<table  style="width:60px;display:none;" >
+		
+		<tr><td nowrap="nowrap"><h:outputText value="Hierarchy"/><h:outputText value=" ID / " rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText value="Name"></h:outputText></td><td style="width: 15px"><h:outputText value=":" ></h:outputText></td><td style="width: 219px; "> <h:outputText id="HierarchyId" value="#{hierarchyBean.hierarchy_ID}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText value=" / " rendered="#{hierarchyBean.renderValue4SessionInfo}"/>
+		<h:inputText id="hireName" value="#{hierarchyBean.hirename}" styleClass="invalidInput" style="width: 130px; " rendered="true">
+		<f:ajax listener="#{hierarchyBean.changeHierName(hierarchyBean.hirename,'Name')}" render="hireName statusMsg" execute="hireName statusMsg"/></h:inputText></td>
+		<td nowrap="nowrap" align="right" ><h:outputText id="statusH" class="label2" value="#{hierarchyBean.status} Hierarchy"/> </td></tr>
+	<!-- <tr><td><h:outputText value=" Created / Modified Date" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td><td><h:outputText value=":" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td><td colspan="2"><h:outputText id="HierarchycrtDate" value="#{hierarchyBean.hierarchyCreatedDate}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText><h:outputText id="HierarchycrtmodifyDate" value=" || #{hierarchyBean.hierarchyModifiedDate}" rendered="#{hierarchyBean.renderValue4SessionInfo}"></h:outputText></td></tr> -->
+		<tr><td nowrap="nowrap"><h:outputText value="Hierarchy Version / Category"></h:outputText></td><td style="width: 15px"><h:outputText value=":"></h:outputText></td><td colspan="2"><h:outputText id="version" value="#{hierarchyBean.versionNo} / "></h:outputText>
+		<h:selectOneMenu id="cat" value="#{hierarchyBean.hierarchyCategory}" style="width:110px" >
+		<f:selectItems value="#{hierarchyBean.hierarchyCategoryTM}"></f:selectItems>
+		<f:ajax listener="#{hierarchyBean.changeHierName(hierarchyBean.hierarchyCategory,'Category')}" render="hireName statusMsg" execute="hireName statusMsg"/></h:selectOneMenu> 
+		<h:outputText style=" width:10px;"/><h:outputText  value="| Create Code Combination" rendered="false"/><h:selectBooleanCheckbox rendered="false" id="code1" value="#{hierarchyBean.codecombinationFlag}"><a4j:ajax listener="#{hierarchyBean.changeHierName(hierarchyBean.codecombinationFlag,'CodeCombination')}"/></h:selectBooleanCheckbox></td></tr>
+		<tr><td>Create Code Combination</td><td>:</td><td colspan="2">
+		<h:selectOneRadio layout="lineDirection" id="code" value="#{hierarchyBean.codecombinationFlag}" style="width: 369px; ">
+							<f:selectItem itemValue="DontCreateCodeCombination" itemLabel="Do not create" /> 
+							<f:selectItem itemValue="CreateCodeCombinationInDim" itemLabel="In Dimension"/>
+							<f:selectItem itemValue="CreateCodeCombinationDuringFact" itemLabel="During Fact Gen"/> 
+							
+							<a4j:ajax listener="#{hierarchyBean.changeHierName(hierarchyBean.codecombinationFlag,'CodeCombination')}"/>
+							</h:selectOneRadio> </td></tr>
+		</table>
+		
+		<table>
+		<tr><td colspan="4"> <h:panelGroup id="wrkFlowStg">
+		<table><tr style="color:#000"><td><table style="background:#92B6FF;color:#000;height: 35px; width: 930px;"><tr>
+		<td style="width: 100px;"><h:outputText value="Current Stage:"/></td><td style="background:#fff;color:#000;font-style: arial;"><h:outputText id="stageNameID" value="#{hierarchyBean.currentStatgeName}" /></td>
+		<td style="width: 40px;"><h:outputText value="Member(s): "/></td><td style="background:#fff;color:#000;font-style: arial;"><h:outputText id="userID" title="#{hierarchyBean.fullCurrentprocessMember}" value="#{hierarchyBean.currentprocessMember}" /></td>
+		<!-- <td ><h:outputText value="AccessType:"/></td><td style="background:B6DBFF;color:white;font-style: oblique;"><h:outputText id="accessTypeID" value="#{hierarchyBean.wfmemberAcessType}" /></td>  -->
+		<td style="width: 50px;"><h:outputText value="Status:"/></td><td style="background:#fff;color:#000;font-style: arial;"><h:outputText id="stageSatusID" value="#{hierarchyBean.stageStatus}" /></td>
+		<td style="width: 50px;"><h:outputText value="Action:"/></td><td>
+		<h:panelGroup id="actionbuttons">
+<h:commandButton id="WIPButton" style="margin-top: 3px;" value="WIP" title="WIP" image="/resources/images/wip.png" actionListener="#{memberStatusBean.displayingStatus(hierarchyBean.document_ID,hierarchyBean.currentStageNumb,'WIP', 'Primary')}" rendered="#{hierarchyBean.renderstatus4Wip}">
+<a4j:ajax render=":HRYTree:data1 :HRYTree:reason msg1 :HRYTree:attrValuePanelGroup :HRYTree:disp1" execute=":HRYTree:attrValuePanelGroup" oncomplete="O$('HRYTree:statusPopup').show();"></a4j:ajax>
+</h:commandButton>
+		<h:outputText value="  " escape="false" /> 
+		<h:commandButton id="completdButton" value="Completed" title="Completed" image="/resources/images/comp.png" actionListener="#{memberStatusBean.displayingStatus(hierarchyBean.document_ID,hierarchyBean.currentStageNumb,'Completed', 'Primary')}" rendered="#{hierarchyBean.renderstatus4compltd}">
+		<a4j:ajax render=":HRYTree:data1 :HRYTree:reason msg1 :HRYTree:attrValuePanelGroup :HRYTree:disp1" execute=":HRYTree:attrValuePanelGroup" oncomplete="O$('HRYTree:statusPopup').show();"></a4j:ajax>
+		</h:commandButton>
+		<h:outputText value="  " escape="false" /> 
+		<h:commandButton id="rejectedButton" value="Rejected" title="Rejected" image="/resources/images/rejected.png" actionListener="#{memberStatusBean.displayingStatus(hierarchyBean.document_ID,hierarchyBean.currentStageNumb,'Rejected', 'Primary')}" rendered="#{hierarchyBean.renderstatus4Rejected}">
+		<a4j:ajax render=":HRYTree:data1 :HRYTree:reason msg1 :HRYTree:attrValuePanelGroup :HRYTree:disp1" execute=":HRYTree:attrValuePanelGroup" oncomplete="O$('HRYTree:statusPopup').show();"></a4j:ajax>
+		</h:commandButton>
+		<h:outputText value="  " escape="false" />
+		<h:commandButton id="approveButton" value="Approved" title="Approved"  image="/resources/images/approved.png" actionListener="#{memberStatusBean.displayingStatus(hierarchyBean.document_ID,hierarchyBean.currentStageNumb,'Approved', 'Primary')}" rendered="#{hierarchyBean.renderstatus4Approved}"><a4j:ajax oncomplete="return showAlert(#{rIConstrainsBean.rIValidationFailure},#{memberStatusBean.dispMsgStatusPopup});" execute="data1 :HRYTree:attrValuePanelGroup" render=":HRYTree:data1 :HRYTree:reason statusMsg msg1 :HRYTree:attrValuePanelGroup :HRYTree:disp1" /></h:commandButton></h:panelGroup></td>
+		<td style="background:B6DBFF;color:white;font-style: oblique;"><h:outputText id="commonStatus" title="#{hierarchyBean.fullCommonStatus}" value="#{hierarchyBean.commonStatus}"/></td></tr></table></td><td><h:commandButton value="Override WorkFlow"  rendered="false" title="Override WorkFlow" image="/resources/images/wchange.png" style="width:25px;display:none;" actionListener="#{memberStatusBean.getStageDbDatas()}">
+		<a4j:ajax render="dataStage dataStatus hierId curStageName hierName curStageName1 msg4Override overrideHierID overrideStageName overrideHierName overrideStageStatus" oncomplete="O$('HRYTree:adminchangestatusPopup').showCentered();"></a4j:ajax>
+		</h:commandButton></td></tr></table></h:panelGroup>
+	<!--rendered="#{securityBean.workFlowProcess}"  -->
+	</td></tr>
+		
+		</table>
+		<fieldset style="width:980px" >
+		<legend class="label2">Workflow</legend>
+	
+		<table><tr><td><h:panelGroup id="allStag"> <table style="background:#92B6FF;color:#FF99FF;margin-left: 2px;">
+		<tr>
+		<c:forEach var="item" items="#{hierarchyBean.allStages}" begin="0" end="#{hierarchyBean.allStages.size()}" varStatus="status">
+	
+		
+		 
+                 <td> <b><h:outputText value="#{item}" rendered="#{item==hierarchyBean.currentStatgeName}" style="color:#000;font-style:oblique;font-size: 21px;"/></b> <h:outputText value="#{item}" rendered="#{item!=hierarchyBean.currentStatgeName}" style="color: #FFF;font-size: 21px;"/></td>
+              <c:choose>
+              <c:when test="#{status.index==hierarchyBean.allStages.size()-1}">
+      
+              </c:when>
+              <c:otherwise>
+      			<td><img src="resources/images/arrow.png" height="30" width="30"/></td>          
+              </c:otherwise>
+              
+            </c:choose>
+		
+	  
+  </c:forEach>
+		</tr>
+		</table></h:panelGroup></td></tr></table>
+		</fieldset>
+		</fieldset><!-- <td>   code change pandian 19MAR2014
+		<fieldset style="height:205px; width: 480px">
+		<legend class="label2">Member's Information</legend> 
+		<table><tr><td>Member LoginID</td><td style="width: 11px;">:</td><td><h:outputText value="#{hierarchyBean.memberloginID}" /></td></tr>
+		<tr><td>Stage Name</td><td>:</td><td><h:outputText value="#{hierarchyBean.currentStatgeName}" /></td></tr>
+		<tr><td>Stage/Total Stage</td><td>:</td><td><h:outputText value="#{hierarchyBean.currentStageNumb}" />/<h:outputText value="#{hierarchyBean.totalStageNum}" /></td></tr>
+		<tr><td>Stage Status</td><td>:</td><td><h:outputText value="#{hierarchyBean.stageStatus}" /> </td></tr>
+		<tr><td>Member Status</td><td>:</td><td><h:outputText value="#{hierarchyBean.memberStatus}" /></td></tr>
+		<tr><td>Member Mail</td><td>:</td><td><h:outputText value="#{hierarchyBean.memberMailID}" /></td></tr>
+		<tr><td>Common Status</td><td>:</td><td><h:outputText value="#{hierarchyBean.commonStatus}" /></td></tr>
+		</table>
+		
+		</fieldset>
+		</td> -->
+   
+    
+<fieldset style="width: 1007px;height: 192px; margin-top: 10px;" >
+
+<table>
+		  <tr bordercolor="232" align="right">
+<td >
+<fieldset style="height: 167px;">
+	
+		<legend class="label2">Primary Document</legend>
+	
+		<table style="width:450px;display: block">
+		<tr> <td><h:outputText value="Document Name: "/></td>
+	<td><h:inputText id="documentName" value="#{hierarchyBean.documentNameWF}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" rendered="true" readonly="true"></h:inputText> </td>
+	  <td><h:commandButton id="viewdocID" value="View" title="View Document" style="height: 25px;background: white;border: 1px solid lightgray;font-weight: bold;"  actionListener="#{hierarchyBean.DownloadAttachFile(hierarchyBean.documentNameWF, 'Primary')}">
+	  <a4j:ajax oncomplete="downloadFile('#{hierarchyBean.downloadURL}')" render="@this documentName" execute="@this"></a4j:ajax>
+	  </h:commandButton></td>
+	  
+	   <td><h:panelGroup id="changeBTNpanel" rendered="#{hierarchyBean.changeBTNpanelStr}">
+	  <h:commandButton value="Change" title="Change Document" style="height: 25px;background: white;border: 1px solid lightgray;font-weight: bold;" onclick="O$('HRYTree:popupLayer3').show();">
+	  <a4j:ajax  render="@this" execute="@this"></a4j:ajax>
+	  </h:commandButton>
+	   <o:popupLayer id="popupLayer3" style="border:1px solid lightgray; position:absolute;width: 278px;z-index:10;bottom: 350px;left: 26%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+<table style="width: 272px;"><tr><td align="left"><p><b>Choose File</b></p></td><td align="right">
+																						<h:commandButton 
+																						 id="popupInvoker3" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						align="right"  style="width: 24px;"
+																						onclick="O$('HRYTree:popupLayer3').hide();">
+																							<a4j:ajax render=":HRYTree:popupLayer3"></a4j:ajax>
+																					</h:commandButton></td></tr></table>
+																					
+																					
+											<table><tr>  <rich:fileUpload 
+			fileUploadListener="#{hierarchyBean.uploadFile3}"
+			id="upload3" style="height: 146px;width: 270px;margin-bottom: 2px;overflow-x: scroll;text-align:left;" maxFilesQuantity="5" autoclear="true"
+																			immediateUpload="#{hierarchyBean.autoUpload}"
+																			allowFlash="#{hierarchyBean.useFlash}"
+																			onuploadcomplete="O$('HRYTree:popupLayer3').hide();"  
+																			render=":HRYTree:WIPButton :HRYTree:completdButton :HRYTree:rejectedButton :HRYTree:approveButton :HRYTree:logoutBtn :HRYTree:viewdocID :HRYTree:changeBTNpanel :HRYTree:attachmentTable :HRYTree:closeBtn">
+			
+	
+	</rich:fileUpload></tr>
+	
+	
+	</table>										
+																					
+	</o:popupLayer>
+	
+	  </h:panelGroup></td>
+	  
+	  </tr>
+		
+		
+		<tr> <td><h:outputText value="Document Type:" /></td>
+	<td><h:inputText id="documentTypeTEXT"  value="#{hierarchyBean.docType}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" rendered="true" readonly="true"></h:inputText> </td>
+	<td><h:commandLink value=""></h:commandLink></td>
+	</tr>
+
+		<tr> <td><h:outputText value="Created By:" /></td>
+	<td><h:inputText id="documentCreatedTEXT"  value="#{hierarchyBean.doccreatedBy}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" rendered="true" readonly="true"></h:inputText> </td>
+<td><h:commandLink value=""></h:commandLink></td>
+	</tr>
+	
+	<tr> <td><h:outputText value="Date Created:" /></td>
+	<td><h:inputText id="documentDatecredTEXT"  value="#{hierarchyBean.doccreatedDate}" styleClass="invalidInput" style="background: transparent;font-size: 13px;width: 200px;height:25px;" rendered="true" readonly="true"></h:inputText> </td>
+	<td><h:commandLink value=""></h:commandLink></td>
+	</tr>
+	
+	
+	<tr>
+<td><h:outputText value="Due Date:"/></td> 
+<td><h:outputText id="due_Date_TEXT" value="#{hierarchyBean.docdueDate}" styleClass="" style="background: transparent;font-size: 13px;width: 200px;height:25px;color:#{hierarchyBean.dueDteClr};" rendered="true" readonly="true"></h:outputText></td> 
+</tr>
+	
+	
+	
+	
+	
+			
+		</table>
+		<table style="text-align: left;position: fixed;">
+		<tr><td><h:outputText value="Click "></h:outputText> <h:commandLink value="here" onclick="O$('HRYTree:ruleAttrValuepopup1').show();" style="font-size:15px;" action="{workflowTabBean.getAllAttributesFromWorkflow4Stage(hierarchyBean.document_ID)}">
+    	<a4j:ajax render="@this :HRYTree:attrValuePanelGroup" execute="@this"></a4j:ajax>
+    	</h:commandLink><h:outputText value=" to view attributes value"></h:outputText></td></tr>
+</table>
+		</fieldset>
+		</td>
+		<td style="position: fixed;">
+		<fieldset style="height: 167px;">
+		<legend class="label2">Additional Documents</legend>
+		 <table style="width: 500px;margin-top: -10px;">
+		 <tr bordercolor="232" align="right"><td>
+		 <h:commandButton title="Upload" id="attachBrowseLocalBTN" rendered="#{hierarchyBean.allow_Upload == 'true'}"  value="Upload"  onclick="O$('HRYTree:popupLayer1').show();" style="padding: 2px 8px;background: white;border: 1px solid lightgray;font-size: 12px;font-weight: bold;margin-left: -23px;">
+	<a4j:ajax render="@this upload" execute="@this"></a4j:ajax>
+    </h:commandButton> 
+    
+	<o:popupLayer id="popupLayer1" style="border:1px solid lightgray; position:absolute;width:272px;z-index:10;bottom: -25px;left: 74%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+    <table style="width: 272px;"><tr><td align="left"><p><b>Choose File</b></p></td><td align="right">
+																						<h:commandButton 
+																						 image="/BootstrapResource/dist/hierarchy/wrkflw_close.png"
+																						id="popupInvoker" value="Close" align="right"
+																					onclick="O$('HRYTree:popupLayer1').hide();">
+																							<a4j:ajax render=":HRYTree:popupLayer1"></a4j:ajax>
+																					</h:commandButton></td></tr></table>
+    
+    
+  <rich:fileUpload 
+			fileUploadListener="#{hierarchyBean.uploadFile}"
+			id="upload" style="height:105px;width:271px;overflow-x: auto;" maxFilesQuantity="5" autoclear="true"
+																			allowFlash="false"
+																			onuploadcomplete="O$('HRYTree:popupLayer1').hide();" 
+																			render="@this :HRYTree:attachmentTable:paginator :HRYTree:attachmentTable:panelGroup :HRYTree:WIPButton :HRYTree:completdButton :HRYTree:rejectedButton :HRYTree:approveButton :HRYTree:logoutBtn :HRYTree:viewdocID :HRYTree:changeBTNpanel :HRYTree:attachmentTablepanelGroup :HRYTree:attachmentTable :HRYTree:closeBtn">
+			</rich:fileUpload>
+	<table>
+																		
+																		</table>
+																	</o:popupLayer>
+		 </td>
+		 </tr>
+		   
+		  <tr bordercolor="232" align="right">
+		  
+		 <td>
+		<h:panelGroup id="attachmentTablepanelGroup">
+		  <div style=" height: 121px;;border: 1px solid lightgray;overflow: scroll;overflow-y:auto; overflow-x:hidden;">
+		  <o:dataTable id="attachmentTable" value="#{hierarchyBean.attachmentTabDetailsAL1}" styleClass="table"  var="attachmentTableobject"
+											headerVertSeparator="1px solid #a0a0a0"  rowIndexVar="rowI"
+											style="min-width:100%;max-width:100%;border: 1px solid lightgray;table-layout: fixed;width:100px;">
+
+											
+											
+
+											<o:column rendered="false">
+												<f:facet name="header">ID</f:facet>
+												
+
+												
+												<h:outputLabel title="#{attachmentTableobject.attID}" style="word-break: break-word;overflow:expand;font-size: 14px;font-weight: normal;" value="#{attachmentTableobject.attID}"></h:outputLabel>
+												
+											
+											</o:column>
+
+											<o:column >
+												<f:facet name="header">Document Name</f:facet>
+												
+
+												
+												<h:outputLabel title="#{attachmentTableobject.attfileName}" style="word-break: break-word;overflow:expand;font-size: 14px; font-weight: normal;" value="#{attachmentTableobject.attfileName}"></h:outputLabel>
+												
+											
+											</o:column>
+											
+											<o:column >
+												<f:facet name="header">Uploaded By</f:facet>
+												
+
+												
+												<h:outputLabel title="#{attachmentTableobject.uploadDetails}" style="word-break: break-word;overflow:expand;font-size: 14px; font-weight: normal;" value="#{attachmentTableobject.uploadDetails}"></h:outputLabel>
+												
+											
+											</o:column>
+											<o:column rendered="#{hierarchyBean.statusCode4DocsFlag == 'true'}">
+												<f:facet name="header">Action</f:facet>
+												
+
+												
+												<h:commandLink value="#{attachmentTableobject.actionDisplayName}" style="font-size:13px;" disabled="#{attachmentTableobject.actionDisabledStr}" actionListener="#{memberStatusBean.displayingStatus4Attachment(hierarchyBean.document_ID,hierarchyBean.currentStageNumb,'', attachmentTableobject, 'Attachment')}">
+														<a4j:ajax render=":HRYTree:data1 :HRYTree:reason msg1 :HRYTree:attrValuePanelGroup :HRYTree:disp1" oncomplete="O$('HRYTree:statusPopup').show();"></a4j:ajax></h:commandLink>
+												
+											
+											</o:column>
+											
+											<o:column >
+												<f:facet name="header">View</f:facet>
+
+												<center>
+														<h:commandLink value="View" actionListener="#{hierarchyBean.DownloadAttachFile(attachmentTableobject.attfileName, 'Attachment')}">
+														<a4j:ajax oncomplete="downloadFile('#{hierarchyBean.downloadURL}')" render="@this" execute="@this"></a4j:ajax></h:commandLink>
+														
+												</center>
+											</o:column>
+											
+												<o:column rendered="#{hierarchyBean.delete4DocsFlag == 'true'}">
+												<f:facet name="header">Delete</f:facet>
+
+												  <center> <h:commandButton id="delteattBTN" title="Delete" image="/BootstrapResource/dist/hierarchy/list_delte.png"  action="#{hierarchyBean.deleteDocsMethod(attachmentTableobject.attfileName, rowI, hierarchyBean.document_ID,attachmentTableobject.attID)}" >
+     												<f:ajax render=":HRYTree:attachmentTablepanelGroup" execute="@this"></f:ajax>
+ 															</h:commandButton>
+ 															</center> 
+											      </o:column>
+
+									
+
+										</o:dataTable>
+		  
+		  
+		  
+		  
+	  </div>
+		</h:panelGroup>	
+		  </td>
+		  
+		  
+		  
+		  
+		  
+		  </tr>
+		 
+		 
+		 
+		 </table>
+		 </fieldset>
+	</td>
+		
+		
+		
+		</tr>
+		</table>
+		
+		
+    <table style="width:540px;display: none">
+    <tr bordercolor="232" align="right"><td align="right"><table><tr align="right">
+		
+		<td>
+		<h:commandButton value="Add" title="Add a Rollup Node" image="/resources/images/add.png" actionListener="#{hierarchyBean.rollupPopupDetail('Rollup')}"   rendered="#{securityBean.addRollUpNode}" style="width: 20px; height: 20px; ">
+		<a4j:ajax render="leg1 statusMsg Name Type Parent selectedTypes" execute="hireName hierarchyTree selectedTypes leg1"  oncomplete="showRolluppopup(#{hierarchyBean.valid});"></a4j:ajax>
+		</h:commandButton></td><td></td><td/><td><h:commandButton id="addDataNode" title="Add a Data Node" value="AddData" image="/resources/images/add2.jpg" rendered="#{securityBean.addDataNode}"  actionListener="#{hierarchyDBBean.gettingTableName('dataPopup')}" disabled="#{hierarchyBean.disableDataNHier}" style="width: 20px; height: 20px; ">
+		<a4j:ajax render="statusMsg data hierarchyTree dim msg msgData genRepSessions serverDetails seladddata codeComb" execute="statusMsg hierarchyTree seladddata"  oncomplete="showDataPopup(#{hierarchyBean.valid});"></a4j:ajax>
+		</h:commandButton></td><td></td><td></td>
+		
+		<td><h:commandButton title="Add a Hierarchy Node" value="Hierarchy" image="/resources/images/hi.png" rendered="#{securityBean.addHierarchyNode}" disabled="#{hierarchyBean.disableDataNHier}" style="width: 20px; height: 20px; ">
+		<a4j:ajax render="statusMsg hierarchyTree TypeHr ParentNodeHr HrList" execute="statusMsg hierarchyTree TypeHr ParentNodeHr HrList" listener="#{hierarchyBean.rollupPopupDetail('Hierarchy')}" oncomplete="showHierarchypopup(#{hierarchyBean.valid});"></a4j:ajax>
+		</h:commandButton></td><td></td><td></td>
+		
+		<td><h:commandButton title="Copy Node" value="Hierarchy" image="/resources/images/cn.png" style="width: 20px; height: 20px; ">
+		<a4j:ajax execute="@this :HRYTree:hierarchyList" render=":HRYTree:hierarchyList" listener="#{hierarchyBean.copynode()}" oncomplete="O$('HRYTree:hierarchyList2').showCentered();"></a4j:ajax>
+		</h:commandButton></td><td></td><td></td><td><h:commandButton id="Rhimage1" title="Copy Hierarchy" style="border:0; width: 20px; height: 20px; " image="/resources/images/ch.png" actionListener="#{hierarchyBean.messageConstructor4Copy()}">
+		<a4j:ajax render="confirmPopup4Cpy" execute="confirmPopup4Cpy" oncomplete="O$('HRYTree:confirmPopup4Cpy').showCentered();"/></h:commandButton></td><td></td><td></td>
+		<td><h:commandButton id="Rhimage" title="Reference Hierarchy" style="border:0; width: 20px; height: 20px; " image="/resources/images/RH.jpg" actionListener="#{reportsInvXMLTreeBean.getReferenceHierarchyNodeFromHIRLevelXml('true')}" rendered="#{hierarchyBean.status!='Independent' and hierarchyBean.status!='Reference' and securityBean.referenceHierarchy}">
+		<a4j:ajax render="ReferenceTreePopUp" oncomplete="O$('HRYTree:referenceHierarchyTreePopup').showCentered();"></a4j:ajax>
+		</h:commandButton></td><td></td><td></td><td align="right">
+		<h:commandButton value="conformation" title="RI Validation" image="/resources/images/ri_icon.png" style="width: 20px; height: 20px; " actionListener="#{hierarchyBean.setFlag4valipopup}" onclick="showRIPopup('#{hierarchyBean.status}');" rendered="#{hierarchyBean.status!='Independent' and hierarchyBean.status!='Reference' and securityBean.riValidationOnhtree}">
+		<a4j:ajax></a4j:ajax>
+		</h:commandButton></td><td></td><td valign="middle" align="center"><p style="color: gray;"><h:outputText value="|" rendered="#{securityBean.editSelectedNode}"/></p></td><td></td>
+	<td><h:panelGroup id="edit">	<h:commandButton id="editNode" title="Edit Selected Node" image="/resources/images/edit.jpg" value="Edit" actionListener="#{hierarchyBean.setEditFlag()}" action="#{hierarchyDBBean.setServerDetails()}" rendered="#{securityBean.editSelectedNode=='true' and hierarchyBean.renderEditbutton=='true'}"  disabled="#{hierarchyBean.disableDataNHier}" style="width: 20px; height: 20px; ">
+	<a4j:ajax render="editRoll1 editRoll editData editHier codeCombedit" execute=":HRYTree:hierarchyTree" oncomplete="showEditPopup('#{hierarchyBean.selectedRows.size()}');"></a4j:ajax>
+	</h:commandButton></h:panelGroup></td><td>
+	<h:panelGroup id="editSqlDirect">
+	<h:commandButton id="directSqlEdit" title="Edit Selected Node" value="Add" rendered="#{securityBean.editSelectedNode=='true' and hierarchyBean.renderEditbutton1=='true'}" action="#{hierarchyBean.setEditFlag()}" actionListener="#{hierarchyDBBean.setServerDetails()}" style="width: 20px; height: 20px; " image="/resources/images/edit.jpg">
+					<a4j:ajax render="cpyDataNode" execute=":HRYTree:hierarchyTree" oncomplete="O$('HRYTree:CopyofdataPopup').showCentered();"></a4j:ajax>	    
+						    </h:commandButton></h:panelGroup></td><td></td><td valign="middle" align="center"><p style="color: gray;"><h:outputText value="|" rendered="#{securityBean.pushOnLevelOut}"/></p></td><td></td>
+	
+	<td>	<h:commandButton title="Push One Level Out" value="Pre" image="/resources/images/pre.png" actionListener="#{hierarchyBean.movePreviousNNext('Previous')}" action="#{reportsInvXMLTreeBean.getReportsForSession(hierarchyBean.hierarchyXmlFileName, hierarchyBean.getHierarchy_ID(), null, '')}" rendered="#{securityBean.pushOnLevelOut}" style="width: 20px; height: 20px; ">
+	<a4j:ajax render="hierarchyTree statusMsg validMsg" execute="hierarchyTree RIValidation" oncomplete="showConfrimPopup1('#{hierarchyBean.selectedHierarchyType}','#{hierarchyBean.selectedRows.size()}','#{hierarchyBean.msg1}',#{hierarchyBean.rhContainsDH});"></a4j:ajax>
+	</h:commandButton></td><td></td><td></td>
+	
+	<td>	<h:commandButton title="Push One Level In" value="For" image="/resources/images/for.png" actionListener="#{hierarchyBean.movePreviousNNext('Next')}" action="#{reportsInvXMLTreeBean.getReportsForSession(hierarchyBean.hierarchyXmlFileName, hierarchyBean.getHierarchy_ID(), null, '')}" rendered="#{securityBean.pushOnLevelIn}" style="width: 20px; height: 20px; ">
+	<a4j:ajax render="hierarchyTree statusMsg validMsg" execute="hierarchyTree RIValidation" oncomplete="showConfrimPopup1('#{hierarchyBean.selectedHierarchyType}','#{hierarchyBean.selectedRows.size()}','#{hierarchyBean.msg1}',#{hierarchyBean.rhContainsDH});"></a4j:ajax>
+	</h:commandButton></td>
+	
+	<td></td><td valign="middle" align="center"><p style="color: gray;"><h:outputText value="|" rendered="#{securityBean.moveUP}"/></p></td><td></td>
+
+	<td>	<h:commandButton title="Move up" value="moveUP" image="/resources/images/up.png" actionListener="#{hierarchyBean.moveUpNDown('UP')}" action="#{reportsInvXMLTreeBean.getReportsForSession(hierarchyBean.hierarchyXmlFileName, hierarchyBean.getHierarchy_ID(), null, '')}" rendered="#{securityBean.moveUP}" style="width: 20px; height: 20px; ">
+	<a4j:ajax render="hierarchyTree statusMsg validMsg" execute="hierarchyTree RIValidation" oncomplete="showConfrimPopup1('#{hierarchyBean.selectedHierarchyType}','#{hierarchyBean.selectedRows.size()}','#{hierarchyBean.msg1}',#{hierarchyBean.rhContainsDH});"></a4j:ajax>
+	</h:commandButton></td><td></td><td></td>
+		<td><h:commandButton title="Move down" value="moveDown" image="/resources/images/down.png" actionListener="#{hierarchyBean.moveUpNDown('DOWN')}" action="#{reportsInvXMLTreeBean.getReportsForSession(hierarchyBean.hierarchyXmlFileName, hierarchyBean.getHierarchy_ID(), null, '')}" rendered="#{securityBean.moveDown}" style="width: 20px; height: 20px; ">
+		<a4j:ajax render="hierarchyTree statusMsg validMsg" execute="hierarchyTree RIValidation" oncomplete="showConfrimPopup1('#{hierarchyBean.selectedHierarchyType}','#{hierarchyBean.selectedRows.size()}','#{hierarchyBean.msg1}',#{hierarchyBean.rhContainsDH});"></a4j:ajax>
+		</h:commandButton></td><td></td><td valign="middle" align="center"><p style="color: gray;"><h:outputText value="|" rendered="#{securityBean.moveDown}"/></p></td><td></td>
+	<td>	 <h:commandButton title="Refresh" value="Refresh" image="/resources/images/refresh.png"   style="width: 20px; height: 20px; " execute="HRYTree hierarchyTree" render="HRYTree hierarchyTree"><a4j:ajax listener="#{hierarchyBean.loadHierarchyTree}" render="hierarchyTree statusMsg"></a4j:ajax> </h:commandButton> </td><td></td><td valign="middle" align="center"><p style="color: gray;"><h:outputText value="|" rendered="#{securityBean.deleteNode}"/></p></td><td></td>
+<td><h:commandButton id="deleteNode" title="Delete" value="Delete" onclick="return deleteconfirmation('#{hierarchyBean.selectedRows.size()}')" image="/resources/images/delete.png" action="#{reportsInvXMLTreeBean.deleteSelectedRefHierarchy('FromHierTree')}" rendered="#{securityBean.deleteNode}" style="width: 20px; height: 20px; ">
+		<a4j:ajax render="hierarchyTree stusmsg statusMsg" execute="hierarchyTree" oncomplete="showConfrimPopup1('#{hierarchyBean.selectedHierarchyType}','#{hierarchyBean.selectedRows.size()}','','');"/>
+		</h:commandButton>	</td>	</tr></table></td></tr>
+		
+    
+    
+    <tr>
+    
+    <td>
+  
+    <o:treeTable id="hierarchyTree" var="node" sortLevel="-1" sortAscending="true" sortColumnId="repname"
+				style="margin-top: 2px;  width:560px; height: 280px;"
+				commonHeaderRowClass="table-header" headerRowClass="table-header"
+				noDataMessageAllowed="false"
+				headerVertSeparator="1px solid #a0a0a0"
+				sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+				subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+				textStyle="font-family: verdana,Helvetica,sans-serif; font-size: 10pt; white-space: nowrap;"
+				preloadedNodes="all" expansionState="levelsExpanded:5">
+				
+				
+				<o:multipleNodeSelection nodeDatas="#{hierarchyBean.selectedRows}"
+                         style="background: url('../resources/images/selected.gif') repeat-x #5d8bba !important; color: white !important;">
+                         <o:ajax render="@this edit editNode deleteNode Configure addDataNode editNode editSqlDirect directSqlEdit" execute="@this edit editNode deleteNode addDataNode" listener="#{hierarchyBean.setEditButtonRendered('data')}"></o:ajax>
+                </o:multipleNodeSelection>
+				
+				
+			
+				<o:dynamicTreeStructure
+					nodeChildren="#{reportsInvXMLTreeBean.nodeChildren}"
+					nodeHasChildren="#{reportsInvXMLTreeBean.nodeHasChildren}"
+					nodeKey="#{node.id}" />
+				<o:scrolling />
+				<o:columnResizing />
+				<o:columnReordering />
+
+				
+			
+				
+				<o:column header="Hierarchy Levels IDs"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Level IDs" /></f:facet>
+				<o:hintLabel value="#{node.ID}"  rendered="true"/>
+			</o:column>
+			
+			<o:column header="Levels"   style="width:15px;" rendered="false">
+					<f:facet name="header"><h:outputText value="Hierarchy" /><br /><h:outputText value="Levels" /></f:facet>
+				<o:hintLabel value="#{node.levelNode}"  rendered="true"/>
+				
+			</o:column>
+				
+				<o:treeColumn header="Node" style="width: 15px;"
+					bodyStyle="text-align: left;">
+					<f:facet name="subHeader">
+						
+					</f:facet>
+					<h:outputText class="label3" value="#{node.levelName}" styleClass="treeTableText" />
+					<h:commandButton rendered="#{node.riConsVisible}" image="/resources/images/alert.jpg" title="#{node.RIFailureMsg}" style="width: 15px;"></h:commandButton>
+				
+				</o:treeColumn>
+
+				<o:column  style="width: 5px;">
+					<f:facet name="header">
+						<h:outputText value="Node Type" />
+					</f:facet>
+				<center>
+				<h:outputText style="font-size:11px;"  value="#{node.hierType}"></h:outputText>
+						</center> 
+				</o:column>
+				
+			
+			</o:treeTable>
+    </td></tr>
+    <tr>
+					
+				</tr>
+				
+</table>
+
+<table><tr><td><h:commandButton id="closeBtn" title="Close" value="Close" style="margin-top: 10px;" image="/resources/images/close.png" action="#{hierarchyBean.redirectWF('DocumentList.xhtml','addNewHry','','','','','','DontCreateCodeCombination','','')}" >
+<f:ajax render="stusmsg changeBTNpanel" execute="stusmsg"></f:ajax>
+</h:commandButton></td><td colspan="15"><h:panelGroup id="stusmsg" rendered="true">
+			<h:outputText id="statusMsg" style="color: #{hierarchyBean.color4HierTreeMsg}" styleClass="label2" title="#{hierarchyBean.fullMsg1}" value="#{hierarchyBean.msg1}"/></h:panelGroup>
+		  </td>
+          </tr>
+          
+          <tr><td valign="bottom"><ui:include src="/addRollupType.xhtml" /></td><td valign="bottom">
+          
+          <ui:include src="/AddSegmentPopup.xhtml"/>
+         
+         
+          <ui:include src="/dataPopup.xhtml"/></td>
+         
+          <td valign="bottom">
+          <ui:include src="/HierarchyPopup.xhtml" /></td><td valign="bottom">
+          <ui:include src="/EditPopup.xhtml" />
+         </td><td valign="bottom"> <ui:include src="/DirectSQL.xhtml"/></td>
+         <td valign="bottom"> <ui:include src="/Copy of HierarchyList.xhtml"/></td>
+           <td valign="bottom"> <ui:include src="/ReferenceHierarchyTreePopup.xhtml"/></td>
+                     <td valign="bottom"> <ui:include src="/RIValidationConfirmPopup.xhtml"/></td>
+           <td valign="bottom"> <ui:include src="/MemberStatusPopup.xhtml"/></td>
+       
+          <td valign="bottom"> <ui:include src="/GenerateDataPopup.xhtml"/></td>
+          <td valign="bottom"> <ui:include src="/confirmPopup.xhtml"/></td>
+        
+          <td valign="bottom"> <ui:include src="/versionDisplayingPopup.xhtml"/></td>
+           <td valign="bottom"> <ui:include src="/Alert4GenerateData.xhtml"/></td>
+           <td valign="bottom"> <ui:include src="/VersionDetailsPopup.xhtml"/></td>
+           <td valign="bottom"><ui:include src="/AdminChangeStatusPopup.xhtml"/> </td>
+           <td valign="bottom"> <ui:include src="/reGenerateConfirmPopup.xhtml"/></td>
+         <td valign="bottom"> <ui:include src="/confirmPopup4copy.xhtml"/></td>
+         <td valign="bottom"> <ui:include src="/selectTablePopup.xhtml"/></td>
+        <td valign="bottom"> <ui:include src="/LoadingWindow.xhtml"></ui:include></td>
+		<!-- <td valign="bottom"> <ui:include src="/SrcWarehouseJoinsClmnPopup.xhtml"/></td>		 -->
+         
+          </tr>
+         
+
+         
+         
+</table>
+
+</fieldset>
+</fieldset>
+
+  
+
+ 
+</h:form>
+
+</h:body>
+</ui:component>
+</html>

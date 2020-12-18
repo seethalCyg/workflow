@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+<h:head>
+<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>HOME HIERARCHY</title>
+
+	<script type="text/javascript">
+	
+	function showAdduserpopUP(){
+	
+	O$('hierarchytable:addUsers').showCentered();
+	return false;
+	}
+	
+	</script>
+	<script type="text/javascript">
+	
+	function deleteconfirm(selectedDataSize){
+	
+	if(selectedDataSize != '0'){
+	if (!confirm('Are you sure you want to Delete the selected record(s)?')) 
+	return false;
+	}else{
+	return true;
+	}
+	}
+	
+
+	</script>
+
+
+</h:head>
+
+    <h:body>
+     <h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+    <o:popupLayer id="hierarchyList2"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 0px; top: 0px; border: 3px solid orange; " left="200" top="200">
+       
+   
+    
+							
+ <fieldset style="width: 790px">
+   
+  
+    
+   
+    <fieldset style="width:765px">
+    <legend class="label2">Hierarchy List</legend>
+    
+		
+    <table>
+     
+    <tr>
+    
+    <td colspan="2" ><o:dataTable id="hierarchyList" sortLevel="-1" sortAscending="false" sortColumnId="hierarchyID"
+						pageSize="5" value="#{hierarchyBean.hierarchyAL1}"
+						var="objread" width="760px" commonHeaderRowClass="table-header"
+						headerRowClass="table-header" bodyRowClass="table-even-row"
+						bodyOddRowClass="table-odd-row" noDataMessageAllowed="false"
+						bodyRowStyle="background-color:#FFFFF;"
+						bodyOddRowStyle="background-color:#ADDDFF;"
+						headerVertSeparator="1px solid #a0a0a0"
+						sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+						subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+						preloadedNodes="all" expansionState="levelsExpanded:2">
+
+
+						<o:multipleRowSelection id="test"
+							rowDatas="#{hierarchyBean.hierarchyList}"
+							style="background: #a4aec5; color: #7E0000;" >
+							<o:ajax render="@this" exceute="@this"></o:ajax>
+							</o:multipleRowSelection>
+						<o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+						</o:selectionColumn>
+
+						<o:column style="width: 18px;">
+							<f:facet name="header">ID</f:facet>
+							<o:hintLabel value="#{objread.hierarchyID}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 20px;" rendered="false" sortingExpression="#{objread.hierarchyID}" id="hierarchyID">
+							<f:facet name="header">Hierarchy<br />ID</f:facet>
+							<o:hintLabel value="#{objread.hierarchyID}"></o:hintLabel>
+							
+						</o:column>
+						
+						
+						<o:column style="width: 60px;">
+							<f:facet name="header">Hierarchy Name</f:facet>
+							<o:hintLabel value="#{objread.hierarchyName}"></o:hintLabel>
+					
+						</o:column>
+						<o:column style="width: 43px;">
+							<f:facet name="header">Created <br/>Date</f:facet>
+							<o:hintLabel value="#{objread.createdDate}"></o:hintLabel>
+					
+						</o:column>
+						<o:column style="width: 55px;">
+							<f:facet name="header">Modified <br/>Date</f:facet>
+							<o:hintLabel value="#{objread.modifiedDate}"></o:hintLabel>
+					
+						</o:column>
+						
+						<o:column style="width: 40px;">
+							<f:facet name="header">Dim Status</f:facet>
+							
+							<o:hintLabel value="#{objread.dimStatus}" hint="#{objread.dimErrorMsg}"  ></o:hintLabel>
+						</o:column>
+						
+						<o:column style="width: 40px;">
+							<f:facet name="header">Fact Status</f:facet>
+							<o:hintLabel value="#{objread.factStatus}" hint="#{objread.errorMsg}"  ></o:hintLabel>
+						</o:column>
+						
+						
+						<o:column style="width: 50px;">
+							<f:facet name="header">Hierarchy <br/>Type</f:facet>
+							<o:hintLabel value="#{objread.hierarchyStatus}"></o:hintLabel>
+					
+						</o:column>
+						<o:columnGroup><f:facet name="header">Workflow</f:facet>
+						<o:column style="width: 30px;">
+							<f:facet name="header">Stage</f:facet>
+							<o:hintLabel value="#{objread.workFlowStage}"></o:hintLabel>
+					
+						</o:column>
+						<o:column style="width: 30px;">
+							<f:facet name="header">Status</f:facet>
+							<o:hintLabel value="#{objread.workFlowStageStatus}"></o:hintLabel>
+					
+						</o:column>
+						</o:columnGroup>
+						<o:column style="width: 20px;">
+							<!-- <f:facet name="header">View</f:facet> -->
+							 <h:commandButton id="viewPopup" value="View" actionListener="#{reportsInvXMLTreeBean.getReferenceHierarchyNodeFromHIRLevelXml('false')}" onclick="openRefHier();" style="width: 15px; " image="/resources/images/View.png">
+					 </h:commandButton>
+						</o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup">
+								<o:dataTablePaginator id="paginator"/>
+							</h:panelGroup>
+						</f:facet>
+
+					</o:dataTable></td></tr>
+					<tr><td><h:commandButton value="Close" title="Close" onclick="O$('HRYTree:hierarchyList2').hide();" style="width:25px" image="/resources/images/close.png">
+		<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+		</h:commandButton></td></tr>
+					</table>
+					
+    </fieldset>
+    </fieldset>
+ 
+    </o:popupLayer>
+    </h:body>
+    
+</html>

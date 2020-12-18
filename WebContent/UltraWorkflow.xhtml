@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+	
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title>Ultra Workflow</title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+
+
+	<style>
+	@media only screen and (min-width: 700px) and (max-width: 1366px)
+	{
+	/* #sendallreviewersCount{
+	margin-left:40% !important;
+	} */
+	#whole_page{	padding-top:0rem !important;	}
+	#content {height: 80% !important;}
+	#wrkflwTbl {height: 158px !important; width:80% !important;padding:1% 0%;background-color:#fff;border-radius:12px;border: 1px solid #dddcdc;}
+	#dstrbtnMthd {width:82% !important;}
+	#sndRemd {width:82% !important;}
+	#viwerRadio {width:82% !important;}
+	}
+	
+	
+	/* Media to handle 1920 + 125%. 120dpi = 125% Scaling in Display Settings  */
+@media screen and (resolution: 120dpi) and (min-width: 1377px) and (max-width: 1920px) {
+ #wrap { 
+left: 24.2em  !important;
+height: 35em !important;  
+}
+}
+	
+	         /* Media to handle 1366 + 100%. 96dpi = 100% Scaling in Display Settings */
+@media screen and (resolution: 96dpi) and (min-width: 1092px) and (max-width: 1366px){
+
+
+ #wrap { 
+left: 18.2em !important;
+height: 35em !important;  
+top: 8em !important;
+}
+
+
+}
+	
+	
+	.buttonaddclass {
+    background: white url('resources/images/discover.gif') no-repeat top;
+   
+}
+	.linkCSS{
+	font-size:13px;
+	
+	
+	}
+	.radio-inline label {
+  font-weight: initial !important;
+  font-size: 16px !important;
+  margin-left: 13px !important;
+}
+	.linkCSS:hover{
+	font-size:13px;
+	text-decoration: underline;
+	
+	}
+	#loadingPage {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	display: block;
+	opacity: 0.7;
+	background-color: #000;
+	z-index: 99;
+	text-align: center;
+}
+
+#loadingPage-image {
+	position: absolute;
+	top: 100px;
+	left: 240px;
+	z-index: 100;
+}
+
+.divouter2 {
+	border: 1px solid;
+	border-color: #f0f0f5;
+	width: 100%;
+}
+
+.modal {
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.table {
+	min-width: 100%;
+	width: auto !important;
+	max-width: 100%;
+	vertical-align: text-top;
+	padding: 3px 3px;
+	 background-color: #FFFFFF;
+	border-top: 1px solid #cac5c5  !important;
+	border-bottom: 1px solid #cac5c5  !important;
+border-right: none;
+border-left: none;
+	 
+	/*   border: solid 1px #525252;  */
+}
+.table thead tr td{
+border:1px solid lightgrey;
+
+}
+.table tbody tr{
+border-bottom:1pxsolid lightgrey;
+}
+.o_table_paginator_field {
+
+    width: 40px;
+    text-align: right;
+    pointer-events: none;
+
+} 
+
+
+.o_noWrapHeaderCell{
+    background: #fff !important;
+    color: black !important;
+}
+
+.dropdownCSS {
+
+   width:200px;
+   height: 30px !important;
+   background:#fff;
+   border:1px solid lightgray;
+
+} 
+input[type="radio"]{
+
+margin-left: -5px !important;
+}
+.main-header {
+background-color: #333333 !important;}
+.savebtn {
+	padding: 7px 14px !important;
+	border: 1px solid #4cae4c !important;
+	font-size: 13px !important;
+	font-weight: bold !important;
+	margin-right: 10px !important;
+	background-repeat: repeat-y !important;
+	background:#5cb85c !important;
+	color:white !important;
+}
+.savebtn:hover {
+	background-color: #449d44 !important;
+    border-color: #398439 !important;
+    background-repeat: repeat-y !important;
+}
+
+
+.closebtn {
+	padding: 7px 14px !important;
+	border: 1px solid !important;
+	font-size: 13px !important;
+	font-weight: bold !important;
+	margin-right: 10px !important;
+	 background-repeat: repeat-y !important; 
+	 background:#0C7BDA !important; 
+	color:white !important;
+}
+.closebtn:hover {
+	background-color: #0C7BDA !important;
+    border-color: #0C7BDA !important;
+    background-repeat: repeat-y !important;
+}
+
+
+.closebtnVideo {
+	padding: 7px 14px !important;
+	border: 1px solid #d9edf7 !important;
+	font-size: 13px !important;
+	font-weight: bold !important;
+	margin-right: 10px !important;
+	 background-repeat: repeat-y !important; 
+	 background:#d9edf7 !important; 
+	color:#31708f !important;
+}
+.closebtnVideo:hover {
+	background-color: #d9edf7 !important;
+    border-color: #d9edf7 !important;
+    background-repeat: repeat-y !important;
+}
+
+
+
+
+.one-edge-shadow {
+  box-shadow: 0 8px 6px -6px black;
+}
+</style>
+
+<style type="text/css">
+        #imagepgframe { 
+            width: 60em;
+            height: 32em;
+            position: absolute;
+        }
+        #wrap { 
+           width: 60em;
+position: absolute;
+top: 10em;
+left: 38.4em;
+bottom: 0;
+overflow-y: hidden;
+overflow-x: hidden;
+height: 60%;
+        }
+        
+    </style>
+
+
+
+
+<script type="text/javascript">
+
+$(function () {
+	 $("#success-alert_video").fadeTo(10000, 500).slideUp(500, function () {
+         $("#success-alert_video").slideUp(1000);
+     });
+});
+
+
+
+function view_video(){
+	
+	var wrapdiv = document.getElementById("wrap");
+	
+	wrapdiv.style.display="block";
+	
+}
+
+
+
+function view_video_close(){
+	
+	var wrapdiv = document.getElementById("wrap");
+	
+	wrapdiv.style.display="none";
+	
+}
+</script>
+
+
+	<script type="text/javascript">
+		function playButtonPress() {
+
+			$("#playbutton i").toggleClass(
+					"fa fa-arrow-left  fa fa-arrow-right");
+			play = !play;
+		}
+		
+		function calfunction() {
+			checkThePage();
+		document.getElementById("ultraworkflowForm:myButtonToClick").click();	
+			
+			}
+		 function checkThePage()
+ 		{
+ 			 /*alert("====="+window.location);*/ 
+ 			if(window.location.toString().endsWith("index")){
+ 				document.getElementById("logospan").innerHTML="Ultra Documents";
+ 			}
+ 			else{
+ 				document.getElementById("logospan").innerHTML="Ultra Signature";
+ 			}
+ 		}
+			
+			 function showAlert(e) {
+			 if(e.includes('saved successfully')){                		                		
+         		document.getElementById("success-alert").className = "alert alert-success";
+         	}
+         	else{                		             		 
+         		document.getElementById("success-alert").className = "alert alert-danger";
+         	}
+             $("#success-alert").fadeTo(10000, 500).slideUp(500, function () {
+                 $("#success-alert").slideUp(1000);
+             });
+             
+         }
+			
+		
+		
+	function closeultrawrkflwPopup(ischanged,actionval)
+	{		
+		if(actionval === false )
+		{			
+			return false;
+		}
+		else{
+			
+			if(ischanged)
+			{
+				if (!confirm('You have any changes in this screen are you sure you want to close without saving?')) {
+				
+						return false;
+				}else{
+				
+					window.close();
+				}
+			}
+			else{
+	
+				window.close();
+			}
+		}			
+		
+	}
+	
+	//onblur()
+	function addRow(ele){
+		console.log("____ Adding a new Row ______");
+		document.getElementById("ultraworkflowForm:addBTN").click();
+		
+		var nextCol = ele.id.replace('emailTextbox','nameTextbox');
+		setTimeout(function() {document.getElementById(nextCol).focus(); }, 50);
+		console.log("____ Next Col ______"+nextCol);
+		}
+	
+	//onfocus()
+	function focusColName(ele){
+		console.log("____Setting Focues to Name Field______"+ele.id);
+		var currentNameCol = ele.id;
+		setTimeout(function() {document.getElementById(currentNameCol).focus(); }, 50);
+		//$ (currentNameCol).focus();
+		
+		console.log("Clicked Name : " + currentNameCol)
+		
+		
+		
+	}
+	
+	
+	var nameField ;
+	var capturedFieldId;
+/**
+* Captures the id of the currently focused Email Textbox.
+* From the ID replace the "emailTextbox" to "nameTextbox". Why? To get the next Name field Id, before even tabing or clicking the Name field
+*/
+//onblur
+function getNameFieldID(ele){
+	console.log("___ 1. Get the current Email field : "+ele)
+	var nextCol = ele.replace('emailTextbox','nameTextbox');
+	nameField =nextCol;
+	console.log("___ 2 Get the next NameField after replacing : "+nameField);
+}
+
+/**
+* Captures the id of the next element to be focussed. The capture is performed
+* usually before an ajax request and restored after dom update.
+*/
+//ajax -> onbeforedomupdate
+function captureFocus() {
+	console.log("___ 3 Captures the id of the next element to be focussed: "+nameField);
+	if (nameField) {
+        capturedFieldId=nameField;
+	}
+}
+
+/**
+* Restores the focus on the captured element.
+*/
+//ajax -> oncomplete
+function restoreFocus() {
+	console.log("___ 4 Refocus the previous captured ID: "+capturedFieldId);
+	 if (capturedFieldId ) {
+        var focusedElement = document.getElementById(capturedFieldId);
+        if (focusedElement) {
+            focusedElement.focus();
+        }
+    } 
+}
+		
+	</script>
+</h:head>
+<body class="hold-transition skin-purple sidebar-mini"
+	style="padding-right: 0px !important;" onload="calfunction()">
+	
+	
+<!-- 	onkeypress="if (event.keyCode == 13) { return false; }"  -->
+	
+	<h:form id="ultraworkflowForm" style="padding-left: 0px !important;" >
+	<div class="">
+
+			<header class="main-header" style="background-color: #333333 !important;">
+
+				<a href="#" class="logo" style="background-color: #333333 !important;"> <span id="logospan_output" class="logo-lg">
+				<LABEL id="logospan" style="font-size: 16px;font-weight: normal;"></LABEL>
+					<sup style="color:#BC7D30;">TM</sup></span>
+				</a>
+
+				<nav class="navbar navbar-static-top" role="navigation" style="background-color: #333333 !important;">
+					<!-- <a class="btn" id="playbutton" data-toggle="offcanvas"
+						role="button" style="margin-top: 8px;" onclick="playButtonPress()">
+						<i class="fa fa-arrow-left " style="color: white"></i>
+					</a> -->
+
+					<div class="navbar-custom-menu">
+
+						<ul class="nav navbar-nav">
+
+
+
+							<li class="dropdown notifications-menu"><a href="https://www.ultradocuments.com/index.aspx" target="_blank"> Home </a></li>
+
+
+							<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Tools <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+								
+									<li></li>
+						<li class="divider"></li>
+						
+									<li></li>
+								</ul></li> -->
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/aboutus.html" target="_blank"> About </a></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a>
+
+							</li>
+
+
+							<li class="dropdown user user-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <img
+									src="BootstrapResource/dist/img/user3-160x160.jpg"
+									class="user-image" alt="User Image"></img> <span
+									class="hidden-xs">#{ultradocumentBean.ultraWfLoginName}</span>
+							</a>
+							<!-- 	<ul class="dropdown-menu">
+									User image
+									<li class="user-header"><img
+										src="BootstrapResource/dist/img/user3-160x160.jpg"
+										class="img-circle" alt="User Image"></img>
+										<p>
+											Welcome <small></small>
+										</p></li>
+									Menu Body
+									<div class="user-body signout" style="background-color: #c6c6ec;">
+										<div class="user-footer">
+											<div class="pull-right">
+												
+											</div>
+										</div>
+									</div>
+								</ul> -->
+								
+								</li>
+
+
+
+
+
+
+						</ul>
+
+					</div>
+
+
+				</nav>
+
+
+			</header>
+
+<!--   End of Nav Bar Header -->
+
+			<aside class="" style="background-color: #fff !important;    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);">
+				<section class="">
+
+
+
+
+					<div class="">
+						<div class="">
+							<!-- <img src="BootstrapResource/dist/img/user3-160x160.jpg"
+								class="img-circle" alt="User Image"></img> -->
+						</div>
+						<div class="">
+							<!-- <p title="#{ultradocumentBean.ultraWfLoginName}">#{ultradocumentBean.ultraWfLoginName}</p>
+							<a href="#" style="color: black !important;"><i class="fa fa-circle text-success"></i> Online</a> -->
+						</div>
+					</div>
+
+
+
+
+
+
+					<ul class="sidebar-menu" style="color: black !important;">
+
+				<h:commandButton id="myButtonToClick" value="TESTING-BUTTON" action="#{ultradocumentBean.pageloadUWF()}" style="display:none;padding: 8px 16px;background: white;border: 1px solid lightgray;font-size: 14px;font-weight: bold;margin-right: 10px;">
+				<a4j:ajax render="@this :ultraworkflowForm:wfNameLb :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+				</h:commandButton>
+					</ul>
+
+
+				</section>
+			</aside>
+<!-- End of Sidebar  -->
+
+			<div class="container-fluid " id="content" style="min-height:62em;background-color:#eaeaea; ">
+			
+			<div class="container-fluid">
+			
+				 <div class="alert alert-success" id="success-alert" style="margin-left:25%; z-index:22; position:absolute;width:41.50%;justify-content: left; align-items: center;display:none;" >                 
+             <center> <span style="font-size:14px;"> <h:outputText id="msg4UWF" style="font-size:14px;color:#{ultradocumentBean.color4msg4Usr}" value="#{ultradocumentBean.msg4Usr}"></h:outputText></span></center>   
+                        </div>  
+                        
+                        <div class="alert alert-success" id="success-alert_video" style="margin-left:25%; z-index:22; position:absolute;width:41.50%;justify-content: left; align-items: center;display:none;" >                 
+              <center><div class="row" style="font-size:14px;display:inline-block; width:100%"> 
+              <h:outputText id="msg4UWF_video" style="font-size:14px;color:#{ultradocumentBean.color4msg4Usr}" value="How to share a document: Watch a 2 minute quick video. "></h:outputText>
+             
+             <h:commandButton id="video_btn" class="savebtn btn btn-sm"  value="Click Here" action="#{ultradocumentBean.pageloadUWF()}" style="font-size: 14px;font-weight: bold;" onclick="view_video();">
+				<a4j:ajax render="@this :ultraworkflowForm:wfNameLb :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+				</h:commandButton>
+             
+             </div> </center>
+                        </div>  
+                        
+                        
+                        
+				</div>
+				
+				
+			
+				
+				
+				
+				
+				
+				
+				<!-- End of container Alert -->
+				<h:outputText id="msg4UWFclo" style="display:none;" value="#{ultradocumentBean.msg4Usrclose}"></h:outputText> 
+			
+			
+			<div id="whole_page" class="container" style="margin-top:5vh;margin-bottom:5vh; padding:2rem;background-color:white; width: 61em;">
+			
+			<div class="row">
+			<div class="col-lg-12" >
+			<p style="font-size: 25px;">Share this Document</p></div>
+			</div>
+			
+			<div class="row">
+			<div class="col-lg-12" >
+			<p style="color: #005eff;font-size: 14px;" > Add users to share the document with. And, click [Share Now] if you like to share the document immediately. Or, click [Save for Later] to save this now and share at a later time.</p></div>
+			</div>
+			
+			
+			
+			<div class="form-group row " style="margin-top:5px;">
+				<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4" >
+				<h:outputText value="Workflow Name:" style="font-size:16px;font-weight: normal;" class="col-form-label"/>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+				<h:inputText id="wfNameLb" value="#{ultradocumentBean.ultraWfName}" style="width:auto;font-size: 12px;background:white;" placeholder=" Enter Workflow Name *" class="form-control">
+		   	      <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM"  execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+		   	   </h:inputText>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="col-lg-12"  style="width:754px;">
+						 	 
+						 
+					<span style="font-weight: bold;font-size: 15px;">Enter E Mail IDs to share this document </span>
+						
+					<h:commandButton id="addBTN" title="Add"  value="Add" action="#{ultradocumentBean.addtablemethod()}" styleClass="buttonaddclass" style="display:none;margin-top: -12px;float:right;padding: 6px 12px;background: white;border: 1px solid lightgray;">
+					<a4j:ajax render="@this  :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:ultraworkflowdocTablepanelGroup :ultraworkflowForm:msg4UWF" execute="@this :ultraworkflowForm:ultraworkflowdocTable" oncomplete="hidemsg();"></a4j:ajax>
+					</h:commandButton>
+					
+					</div>
+			</div>
+			
+			<!-- Table Start -->
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div id="wrkflwTbl" style="width:100%;height:250px;overflow-x:hidden;overflow-y:auto;padding:1%;background-color:#fff;border-radius:12px;border: 1px solid #dddcdc;">
+					 	 <h:panelGroup id="ultraworkflowdocTablepanelGroup">
+					 	 <o:dataTable id="ultraworkflowdocTable" value="#{ultradocumentBean.ultradocumentDetailsAL}" styleClass="table" var="ULworkflowdocTableobject"
+									 rowIndexVar="rowI"	headerVertSeparator="1px solid #a0a0a0" style="" >
+
+											<o:multipleRowSelection style="color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+											<o:column rendered="false">
+												<f:facet name="header">User Privileges</f:facet>
+
+												
+								<center>	<h:selectBooleanCheckbox  value="#{ULworkflowdocTableobject.superprvilage}" >
+                                  
+                                </h:selectBooleanCheckbox>
+													</center>
+												
+											</o:column>
+											
+												<o:column sortable="true"   rendered="false">
+												<f:facet name="header">Access Unique ID</f:facet>
+
+											<center>	
+											<h:outputLabel title="#{ULworkflowdocTableobject.accUniqueID}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{ULworkflowdocTableobject.accUniqueID}"></h:outputLabel>
+												
+												</center>
+														
+												
+											</o:column>
+										
+										<o:column sortable="true"  rendered="false">
+												<f:facet name="header">Customer Key</f:facet>
+
+											<center>	
+												<h:outputLabel title="#{ULworkflowdocTableobject.customerKey}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{ULworkflowdocTableobject.customerKey}"></h:outputLabel>
+												
+												</center>
+														
+												
+											</o:column>
+											
+											
+											<o:column  sortable="true" style="padding: 5px 0px !important;">
+												<f:facet name="header" >E Mail ID</f:facet>
+										<center>	<h:inputText id="emailTextbox"  value="#{ULworkflowdocTableobject.emailID}"  style="font-size:13px;width:100%;background:white;border:1px sold lightgray;height:30px;" onblur="getNameFieldID(this.id)" >
+    												   <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:ultraworkflowdocTablepanelGroup :ultraworkflowForm:msg4UWF"  execute="@this :ultraworkflowForm:ultraworkflowdocTable" oncomplete="hidemsg(); restoreFocus();" onbeforedomupdate="captureFocus();"  listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+											   </h:inputText>
+								
+											   
+											   
+									
+												</center>
+											</o:column>
+											<o:column sortable="true" style="padding: 5px 0px !important;">
+												<f:facet  name="header" >Name</f:facet>
+
+											<center>	
+												<h:inputText id="nameTextbox" value="#{ULworkflowdocTableobject.username}"  style="font-size:13px;width:100%;background:white;border:1px sold lightgray;height:30px;">
+    											   <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM"  execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+											   </h:inputText>
+												
+												</center>
+														
+												
+											</o:column>
+										
+
+										<o:column style="width:5%; border-left:none !important;padding: 5px 0px 5px 0px !important;" >
+												<f:facet name="header"></f:facet>
+													<center> 	 <h:commandButton id="delteattBTN" title="Delete"  image="/BootstrapResource/dist/hierarchy/list_delte.png" style="border: 1px solid lightgray !important; padding:3px 20px  !important;" action="#{ultradocumentBean.deletetableMethod(rowI)}" tabindex="-1"  >
+     												<a4j:ajax render="@this :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:ultraworkflowdocTablepanelGroup" execute="@this :ultraworkflowForm:ultraworkflowdocTable" oncomplete="hidemsg(); "></a4j:ajax>
+ 															</h:commandButton>
+											</center>
+											</o:column>
+											
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+										</h:panelGroup>
+										</div>
+				
+				</div>
+			</div>
+			<!-- Table End -->
+			
+								 
+			 <div class="row " style="margin-top:5px;border-radius: 2rem; width:100%;background-color:white;" id="dstrbtnMthd">
+			 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="width:102%;background-color:white;">
+			  <p style="font-size: 20px; margin: 0 0 0;">Distribution method</p>
+			 </div>
+			   
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="width:100%;background: #fff;margin-left:1.4rem;border-radius:2rem 2rem 2rem 2rem !important;border: 1px solid #dddcdc;">
+					
+					 <h:selectOneRadio  styleClass="radio-inline"  layout="pageDirection" id="reviewersType"  value="#{ultradocumentBean.reviewersTypestr}" style="font-weight: normal;">
+						<f:selectItem itemValue="onereviewer" itemLabel="Send this document to  one reviewer at a time" id="radioText1" /> 
+						<f:selectItem itemValue="allreviewer"  itemLabel="Send this document to all reviewers at once" id="radioText2"/> 
+						<f:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:minapprovGroup :ultraworkflowForm:sendallreviewersCountlabel :ultraworkflowForm:sendallreviewersCount " execute="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendallreviewersCount" listener="#{ultradocumentBean.chgeType}"></f:ajax>							
+						
+					</h:selectOneRadio>
+					 
+					</div>
+					
+				<div class="row" style="margin-top:6rem;border-radius: 2rem 2rem 2rem 2rem !important;width:100%;margin-left:1.5rem;" id="viwerRadio">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="width:100%;">
+					 	 
+						<h:panelGroup id="minapprovGroup">
+		
+					
+						 <h:selectOneRadio  styleClass="radio-inline"  layout="pageDirection" id="sendallreviewersType" value="#{ultradocumentBean.sendallreviewersTypestr}" rendered="#{ultradocumentBean.reviewersTypestr == 'allreviewer'}"  style="font-weight: normal;margin-left:15px;">
+							<f:selectItem itemValue="sendallViewer" itemLabel="Everyone must approve" /> 
+							<f:selectItem itemValue="sendcountViewer"  itemLabel="No of members to approve" /> 
+							<f:ajax render="@this :ultraworkflowForm:sendallreviewersCount :ultraworkflowForm:sendallreviewersCountlabel :ultraworkflowForm:closeWFBbtnSIM" execute="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendallreviewersCount" listener="#{ultradocumentBean.sendallchgeType}"></f:ajax>							
+							
+							</h:selectOneRadio>
+					 	
+						</h:panelGroup>
+					</div>
+				</div>	
+				
+					
+					</div>
+				<div class="row">
+					<h:inputText id="sendallreviewersCount" value="#{ultradocumentBean.sendallreviewersCountTvalue}" disabled="#{ultradocumentBean.parellpanestr}"  style="width:30px;margin-left:26rem !important; height:25px;border:1px solid lightgray;position: absolute;margin-top: -26px;margin-left: 245px;display:#{ultradocumentBean.minaprDisplay};background:#{ultradocumentBean.parellpaneCLRstr}">
+					  <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM"  execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+					</h:inputText>
+					<h:outputText id="sendallreviewersCountlabel" style="font-size: 16px;font-weight: normal;position: absolute;margin-top: -27px;margin-left:280px;display:none" ></h:outputText>
+				</div>
+					
+					
+					
+			 <div class="row" style="margin-top:5px;border-radius: 2rem;width:100%" id="sndRemd">
+			 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="width:100%;">
+					
+					<p style="font-size: 20px; margin: 0 0 0;">Send Reminders	</p>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="border-radius:2rem 2rem 2rem 2rem !important;width:103%; background: #fff;border: 1px solid #dddcdc;">
+								 	
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="margin-left: -10px;margin-top: 5px;">
+				<div>
+				<h:selectBooleanCheckbox id="sendalertBox1"  value="#{ultradocumentBean.sendalertBox1value}"  > </h:selectBooleanCheckbox>
+			   <b> <h:outputText style="margin-left: 2px;font-size: 16px;font-weight: normal;" value=" Send reminder after "></h:outputText> </b>
+				<h:inputText id="sendalertBox1TextBox" value="#{ultradocumentBean.sendalertBox1Tvalue}" disabled="#{ultradocumentBean.firstdisable}" style="width:30px;margin-left: 0px;height:25px;background:#fff;border:1px solid lightgray;">
+				   <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM"  execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+				</h:inputText>
+				<LABEL style="font-size: 16px;font-weight: normal;">days</LABEL>
+				</div>
+				  </div>
+				 
+				  
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="margin-left: -10px;">
+			
+				<h:selectBooleanCheckbox id="sendalertBox2" value="#{ultradocumentBean.sendalertBox2value}"  ></h:selectBooleanCheckbox>
+			    <b><h:outputText style="font-size: 16px;font-weight: normal;" value="Send"></h:outputText> </b> 
+			   
+			   <h:inputText id="sendalertBox2TextBox1" value="#{ultradocumentBean.sendalertBox2Tvalue}" disabled="#{ultradocumentBean.seconddisable}" style="width:30px;height:25px;margin-left: 0px;background:#fff;border:1px solid lightgray;">
+			   
+			      <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM" event="keyup" execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+			      </h:inputText>
+			   <LABEL style="font-size: 16px;font-weight: normal;"> reminders, with </LABEL>
+				<h:inputText id="sendalertBox2TextBox2" value="#{ultradocumentBean.sendalertBox3Tvalue}" disabled="#{ultradocumentBean.thirddisable}"  style="width:30px;height:25px;margin-left: 2px;background:#fff;border:1px solid lightgray;">
+				   <a4j:ajax render="@this :ultraworkflowForm:closeWFBbtnSIM"  execute="@this :ultraworkflowForm:closeWFBbtnSIM" listener="#{ultradocumentBean.wfNameLblistener()}" ></a4j:ajax>
+				   </h:inputText>
+				<LABEL style="font-size: 16px;font-weight: normal;"> day(s) interval </LABEL>
+				
+				</div>
+				</div>	
+						  </div>				
+			</div>
+								
+								
+						
+			 <div class="row" style="margin-top:2rem;">
+			 
+			 
+			 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			 <h:commandButton id="saveBTN" class="savebtn" value="Save for Later" action="#{ultradocumentBean.ulsaveAction('save')}" style="">
+				 <a4j:ajax  render="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendallreviewersCount :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendalertBox1 :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:reviewersType :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:wfNameLb :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF :ultraworkflowForm:sendallreviewersCount" oncomplete="hidemsg(); showAlert('#{ultradocumentBean.msg4Usr}');"></a4j:ajax>
+				  </h:commandButton>
+			 
+			  <h:commandButton id="startwkbtn" class="savebtn" value="Share Now" action="#{ultradocumentBean.ulsaveAction('start')}" style="">
+				 <a4j:ajax  render="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendallreviewersCount :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this :ultraworkflowForm:closeWFBbtnSIM :ultraworkflowForm:sendalertBox1 :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:reviewersType :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:wfNameLb :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF :ultraworkflowForm:sendallreviewersCount" oncomplete="hidemsg(); showAlert('#{ultradocumentBean.msg4Usr}'); return closeultrawrkflwPopup(#{ultradocumentBean.ultradocumentischanged},#{ultradocumentBean.msg4Usrclose});"></a4j:ajax>
+				  </h:commandButton>
+			
+			  <h:commandButton id="closeWFBbtnSIM" class="closebtn"  title="Close" value="Close"  onclick="return closeultrawrkflwPopup(#{ultradocumentBean.ultradocumentischanged},'');"  style="" >
+			  <a4j:ajax render="@this :ultraworkflowForm:wfNameLb :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+			  </h:commandButton>
+			 </div>
+					
+		</div>	
+			<!-- End of buttons -->
+			
+			
+			</div>
+			<!-- End of container-fluid Selection Main -->
+			
+			
+	
+			
+			</div>
+	<!-- End of container-fluid -->
+	
+
+	
+<div class="panel panel-info" id="wrap" style="display:none;">
+  <div class="panel-heading">
+  
+  <span>Share document quick tutorial</span>
+  
+  
+  
+ <h:commandButton id="video_btn_close" class="closebtnVideo" action="#{ultradocumentBean.pageloadUWF()}" value="X"  style="font-size: 14px;font-weight: bold;float:right;" onclick="view_video_close();">
+				<a4j:ajax render="@this :ultraworkflowForm:wfNameLb :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox1TextBox :ultraworkflowForm:sendalertBox2 :ultraworkflowForm:sendalertBox2TextBox1 :ultraworkflowForm:sendalertBox2TextBox2 :ultraworkflowForm:ultraworkflowdocTable :ultraworkflowForm:msg4UWF" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+				</h:commandButton>
+  
+  </div>
+  
+  <div class="">
+  <iframe id="imagepgframe" name="imagepgframe" frameborder="0" scrolling="auto" src="#{ultradocumentBean.iframeUrl}">
+             
+            </iframe>
+  </div>
+</div> 
+
+<footer class="main-footer"
+				style="padding-top: 3px; padding-bottom: 3px; margin-left:0px !important;height: 5vh;background-color: black;">
+				
+				<div class="pull-left" style="color: white">
+				<strong>Powered by <a href="http://prodentechnologies.net"
+					target="_blank" style="color: #FF993A;">Proden Technologies,Inc</a>.
+				</strong> All rights reserved.</div>
+				<div class="pull-right " style="color: white">
+					<b>Version</b> 3.2.10
+				</div>
+			</footer>
+	<ui:include src="/LoadingWindow.xhtml"></ui:include>
+	
+	<!-- <ui:include src="/Hierarchytree.xhtml"></ui:include> -->
+	<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+	<script src="BootstrapResource/dist/js/app.min.js"></script>
+		</div>
+<!-- End of Main Div -->
+	</h:form>
+</body>
+</html>

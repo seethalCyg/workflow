@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title></title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+	<style>
+
+.subtitlestyle1{
+color:#116a93;
+font-size: 17px;
+border: 1px solid transparent !important;
+}
+
+.myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+ .modal
+{
+      overflow: hidden ! important;
+    background-color: transparent ! important;
+} 
+
+</style>
+
+</h:head>
+
+
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+
+<div class="modal fade" id="PassPopup" role="dialog">
+    <div class="modal-dialog modal-sm" style="border: 1px solid lightgray;width: 335px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+	
+	
+	<h:commandButton id="savePassBTN" title="Save" value="Save" image="/BootstrapResource/dist/hierarchy/Workflw_Save.png" action="#{dashboardBean.WriteRejectedReturnToXml('Pause')}" rendered="#{securityBean.workFlowProcess}">							
+								 <f:ajax render=":form:returnpassMsg NotificationPass" execute=":form:returnpassMsg NotificationPass"></f:ajax>
+								 </h:commandButton> 
+
+<h:commandButton title="Close" id="ClosePassBTN" value="close" onclick="$('#PassPopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" action="#{dashboardBean.emptystrMsg}" >
+<a4j:ajax render="@this :form:returnpassMsg NotificationPass" execute=":form:returnpassMsg NotificationPass" oncomplete="hidemsg()" ></a4j:ajax>
+ </h:commandButton> 
+	 
+	</div>
+	
+	 <h4 id="rejectedTitle" class="modal-title" >Pause Handling</h4>
+	</div>
+	
+   <div class="modal-body">
+     <div class="row">
+	<div class="col-lg-12">
+	<h5 style="color: #1F6AAF">You can tell the workflow to handle Pause when the Pause the document.</h5>
+	</div>
+	</div>
+    <div class="row">
+	<div class="col-lg-12">	
+				
+    			
+    			
+    <p class="subtitlestyle1"> Send Notification to:</p>
+    			
+    			
+    <h:selectOneRadio styleClass="myradio"   layout="pageDirection" id="NotificationPass" value="#{dashboardBean.passSendNotification2}">
+							<f:selectItem itemValue="Affected_Member" itemLabel="Only Affected Member (s)"/> 
+							<f:selectItem itemValue="All_Members_in_Stage" itemLabel="All Members in this Stage"/>
+							<f:selectItem itemValue="All_Members_Before_Stage" itemLabel="All Members Before and Current Stage"/>
+							<f:selectItem itemValue="All_Members_in_WF" itemLabel="All Members in this Workflow"/>
+						
+						
+	</h:selectOneRadio>
+    			
+	</div>
+	</div>
+	</div>
+	
+
+    <div class="row">
+	<div class="col-lg-12">	
+<h:outputText id="returnpassMsg" style="color:#{dashboardBean.returnPassMessagecolor}" value="#{dashboardBean.returnPassMessage}"></h:outputText>
+	</div>
+	</div>
+		
+		
+		
+	</div>
+	</div>
+	</div>
+			
+<script>
+ 
+$("#PassPopup").draggable({
+handle: ".modal-content"
+});
+          
+</script>
+</body>
+</html>
+	

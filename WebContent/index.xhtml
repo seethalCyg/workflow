@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://openfaces.org/">
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>accel BI</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>	
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+   <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+<!--   <script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+
+ <style>
+
+   
+.modal
+{
+    overflow: hidden;
+    background-color: transparent;
+} 
+
+.signBTNcss{
+padding: 5px 10px !important;
+background: #1F6AAF !important;
+color: #fff !important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+
+.signBTNcss:hover{
+padding: 5px 10px !important;
+background: #037193 !important;
+color: #fff!important;
+width: 100% !important;
+font-size: 15px !important;
+
+}
+</style>
+
+
+
+<script type="text/javascript">
+
+function getscreenSize(){
+
+var width = screen.width;
+var height = screen.height;
+document.getElementById("hierarchytable:sWidth").value=width;
+document.getElementById("hierarchytable:sHeight").value=height;
+
+}
+
+</script> 
+    
+      
+      
+</h:head>
+
+
+
+
+
+<body class="hold-transition login-page" onload="getscreenSize()">
+
+<h:form id="hierarchytable">
+ <h:inputHidden value="#{securityBean.value4Login}"></h:inputHidden>
+ <h:inputHidden value="#{hierarchyBean.value4Login}"></h:inputHidden>
+<h:inputHidden id="sWidth" value="#{loginBean.screenWidth}"></h:inputHidden>
+<h:inputHidden id="sHeight" value="#{loginBean.screenHeight}"></h:inputHidden> 
+<div class="login-box">
+  <div class="login-logo">
+    <br/>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">SIGN<SPAN class="text-blue"></SPAN></p>
+   
+   <div class="row">
+        <div class="col-xs-12">
+        
+        
+        <div style="text-align: center;">
+        <i class="fa fa-user fa-5x" style="color:#1F6AAF" aria-hidden="true"></i>
+     
+        
+        </div>
+        
+        
+        </div>
+        </div>
+   
+   
+   
+   
+   
+
+    
+      <div class="form-group has-feedback">
+         
+       <h:inputText type="text" class="form-control" id="username" value="#{loginBean.username}" style="background:#fff;" placeholder="Username">
+       </h:inputText>
+        <span class="fa fa-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        
+       <h:inputSecret type="password" class="form-control" id="password" value="#{loginBean.password}" placeholder="Password" style="background:#fff;"></h:inputSecret>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      
+
+      <div class="row">
+        <div class="col-xs-12">
+           <div class="social-auth-links text-center">
+  
+     
+     <h:commandButton style="width:200px"  value="Sign in" class="btn signBTNcss" action="#{loginBean.validation}">
+    <a4j:ajax render=":hierarchytable:userfrgtID :hierarchytable:errMsg1 :hierarchytable:loginmsg :hierarchytable:workflowdocTable1" execute=":hierarchytable:username :hierarchytable:password :hierarchytable:errMsg1 :hierarchytable:loginmsg :hierarchytable:sWidth :hierarchytable:sHeight"></a4j:ajax>
+    </h:commandButton>
+     
+    </div>
+        </div>
+        <!-- /.col -->
+        
+      </div>
+    
+    
+    
+     <div class="row">
+        <div class="col-xs-12">
+           <div class="">
+  
+
+     <h:commandLink id="forgetIDBTN"  action="#{loginBean.calForgetPopup()}" onclick="O$('hierarchytable:forgetIDPopup').show();" style="color:#1F6AAF; font-size: 14px;cursor: pointer;background:transparent;border:1px solid transparent;" value="Forgot password?"> 
+     
+     <a4j:ajax execute=":hierarchytable:username" render=":hierarchytable:userfrgtID :hierarchytable:errMsg1 :hierarchytable:loginmsg"> </a4j:ajax>
+     </h:commandLink>
+    <br>
+    </br>
+     <h:panelGroup id="errMsg1"><rich:messages id="loginmsg" ></rich:messages></h:panelGroup>
+     
+    </div>
+        </div>
+        <!-- /.col -->
+        
+      </div>
+    <br/>
+
+    <div class="row">
+        <div class="col-xs-12">
+    <a href="http://prodentechnologies.net" target="_blank" class="text-center">Proden Technologies, Inc. All rights reserved.</a>
+    </div>
+    
+    <ui:include src="/HierarchyWorkflowPopup.xhtml"></ui:include> 
+    <ui:include src="/LoadingWindow.xhtml"></ui:include>
+    <ui:include src="/ForgetPasswordPopup.xhtml"></ui:include>
+    
+    </div>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+
+<!-- <script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script> -->
+<!-- <script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script>
+<script src="BootstrapResource/dist/js/app.min.js"></script> -->
+</h:form>
+</body>
+
+</html>

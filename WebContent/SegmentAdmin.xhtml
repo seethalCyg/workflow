@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" 
+	xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+	
+	<script type="text/javascript">
+  function showfactPopup12(value)
+  {  
+  
+  if(value || 0!=value.length){
+  
+   O$('segAdmin:confirmPopup').show();
+  
+  }
+  }
+  function showfactPopup13(value)
+  {  
+ 
+ if(value || 0!=value.length){
+  if(!confirm(value)){
+   return false;
+  
+  }
+  }
+  }
+
+  </script>
+
+</h:head>
+<h:body>
+	<h:messages></h:messages>
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<h:form id="segAdmin">
+
+		<table>
+		<tr><td> <ui:include src="/Admin_Header.xhtml"/></td></tr>
+		<tr><td><fieldset>
+				<legend class="label2">Segment Administration</legend>
+				<table><tr><td><h:outputText value="No. of Segments"/></td><td><h:inputText id="noofsegmt" value="#{hierarchyDBBean.noOfSegments}" style="width: 19px; "/></td><td><h:commandButton style=" height: 18px;width:20px;  " title="Populate Segments" image="/resources/images/ok.png" alt="Search" value="OK" action="#{hierarchyDBBean.loadSegmentValues(hierarchyBean.hierarchy_ID)}"><a4j:ajax  render="segAdministration segtable segColumn" execute="segAdministration noofsegmt"/></h:commandButton></td></tr></table>
+					<table>
+					<tr><td><fieldset><legend class="label2">Configure Source for Segment Codes:</legend><table><tr><td valign="top" style="width:220px"><fieldset><legend class="label2">Tables</legend>
+					<table><tr><td>
+					<h:selectOneMenu id="tablefilter1" value="#{hierarchyDBBean.selectedOperator}" style="width:100px">
+       			 
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>&nbsp; <h:inputText id="filtervals4tab" value="#{hierarchyDBBean.filterValue}" size="7"></h:inputText></td></tr><tr><td><h:selectBooleanCheckbox id="segAdmin" value="#{hierarchyDBBean.matchCase4SegAdmin}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText> &nbsp; <h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('filterTables4Seg')}" style="width:15px"><f:ajax render="tablefilter1 filtervals4tab segtable saveMess" execute="tablefilter1 segAdmin filtervals4tab segtable saveMess"></f:ajax> </h:commandButton></td></tr></table>
+					<h:selectManyListbox id="segtable" value="#{hierarchyDBBean.tableName}" size="5" style="width:185px">
+		
+			<f:selectItems value="#{hierarchyDBBean.segtableNameTM}"/>
+			<f:ajax event="change" render="segAdministration segColumn" execute="segAdministration segColumn" listener="#{hierarchyDBBean.getColumnNames('SegAdmin','Data_Connection')}"/>
+			
+		</h:selectManyListbox></fieldset></td><td valign="top" style="width:220px"><fieldset><legend class="label2">Columns</legend>
+	<table><tr><td><h:selectOneMenu id="tablefilter2" value="#{hierarchyDBBean.selectedTableOperator}" style="width:100px">
+       			
+        		<f:selectItems value="#{hierarchyDBBean.operator}"/>
+        		
+    			</h:selectOneMenu>  <h:inputText id="filtervals4col" value="#{hierarchyDBBean.selectedTablefilterValue}" size="7"/></td></tr> <tr><td><h:selectBooleanCheckbox id="segAdminColumns" value="#{hierarchyDBBean.matchCase4SegAdminColumns}"></h:selectBooleanCheckbox><h:outputText style="font-size:14px" value="Match Case"></h:outputText> &nbsp; <h:commandButton title="Filter" value="Filter" image="/resources/images/filter.png" action="#{hierarchyDBBean.filterFacts('segColumns4SelectedTable')}" style="width:15px"><f:ajax render="tablefilter2 filtervals4col segColumn saveMess" execute="tablefilter2 segAdminColumns filtervals4col segColumn saveMess"/> </h:commandButton></td></tr></table> 
+		<h:selectManyListbox id="segColumn" value="#{hierarchyDBBean.columnName}" size="5" style="width:185px">
+			<f:selectItems value="#{hierarchyDBBean.segcolumnNameTM}"/>
+			<f:ajax event="change" execute="noofsegmt segAdministration" render="columnnamedisp tableNamedisp segAdministration" listener="#{hierarchyDBBean.dispSegTableColumnName}"/>
+		</h:selectManyListbox></fieldset></td><td valign="top" style="width:200px;"><fieldset style="height:135px;"><legend class="label2">Selected table/column</legend>
+		<h:outputText value=""/>
+		<table><tr><td width="200px"><h:outputText styleClass="label2" value="Selected Table :"/>    <h:outputText id="tableNamedisp" value="#{hierarchyDBBean.segTableName}"/></td></tr>
+		<tr><td width="200px"><h:outputText styleClass="label2" value="Selected Column :"/>    <h:outputText id="columnnamedisp" value="#{hierarchyDBBean.segcolumnName}"/></td></tr></table></fieldset></td>
+		</tr></table></fieldset></td></tr><tr><td><fieldset><legend class="label2">Configure Segment</legend><table>
+		<tr><td colspan="3"><o:dataTable id="segAdministration" sortLevel="-1" sortAscending="true" sortColumnId="segmentNo" value="#{hierarchyDBBean.segmentAdministrationAL}" var="segmentobject" pageSize="5" noDataMessageAllowed="false" commonHeaderRowClass="table-header" headerRowClass="table-header" bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" style="margin-top: 0px; width:750px" bodyRowStyle="background-color:#FFFFF;" bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" expansionState="levelsExpanded:2">
+						<o:multipleRowSelection rowDatas="#{hierarchyDBBean.segmentValueList1}" style="background: #a4aec5; color: #7E0000;">
+							<o:ajax event="change" id="iddd" excute="adminDelete" render="adminDelete" listener="#{hierarchyDBBean.messageConstructor(hierarchyBean.hierarchy_ID,'true')}"/>
+							</o:multipleRowSelection>
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+							
+						</o:selectionColumn>
+						<o:column id="segmentcount" style="width:50px;">
+							<f:facet name="header">Segment#
+							</f:facet>
+							<o:hintLabel value="#{segmentobject.segmentid}"/>
+						</o:column>
+						<o:column id="displayName" style="width:50px;">
+							<f:facet name="header">Display Name
+							</f:facet>
+							<h:inputText id="disp" value="#{segmentobject.displayName}"/>
+						</o:column>
+						<o:column id="sql" style="width:150px;">
+							<f:facet name="header">SQL
+							</f:facet>
+							<h:inputText id="sqlText" size="50" value="#{segmentobject.sqltext}"/>
+						</o:column>
+						<o:column id="tableName" style="width:50px;">
+							<f:facet name="header">#{hierarchyDBBean.segTableName}
+							</f:facet>
+							<h:selectOneMenu id="segcolmn" value="#{segmentobject.segColumnName}" style="width:150px">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --"/>
+        		<f:selectItems value="#{segmentobject.segColumnNameTM}"/>
+        		
+    			</h:selectOneMenu>
+						</o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup">
+								<o:dataTablePaginator id="paginator"/>
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></td><td style="width:10px;" valign="top"><h:commandButton id="adminDelete" title="Delete" value="Delete" onclick="return showfactPopup13('#{hierarchyDBBean.mess}');" action="#{hierarchyDBBean.deleteSelectedSegments4Administration()}" image="/resources/images/delete.png"><a4j:ajax render="@this segAdministration iddd" execute="@this segAdministration iddd"/></h:commandButton></td></tr>
+						</table></fieldset></td></tr>
+						<tr><td colspan="3"><h:commandButton title="Save" id="save" value="Save" image="/resources/images/save.png">
+						<a4j:ajax execute="@this segAdministration saveMess confirmPopup" render="@this segAdministration saveMess confirmPopup" oncomplete="showfactPopup12('#{hierarchyDBBean.messConfig}');" listener="#{hierarchyDBBean.messageConstructor(hierarchyBean.hierarchy_ID,'false')}"/>
+						</h:commandButton>   
+						<h:commandButton title="Close" id="close1" value="close" action="#{hierarchyDBBean.closeAdministration}" actionListener="#{headerBean.processMenu('Hierarchytree.xhtml')}" image="/resources/images/close.png"/>  
+						<h:commandButton id="redirect" title="Redirect to Configure Common Segments" value="Redirect to Segment" actionListener="#{hierarchyDBBean.retrieveSegmentsFromXml()}" image="/resources/images/seg.png">
+						<a4j:ajax  render="addSegmentPopup" oncomplete="O$('segAdmin:addSegmentPopup').show(); return false;"/></h:commandButton>
+						   
+						 <h:outputText style="color: green" id="saveMess" value="#{hierarchyDBBean.saveMess}"/></td></tr></table>
+					
+				</fieldset>
+						
+						</td>
+						
+						<td valign="bottom"> <ui:include src="/AddSegmentPopup.xhtml"/></td>
+						<td valign="bottom"> <ui:include src="/confirmPopup.xhtml"/></td>
+						</tr></table>
+		</h:form>
+	
+</h:body>
+</html>

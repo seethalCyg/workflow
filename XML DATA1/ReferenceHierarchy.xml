@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Reference_Hierarchys>
+
+<Hierarchy_Level Hierarchy_ID="212" Hierarchy_Name="dsf" RI_Hierarchy_Type="Reference" Unique_ID="8694">
+<RI-Rules RI-007="true"/>
+<Data>
+<Level_2 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg7_code" ID="7041" Type="Data" Unique_ID="8695" value="NAT CTFO Atlanta, GA(178);"/>
+<Level_2 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg4_code" ID="7042" Type="Data" Unique_ID="8696" value="NAT CTFO Atlanta, GA(178);"/>
+</Data>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="248" Hierarchy_Name="Ref H" RI_Hierarchy_Type="Reference" Unique_ID="8947">
+<RI-Rules RI-007="true"/>
+<Data>
+
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg7_code" ID="7206" Type="Data" Unique_ID="8952" value="Financial Planning &amp; Analysis(247);"/>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7492" Type="Data" Unique_ID="9417" value="SGA Recruiting(63020);"/>
+</Data>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="258" Hierarchy_Name="Referance Hierarchy" RI_Hierarchy_Type="Reference" Unique_ID="9374">
+<RI-Rules RI-007="true"/>
+<Data>
+
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg4_code" ID="7473" Type="Data" Unique_ID="9396" value="Financial Planning &amp; Analysis(247);"/>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg4_code" ID="7474" Type="Data" Unique_ID="9397" value="Default(0);"/>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg1_code" ID="7477" Type="Data" Unique_ID="9401" value="REN - American Towers, LLC(2);"/>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg1_code" ID="7478" Type="Data" Unique_ID="9402" value="ATC Operations LLC(50155);"/>
+</Data>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="260" Hierarchy_Name="Test" RI_Hierarchy_Type="Reference" Unique_ID="9404">
+<RI-Rules RI-007="true"/>
+<Data>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7486" Type="Data" Unique_ID="9411" value="SGA Salaries(60010);"/>
+<Level_4 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7489" Type="Data" Unique_ID="9414" value="SGA Transportation(62010);"/>
+<Level_4 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7490" Type="Data" Unique_ID="9415" value="SGA Lodging(62020);"/>
+<Level_3 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7668" Type="Data" Unique_ID="9728" value="SGA Training(63040);"/>
+</Data>
+</Hierarchy_Level>
+<Hierarchy_Level Hierarchy_ID="261" Hierarchy_Name="check rule 7" RI_Hierarchy_Type="Reference" Unique_ID="9418">
+<RI-Rules RI-007="true"/>
+<Data>
+<Level_4 CostCenter_TableName_ColumnName="W_GL_ACCOUNT_D.account_seg2_code" ID="7503" Type="Data" Unique_ID="9429" value="SGA Bonus(60050);"/>
+</Data>
+</Hierarchy_Level>
+</Reference_Hierarchys>

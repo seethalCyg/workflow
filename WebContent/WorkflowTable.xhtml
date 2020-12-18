@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+</h:head>
+
+
+
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+	<h:form id="audit">
+		<fieldset style="width: 950px;">
+		
+		<table><tr><td><fieldset style="width: 920px;"><legend class="label2">Hierarchy Information</legend><table><tr><td>
+		<h:outputText value="Hierarchy ID">
+		</h:outputText></td><td>:</td><td><h:outputText value="#{hierarchyBean.hierarchy_ID}"></h:outputText></td>
+		<td style="width: 50px; "></td><td><h:outputText value="Hierarchy Name"></h:outputText></td><td>:</td><td><h:outputText value="#{hierarchyBean.hierarchyName}"/></td>
+		</tr></table></fieldset>
+		<fieldset style="width: 920px;">
+		<legend class="label2">Workflow History</legend><table><tr><td><h:panelGroup id="wrkFlowTable"> <table>  <tr><td style="width: 160px; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:selectOneMenu id="login" title="#{hierarchyBean.WFdateTimeOper}" value="#{hierarchyBean.WFdateTimeOper}" style="width:120px">
+       			
+        		<f:selectItems value="#{hierarchyBean.intoperTM}"/>
+        		<f:ajax execute="loginBet @this audit" render="loginBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td style="width: 79px; "><h:selectOneMenu id="dateTimeOper" title="#{hierarchyBean.WFActionByOper}" value="#{hierarchyBean.WFActionByOper}" style="width:65px;">
+       			
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="dateTimeBet @this audit" render="dateTimeBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td style="width: 50px; ">
+		<h:selectOneMenu id="actionOper" title="#{hierarchyBean.roleOper}" value="#{hierarchyBean.roleOper}" style="width:45px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="actionBet @this audit" render="actionBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td style="width: 70px; ">
+		<h:selectOneMenu id="parentOper" title="#{hierarchyBean.fromStageOper}" value="#{hierarchyBean.fromStageOper}" style="width:65px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="parentBet @this audit" render="parentBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td style="width: 70px; ">
+	<h:selectOneMenu id="beforeOper" title="#{hierarchyBean.toStageOper}" value="#{hierarchyBean.toStageOper}" style="width:65px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="beforeBet @this audit" render="beforeBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td style="width: 85px; ">
+		<h:selectOneMenu id="afterOper" title="#{hierarchyBean.fromStatusOper}" value="#{hierarchyBean.fromStatusOper}" style="width:75px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="afterBet @this audit" render="afterBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td>
+		<h:selectOneMenu id="oldOper" title="#{hierarchyBean.memberStatusOper}" value="#{hierarchyBean.memberStatusOper}" style="width:50px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="oldBet @this audit" render="oldBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td>
+		<h:selectOneMenu id="oldPostionOper" title="#{hierarchyBean.notesOper}" value="#{hierarchyBean.notesOper}" style="width:50px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="oldPositionBet @this audit" render="oldPositionBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td><h:selectOneMenu id="newOper" rendered="false" title="#{hierarchyBean.WFHierarchyIDOper}" value="#{hierarchyBean.WFHierarchyIDOper}" style="width:55px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.intoperTM}"/>
+        		<f:ajax execute="newBet @this audit" render="newBet @this"></f:ajax>
+    			</h:selectOneMenu></td><td>
+		<h:selectOneMenu id="newPostionOper" title="#{hierarchyBean.WFHierarchyNameOper}" rendered="false" value="#{hierarchyBean.WFHierarchyNameOper}" style="width:50px">
+       			 
+        		<f:selectItems value="#{hierarchyBean.stringoperTM}"/>
+        		<f:ajax execute="@this newPositionBet audit" render="newPositionBet @this audit"></f:ajax>
+    			</h:selectOneMenu></td><td><h:commandButton id="filter1" title="Reset" action="#{hierarchyBean.resetWFFilter}" image="/resources/images/reset.png" style="width:15px;" value="filter">
+    			<a4j:ajax render="wrkFlowTable"></a4j:ajax>
+    			</h:commandButton></td></tr>
+    			<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:inputText style="width:118px" value="#{hierarchyBean.WFdateTimeText}"></h:inputText></td><td>
+    			<h:inputText style="width:60px" value="#{hierarchyBean.WFActionByText}"></h:inputText></td><td>
+		<h:inputText style="width:40px" value="#{hierarchyBean.roleText}"></h:inputText></td><td>
+		<h:inputText style="width:60px" value="#{hierarchyBean.fromStageText}"></h:inputText></td><td>
+		<h:inputText style="width:60px" value="#{hierarchyBean.toStageText}"></h:inputText></td><td>
+		<h:inputText style="width:70px" value="#{hierarchyBean.fromStatusText}"></h:inputText></td><td>
+		<h:inputText style="width:50px" value="#{hierarchyBean.memberStatusText}"></h:inputText></td><td>
+		<h:inputText style="width:48px" value="#{hierarchyBean.notesText}"></h:inputText></td><td>
+		<h:inputText style="width:50px" value="#{hierarchyBean.WFHierarchyIDText}" rendered="false"></h:inputText></td><td>
+		<h:inputText style="width:50px" value="#{hierarchyBean.WFHierarchyNameText}" rendered="false"></h:inputText></td><td>
+		<h:selectBooleanCheckbox id="WorkFlowmatchCase" value="#{hierarchyBean.matchCase4workFlow}"></h:selectBooleanCheckbox><h:outputText style="font-size:13px" value="Match Case"></h:outputText><h:commandButton id="filter" title="Filter" action="#{hierarchyBean.filteringWorkflowTable(hierarchyBean.hierarchy_ID)}" image="/resources/images/filter.png" style="width:15px;" value="filter">
+		<a4j:ajax render=":audit:auditRecord" execute="wrkFlowTable WorkFlowmatchCase"></a4j:ajax>
+		</h:commandButton>
+		</td></tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<h:inputText id="loginBet" style="width:118px" value="#{hierarchyBean.WFdateTimeBetText}" rendered="#{hierarchyBean.WFdateTimeOper == 'Between'}"></h:inputText></td><td>
+    			<h:inputText id="dateTimeBet" style="width:60px; visibility:visible;" value="#{hierarchyBean.WFActionByBetText}" rendered="#{hierarchyBean.WFActionByOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="actionBet" style="width:40px" value="#{hierarchyBean.roleBetText}" rendered="#{hierarchyBean.roleOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="parentBet" style="width:60px" value="#{hierarchyBean.fromStageBetText}" rendered="#{hierarchyBean.fromStageOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="beforeBet" style="width:60px" value="#{hierarchyBean.toStageBetText}" rendered="#{hierarchyBean.toStageOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="afterBet" style="width:70px" value="#{hierarchyBean.fromStatusBetText}" rendered="#{hierarchyBean.fromStatusOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="oldBet" style="width:50px" value="#{hierarchyBean.memberStatusBetText}" rendered="#{hierarchyBean.memberStatusOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="oldPositionBet" style="width:48px" value="#{hierarchyBean.notesBetText}" rendered="#{hierarchyBean.notesOper == 'Between'}"></h:inputText></td><td>
+		<h:inputText id="newBet" style="width:50px" value="#{hierarchyBean.WFHierarchyIDBetText}" rendered="false"></h:inputText></td><td>
+		<h:inputText id="newPositionBet" style="width:50px" value="#{hierarchyBean.WFHierarchyNameBetText}" rendered="false"></h:inputText></td></tr></table></h:panelGroup></td></tr>
+		<tr><td colspan="8" ><o:dataTable id="auditRecord" sortLevel="-1" sortAscending="false" sortColumnId="hierarchyID"
+						pageSize="10" value="#{hierarchyBean.workflowAL}"
+						var="objread" width="800px" commonHeaderRowClass="table-header"
+						headerRowClass="table-header" bodyRowClass="table-even-row"
+						bodyOddRowClass="table-odd-row" noDataMessageAllowed="false"
+						bodyRowStyle="background-color:#FFFFF;"
+						bodyOddRowStyle="background-color:#ADDDFF;"
+						headerVertSeparator="1px solid #a0a0a0"
+						sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+						subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+						preloadedNodes="all" expansionState="levelsExpanded:2">
+
+
+						<o:multipleRowSelection
+							rowDatas="#{hierarchyBean.selectedWorkflowAL}"
+							style="background: #a4aec5; color: #7E0000;" />
+						<o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+						</o:selectionColumn>
+						<o:column style="width: 90px;">
+							<f:facet name="header">Date and Time</f:facet>
+							<o:hintLabel value="#{objread.wfdateTime}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 58px;">
+							<f:facet name="header">Action By</f:facet>
+							<o:hintLabel value="#{objread.wfActionBy}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 56px;">
+							<f:facet name="header">Role</f:facet>
+							<o:hintLabel value="#{objread.role}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 58px;">
+							<f:facet name="header">From Stage</f:facet>
+							<o:hintLabel value="#{objread.fromStage}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 58px;">
+							<f:facet name="header">To Stage</f:facet>
+							<o:hintLabel value="#{objread.toStage}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 58px;">
+							<f:facet name="header">From Status</f:facet>
+							<o:hintLabel value="#{objread.fromStatus}"></o:hintLabel>
+							
+						</o:column>
+						
+							<o:column style="width: 60px;">
+							<f:facet name="header">Member Status</f:facet>
+							<o:hintLabel value="#{objread.memberStatus}"></o:hintLabel>
+							</o:column>
+							<o:column style="width: 56px;">
+							<f:facet name="header">Notes</f:facet>
+							<o:hintLabel value="#{objread.notes}"></o:hintLabel>
+							</o:column>
+							<o:column style="width: 56px;" rendered="false">
+							<f:facet name="header">Hierarchy ID</f:facet>
+							<o:hintLabel value="#{objread.wfHierarchyID}"></o:hintLabel>
+							</o:column>
+							<o:column style="width: 56px;" rendered="false">
+							<f:facet name="header">Hierarchy Name</f:facet>
+							<o:hintLabel value="#{objread.wfHierarchyName}"></o:hintLabel>
+							</o:column>
+							<o:column style="width: 56px;" rendered="false">
+							<f:facet name="header">Hierarchy Type</f:facet>
+							<o:hintLabel value="#{objread.wfHierarchyType}"></o:hintLabel>
+							</o:column>
+						
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup">
+								<o:dataTablePaginator id="paginator" />
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></td></tr></table></fieldset></td></tr><tr><td>&nbsp;&nbsp;<h:commandButton title="Close" image="/resources/images/close.png" action="#{hierarchyBean.reDirect2Tree('Hierarchytree.xhtml')}" value="Close"></h:commandButton></td></tr></table></fieldset>
+	</h:form>
+</h:body>
+</html>

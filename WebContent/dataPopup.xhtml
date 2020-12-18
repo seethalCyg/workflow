@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+	
+
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+
+
+</h:head>
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	
+	<o:popupLayer id="dataPopup"
+		draggable="true" modalLayerClass="modalLayer" 
+		style="left: 0px; top: 0px; border: 3px solid orange;" left="200" top="0">
+		
+		
+		<table><tr><td style="width:5px"></td><td>
+		<fieldset>
+		<legend class="label2">Add Node</legend>
+		<table>
+							
+							</table>
+		<table align="center">
+		<tr><td colspan="3"><h:panelGroup id="serverDetails"> <table  bgcolor="#D8EEFE"><tr><td>Server</td><td>:</td><td style="width: 100px; "><h:outputText value="#{hierarchyDBBean.server}"></h:outputText></td><td>Port</td><td>:</td><td style="width: 100px; "><h:outputText value="#{hierarchyDBBean.port}"></h:outputText></td>
+		<td>Instance</td><td>:</td><td style="width: 100px; "><h:outputText value="#{hierarchyDBBean.instance}"></h:outputText></td><td>User</td><td>:</td><td style="width: 100px; "><h:outputText value="#{hierarchyDBBean.user}"></h:outputText></td></tr></table>
+		
+		</h:panelGroup></td></tr>
+		
+		<tr>
+						<td colspan="2">
+							<h:selectOneRadio  layout="lineDirection" id="seladddata" value="#{hierarchyBean.selectedType}" >
+							<f:selectItem itemValue="Child" itemLabel="Child Node" /> 
+							<f:selectItem itemValue="Sibling" itemLabel="Sibling" itemDisabled="#{hierarchyBean.disableSibling}"/>
+							<f:selectItem itemValue="InsertUP" itemLabel="New Level (Insert Above)" itemDisabled="#{hierarchyBean.disableSibling}"/> 
+							<f:selectItem itemValue="InsertDOWN" itemLabel="New Level (Insert Below)" />
+							</h:selectOneRadio>
+							</td> 
+							</tr>
+							<tr><td colspan="2">
+							
+							<fieldset>
+		<legend class="label2">Create Code Combination</legend>
+		<h:selectOneRadio style="width:580px" layout="lineDirection" id="codeComb" value="#{hierarchyBean.codeCombinationflag4Lastnode}" disabled="#{hierarchyBean.disableOption4hier}">
+							<f:selectItem itemValue="DuringFactGen" itemLabel="During Fact"/> 
+							<f:selectItem itemValue="CreateCodeCombinationAtLeaf" itemLabel="In Dimension"/>
+							<f:selectItem itemValue="ItselfCodeCombination" itemLabel="This is the Code Combination"/> 
+						    </h:selectOneRadio></fieldset></td><td><h:commandButton title="Direct SQL" value="Add" action="#{hierarchyDBBean.directSQL()}" immediate="true" style="width:35px;" image="/resources/images/DSQL.png" onclick="O$('HRYTree:CopyofdataPopup').show();">
+						    <f:ajax render="@this codeComb4Direct enable textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd" execute="textarea4DirectSQL data4Direct selectedvaluesfilter4Direct selectedPeriodvals4Direct tableName seleTableName mveTable Dele colName addcode4Direct addname4Direct selecolName dele1 factTypes2 configWH configAdd"/></h:commandButton></td></tr>
+							
+							
+							</table>
+							<table><tr>
+							
+							
+							</tr></table>
+							
+							<table>
+							<tr><td align="right"><h:selectBooleanCheckbox id="codeComb1" value="#{hierarchyBean.codeCombinationflag4Lastnode}" rendered="false"></h:selectBooleanCheckbox><h:outputText value="Create Code Combinations" rendered="false"/></td></tr></table>
+							
+							
+						<!-- 	<fieldset>    -->
+	<!-- 	<legend class="label2">Segment/Data Details</legend>    -->
+							<table><tr><td>
+							<fieldset>
+		<legend class="label2">Add Segment/Data</legend>
+							<table><tr><td valign="top">
+							
+							<fieldset style="height: 200px; width: 590px">
+		<legend class="label2">Add Segment</legend>
+							<table>
+		
+		<tr>
+		<td><h:outputText value="Choose Segment" rendered="true"></h:outputText> </td>
+		
+		<td>
+				<h:selectOneMenu id="data" value="#{hierarchyDBBean.selectedsegment}">
+       			 <f:selectItem itemValue="#{null}" itemLabel="-- select Value --" />
+        		<f:selectItems value="#{hierarchyDBBean.segmentAL}" />
+        		
+    			</h:selectOneMenu></td></tr>
+    			<tr><td style="height: 5px; "><h:outputText ></h:outputText>  </td></tr>
+    			<tr>
+    			
+    			<td><h:outputText value="Operator " rendered="true"></h:outputText> </td>
+    			
+    			<td>
+    			<h:selectOneMenu id="condition" value="#{hierarchyDBBean.selectedcondition}">
+       		
+        		<f:selectItems value="#{hierarchyDBBean.conditionAL}" />
+    			</h:selectOneMenu>  <h:selectBooleanCheckbox id="DatamatchCase" value="#{hierarchyDBBean.matchCase4AddSeg}"></h:selectBooleanCheckbox><h:outputText style="font-size:15px" value="Match Case"></h:outputText>
+    			</td></tr>
+    			<tr><td style="height: 5px; "><h:outputText ></h:outputText>  </td></tr>
+    			
+    			<tr><td></td><td><h:inputText id="segdata" value="#{hierarchyDBBean.searchValue}"/> &nbsp; <h:commandButton style="width: 18px; height: 18px; " title="Search" alt="Search" value="Search" image="/resources/images/DatabaseSearch.jpg" action="#{hierarchyDBBean.getSegmentValuesFromDB('FromDatapopup')}"><f:ajax execute="@this DatamatchCase seladddata data condition segdata" render="seladddata data condition segdata msg segvalues1"/></h:commandButton></td>
+		
+		</tr>
+	<tr><td style="height: 5px; "><h:outputText ></h:outputText>  </td></tr>
+		<tr>
+		<td><h:outputText value="Choose Values" rendered="true"></h:outputText> </td>
+		
+		<td>
+		
+		<h:selectManyListbox id="segvalues1" required="false" value="#{hierarchyDBBean.selectedsegmentvalue}" size="5" style="width:185px">
+		
+		<f:selectItems id="a" value="#{hierarchyDBBean.segmentValues4dataPopupAL}">
+		 </f:selectItems>
+		</h:selectManyListbox>
+		</td></tr>
+		<tr><td colspan="3"><h:commandButton title="Add" value="Add" image="/resources/images/addb.png" action="#{hierarchyDBBean.addTodatatable('AddMode')}" ><a4j:ajax render="data condition segdata segvalues1 seladddata addDataBtn msg codeComb createCodeComb genRepSessions" execute="data condition segdata segvalues1 genRepSessions seladddata addDataBtn msg codeComb createCodeComb"></a4j:ajax>
+		 </h:commandButton>
+		 <h:outputText id="msg" styleClass="error" value="#{hierarchyDBBean.segInfoMsg}"></h:outputText> </td>
+		</tr>
+		</table>
+		</fieldset>
+		
+	
+		</td>
+		
+		<td valign="top"></td>
+		
+		
+		</tr></table></fieldset>
+		<table>
+		<tr><td colspan="2">
+		<fieldset>
+		<legend class="label2">Segment/Data List</legend>
+		
+<table>
+  <tr><td colspan="2">
+
+  <table align="right">
+  <tr> 
+  <td align="right"><h:commandButton title="Delete" value="Delete" action="#{hierarchyDBBean.deleteSelectedDataSegments}" image="/resources/images/delete.png" rendered="false"><a4j:ajax render="genRepSessions" execute="genRepSessions"></a4j:ajax></h:commandButton></td>
+  </tr>
+  <tr>
+  <td>
+  <h:panelGroup id="dataTab"><o:dataTable id="genRepSessions" sortLevel="-1" sortAscending="false" sortColumnId="sessionId" 
+  value="#{hierarchyDBBean.codeandNameAL}" var="grSessions" pageSize="5" noDataMessageAllowed="false" 
+  height="200px" commonHeaderRowClass="table-header" headerRowClass="table-header" 
+  bodyRowClass="table-even-row" bodyOddRowClass="table-odd-row" bodyRowStyle="background-color:#FFFFF;"
+   bodyOddRowStyle="background-color:#ADDDFF;" headerVertSeparator="1px solid #a0a0a0" preloadedNodes="all" 
+   expansionState="levelsExpanded:2" immediate="true"  style="width: 510px;">
+      <o:multipleRowSelection rowDatas="#{hierarchyDBBean.runReportSessionslist}" style="background: #a4aec5; color: #7E0000;" />
+      <o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+      </o:selectionColumn>
+      
+      
+      <o:column style="width:50px;" rendered="#{hierarchyDBBean.segmentNameRendered}">
+       <f:facet name="header">#{hierarchyDBBean.segmentName}
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.displayName4Disp}"></o:hintLabel>
+      </o:column>
+      
+      
+      <o:column style="width:50px;">
+       <f:facet name="header">#{hierarchyDBBean.codeValue}
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.codevalue}"></o:hintLabel>
+      </o:column>
+      <o:column id="sessionId" style="width:50px;" rendered="false" sortingExpression="#{grSessions.codevalue}">
+       <f:facet name="header">Session <br />ID
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.codevalue}"></o:hintLabel>
+      </o:column>
+      <o:column style="width:50px;">
+       <f:facet name="header">#{hierarchyDBBean.nameValue}
+       </f:facet>
+       
+       <o:hintLabel value="#{grSessions.namevalue}"></o:hintLabel>
+      </o:column>
+      <o:column id="prime" style="width:50px;" rendered="false">
+	<f:facet name="header">Primary <br/>
+							</f:facet>
+						<h:selectBooleanCheckbox value="#{grSessions.primaryType}">
+						
+						<o:ajax execute="@this selRow :HRYTree:DatagenRepSessions" render="@this :HRYTree:DatagenRepSessions" listener="#{hierarchyDBBean.booleanActionToRadio('fromEditPopup')}"/>
+						</h:selectBooleanCheckbox>	
+						</o:column>
+      <o:column style="width:50px;" rendered="false">
+       <f:facet name="header">Code
+       </f:facet>
+       <h:selectBooleanCheckbox value="#{grSessions.overRideCodeCombinationFlag}">
+       </h:selectBooleanCheckbox>
+      </o:column>
+      <f:facet name="below">
+       <h:panelGroup id="panelGroup">
+        <o:dataTablePaginator id="paginator"/>
+       </h:panelGroup>
+      </f:facet>
+      
+      </o:dataTable></h:panelGroup>
+  </td><td valign="bottom">
+						</td>
+  </tr>
+  </table>
+  </td></tr>
+      
+      </table></fieldset></td></tr>
+						
+						</table></td></tr></table></fieldset>
+			<!-- 			</fieldset>   -->
+					</td></tr></table>
+						<table>
+						<tr>
+						<td></td>
+						<td><h:panelGroup id="addDataBtn"><h:commandButton title="Add" value="Add" image="/resources/images/addb.png" action="#{hierarchyDBBean.addData(hierarchyDBBean.modeType)}" rendered="#{hierarchyDBBean.displayAddDataBtn}"><a4j:ajax render="seladddata genRepSessions" execute="seladddata genRepSessions" listener="#{hierarchyBean.redirect('Hierarchytree.xhtml','Reload','','','','','',objread.hierCodeCombination,'')}"/></h:commandButton></h:panelGroup></td>
+						<td><h:commandButton  title="Close" value="close" onclick="hidemodeldim1();" actionListener="#{hierarchyBean.addDatatoXml}"  image="/resources/images/close.png">
+						<f:ajax render="@this hierarchyTree" execute="@this"></f:ajax>
+						</h:commandButton></td>
+						
+						</tr>
+						</table>
+						
+		</o:popupLayer>
+	
+</h:body>
+</html>

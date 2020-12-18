@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:o="http://openfaces.org/">
+	
+	
+	
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>Hierarchy Workflow</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+ 
+  <!--  <h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+ -->
+
+   
+<style type="text/css">
+ .vertical-line {
+        /* add padding and margin to suite needs */ 
+        margin-top:0px;
+        border-left: 1px solid maroon;
+        height: 300px;
+        }
+        .myradio label {
+ font-weight: normal  !important;
+ font-size: 16px  !important;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal ! important;
+    margin-left: 10px ! important;
+    }
+    
+    .ui-dashboard-column {
+
+    float: left;
+    padding-bottom: 0px !important;
+   margin-right: -2px !important;
+   margin-top: 5px !important;
+   margin-left: 5px !important;
+   margin-bottom: 0px !important;
+    
+    }
+</style>
+  
+<script>
+
+$(window).resize(function(){
+            
+   $('#id').css({   
+
+      height:$(window).height() 
+   });          
+});
+
+ function showAlert(e) {                	                  
+                	if(e.includes('saved successfully')){                		                		
+                		document.getElementById("success-alert").className = "alert alert-success";
+                	}
+                	else{                		             		 
+                		document.getElementById("success-alert").className = "alert alert-danger";
+                	}
+                	
+                    $("#success-alert").fadeTo(10000, 500).slideUp(500, function () {
+                        $("#success-alert").slideUp(1000);
+                    });
+                    
+                }
+        $(document).ready(function (){
+            clickButton();   
+        });
+        function clickButton(){
+            document.getElementById("form:onloadBtn").click();
+        }
+
+</script>
+ <style type="text/css">
+.ui-dashboard-column {
+width:160px;
+ }
+                
+.textfiledcss{
+padding-left: 5px ! important;
+height: 30px ! important;
+width:300px ! important;
+background: white ! important;
+color: #000000 ! important;
+font-size: 12px ! important;
+border: 1px solid ! important;
+margin-bottom: 10px ! important;
+border-color: #116a93 ! important;
+
+}
+        
+ </style>  
+                
+                <script type="text/javascript">
+                
+                function viewStagePopup(){
+                	O$('form:viewStagePopup').show();
+                	return false;
+                }
+                
+                </script>
+              <script type="text/javascript">
+                //code change Jayaramu
+                function validation4StageName(){
+           
+                	if (document.getElementById("form:stgnme").value == '') {
+                	alert("Please enter stage name.");
+                	 return false;
+                	}
+                	else if (document.getElementById("form:stgnme").value != '') {
+				if (!isNaN(document.getElementById("form:stgnme").value)) {
+				alert("Please enter string in Stage name.");
+				    return false;
+				}else if (document.getElementById("form:stgnme").value=='Enter_Stage_Name') {
+                	alert("Stage name is not valid.");
+                	 return false;
+                	}
+				}
+		
+			
+                	}
+                
+                function checkThePage()
+        		{
+        			 /*alert("====="+window.location);*/ 
+        			if(window.location.toString().endsWith("index")){
+        				document.getElementById("logospan").innerHTML="Ultra Documents";
+        			}
+        			else{
+        				document.getElementById("logospan").innerHTML="Ultra Signature";
+        			}
+        		}
+                </script>
+                 
+                <style type="text/css">
+            .ui-layout-center {                    
+                overflow:hidden !important;
+            }
+
+            .ui-layout-center .ui-layout-unit-content {
+                overflow:hidden !important;
+            }   
+            
+            .ui-dashboard-column {
+    width: auto;
+    font-size: 11px;
+    font-family: calibri; 
+    }
+    .ui-dashboard-column {
+    float: left;
+    padding-bottom: 0px !important;
+    }
+.titleBox{
+height: 5px;
+width: 50px;
+background: #116a93;
+
+}
+        </style>  
+</h:head>
+
+<body class="hold-transition skin-purple sidebar-mini" style="padding-right: 0px !important;" onload="checkThePage()">
+ <h:form id="form" style="padding-left: 0px !important;" >
+ <h:inputHidden value="#{dashboardBean.dashboardexpire}"/>
+ <h:commandButton id="onloadBtn" value="temp" style="display:none;">
+ <f:ajax render=":form:board :form:modelold" execute="@this"></f:ajax></h:commandButton>
+  <div class="wrapper">
+  <header class="main-header">
+
+				<a href="#" class="logo"><span id="logospan_output" class="logo-lg">
+				<LABEL id="logospan" style="font-size: 16px;font-weight: normal;"></LABEL>
+					<sup style="color:#BC7D30;">TM</sup></span>
+				</a>
+
+				<nav class="navbar navbar-static-top" role="navigation">
+					<a class="btn" id="playbutton" data-toggle="offcanvas"
+						role="button" style="margin-top: 8px;" onclick="playButtonPress()">
+						<i class="fa fa-arrow-left " style="color: white"></i>
+
+					</a>
+
+					<div class="navbar-custom-menu">
+
+						<ul class="nav navbar-nav">
+
+
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/aboutus.html" target="_blank"> About </a></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a>
+
+							</li>
+
+
+							<li class="dropdown user user-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <img
+									src="BootstrapResource/dist/img/user3-160x160.jpg"
+									class="user-image" alt="User Image"></img> <span
+									class="hidden-xs">Welcome </span>
+							</a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header"><img
+										src="BootstrapResource/dist/img/user3-160x160.jpg"
+										class="img-circle" alt="User Image"></img>
+
+										<p>
+											Welcome <h:outputText style="color:white" value="#{hierarchyBean.userNameID}"></h:outputText> <small></small>
+										</p></li>
+									<!-- Menu Body -->
+									<div class="user-body signout"
+										style="background-color: #c6c6ec;">
+										<div class="user-footer">
+											<div class="pull-right">
+												<h:commandLink class="btn btn-default btn-flat"
+													immediate="true" onclick="loadmsg()" style="display:#{dashboardBean.closeDisplay};"
+													actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}">Sign out
+                  <a4j:ajax render="@this" execute="@this"
+														oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink>
+
+										<h:commandLink class="btn btn-default btn-flat" style="display:#{dashboardBean.closeDisplayADV};"
+													immediate="true" onclick="window.close();"
+													>Sign out.
+                 										 <a4j:ajax render="@this" execute="@this"
+														oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink>
+											</div>
+										</div>
+									</div>
+								</ul></li>
+
+
+
+
+
+
+						</ul>
+
+					</div>
+
+
+				</nav>
+
+
+			</header>
+  
+  
+  <aside class="main-sidebar">
+				<section class="sidebar">
+
+
+
+
+					<div class="user-panel">
+						<div class="pull-left image">
+							<img src="BootstrapResource/dist/img/user3-160x160.jpg"
+								class="img-circle" alt="User Image"></img>
+						</div>
+						<div class="pull-left info">
+							<p>accel-BI</p>
+							<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						</div>
+					</div>
+
+
+				<!-- 	
+				<div class="input-group" style="background: #037193">
+
+						<LABEL style="color: #fff; background: #222d32;">MENU </LABEL>
+
+					</div>
+
+					<ul class="sidebar-menu">
+
+
+						<li><h:commandLink onclick="hidelistUserPane()">
+								<i class="fa fa-object-group fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Workflow</span>
+								<a4j:ajax render="@this" execute="@this" />
+							</h:commandLink></li>
+						<li><h:commandLink>
+								<i class="fa fa-users fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Teams</span>
+								<a4j:ajax render="@this" execute="@this" />
+							</h:commandLink></li>
+						<li><h:commandLink onclick="hideworkflwPane()"
+								action="#{hierarchyBean.readUsersFromXml()}">
+								<f:ajax render="@this "
+									execute="@this"></f:ajax>
+								<i class="fa fa-user fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Users</span>
+								<a4j:ajax render="@this" execute="@this" />
+							</h:commandLink></li>
+						<li><h:commandLink>
+								<i class="fa fa-commenting fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Status</span>
+								<a4j:ajax render="@this" execute="@this" />
+							</h:commandLink></li>
+						
+						<li><h:commandLink>
+								<i class="fa fa-files-o fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Reports</span>
+								<a4j:ajax render="@this" execute="@this" />
+							</h:commandLink></li>
+					</ul>
+ 				-->
+
+				</section>
+			</aside>
+  
+  
+  
+  		<div class="content-wrapper">
+<div class="row">
+  <div class="alert alert-success"  id="success-alert" style="z-index:2000; position:relative;width:100%;justify-content: center; align-items: center;display:none;" >                 
+             <center> <span style="font-size:14px;"> <h:outputText id="msg4WF" style="font-size:14px;color: #{dashboardBean.color4WFMsg}" value="#{dashboardBean.msg4WF}"></h:outputText></span></center>   
+                        </div> 
+</div>
+
+	<div class="row" style="top:0;">
+	<div class="col-lg-12">
+    
+  
+	</div>
+	
+	</div>
+
+				<section class="content">
+
+		<p:growl id="msgs" showDetail="true"/> 
+		<p:growl id="tabc" showDetail="true" /> 
+		
+		
+		<!--  <div style="width:#{dashboardBean.fieldsetWidth}px;"> -->
+		  <div>
+		 <div class="row">
+									<div class="col-lg-12" style="width: 100%;">
+
+										<div class="col-lg-6"
+											style="text-align: left; margin-left: -15px;">
+											<p style="font-size: 20px; margin: 0 0 0;">Workflow</p>
+										</div>
+		 
+		 </div>
+		 </div>
+		 
+		 <div class="row">
+	<div class="col-lg-12"  style="width:100%;">
+		
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-7" >
+    <h:outputText id="wfNameLb"  value="Workflow Name: "/>
+    <h:inputText id="wfName" value="#{dashboardBean.hierName}" style="margin-top: -10px;" placeholder=" Enter Workflow Name *" class="textfiledcss" ></h:inputText>
+     <h:commandButton title="Properties" id="propertiesBTN" value="Properties" style="margin-top: -12px;margin-bottom: -10px;" onclick="O$('form:workProperitesPopup').showCentered();" image="/BootstrapResource/dist/hierarchy/Properites.png" >
+	<a4j:ajax render="@this" execute="@this"> </a4j:ajax>	
+	</h:commandButton> 
+	<h:commandButton title="Add Rules Attribute" id="ruleAttrBTN" value="Add Rules Attribute" style="margin-top: -12px;margin-bottom: -10px;" onclick="O$('form:ruleAttr').showCentered();" image="/BootstrapResource/dist/hierarchy/rule_list.png" action="#{dashboardBean.setRulesDefaultValues()}">
+	<a4j:ajax render="@this :form:ruleTable :form:attriDataType :form:attriName :form:attributeMsg" execute="@this"> </a4j:ajax>	
+	</h:commandButton>
+	 
+	
+    </div>
+	<!-- <div class="col-lg-2">
+    <h:outputText id="wfNameLb" value="Workflow Name: "/>
+    </div> -->
+    <div class="col-lg-1">
+    
+    <!-- <h:inputText id="wfName" value="#{dashboardBean.hierName}" placeholder=" Enter Workflow Name *" class="textfiledcss" ></h:inputText> -->
+    
+     <!-- <h:commandButton title="Properties" id="propertiesBTN" value="Properties" style="margin-top: -12px;margin-bottom: -10px;" onclick="O$('form:workProperitesPopup').showCentered();" image="/BootstrapResource/dist/hierarchy/Properites.png" >
+	<a4j:ajax render="@this" execute="@this"> </a4j:ajax>	
+	</h:commandButton>  -->
+	
+     </div>
+     </div>
+     </div>
+     
+     
+     <!--    authorizePopup START -->
+     
+<!-- <div class="modal fade" id="authorizePopup" role="dialog">
+    <div class="modal-dialog modal-md" style="border: 1px solid lightgray;width: 635px;">
+      <div class="modal-content">
+
+   <div class="modal-header">
+	<div class="box-tools pull-right">
+	
+		
+	
+	 
+	 
+	<h:commandButton title="Close" id="CloseauthorizeBTN" value="close" onclick="$('#authorizePopup').modal('hide');" image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" >
+	<a4j:ajax render=":form:authorizeMsg" > </a4j:ajax>			
+	</h:commandButton> 
+	
+	 
+	</div>
+	
+	 <h4 id="authorizeTitle" class="modal-title" >Properites</h4>
+	</div>
+     
+    
+     </div>
+     </div>
+     </div> -->
+     
+     <!--    authorizePopup END -->
+     
+     
+     
+  		<div class="row">
+									<div class="col-lg-12"
+										style="width: 100%; height: 2px; background-color: #116a93;">
+
+									</div>
+		</div>
+
+<br></br>
+
+ <div class="row">
+	<div class="col-lg-12"  style="width:100%;">
+	
+	<div class="col-lg-4">
+	
+	<div class="col-lg-12">
+		<p style="font-size: 18px; margin: 0 0 0;">New Stage</p>
+		<div class="titleBox"></div>
+	</div>
+
+	<div class="col-lg-12">
+		<h:outputText id="stagenam" value="Stage Name :  " /> 
+		<h:inputText id="stgnme" value="#{dashboardBean.stageNameValue}" style="color:gray ! important;width:200px !important;" class="textfiledcss" rendered="#{dashboardBean.selectionType != 'Custom111'}">
+	</h:inputText>
+		<h:commandButton id="okbuttn" value="Ok" title="Apply" actionListener="#{dashboardBean.addtoNode(dashboardBean.hierID)}" onclick="return validation4StageName();loadmsg();" style="margin-left:10px;color:#000;background:white! important;border:1px solid lightgray ! important;padding:5px 10px ! important;">
+      <a4j:ajax execute=":form:stgnme :form:valmsg" render=":form:board :form:msg4WF :form:stgnme :form:valmsg" oncomplete="hidemsg();"></a4j:ajax>
+      
+    </h:commandButton>
+	</div>
+	<br></br>
+	<div class="col-lg-12">
+	<p:growl id="growlDefault" showDetail="true" />  
+	<p style="font-size: 18px; margin: 0 0 0;">Default Stages:</p>
+       <div class="titleBox"></div>
+       <div class="" style="height: 429px;border:1px solid lightgray; background: transparent;overflow: scroll; overflow-x: hidden;overflow-y: scroll;">
+	<p:draggable for="#{dashboardBean.stageNameValue}" helper="clone" dashboard="modelold" >
+       </p:draggable>
+	
+	 <p:dashboard id="modelold" model="#{dashboardBean.modelold}">  
+          <p:ajax event="reorder" process="@this wfName"  update="growlDefault" async="true"/>  
+                              
+         <c:forEach items="#{dashboardBean.panelModelAL}" var="_massold">
+                        <p:panel id="#{_massold.panelName}" header="#{_massold.panelName}"  closable="false" toggleable="true" toggleSpeed="500"  closeTitle="Close">  
+   
+		
+        
+        
+		
+		<p style="font-size: 13px;margin: 0 0 0;font-weight: bold;">Configure Stage</p>
+		<h:commandButton value="view Stage Details" title="view Stage Details" onclick="$('#setStagesPopup').modal('show');loadmsg();" image="/resources/images/setSatge.png" style="width:40px" actionListener="#{dashboardBean.getStageInformation(_massold.stageNumber,_massold.panelName)}">
+	    <a4j:ajax render="@this :form:visable4publicNadminID :form:visable4publicNadminID1 :form:handleTitle :form:rejbut :form:passbut :form:butpass :form:statusCodes :form:selSourcecodes :form:members :form:selMembers :form:lineDirection :form:butrej stageTitle stageRole selMembersRole :form:setStgMsg :form:properties :form:minapprov :form:enableEsign :form:allowEditUD" execute="@this :form:visable4publicNadminID :form:handleTitle :form:setStgMsg :form:selMembersRole :form:stageTitle :form:stageRole :form:rejbut :form:butrej :form:passbut :form:butpass" oncomplete="hidemsg()" ></a4j:ajax>
+    	</h:commandButton>                        
+
+ 
+        </p:panel>
+        
+        </c:forEach>
+                                         
+       </p:dashboard>
+       </div>
+       </div>
+	<h:outputText id="valmsg" value="#{dashboardBean.wfAdminValidationmsg}"></h:outputText> 
+	</div>
+	
+	 
+	<div class="col-lg-8">
+	
+	
+       
+              <p:growl id="growl1" showDetail="true" />  
+               
+       <p style="font-size: 18px; margin: 0 0 0;">Stages: #{dashboardBean.model.getColumnCount()}</p>
+       <div class="titleBox"></div>
+       <div class="" style="height: 500px;border:1px solid lightgray; background: transparent;overflow: scroll; overflow-x: hidden;overflow-y: scroll;">
+       <p:draggable for="#{dashboardBean.stageNameValue}" helper="clone" dashboard="board" >
+       </p:draggable>
+	
+	    <p:dashboard id="board" model="#{dashboardBean.model}">  
+          <p:ajax event="reorder" process="@this wfName"  listener="#{dashboardBean.handleReorder}" update="board" async="true"/>  
+                              
+         <c:forEach items="#{dashboardBean.panelAL}" var="_mass" varStatus="status">
+         <p:panel id="Stage_#{status.index}" header="#{_mass.panelName}"  closable="false" toggleable="true" toggleSpeed="500"  closeTitle="Close">  
+   
+		<f:facet name="options">  
+            <p:menu>
+                               
+           <p:menuitem value="Rename" icon="ui-icon-pencil"  ajax="true" oncomplete="O$('form:renameStagesPopup').showCentered();" update="board reName" process="board" actionListener="#{dashboardBean.setVarable2RenameStage(_mass.panelName,_mass.stageNumber)}"/>
+           <p:menuitem value="Remove" icon="ui-icon-trash" ajax="true" update="board growl1" process="board" action="#{dashboardBean.deleteStage(_mass.panelName,_mass.stageNumber)}"/>  
+            </p:menu>  
+        </f:facet>
+        
+        
+		
+		<p style="font-size: 13px;margin: 0 0 0;font-weight: bold;">Configure Stage</p>
+		<h:commandButton value="view Stage Details" title="view Stage Details" onclick="$('#setStagesPopup').modal('show');loadmsg();" image="/resources/images/setSatge.png" style="width:40px" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}">
+	    <a4j:ajax render="@this :form:enableEsign :form:allowEditUD :form:autologinID :form:allowuploadID :form:visable4publicNadminID :form:visable4publicNadminID1 :form:handleTitle :form:rejbut :form:passbut :form:butpass :form:statusCodes :form:selSourcecodes :form:members :form:selMembers :form:lineDirection :form:butrej stageTitle stageRole selMembersRole :form:setStgMsg :form:setStageMemberSelMsg :form:properties :form:minapprov :form:externalUser :form:primaryDocOnly :form:individualDoc :form:changeprimarydocOnly" execute="@this :form:autologinID :form:allowuploadID :form:visable4publicNadminID :form:handleTitle :form:setStgMsg :form:setStageMemberSelMsg :form:selMembersRole :form:stageTitle :form:stageRole :form:rejbut :form:butrej :form:passbut :form:butpass :form:externalUser :form:primaryDocOnly :form:individualDoc" oncomplete="hidemsg()" ></a4j:ajax>
+    	</h:commandButton>                        
+
+ 
+        </p:panel>
+        
+        </c:forEach>
+                                         
+       </p:dashboard>
+                        
+          <p:growl id="growl11" showDetail="true" />
+
+ 
+  
+    <p:dashboard id="stageboard" model="#{dashboardBean.stageModel}">
+        <p:ajax event="reorder" process="@this wfName" listener="#{dashboardBean.handleReorder}" update="growl11" />
+  
+        <p:panel id="Enter_Stage_Name" header="Enter_Stage_Name" closable="false" toggleable="true" toggleSpeed="500" toggleTitle="Maximize" closeTitle="Close">
+  <f:facet name="options">  
+            <p:menu >
+              <p:menuitem value="Rename" icon="ui-icon-pencil" oncomplete="$('#renameStagesPopup').modal('show');"  update="board reName" process="board" actionListener="#{dashboardBean.setVarable2RenameStage(_mass.panelName,_mass.stageNumber)}"/>
+              <p:menuitem value="Remove" icon="ui-icon-trash" onclick="if (!confirm('Are you sure you want to Delete the selected stage?')) return false" action="#{dashboardBean.deleteStage(_mass.panelName,_mass.stageNumber)}"/>
+            </p:menu>  
+    </f:facet>
+   <fieldset>
+	
+   <p style="font-size: 13px;margin: 0 0 0;font-weight: bold;">View Stage</p>
+     
+     <h:commandButton value="view Stage Details" title="Set/View Stage Details" onclick="O$('form:setStagesPopup').showCentered();loadmsg();" image="/resources/images/setSatge.png" style="width:40px" actionListener="#{dashboardBean.getStageInformation(_mass.stageNumber,_mass.panelName)}">
+<a4j:ajax render="@this :form:visable4publicNadminID :form:visable4publicNadminID1 :form:handleTitle :form:rejbut :form:passbut :form:butpass :form:statusCodes :form:selSourcecodes :form:members :form:selMembers :form:lineDirection :form:butrej stageTitle stageRole selMembersRole :form:setStgMsg :form:setStageMemberSelMsg :form:properties :form:minapprov" execute="@this :form:handleTitle :form:setStgMsg :form:setStageMemberSelMsg :form:selMembersRole :form:stageTitle :form:stageRole :form:rejbut :form:butrej :form:passbut :form:butpass" oncomplete="hidemsg()" ></a4j:ajax>
+     </h:commandButton>
+    </fieldset>
+       </p:panel>
+       
+       
+       </p:dashboard>
+       
+       </div>
+
+<div class="row">
+	<div class="col-lg-2" style="text-align: left;margin-top: 25px;">
+	
+<h:commandButton value="Save" style="font-size: 15px;color:#000;background:white! important;border:1px solid lightgray ! important;padding:4px 10px ! important;" onclick="loadmsg();" title="Save"  rendered="#{securityBean.workFlowProcess}" actionListener="#{dashboardBean.modifyChanges('DefaultScreen', dashboardBean.hierName)}">
+<a4j:ajax execute="@this :form:wfName :form:board" render="@this :form:msg4WF" oncomplete="hidemsg();showAlert('#{dashboardBean.msg4WF}');"></a4j:ajax>
+</h:commandButton>
+              
+                
+  <h:commandButton id="closeWFBbtnADV"  title="Close" value="Close." onclick="window.close();" style="margin-top: -31px;margin-left: 70px;font-size: 15px;color:#000;background:white ! important;border:1px solid lightgray ! important;padding:4px 10px ! important;display:#{dashboardBean.closeDisplayADV};" >
+  <a4j:ajax oncomplete="hidemsg();"></a4j:ajax>
+  </h:commandButton>
+  
+  <h:commandButton  id="closeWFbtn" title="Close" value="Close" onclick="loadmsg();" style="margin-top: -31px;margin-left: 70px;font-size: 15px;color:#000;background:white ! important;border:1px solid lightgray ! important;padding:4px 10px ! important;display:#{dashboardBean.closeDisplay};" actionListener="#{dashboardBean.redirect}" >
+  <a4j:ajax oncomplete="hidemsg();"></a4j:ajax>
+  </h:commandButton>
+  	</div>
+  <div class="col-lg-6" style="text-align: left;margin-top: 35px;"> 
+        
+	</div>
+	</div>
+	
+
+	
+	
+	
+	</div>
+	
+	
+	</div>
+</div>
+
+
+
+
+
+
+
+</div>
+      
+			<ui:include src="/setStagesPopup.xhtml" />
+			<ui:include src="/RejectedPopup.xhtml" />
+			<ui:include src="/PassPopup.xhtml"></ui:include>
+			<ui:include src="/renameStagesPopup.xhtml" />
+			<ui:include src="/WorkflowProperties.xhtml" />
+			<ui:include src="/RuleAttributePopup.xhtml" />
+			<ui:include src="/CreateRulesPopup.xhtml" />
+			<ui:include src="/OneDriveAuth.xhtml" />
+			
+</section>
+
+
+
+
+     </div>
+   
+     <footer class="main-footer"
+				style="padding-top: 3px; padding-bottom: 3px;">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 3.2.10
+				</div>
+				<strong>Powered by <a href="http://prodentechnologies.net" target="_blank"
+					style="color: #116a93;">Proden Technologies,Inc</a>.
+				</strong> All rights reserved.
+			</footer>
+
+
+	<!-- 	<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>  -->
+		 <script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+			<script src="BootstrapResource/dist/js/app.min.js"></script>
+
+			
+			
+			<ui:include src="/LoadingWindow.xhtml"></ui:include>
+			  </div>
+		</h:form>
+  
+  </body>
+ 
+  
+  </html>

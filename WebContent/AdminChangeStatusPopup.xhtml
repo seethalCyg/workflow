@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+
+	<o:popupLayer id="adminchangestatusPopup"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 2px solid orange; width:445px;" left="100" top="200">
+
+		<fieldset>
+		<table>
+		
+		<tr><td><fieldset><legend class="label2">Override Workflow</legend><table><tr><td style="width: 110px; ">Hierarchy ID </td><td>:</td>
+		<td><h:outputText id="overrideHierID" value="#{memberStatusBean.hierarchyID}"></h:outputText></td><td></td>
+		<td>Current Stage </td><td>:</td>
+		<td><h:outputText id="overrideStageName" value="#{memberStatusBean.currentStageName}"></h:outputText></td></tr>
+		
+		<tr><td>Hierarchy Name </td><td>:</td>
+		<td><h:outputText id="overrideHierName" value="#{memberStatusBean.hierarchyName4SubStr}" title="#{memberStatusBean.hierarchyName}"></h:outputText></td><td></td>
+		<td style="width: 142px; ">Current Stage Status </td><td>:</td>
+		<td><h:outputText id="overrideStageStatus" value="#{memberStatusBean.currentStageStatus}"></h:outputText></td></tr>
+		
+		</table></fieldset><br></br><table><tr><td><h:outputText value="Stage"></h:outputText></td><td><h:outputText value=":"></h:outputText></td>
+		<td><h:selectOneMenu id="dataStage" value="#{memberStatusBean.adminSelectStage}">
+        		<f:selectItems value="#{memberStatusBean.adminStagestatusHT}"/>
+        		<f:ajax event="change" listener="#{memberStatusBean.changingStageStatusAdmin}" render="dataStage dataStatus msg4Override"></f:ajax>
+    			</h:selectOneMenu></td>
+    			
+    			<td><h:outputText value="Status"></h:outputText></td><td><h:outputText value=":"></h:outputText></td>
+		<td><h:selectOneMenu id="dataStatus" value="#{memberStatusBean.selectedStatusAdmin}">
+        		<f:selectItems value="#{memberStatusBean.statusadminHT}"/>
+        		<f:ajax event="change" listener="#{memberStatusBean.changingOfStatustextAreaAdmin}" render="reason1 dispNote dispNote1 dataStage dataStatus msg4Override"></f:ajax>
+        		
+    			</h:selectOneMenu></td>
+    			
+    			</tr> 
+    			<tr><td colspan="6"><h:panelGroup id="dispNote"><h:panelGroup id="dispNote1"><h:outputText value="Rejected Reason:" rendered="#{memberStatusBean.selectedStatusAdmin == 'Rejected'}"></h:outputText><h:outputText value="Notes:" rendered="#{memberStatusBean.selectedStatusAdmin != 'Rejected'}"></h:outputText></h:panelGroup></h:panelGroup></td></tr>
+    			<tr><td colspan="6"><h:inputTextarea style="width: 400px; height: 60px; " id="reason1" value="#{memberStatusBean.reasonText4admin}"></h:inputTextarea></td></tr>
+    			</table></td></tr>
+    	<tr><td><h:commandButton title="Save" value="Ok" action="#{memberStatusBean.updatingStatusFromAdmininXMl}" image="/resources/images/save.png" style="width:25px"><f:ajax execute="dataStage dataStatus reason1" render="wrkFlowStg dataStage actionbuttons WIPButton completdButton rejectedButton approveButton commonStatus dataStatus userID msg4Override reason1 stageNameID stageSatusID completdButton rejectedButton approveButton allStag"></f:ajax>
+    	
+    	
+    	</h:commandButton>&nbsp;&nbsp;&nbsp;<h:commandButton title="Close" value="Close" image="/resources/images/close.png" onclick="O$('HRYTree:adminchangestatusPopup').hide();">
+    	<a4j:ajax render="@this allStag wrkFlowStg" execute="@this allStag"></a4j:ajax>
+    	</h:commandButton>&nbsp;&nbsp;&nbsp;
+    	<h:outputText style="color:red;" value="#{memberStatusBean.message}" id="msg4Override"></h:outputText></td></tr></table></fieldset>
+		
+
+
+	</o:popupLayer>
+</h:body>
+</html>

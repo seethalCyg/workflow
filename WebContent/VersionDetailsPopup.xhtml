@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+
+
+</h:head>
+
+
+
+<h:body>
+
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+	<o:popupLayer id="VersionComment"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 2px solid orange; " left="100" top="200">
+		
+		<table><tr><td>&nbsp;</td><td>
+<fieldset><legend class="label2"><h:outputText id="leg" value="#{hierarchyBean.versionRestore} Version"></h:outputText> </legend>
+<table><tr><td><h:panelGroup id="mess"> <h:outputText id="restore"  value="The selected version (Version # #{hierarchyBean.versionNo}) will be restored as Master Hierarchy and the existing Master Hierarchy will be saved as the latest version. Do you want to proceed?" rendered="#{hierarchyBean.versionRestore=='Restore'}"></h:outputText><h:outputText id="save" value="This action will create a Version of the current Hierarchy as is Version #: #{hierarchyBean.newVersionNo}" rendered="#{hierarchyBean.versionRestore=='Save'}"></h:outputText></h:panelGroup></td></tr></table>
+</fieldset>
+
+		<fieldset><legend class="label2">Comment</legend>
+		<table>
+	
+    	<tr><td><h:inputTextarea style="width: 440px; height: 60px; " id="note" value="#{hierarchyBean.note4VersionRestore}"></h:inputTextarea></td>
+    	
+    	<td></td></tr>
+    	
+    	<tr><td><h:commandButton image="/resources/images/save.png" title="Save" value="Save" onclick="O$('#{hierarchyBean.cmgFromViewVersion}:VersionComment').hide();" actionListener="#{hierarchyBean.saveNrestoreVersion}" ><f:ajax render="statusMsg msg4VerDisp" execute="note"/></h:commandButton>&nbsp;&nbsp;&nbsp;&nbsp;<h:commandButton title="Cancel" value="No" image="/resources/images/close.png" onclick="O$('#{hierarchyBean.cmgFromViewVersion}:VersionComment').hide();">
+    	<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+    	</h:commandButton>
+    	</td></tr></table></fieldset></td><td>&nbsp;</td></tr></table>
+
+		
+	</o:popupLayer>
+</h:body>
+</html>

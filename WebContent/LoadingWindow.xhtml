@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>Insert title here</title>
+
+ 
+ <script>
+ function loadmsg(){
+	 
+	 $('#loadingWindow').modal('show');
+	
+ }
+ 
+ function hidemsg(){
+	 $('#loadingWindow').modal('hide'); 
+	 
+ }
+ 
+ </script>
+ 
+ 
+  <script>
+ function loadmsg1(){
+	 
+	 $('#loadingWindow2').modal('show');
+ }
+ 
+ function hidemsg1(){
+	 $('#loadingWindow2').modal('hide'); 
+	 
+ }
+ 
+ </script>
+ 
+</h:head>
+
+
+
+<h:body>
+<div id="loadingWindow" class="modal fade" style="z-index: 512;">
+					<div class="modal-sm modal-dialog">
+						<div class="modal-body">
+						
+						<div class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+
+					</div>
+			</div>	</div>
+			
+		
+		<div id="loadingWindow2" class="modal fade" >
+					<div class="modal-sm modal-dialog">
+						<div class="modal-body">
+						
+						<div class="spinner">
+						
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+<div style="margin-left: 100px;">
+<h:outputLabel value="Validation in progress" style="color:white"></h:outputLabel></div>
+
+					</div>
+			</div>	</div>	
+			
+</h:body>
+</html>

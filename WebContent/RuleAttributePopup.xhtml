@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:o="http://openfaces.org/">
+	
+	
+	
+	
+<h:head>
+  <meta charset="utf-8"></meta>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+  <title>Hierarchy Workflow</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"></meta>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.min.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css"/>
+  <link rel="stylesheet" href="BootstrapResource/dist/css/skins/_all-skins.min.css"/>
+  <script type="text/javascript" src="canvasjs.min.js"></script>
+	
+<style>
+
+.subtitlestyle{
+color:#116a93;
+font-size: 17px;
+border: 1px solid ! important;
+
+}
+
+</style>	
+	
+	
+
+</h:head>
+
+
+
+<h:body>
+
+
+	<o:popupLayer id="ruleAttr"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 1px solid lightgray;background:white;height:450px;width: 650px; -webkit-box-shadow:2px 2px 6px 1px #d2d2d2;
+    -moz-box-shadow:2px 2px 6px 1px #d2d2d2;
+    box-shadow:2px 2px 6px 1px #d2d2d2;" >
+		
+		<div class="modal-header">
+ <div class="box-tools pull-right">
+		
+		<h:commandButton  value="Cancel"  image="/BootstrapResource/dist/hierarchy/wrkflw_close.png" onclick="O$('form:ruleAttr').hide();" >
+		<a4j:ajax render="@this" execute="@this"></a4j:ajax>
+		</h:commandButton>
+		</div>
+		
+		<h4  class="modal-title" ><h:outputText  value=" Add Attributes "/></h4>
+		
+		</div>
+		<p></p>
+		
+		
+		
+		 <div class="row">
+     <div class="col-lg-12" >
+    <div class="col-lg-12" >
+     <h5 style="color: #1F6AAF;">Use Attributes to capture data and apply rules on it.<img src="BootstrapResource/dist/hierarchy/helpicon1.png" title="Use Attributes to capture data and apply rules on it.
+ Example: PO Value attribute can be used in a rule to send POs to different teams based on the PO Value.">
+        </img></h5>
+    </div>
+    
+          <div class="col-lg-3" style="margin-top: 5px;" >
+     <h:outputText  value="Attribute Name : " style="margin-top: 7px;"></h:outputText>
+     </div>
+        <div class="col-lg-8" >
+        <h:selectOneMenu style="margin-left: -9px;height: 26px;background:#fff;border:1px solid lightgray;" id="attriType" value="#{dashboardBean.selectedAttributeType}">
+	    <f:selectItems value="#{dashboardBean.defaultAttrsHT}"/>
+	    <a4j:ajax execute="@this" render=":form:attriName :form:attriDataType" listener="#{dashboardBean.changeAttributeTypeLisenter(dashboardBean.selectedAttributeType)}"></a4j:ajax>
+		</h:selectOneMenu>
+		
+        <h:inputText id="attriName"    value="#{dashboardBean.selectedAttribute}" placeholder="Enter Rule Attribute Name "  class="" style="width: 200px;height: 25px;margin-left: 5px;background:#fff;border:1px solid lightgray;">
+		</h:inputText>	
+	
+		<h:commandButton value="Add" title="Add" image="/BootstrapResource/dist/hierarchy/Hierarchy_Add.png" style="margin-bottom: -12px;" action="#{dashboardBean.addRuleAttribute2Table(dashboardBean.selectedAttribute, dashboardBean.selectedAttributeType, dashboardBean.selectedAttributeDataType)}">
+		<a4j:ajax render="@this :form:ruleTable :form:attriName :form:attriDataType" execute="@this :form:attriName :form:attriDataType"> </a4j:ajax>
+		</h:commandButton>
+		</div>
+
+		
+			
+		</div>
+	
+		
+		</div>
+		
+		<p></p>
+		
+		
+		<div class="row">
+     <div class="col-lg-12" >
+   
+     
+   
+    
+          <div class="col-lg-3" >
+          <h:outputText value="Attribute data type: " style="margin-top: 7px;"></h:outputText>
+          </div>
+          
+        <div class="col-lg-8"  >
+  
+		
+		  <h:selectOneMenu style="margin-left: -9px;height: 26px;background:#fff;border:1px solid lightgray;" disabled="#{dashboardBean.selectedAttributeType == 'Weekend'}" id="attriDataType" value="#{dashboardBean.selectedAttributeDataType}">
+	    <f:selectItems value="#{dashboardBean.attrDataTypeHT}"/>
+		</h:selectOneMenu>
+		</div>
+		</div>
+			
+		
+		
+		</div>
+		<p></p>
+		
+		
+     
+     <div class="row">
+     <div class="col-lg-12" >
+ 
+     <div class="col-lg-12" >
+      <div style="overflow-x:hidden;overflow-y:scroll;width:100%;height:250px;border: 1px solid lightgray;">
+      <h:panelGroup id="ruleTablePanel">
+     <o:dataTable id="ruleTable" var="objread"
+											value="#{dashboardBean.ruleAttrAL}" styleClass="table"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="10"
+											style="min-width:100%;width:550px;max-width:100%;border: 1px solid lightgray;">
+
+											<o:column rendered="false">
+												<f:facet name="header">S.No</f:facet>
+												<center>
+													<span title="#{objread.serialNo}">#{objread.serialNo}</span>
+												</center>
+
+											</o:column>
+
+
+											<o:column>
+												<f:facet name="header">Attribute Name</f:facet>
+												<center>
+													<span title="#{objread.attributeName}">#{objread.attributeName}</span>
+												</center>
+
+											</o:column>
+
+											<o:column>
+												<f:facet name="header">Attribute Type</f:facet>
+												<center>
+													<span title="#{objread.attributeType}">#{objread.attributeType}</span>
+												</center>
+
+											</o:column>
+											<o:column>
+												<f:facet name="header">Attribute Data Type</f:facet>
+												<center>
+													<span title="#{objread.attrDataType}">#{objread.attrDataType}</span>
+												</center>
+
+											</o:column>
+											
+											<o:column>
+												<f:facet name="header">Delete</f:facet>
+
+												<center> <h:commandLink value="Delete" 
+													actionListener="#{dashboardBean.deleteRuleAttributeByName(objread.attributeName, objread.serialNo)}" onclick="loadmsg();"
+													>
+													<a4j:ajax render="@this :form:ruleTable :form:ruleTablePanel" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+
+												</h:commandLink></center>
+											</o:column>
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+										</h:panelGroup>
+										</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+	 <div class="row">
+     <div class="col-lg-12" >
+     <div class="col-lg-12" >
+	 <h:outputText id="attributeMsg" style="color:#{dashboardBean.authorizeMsgColor}"  value="#{dashboardBean.authorizeMsgstr}"></h:outputText>
+    	</div>
+    	</div>
+</div>
+
+
+	</o:popupLayer>
+</h:body>
+</html>

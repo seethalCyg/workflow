@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+var formSelection = "single";
+var elementJobj = '{"Fields":[]}';
+var myObj = JSON.parse(elementJobj);
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    
+    if(data == "templateTextField" && formSelection == "single"){
+    	var previewTable = document.getElementById("previewTable");
+    	var c = previewTable.childNodes;
+    	var len = c.length;
+    	var tdNd = createNewRowInTemplate(previewTable);
+    	createTextField(tdNd, len);
+    	var id=Math.floor((Math.random() * 89999) + 10000);
+    	myObj['Fields'].push({"id":id, "FielName":"Field1", "HelText":"", "Type":"TextField"});
+    }
+    elementJobj = JSON.stringify(myObj);
+    //var url = "http://localhost:8081/rbid/CreateForms?formtype="+formSelection+"&fieldtype="+templateTextField;
+    //ajaxGet(url);
+}
+
+function createNewRowInTemplate(previewTable) {
+	var trNd = document.createElement("tr");
+	previewTable.appendChild(trNd);
+	trNd.setAttribute("style", "border: 1px solid black; height: 30px");
+	trNd.setAttribute("valign", "top");
+	var tdNd = document.createElement("td");
+	tdNd.setAttribute("valign", "top");
+	trNd.appendChild(tdNd);
+	return tdNd;
+}
+
+function createTextField(tdNd, len) {
+	var fieldTableNd = document.createElement("table");
+	fieldTableNd.setAttribute("style", "border: 1px solid black;");
+	
+	fieldTableNd.setAttribute("contextmenu", "mymenu");
+	tdNd.appendChild(fieldTableNd);
+	var fieldTrNd = document.createElement("tr");
+	fieldTrNd.setAttribute("valign", "top");
+	fieldTrNd.setAttribute("style", "height: 30px");
+	fieldTableNd.appendChild(fieldTrNd);
+	var fieldTdNd = document.createElement("td");
+	fieldTrNd.appendChild(fieldTdNd);
+	var labelNd = document.createElement("label");
+	labelNd.textContent = "Field "+len;
+	fieldTdNd.appendChild(labelNd);
+	
+	fieldTdNd = document.createElement("td");
+	fieldTrNd.appendChild(fieldTdNd);
+	var txtFieldNd = document.createElement("input");
+	txtFieldNd.setAttribute("type", "text");
+	fieldTdNd.appendChild(txtFieldNd);
+}
+
+
+function ajaxGet(url, jsonObjStr) {
+	  var xmlDoc = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+	 
+	  xmlDoc.open('POST', url, true);
+	 
+	  xmlDoc.onreadystatechange = function() {
+	    if (xmlDoc.readyState === 4 && xmlDoc.status === 200) {
+	      alert(xmlDoc.responseText);
+	    }
+	  }
+	 
+	  xmlDoc.send(jsonObjStr);
+	}
+
+function createSingleColumnForm() {
+	formSelection = "single";
+}
+function createDoubleColumnForm() {
+	formSelection = "double";
+}
+function createPivotTableForm(columnsCount) {
+	formSelection = "pivot";
+	var previewTable = document.getElementById("previewTable");
+	var trNd = document.createElement("tr");
+	previewTable.appendChild(trNd);
+	for(var i=0;i<columnsCount;i++){
+		var tdNd = document.createElement("td");
+		trNd.appendChild(tdNd);
+		var labelNd = document.createElement("label");
+		labelNd.textContent = "Column "+(i+1);
+		tdNd.appendChild(labelNd);
+	}
+}
+function createTableForm() {
+	formSelection = "normalTable";
+}
+function saveJsonObj() {
+	var jsonStr = JSON.stringify(myObj);
+	var url = "http://localhost:8081/rbid/CreateForms?formtype="+formSelection+"&fieldtype="+templateTextField;
+	alert("-=-=-=-=-="+url);
+    ajaxGet(url, jsonStr);
+}
+</script>
+</head>
+<body>
+<table style="width: 1000px" ><tr>
+<td><button value="Single Column Form" onclick="createSingleColumnForm()">Single Column Form</button></td>
+<td><button value="Double Column Form" onclick="createSingleColumnForm()">Double Column Form</button></td>
+<td><button value="Pivotal Form Form" onclick="createSingleColumnForm()">Pivotal Form Form</button></td>
+<td><button value="Table Form" onclick="createSingleColumnForm()">Table Form</button></td>
+<td><button value="Save" onclick="saveJsonObj()">Save</button></td>
+</tr></table>
+<table><tr valign="top">
+<td valign="top">
+<table style="border: 1px solid black; height: 500px;" >
+<tr style="height: 30px" valign="top"><td style="height: 30px"><button id="templateTextField" value="Add Text Field" draggable="true" ondragstart="drag(event)">Add Text Field</button></td></tr>
+<tr style="height: 30px" valign="top"><td style="height: 30px"><button id="templateDropdown" value="Add Dropdown Field" draggable="true">Add Dropdown Field</button></td></tr>
+<tr style="height: 30px" valign="top"><td style="height: 30px"><button id="templateCheckbox" value="Add Checkbox Field" draggable="true">Add Checkbox Field</button></td></tr>
+<tr style="height: 30px" valign="top"><td style="height: 30px"><button id="templateDatePicker" value="Add Date Picker Field" draggable="true">Add Date Picker Field</button></td></tr>
+<tr style="height: 30px" valign="top"><td style="height: 30px"><button id="templateHeading" value="Add Heading Field" draggable="true">Add Heading Field</button></td></tr>
+</table>
+
+</td>
+<td>
+
+<table  style="width: 1000px; border: 1px solid black; overflow: scroll;" id="previewTable" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+</table>
+</td>
+</tr></table>
+
+</body>
+</html>

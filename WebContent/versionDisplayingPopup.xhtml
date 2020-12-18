@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://openfaces.org/">
+
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="js_color_picker_v2.css" />
+	<h:outputScript name="js_color_picker_v2.js" library="js" />
+	<h:outputScript name="color_functions.js" library="js" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputScript name="format.js" library="js" />
+	
+	<!-- Start code change Jayaramu 14NOV13 -->
+
+<script type="text/javascript">
+function RestoreMess(valid){
+	if(valid){
+	  O$('HRYTree:VersionComment').show(); 
+	}
+ 	return false;
+}
+</script>
+
+</h:head>
+
+
+
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+
+	<o:popupLayer id="confirmPopup1"
+		draggable="true" modalLayerClass="modalLayer"
+		style="left: 1px; top: 0px; border: 2px solid orange;" left="200" top="200">
+		<fieldset>
+		
+		<table><tr><td><fieldset style="width: 558px;"><legend class="label2">Hierarchy Information</legend><table><tr><td>
+		<h:outputText value="Hierarchy ID"></h:outputText></td><td>:</td><td><h:outputText value="#{hierarchyBean.hierarchy_ID}"></h:outputText></td>
+		<td style="width: 50px; "></td><td><h:outputText value="Hierarchy Name"></h:outputText></td><td>:</td><td><h:outputText value="#{hierarchyBean.hierarchyName}"/></td>
+		</tr></table></fieldset>
+		<fieldset style="width: 551px; "><legend class="label2">Version Information</legend><table>
+		<tr  align="right"></tr>
+		<tr><td colspan="2" ><o:dataTable id="hierarchyList1" sortLevel="-1" sortAscending="false" sortColumnId="hierarchyID"
+						pageSize="5" value="#{hierarchyBean.versionNumberAL}"
+						var="objread" width="510px" commonHeaderRowClass="table-header"
+						headerRowClass="table-header" bodyRowClass="table-even-row"
+						bodyOddRowClass="table-odd-row" noDataMessageAllowed="false"
+						bodyRowStyle="background-color:#FFFFF;"
+						bodyOddRowStyle="background-color:#ADDDFF;"
+						headerVertSeparator="1px solid #a0a0a0"
+						sortedAscendingImageUrl="../images/treetable/sort_a.gif"
+				sortedDescendingImageUrl="../images/treetable/sort_d.gif"
+				sortedColumnHeaderStyle="background: url('../images/treetable/tableHeader_sorted.gif') repeat-x;"
+				sortableHeaderRolloverStyle="background: url('../images/treetable/tableHeader_rollover.gif') repeat-x !important;"
+				headerRowStyle="styleClass: tbl; style; table-header;"
+						subHeaderRowStyle="background: url('../images/datatable/filter.gif') repeat-x #f7f7f7; border-top: 1px solid #f6f7f8;"
+						preloadedNodes="all" expansionState="levelsExpanded:2">
+
+
+						<o:multipleRowSelection
+							rowDatas="#{hierarchyBean.versionSelectedList}"
+							style="background: #a4aec5; color: #7E0000;" ><o:ajax render="@this" execute="@this" /></o:multipleRowSelection>
+						<o:columnReordering />
+						<o:columnResizing />
+						<f:facet name="columnMenu">
+							<o:columnMenu />
+						</f:facet>
+
+						<o:selectionColumn style="width: 3%;" sortable="true" header="">
+
+						</o:selectionColumn>
+						<o:column style="width: 86px;">
+							<f:facet name="header">Version #</f:facet>
+							<o:hintLabel value="#{objread.versionNo}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 80px;">
+							<f:facet name="header">Created Date</f:facet>
+							<o:hintLabel value="#{objread.createdDate}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 86px;">
+							<f:facet name="header">Created By</f:facet>
+							<o:hintLabel value="#{objread.createdBy}"></o:hintLabel>
+							
+						</o:column>
+						<o:column style="width: 80px;">
+							<f:facet name="header">Comment</f:facet>
+							<o:hintLabel value="#{objread.comment}"></o:hintLabel>
+							
+						</o:column>
+						<f:facet name="below">
+							<h:panelGroup id="panelGroup">
+								<o:dataTablePaginator id="paginator" />
+							</h:panelGroup>
+						</f:facet>
+						</o:dataTable></td>
+						<td colspan="1" valign="top"><h:commandButton title="Refresh" value="Refresh" image="/resources/images/refresh.png" actionListener="#{hierarchyBean.displayingVersion(hierarchyBean.hierarchy_ID)}"  style="height: 20px; width: 20px;">
+						<a4j:ajax render="hierarchyList1"></a4j:ajax>
+						</h:commandButton></td></tr></table></fieldset></td></tr><tr><td>
+						<table><tr><td><h:commandButton image="/resources/images/VV.png" title="View" action="#{hierarchyBean.viewHierVersion()}" value="View"><f:ajax render="msg4VerDisp" execute="hierarchyList1"></f:ajax>
+						</h:commandButton></td><td><h:commandButton title="Restore Hierarchy" image="/resources/images/restore.png" actionListener="#{hierarchyBean.setVersionFrom('Restore')}" value="Restore">
+						<a4j:ajax render="msg4VerDisp leg restore save mess" execute="hierarchyList1 msg4VersDisp" oncomplete="return RestoreMess(#{hierarchyBean.verNotePopupVisible});"></a4j:ajax></h:commandButton></td><td><h:commandButton title="Close" image="/resources/images/close.png" onclick="O$('HRYTree:confirmPopup1').hide();" action="#{hierarchyBean.loadHierarchyTree}" value="Close">
+						<a4j:ajax render="hierarchyTree"></a4j:ajax>
+						</h:commandButton></td><td><h:outputText id="msg4VerDisp" class="error" styleClass="label2" value="#{hierarchyBean.msg4VersDisp}" title="#{hierarchyBean.fullmsg4VersDisp}"/></td></tr></table>
+						</td></tr></table></fieldset>
+	</o:popupLayer>
+</h:body>
+</html>

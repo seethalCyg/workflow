@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<BI_Metadatas>
+<Admin Price="" Payer_status="" subscription_id="" Subscription_date="" Transaction_date="" CompanyName="Linchris Hotel" No_Of_License="" ticker="true" CustomerKey="cLcGI" Currency="" ProductName="Ultra Documents with Custom Forms and Workflow" StartedDate="4/26/2019 6:29:01 AM" Payment_type="" Transaction_id="" helptext="true" CompanyNameEntered="Yes" Product_no="" pack="Premium" Business_name="" Payer_id="" ExpireDate="5/26/2019 6:29:01 AM">
+    <User Key="hilton123" UserID="Adrienne.Flintoft@hilton.com" LastName="Flintoft" FirstName="Adrienne" ticker="true" helptext="true" Noc="3" PNoc="0" GridFiletoggle="true" UserNo="0" Role="Admin" Status="Active" />
+	<User FirstName="Jeff" LastName="Lang" UserID="jeff.lang@hilton.com" Key="hilton123" StartedDate="9/8/2018 7:02:56 PM" ExpireDate="7/18/2018 7:03:14 PM" ticker="true" helptext="true" Noc="3" PNoc="0" GridFiletoggle="true" UserNo="1" Role="User" Status="Active"/>
+  </Admin>
+</BI_Metadatas>

@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://openfaces.org/">
+	
+<h:head>
+	<meta charset="utf-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<title>Document List </title>
+	<meta
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		name="viewport"></meta>
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/fa/css/font-awesome.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/bootstrap/awesome/ion/css/ionicons.min.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/plugins/datatables/dataTables.bootstrap.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/accelBI.min.css" />
+	<link rel="stylesheet" href="BootstrapResource/dist/css/accelBI.css" />
+	<link rel="stylesheet"
+		href="BootstrapResource/dist/css/skins/_all-skins.min.css" />
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+	
+
+
+	<style>
+	.linkCSS{
+	font-size:13px;
+	
+	
+	}
+	.linkCSS:hover{
+	font-size:13px;
+	text-decoration: underline;
+	
+	}
+	#loadingPage {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	display: block;
+	opacity: 0.7;
+	background-color: #000;
+	z-index: 99;
+	text-align: center;
+}
+
+#loadingPage-image {
+	position: absolute;
+	top: 100px;
+	left: 240px;
+	z-index: 100;
+}
+
+.divouter2 {
+	border: 1px solid;
+	border-color: #f0f0f5;
+	width: 100%;
+}
+
+.modal {
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.table {
+	min-width: 100%;
+	width: 1600px;
+	max-width: 100%;
+	vertical-align: text-top;
+	padding: 3px 3px;
+}
+.o_table_paginator_field {
+
+    width: 40px;
+    text-align: right;
+    pointer-events: none;
+
+} 
+
+.dropdownCSS {
+
+   width:200px;
+   height: 30px !important;
+   background:#fff;
+   border:1px solid lightgray;
+
+} 
+
+</style>
+
+	<script type="text/javascript">
+		function playButtonPress() {
+
+			$("#playbutton i").toggleClass(
+					"fa fa-arrow-left  fa fa-arrow-right");
+			play = !play;
+		}
+		function showAdduserpopUP() {
+
+			O$('hierarchytable:addUsers').showCentered();
+			return false;
+		}
+	</script>
+	<script type="text/javascript">
+		function deleteconfirm(selectedDataSize) {
+
+			if (selectedDataSize != '0') {
+				if (!confirm('Are you sure you want to Delete the selected record(s)?'))
+					return false;
+			} else {
+				return true;
+			}
+		}
+
+		function hideworkflwPane() {
+
+			document.getElementById("workflowTableID").style.display = "none";
+			document.getElementById("listuserPANE").style.display = "block";
+			document.getElementById("workflowClientPANE").style.display = "none";
+		}
+
+		function showworkflwCLient() {
+
+			document.getElementById("workflowClientPANE").style.display = "block";
+
+		}
+		function hidelistUserPane() {
+
+			document.getElementById("workflowTableID").style.display = "block";
+			document.getElementById("listuserPANE").style.display = "none";
+			document.getElementById("workflowClientPANE").style.display = "none";
+
+		}
+
+		function alertfeatures() {
+
+			alert("Not Available Features");
+			return false;
+		}
+		function getscreenSizeUI(){
+
+			var width = screen.width;
+			var heightUI = screen.height/2-250;
+		//	alert(heightUI);
+			// document.getElementById("workflowTable1PANE").style.height =heightUI+"px";
+			// document.getElementById("workflowTable2PANE").style.height =heightUI+"px";
+
+			}
+
+	</script>
+
+</h:head>
+<body class="hold-transition skin-purple sidebar-mini"
+	style="padding-right: 0px !important;" onload="getscreenSizeUI();">
+	<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}" />
+	<h:form id="hierarchytable" style="padding-left: 0px !important;">
+	<div class="wrapper">
+
+			<header class="main-header">
+
+				<a href="#" class="logo"> <span class="logo-mini"><img
+						src="BootstrapResource/dist/img/prodenlogo.png" width="35px;"></img></span>
+					<span class="logo-lg"><img
+						src="BootstrapResource/dist/img/logo.png"></img></span>
+				</a>
+
+				<nav class="navbar navbar-static-top" role="navigation">
+					<a class="btn" id="playbutton" data-toggle="offcanvas"
+						role="button" style="margin-top: 8px;" onclick="playButtonPress()">
+						<i class="fa fa-arrow-left " style="color: white"></i>
+
+					</a>
+
+					<div class="navbar-custom-menu">
+
+						<ul class="nav navbar-nav">
+
+
+
+							<li class="dropdown notifications-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> Home </a></li>
+
+
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Tools <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+
+								
+									<li><h:commandLink
+											actionListener="#{hierarchyBean.redirect('SetupConfig.xhtml','','','','','','','false','')}"
+											action="#{setupConfigBean.editConfig}"
+											rendered="#{securityBean.configSetting}" onclick="loadmsg()">System Setup
+                 <a4j:ajax render="@this" execute="@this"
+												oncomplete="hidemsg()"></a4j:ajax>
+										</h:commandLink></li>
+						<li class="divider"></li>
+						
+									<li><h:commandLink   action="#{loginBean.calchangepwdpopup()}"
+											  onclick="O$('hierarchytable:changePWDpopup').showCentered();loadmsg();"  >Change Password
+                 <a4j:ajax render=":hierarchytable:changeuserLabelID" execute=":hierarchytable:username" oncomplete="hidemsg()"></a4j:ajax>
+										</h:commandLink></li>
+								</ul></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/aboutus.html" target="_blank"> About </a></li>
+
+							<li class="dropdown notifications-menu"><a
+								href="http://prodentechnologies.net/contactus.html" target="_blank"> Help </a>
+
+							</li>
+
+
+							<li class="dropdown user user-menu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <img
+									src="BootstrapResource/dist/img/user3-160x160.jpg"
+									class="user-image" alt="User Image"></img> <span
+									class="hidden-xs">Welcome </span>
+							</a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header"><img
+										src="BootstrapResource/dist/img/user3-160x160.jpg"
+										class="img-circle" alt="User Image"></img>
+
+										<p>
+											Welcome <h:outputText style="color:white" value="#{hierarchyBean.userNameID}"></h:outputText><small></small>
+										</p></li>
+									<!-- Menu Body -->
+									<div class="user-body signout" style="background-color: #c6c6ec;">
+										<div class="user-footer">
+											<div class="pull-right">
+												<h:commandLink class="btn btn-default btn-flat"
+													immediate="true" onclick="loadmsg()"
+													actionListener="#{logoutBean.getRedirect(loginBean.username,loginBean.loginDetHT,'true')}">Sign out
+                  <a4j:ajax render="@this" execute="@this"
+														oncomplete="hidemsg()"></a4j:ajax>
+												</h:commandLink>
+
+											</div>
+										</div>
+									</div>
+								</ul></li>
+
+
+
+
+
+
+						</ul>
+
+					</div>
+
+
+				</nav>
+
+
+			</header>
+
+
+			<aside class="main-sidebar">
+				<section class="sidebar">
+
+
+
+
+					<div class="user-panel">
+						<div class="pull-left image">
+							<img src="BootstrapResource/dist/img/user3-160x160.jpg"
+								class="img-circle" alt="User Image"></img>
+						</div>
+						<div class="pull-left info">
+							<p>accel-BI</p>
+							<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						</div>
+					</div>
+
+
+					<div class="input-group" style="background: #037193">
+
+						<LABEL style="color: #fff; background: #222d32;">MENU </LABEL>
+
+					</div>
+
+					<ul class="sidebar-menu">
+
+					<h:panelGroup rendered="#{loginBean.loginprvilageKey}">
+					<li><h:commandLink id="WorkflowBTN1" onclick="loadmsg();" action="HierarchyList?faces-redirect=true">
+								<i class="fa fa-object-group fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Workflow</span>
+								<a4j:ajax render="@this" execute="@this" oncomplete="hidemsg()"/>
+							</h:commandLink></li>
+					
+					
+				<!-- 	action="#{hierarchyBean.readUsersFromXml()}" -->
+				
+						<li><h:commandLink id="userhomeBTN1" onclick="#{hierarchyBean.readUsersFromXml()}" action="HierarchyList?listuserPANE=true?faces-redirect=true">
+							
+								<i class="fa fa-user fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">Users</span>
+								<a4j:ajax render="@this" execute="@this" oncomplete="hidemsg()"/>
+							</h:commandLink></li>
+						
+						</h:panelGroup>
+						
+
+						<li><h:commandLink onclick="loadmsg();showworkflwCLient();">
+								<i class="fa fa-desktop fa-2x"></i>
+								<span style="padding-left: 10px; font-size: 13px;">List of Documents</span>
+								<a4j:ajax render="@this" execute="@this" oncomplete="hidemsg()"/>
+							</h:commandLink></li> 
+					</ul>
+
+
+				</section>
+			</aside>
+
+
+			<div class="content-wrapper">
+
+				<section class="content">
+
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+					
+					
+					<!-- WORKFLOW CLIENT NEW PANE  -->
+					
+					
+					
+					<div class="row">
+
+						<div class="col-lg-12 col-xs-6">
+
+							<div id="workflowClientPANE" style="display: block; width: 100%;">
+
+							
+								
+								<div class="row">
+									<div class="col-lg-12" style="width: 100%;">
+
+										<div class="col-lg-6"
+											style="text-align: left; margin-left: -15px;">
+											<p style="font-size: 20px; margin: 0 0 0;">List of Documents</p>
+										</div>
+										<div class="col-lg-6"
+											style="text-align: right;">
+  										<h:commandButton id="attachDocBTN" value="Start New Workflow" title="Choose a document and assign a Workflow" onclick="$('#AttachDocumentPopup').modal('show');O$('hierarchytable:attachDocumentform:popupLayer1').hide();O$('hierarchytable:attachDocumentform:popupLayer2').hide();" style="padding: 8px 16px;background: white;border: 1px solid lightgray;font-size: 14px;font-weight: bold;margin-right: -27px;">
+										  <a4j:ajax render="@this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+										</h:commandButton>
+										
+						<!-- LOAD THE  Attachment Details-->				
+										
+  <h:commandButton id="attachDocBTN1" value="Start Workflow" onclick="#{workflowTabBean.getAttachmentDOCDeails()}" style="padding: 8px 16px;display:none;background: white;border: 1px solid lightgray;font-size: 14px;font-weight: bold;margin-right: 10px;">
+	  <a4j:ajax render="@this :hierarchytable:attachDocumentform:attachDocumentMsg" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+	  </h:commandButton>
+										
+										</div>
+
+									</div>
+								</div>
+								
+								
+							<p></p>
+								<div class="row">
+									<div class="col-lg-12" style="width: 100%;">
+
+										<div class="col-lg-6"
+											style="text-align: left; margin-left: -15px;">
+											<p style="font-size: 20px; margin: 0 0 0;">Documents waiting for my action</p>
+										</div>
+										
+									 
+									
+										
+									
+										
+										
+										
+
+									</div>
+								</div>
+
+							
+							<p></p>
+								
+								<div class="row">
+									<div id="workflowTable1PANE" class="col-lg-12" style="width: 100%; ">
+
+										<o:dataTable id="workflowdocTable1" value="#{workflowTabBean.documentDetailsAL}" styleClass="table" var="workflowdocTableobject"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="7" 
+											style="min-width:100%;width:1600px;max-width:100%;border: 1px solid lightgray;">
+
+											<o:multipleRowSelection
+												
+												style="background: rgb(122, 180, 207) none repeat scroll 0% 0%; color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+											<o:column style="width: 3% ! important;;" sortable="true" sortingExpression="#{workflowdocTableobject.documentID}">
+												<f:facet name="header">ID</f:facet>
+												
+
+												
+														<span title="#{workflowdocTableobject.documentID}">#{workflowdocTableobject.documentID}</span>
+												
+											
+											</o:column>
+											<o:column sortable="true" sortingExpression="#{workflowdocTableobject.documentName}">
+												<f:facet name="header">Document Name</f:facet>
+
+												
+												
+												<h:outputLabel title="#{workflowdocTableobject.documentName}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.documentName}"></h:outputLabel>
+														
+												
+											</o:column>
+											<o:column sortingExpression="#{workflowdocTableobject.workflowName}">
+												<f:facet name="header">Workflow Name</f:facet>
+
+												
+														<span title="#{workflowdocTableobject.workflowName}">#{workflowdocTableobject.workflowName}</span>
+												
+											</o:column>
+											<o:column sortable="true" sortingExpression="#{workflowdocTableobject.docCreatedDate}">
+												<f:facet name="header">Created Date</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.docCreatedDate}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.docCreatedDate}"></h:outputLabel>
+												
+											</o:column>
+											<o:column style="width: 10% ! important;;" sortingExpression="#{workflowdocTableobject.currentStg}">
+												<f:facet name="header">Current Stage</f:facet>
+
+												
+													<span title="#{workflowdocTableobject.currentStg}">#{workflowdocTableobject.currentStg}</span>
+												
+											</o:column>
+											<o:column sortingExpression="#{workflowdocTableobject.currentStgUser}">
+												<f:facet name="header">Current User</f:facet>
+
+												
+													
+													<h:outputLabel title="#{workflowdocTableobject.currentStgUser}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.currStgUserSubStr}"></h:outputLabel>
+												
+											</o:column>
+											<o:column style="width: 8% ! important;" sortingExpression="#{workflowdocTableobject.dueDate}">
+												<f:facet name="header">Due Date</f:facet>
+
+												
+													<h:outputLabel id="duedateLABL" title="#{workflowdocTableobject.dueDate}" style="color:#{workflowdocTableobject.dueDateColor}" value="#{workflowdocTableobject.dueDate}"></h:outputLabel>
+												
+											</o:column>
+
+											<o:column sortingExpression="#{workflowdocTableobject.nextTeamDetails}">
+												<f:facet name="header">Next Stage</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.nextTeamDetails}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.nextStgUserSubStr}"></h:outputLabel>
+												
+											</o:column>
+											
+												<o:column rendered="false">
+												<f:facet name="header">Created By</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.docCreatedby}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.docCreatedby}"></h:outputLabel>
+												
+											</o:column>
+<o:column style="width: 3% ! important;;">
+												<f:facet name="header" ><h:outputText value="Open" title="Open this workflow / document to process."/></f:facet>
+												
+												 <center>
+									
+												
+												 <h:commandLink value="Open" title="Open this workflow / document to process." action="#{hierarchyBean.redirectWF('Hierarchytree.xhtml','',workflowdocTableobject.workflowID,workflowdocTableobject.documentID,workflowdocTableobject.workflowName,workflowdocTableobject.documentName,workflowdocTableobject.docCreatedby,workflowdocTableobject.docCreatedDate,'',workflowdocTableobject.dueDate)}">
+												 <a4j:ajax render="@this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+												 </h:commandLink>
+												 </center>
+
+											</o:column>
+									<o:column style="width: 8% ! important;;">
+												<f:facet name="header">View</f:facet>
+
+												<center> <h:commandLink value="View Workflow"
+													actionListener="#{headerBean.processMenu('WFadminscreen.xhtml')}" onclick="loadmsg();"
+													action="#{dashboardBean.DashboardStage('Default','hierarchyTree', workflowdocTableobject.workflowID,workflowdocTableobject.workflowName)}">
+													<a4j:ajax render=" @this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+
+												</h:commandLink></center>
+											</o:column>
+											
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup">
+													<o:dataTablePaginator id="paginator" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+
+									</div>
+
+
+								</div>
+								
+								
+								
+								
+								</div>
+								
+								
+								</div>
+					</div>
+					
+				
+				
+				<br/>
+				
+				
+				
+				<div class="row">
+
+						<div class="col-lg-12 col-xs-6">
+
+							<div id="workflowClientPANE0" style="display: block; width: 100%;">
+
+							
+								
+								<div class="row">
+									<div class="col-lg-12" style="width: 100%;">
+
+										<div class="col-lg-6"
+											style="text-align: left; margin-left: -15px;">
+											<p style="font-size: 20px; margin: 0 0 0;">Documents waiting for others action</p>
+										</div>
+										
+									 
+									
+										
+									
+										
+										
+										
+
+									</div>
+								</div>
+
+							
+							<p></p>
+								
+								<div class="row">
+									<div id="workflowTable1PANE0" class="col-lg-12" style="width: 100%; ">
+
+										<o:dataTable id="workflowdocTable10" value="#{workflowTabBean.documentDetailsAL1}" styleClass="table" var="workflowdocTableobject"
+											headerVertSeparator="1px solid #a0a0a0" pageSize="7" 
+											style="min-width:100%;width:1600px;max-width:100%;border: 1px solid lightgray;">
+
+											<o:multipleRowSelection
+												
+												style="background: rgb(122, 180, 207) none repeat scroll 0% 0%; color: #fff;">
+												<o:ajax render="@this" execute="@this"></o:ajax>
+											</o:multipleRowSelection>
+											<o:columnReordering />
+											<o:columnResizing />
+
+											<f:facet name="columnMenu">
+												<o:columnMenu />
+											</f:facet>
+
+											<o:column style="width: 3% ! important;;" sortable="true" sortingExpression="#{workflowdocTableobject.documentID}">
+												<f:facet name="header">ID</f:facet>
+												
+
+												
+														<span title="#{workflowdocTableobject.documentID}">#{workflowdocTableobject.documentID}</span>
+												
+											
+											</o:column>
+											<o:column sortable="true" sortingExpression="#{workflowdocTableobject.documentName}">
+												<f:facet name="header">Document Name</f:facet>
+
+												
+												
+												<h:outputLabel title="#{workflowdocTableobject.documentName}" style="word-break: keep-all;font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.documentName}"></h:outputLabel>
+														
+												
+											</o:column>
+											<o:column sortingExpression="#{workflowdocTableobject.workflowName}">
+												<f:facet name="header">Workflow Name</f:facet>
+
+												
+														<span title="#{workflowdocTableobject.workflowName}">#{workflowdocTableobject.workflowName}</span>
+												
+											</o:column>
+											<o:column sortable="true" sortingExpression="#{workflowdocTableobject.docCreatedDate}">
+												<f:facet name="header">Created Date</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.docCreatedDate}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.docCreatedDate}"></h:outputLabel>
+												
+											</o:column>
+											<o:column style="width: 10% ! important;;" sortingExpression="#{workflowdocTableobject.currentStg}">
+												<f:facet name="header">Current Stage</f:facet>
+
+												
+													<span title="#{workflowdocTableobject.currentStg}">#{workflowdocTableobject.currentStg}</span>
+												
+											</o:column>
+											<o:column sortingExpression="#{workflowdocTableobject.currentStgUser}">
+												<f:facet name="header">Current User</f:facet>
+
+												
+													
+													<h:outputLabel title="#{workflowdocTableobject.currentStgUser}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.currStgUserSubStr}"></h:outputLabel>
+												
+											</o:column>
+											<o:column style="width: 8% ! important;;" sortingExpression="#{workflowdocTableobject.dueDate}">
+												<f:facet name="header">Due Date</f:facet>
+
+												<h:outputLabel id="duedateLABL" title="#{workflowdocTableobject.dueDate}" style="color:#{workflowdocTableobject.dueDateColor}" value="#{workflowdocTableobject.dueDate}"></h:outputLabel>
+													
+												
+											</o:column>
+
+											<o:column sortingExpression="#{workflowdocTableobject.nextTeamDetails}">
+												<f:facet name="header">Next Stage</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.nextTeamDetails}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.nextStgUserSubStr}"></h:outputLabel>
+												
+											</o:column>
+											
+												<o:column rendered="false">
+												<f:facet name="header">Created By</f:facet>
+
+												
+												<h:outputLabel title="#{workflowdocTableobject.docCreatedby}" style="font-size: 14px;font-weight: normal;" value="#{workflowdocTableobject.docCreatedby}"></h:outputLabel>
+												
+											</o:column>
+<o:column style="width: 3% ! important;;">
+												<f:facet name="header" ><h:outputText value="Open" title="Open this workflow / document to process."/></f:facet>
+												
+												 <center>
+									
+												
+												 <h:commandLink value="Open" title="Open this workflow / document to process." action="#{hierarchyBean.redirectWF('Hierarchytree.xhtml','',workflowdocTableobject.workflowID,workflowdocTableobject.documentID,workflowdocTableobject.workflowName,workflowdocTableobject.documentName,workflowdocTableobject.docCreatedby,workflowdocTableobject.docCreatedDate,'',workflowdocTableobject.dueDate)}">
+												 <a4j:ajax render="@this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+												 </h:commandLink>
+												 </center>
+
+											</o:column>
+									<o:column style="width: 8% ! important;;">
+												<f:facet name="header">View</f:facet>
+
+												<center> <h:commandLink value="View Workflow"
+													actionListener="#{headerBean.processMenu('WFadminscreen.xhtml')}" onclick="loadmsg();"
+													action="#{dashboardBean.DashboardStage('Default','hierarchyTree', workflowdocTableobject.workflowID,workflowdocTableobject.workflowName)}">
+													<a4j:ajax render=" @this" execute="@this" oncomplete="hidemsg();"></a4j:ajax>
+
+												</h:commandLink></center>
+											</o:column>
+											
+										
+											<f:facet name="below">
+												<h:panelGroup id="panelGroup0">
+													<o:dataTablePaginator id="paginator0" />
+												</h:panelGroup>
+											</f:facet>
+
+										</o:dataTable>
+
+									</div>
+
+
+								</div>
+							
+								</div>
+								
+								
+								</div>
+					</div>
+					
+					
+
+
+
+				</section>
+
+			</div>
+
+
+
+			<footer class="main-footer"
+				style="padding-top: 3px; padding-bottom: 3px;">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 3.2.10
+				</div>
+				<strong>Powered by <a href="http://prodentechnologies.net"
+					target="_blank" style="color: #116a93;">Proden Technologies,Inc</a>.
+				</strong> All rights reserved.
+			</footer>
+
+
+		<!-- 	<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+			<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script>
+			<script src="BootstrapResource/dist/js/app.min.js"></script> -->
+
+
+			
+
+<ui:include src="/LoadingWindow.xhtml"></ui:include>
+<ui:include src="/ChangePasswordPopup.xhtml"></ui:include>
+<ui:include src="/AttachDocumentPopup.xhtml"></ui:include>
+<!-- <ui:include src="/Hierarchytree.xhtml"></ui:include> -->
+<script src="BootstrapResource/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="BootstrapResource/bootstrap/js/bootstrap.min.js"></script> 
+<script src="BootstrapResource/dist/js/app.min.js"></script>
+		</div>
+
+	</h:form>
+</body>
+</html>

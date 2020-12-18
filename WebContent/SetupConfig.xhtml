@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xmlns:o="http://openfaces.org/">
+
+<h:head>
+<h:outputStylesheet library="css" name="table-style.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript name="jsf.js" library="javax.faces" />
+	<h:outputStylesheet library="css" name="tabs.css" />
+	<h:outputStylesheet library="css" name="hintlabel.css" />
+</h:head>
+<h:body>
+<h:inputHidden value="#{sessionExpireBean.checkSessionexpire}"/>
+<h:form id="config">
+
+<fieldset>
+<legend class="label2">Setup Configuration</legend>
+
+<table><tr><td>
+<fieldset>
+<legend class="label2">Data Connection (Segment)</legend>
+<table>
+<tr><td>Connection Name</td><td>:</td><td><h:inputText  id="connName4Data" value="#{setupConfigBean.connName_Data}"/></td></tr>
+<tr><td>Host Name</td><td>:</td><td><h:inputText id="hostName4Data" value="#{setupConfigBean.hostName_Data}"></h:inputText></td></tr>
+<tr><td>Port Number</td><td>:</td><td><h:inputText id="portName4Data" value="#{setupConfigBean.portNo_Data}"></h:inputText></td></tr>
+<tr><td>DB Name</td><td>:</td><td><h:inputText id="DBName4Data" value="#{setupConfigBean.dbName_Data}"></h:inputText></td></tr>
+<tr><td>User Name</td><td>:</td><td><h:inputText id="userName4Data" value="#{setupConfigBean.userName_Data}"></h:inputText></td></tr>
+<tr><td>Password</td><td>:</td><td><h:inputSecret id="password4Data" value="#{setupConfigBean.pass_Data}" redisplay="true"></h:inputSecret></td></tr>
+<tr><td>Connection Type</td><td>:</td><td><h:inputText id="connType4Data" value="#{setupConfigBean.connType_Data}"></h:inputText></td></tr>
+</table>
+</fieldset>
+</td>
+<td>
+<fieldset>
+<legend class="label2">DW Connection</legend>
+<table>
+<tr><td>Connection Name</td><td>:</td><td><h:inputText id="connName4DW" value="#{setupConfigBean.connName_DW}"></h:inputText></td></tr>
+<tr><td>Host Name</td><td>:</td><td><h:inputText id="hostName4DW" value="#{setupConfigBean.hostName_DW}"></h:inputText></td></tr>
+<tr><td>Port Number</td><td>:</td><td><h:inputText id="portName4DW" value="#{setupConfigBean.portNo_DW}"></h:inputText></td></tr>
+<tr><td>DB Name</td><td>:</td><td><h:inputText id="dbName4DW" value="#{setupConfigBean.dbName_DW}"></h:inputText></td></tr>
+<tr><td>User Name</td><td>:</td><td><h:inputText id="userName4DW" value="#{setupConfigBean.userName_DW}"></h:inputText></td></tr>
+<tr><td>Password</td><td>:</td><td><h:inputSecret id="password4DW" value="#{setupConfigBean.pass_DW}" redisplay="true"></h:inputSecret></td></tr>
+<tr><td>Connection Type</td><td>:</td><td><h:inputText id="connType4DW" value="#{setupConfigBean.connType_DW}" immediate="true"></h:inputText></td></tr>
+</table>
+</fieldset>
+</td>
+</tr>
+
+<tr><td colspan="2"><fieldset><legend class="label2">Segment</legend>
+<table>
+<tr><td style="width:150px;">No of Segments</td><td>:</td><td><h:inputText id="noOfsegmts" value="#{setupConfigBean.noOfSegments}"></h:inputText>  </td></tr>
+<tr><td>Segment SQL</td><td>:</td><td><h:inputText  size="80" id="segmtsQL" value="#{setupConfigBean.segmentSQL}"></h:inputText></td></tr>
+<tr><td>Segment Trigger SQL</td><td>:</td><td><h:inputText size="80" id="segmtTrigSQL" value="#{setupConfigBean.segmentTrigerSQL}"></h:inputText></td></tr>
+<tr><td>Row Wid SQL</td><td>:</td><td><h:inputText size="80" id="rowidSQL" value="#{setupConfigBean.rowWidSQL}"></h:inputText></td></tr>
+</table>
+</fieldset></td></tr>
+
+<tr>
+<td colspan="2" ><fieldset><legend class="label2">Segment SQLs</legend>
+<table>
+<tr><th>Segment SQLs</th><th></th><th>Table Name</th><th>Column Name1</th><th>Column Name2</th></tr>
+<tr><td><table><o:forEach items="#{setupConfigBean.segSQLTablesAL}" begin="0" end="#{setupConfigBean.segSQLTablesAL.size()}" varStatus="status"><tr><td>Segment_SQL_#{status.index+1}</td></tr></o:forEach></table></td><td></td>
+<td><table><o:forEach id="SQLtabs" var="tabs" items="#{setupConfigBean.segSQLTablesAL}" begin="0" end="#{setupConfigBean.segSQLTablesAL.size()}" varStatus="status"><tr><td><h:inputText value="#{tabs}" valueChangeListener="#{setupConfigBean.segSQLTableFromField}"/></td></tr></o:forEach></table></td>
+<td><table><o:forEach id="SQLCols1" var="col1" items="#{setupConfigBean.segSQLColumn1AL}" begin="0" end="#{setupConfigBean.segSQLColumn1AL.size()}" varStatus="status"><tr><td><h:inputText value="#{col1}" valueChangeListener="#{setupConfigBean.segSQLColumn1FromField}"/></td></tr></o:forEach></table></td>
+<td><table><o:forEach id="SQLCols2" var="col2" items="#{setupConfigBean.segSQLColumn2AL}" begin="0" end="#{setupConfigBean.segSQLColumn2AL.size()}" varStatus="status"><tr><td><h:inputText value="#{col2}" valueChangeListener="#{setupConfigBean.segSQLColumn2FromField}"/></td></tr></o:forEach></table></td>
+</tr></table>
+</fieldset></td>
+</tr>
+
+<tr>
+<td colspan="2"><fieldset><legend class="label2">Default Fact Configuration</legend>
+<table>
+<tr><td style="width:150px;">Source_Fact_TableName</td><td>:</td><td><h:inputText size="80" id="sourceFact" value="#{setupConfigBean.sourceFactTableName}"></h:inputText></td></tr>
+<tr><td>Target_Fact_TableName</td><td>:</td><td><h:inputText size="80" id="targetFact" value="#{setupConfigBean.targetFactTableName}"></h:inputText></td></tr>
+<tr><td><u>Measure Columns</u></td></tr>
+<tr><td><h:outputText value=""></h:outputText>  </td></tr>
+<o:forEach id="mesCol" var="mesCols" items="#{setupConfigBean.measureColmnsAL}" begin="0" end="#{setupConfigBean.measureColmnsAL.size()}" varStatus="status">
+ <tr><td>Measure_Column_#{status.index+1}</td><td>:</td><td><h:inputText size="80" value="#{mesCols}" valueChangeListener="#{setupConfigBean.measureColsFromField}"/></td></tr>  
+</o:forEach>
+<tr><td><u>Join Columns</u></td></tr>
+<o:forEach id="joinCol" var="joinCols" items="#{setupConfigBean.joinColmnsAL}" begin="0" end="#{setupConfigBean.joinColmnsAL.size()}" varStatus="status">
+ <tr><td>Join_Column_#{status.index+1}</td><td>:</td><td><h:inputText size="80" value="#{joinCols}" valueChangeListener="#{setupConfigBean.joinColsFromField}"/></td></tr>  
+</o:forEach>
+
+<tr><td><h:outputText value=""></h:outputText>  </td></tr>
+<tr><td>Period_Column</td><td>:</td><td><h:inputText size="80" id="periodCol" value="#{setupConfigBean.periodColumn}"></h:inputText></td></tr>
+<tr><td>Period_Values</td><td>:</td><td><h:inputText size="80" id="periodVal" value="#{setupConfigBean.periodValues}" immediate="true"></h:inputText></td></tr>
+</table>
+</fieldset></td>
+</tr>
+<o:forEach></o:forEach>
+<tr><td colspan="2"><h:panelGroup rendered="false">   <fieldset><legend class="label2">Target Fact Tables</legend>
+
+<o:forEach id="factTables" var="factTables" value="#{setupConfigBean.targetFactTablesAL}" items="#{setupConfigBean.targetFactTablesAL}" begin="0" end="#{setupConfigBean.targetFactTablesAL.size()}" varStatus="status">
+<table>
+ <tr><td style="width:150px;">Table_Name_#{status.index+1}</td><td>:</td><td><h:inputText alt="#{status.index+1}"  size="80" value="#{factTables}" valueChangeListener="#{setupConfigBean.factTableListFromField}"  /></td></tr> 
+
+</table>
+</o:forEach>
+</fieldset></h:panelGroup></td>
+</tr>
+
+<tr><td colspan="2"><fieldset><legend class="label2">Target Dim Tables</legend>
+<table>
+<tr><td style="width:150px;">Dim_Table_Name</td><td>:</td><td><h:inputText size="80" id="dimTable" value="#{setupConfigBean.targetDimTable}"></h:inputText></td></tr>
+
+</table>
+</fieldset></td>
+</tr>
+
+<tr><td colspan="2"><fieldset><legend class="label2">Sender E Mail ID</legend>
+<table>
+<tr>
+<td>Email ID</td><td>:</td><td><h:inputText id="userName" value="#{setupConfigBean.emailID}"></h:inputText></td>
+<td></td><td></td>
+<td align="right">Password</td><td>:</td><td><h:inputSecret  id="pwd" value="#{setupConfigBean.password}" redisplay="true"></h:inputSecret></td>
+</tr>
+
+</table>
+</fieldset></td>
+</tr>
+
+
+<tr><td colspan="2"><fieldset><legend class="label2">LDAP Server Information</legend>
+<table>
+<tr><td>Domain Name</td><td>:</td><td><h:inputText style="width:350px" id="domainName" value="#{setupConfigBean.ldapDomainName}"></h:inputText></td><td></td></tr>
+<tr><td>LDAP Host</td><td>:</td><td><h:inputText style="width:350px" id="LDAPHost" value="#{setupConfigBean.ldapHost}"></h:inputText></td><td></td></tr>
+<tr><td>LDAP Port</td><td>:</td><td><h:inputText style="width:350px" id="LDAPPort" value="#{setupConfigBean.ldapPort}"></h:inputText></td><td></td></tr>
+<tr><td>LDAP Version</td><td>:</td><td><h:inputText style="width:350px" id="LDAPVersion" value="#{setupConfigBean.ldapVersion}"></h:inputText></td><td></td></tr>
+<tr><td>Search Scope</td><td>:</td><td><h:inputText style="width:350px" id="searchScope" value="#{setupConfigBean.ldapSearchScope}"></h:inputText></td><td></td></tr>
+<tr><td>Search Base</td><td>:</td><td><h:inputText style="width:350px" id="searchBase" value="#{setupConfigBean.ldapSearchBase}"></h:inputText></td><td></td></tr>
+<tr><td>Search Filter</td><td>:</td><td><h:inputText style="width:350px" id="searchFilter" value="#{setupConfigBean.ldapSearchFilter}"></h:inputText></td><td></td></tr>
+<tr><td>Attribute Only</td><td>:</td><td><h:inputText style="width:350px" id="attrOnly" value="#{setupConfigBean.ldapAttrOnly}"></h:inputText></td><td></td></tr>
+<tr><td>Attributes</td><td>:</td><td><h:inputText style="width:350px" id="attrs" value="#{setupConfigBean.ldapAttributes}"></h:inputText></td><td></td></tr>
+
+</table>
+</fieldset></td>
+</tr>
+
+
+
+
+<tr><td>
+<table><tr><td>
+<h:commandButton  title="Update" id="update"  value="Update" image="/resources/images/update.png" >
+<a4j:ajax execute="connName4Data hostName4Data portName4Data DBName4Data userName4Data password4Data connType4Data connName4DW hostName4DW portName4DW dbName4DW userName4DW password4DW connType4DW noOfsegmts segmtsQL segmtTrigSQL rowidSQL sourceFact targetFact periodCol periodVal dimTable userName pwd factTables SQLtabs SQLCols1 SQLCols2 joinCol mesCol domainName LDAPHost LDAPPort LDAPVersion searchScope searchBase searchFilter attrOnly attrs" 
+render="connName4Data hostName4Data portName4Data DBName4Data userName4Data password4Data connType4Data connName4DW hostName4DW portName4DW dbName4DW userName4DW password4DW connType4DW noOfsegmts segmtsQL segmtTrigSQL rowidSQL sourceFact targetFact periodCol periodVal dimTable userName pwd factTables SQLtabs SQLCols1 SQLCols2 joinCol mesCol valmsg" 
+listener="#{setupConfigBean.updateConfig}"></a4j:ajax>
+</h:commandButton>
+</td><td><h:commandButton title="Close" value="Close" image="/resources/images/close.png" action="#{hierarchyBean.redirect('HierarchyList.xhtml','','','','','','','false','')}" >
+
+</h:commandButton></td><td><h:outputText id="valmsg" styleClass="error" value="#{setupConfigBean.statusMsg}"></h:outputText>   </td></tr></table>
+</td></tr>
+
+</table>
+</fieldset>
+</h:form>
+</h:body>
+</html>

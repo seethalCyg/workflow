@@ -1,0 +1,238 @@
+#navlist {
+	padding: 3px 0;
+	margin-left: 0;
+	border-bottom: 2px solid orange;
+	font: bold 14px Verdana, sans-serif;
+	width:717px;
+	
+	
+}
+
+#navlist li {
+	list-style: none;
+	margin-left: 0px;
+	display: inline;
+}
+
+#navlist li a {
+	padding: 3px 0.5em;
+	margin-left: 0px;
+	border: 1px solid orange;
+	background-color: greyorange;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: 1px solid orange;
+	text-decoration: none;
+	font: bold 12px Verdana, sans-serif;
+	color: black;
+	
+}
+
+
+#navlist ul{
+	position:absolute;
+	left:-9999px; top:-9999px; 
+	list-style-type:none;
+	}
+#navlist li:hover 
+       {
+        position:relative; 
+        }
+#navlist li:hover ul
+ {
+ left:0px; top:20px; background:orange; padding:3px; border:1px solid grey; width:160px;
+ }
+#navlist li:hover ul li 
+{
+	height:18px; border:none;
+}
+#navlist li:hover ul li a 
+    {
+    height:18px; 
+    padding:0px; 
+    display:block; 
+    font-size:11px; 
+    width:158px; 
+    line-height:18px; 
+    text-indent:5px; 
+    color:#444; 
+    background-color:white; 
+    text-decoration:none; border:1px solid transparent;
+    }
+#navlist li:hover ul li a:hover 
+  {
+  height:18px; background:orange; color:#000; border:solid 1px #444;
+  }
+
+#navlist li a:link 
+{
+	color: #448;
+}
+
+#navlist li a:hover 
+{
+	color: darkblue;
+	border-color: orange;
+	
+}
+
+
+
+
+
+
+
+
+
+/*BHARATH*/
+
+#container
+{
+  
+  border: 0.5px #222 solid;
+  height: 600px;
+  margin: 0 auto;
+  text-align: left;
+  width: 700px;
+}
+
+#container form
+{
+  margin: 0 auto;
+  
+}
+
+.singleRow
+{
+  float: left;
+  width: 500px;
+  height:125px;
+ 
+}
+
+.singleRowTall
+{
+  float: left;
+  width: 500px;
+  height:165px;
+ 
+}
+.singleRowTall1
+{
+  float: left;
+  width: 500px;
+  height:165px;
+ 
+}
+
+.singleRowShort
+{
+  float: left;
+  width: 500px;
+  height:20px;
+ 
+}
+
+.homefield
+{
+	background-color:#ffffff;   /*#6666a7*/
+	border-color:orange;
+	border:thin;
+}
+#single,#single1
+{
+	background-color:#fbfaf7;  /*F5F5F0*/
+	border-color:orange;
+	border:thin;
+}
+#single2
+{
+	border-color:orange;
+	border:thin;
+	background-color:white;
+
+}
+#homedescription
+{
+	font-family:sans-serif;
+	font-size:13px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:lighter;
+	text-align:left;
+}
+#homehead
+{
+	font-family:sans-serif;
+	font-size:17px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	
+}
+
+.home1
+{
+	font-family:sans-serif;
+	font-size:17px;
+	font-style:normal;
+	font-variant:normal;
+	padding-bottom: 2em;
+}
+.home2
+{
+	font-family:sans-serif;
+	font-size:17px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+}
+.homesub
+{
+	height: 15px; font: 12px Verdana, sans-serif;
+}
+.homeicon
+{
+	height: 15px; font: bold 14px Verdana, sans-serif;
+}
+
+.homeTitle
+{
+	height: 20px; font: bold 20px garamond; color: darkblue;
+	
+}
+
+hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin: 1em 0; padding: 0; }
+
+
+#pb
+{
+	visibility:false;
+}
+
+
+
+
+
+
+
+/*Login*/
+
+.back
+{
+	height:500px;
+	width:1200px;
+	background-color:white;
+}
+#rbidlogin
+{
+	width:1200px;
+	height:20px;
+	
+}
+#subjectArea
+{
+	text-align:right;
+}
